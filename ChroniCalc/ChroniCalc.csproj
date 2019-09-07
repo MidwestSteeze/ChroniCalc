@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,7 +48,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -60,14 +65,80 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="ResourceImageClass.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceImageClass.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceImageSkill.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceImageSkill.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceImageTree.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceImageTree.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceImageUI.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceImageUI.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleRoot.cs" />
+    <Compile Include="SampleCharacterClass.cs" />
+    <Compile Include="CharacterClass.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleSkill.cs" />
+    <Compile Include="SampleTree.cs" />
+    <Compile Include="Skill.cs" />
+    <Compile Include="SkillButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SkillButton.Designer.cs">
+      <DependentUpon>SkillButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiSkillSelectButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MultiSkillSelectButton.Designer.cs">
+      <DependentUpon>MultiSkillSelectButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkillSelectButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SkillSelectButton.Designer.cs">
+      <DependentUpon>SkillSelectButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkillSelectPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SkillSelectPanel.Designer.cs">
+      <DependentUpon>SkillSelectPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tree.cs" />
+    <Compile Include="TreeTableLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TreeTableLayoutPanel.Designer.cs">
+      <DependentUpon>TreeTableLayoutPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UnassignSkillButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UnassignSkillButton.Designer.cs">
+      <DependentUpon>UnassignSkillButton.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,7 +147,44 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ResourceImageClass.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceImageClass.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceImageSkill.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceImageSkill.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceImageTree.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceImageTree.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceImageUI.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceImageUI.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkillButton.resx">
+      <DependentUpon>SkillButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiSkillSelectButton.resx">
+      <DependentUpon>MultiSkillSelectButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkillSelectButton.resx">
+      <DependentUpon>SkillSelectButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkillSelectPanel.resx">
+      <DependentUpon>SkillSelectPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeTableLayoutPanel.resx">
+      <DependentUpon>TreeTableLayoutPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnassignSkillButton.resx">
+      <DependentUpon>UnassignSkillButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Assets\Data\skilldata_0.94.2.json" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,5 +205,30 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Images\Class\Berserker.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Assets\Images\Tree\Sky_LordIcon.PNG" />
+    <None Include="Assets\Images\UI\ImageNotFound.png" />
+    <None Include="Assets\Images\UI\SkillSelectPanel.png" />
+    <None Include="Resources\SkillSelectButton.bmp" />
+    <None Include="Assets\Images\Class\Templar.PNG" />
+    <None Include="Assets\Images\Class\Warden.PNG" />
+    <None Include="Assets\Images\Class\Warlock.PNG" />
+    <None Include="Assets\Images\Skill\UnassignSkillButton.png" />
+    <None Include="Assets\Images\Skill\ImageNotFound.png" />
+    <None Include="Assets\Images\Tree\MultiSkillSelectButton.PNG" />
+    <None Include="Assets\Images\Tree\ImageNotFound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\background.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
