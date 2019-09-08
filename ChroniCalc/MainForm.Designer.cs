@@ -41,6 +41,7 @@
             this.btnTree3 = new System.Windows.Forms.Button();
             this.btnTree4 = new System.Windows.Forms.Button();
             this.btnTreeMastery = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             this.pnlClassData.SuspendLayout();
@@ -51,9 +52,9 @@
             // 
             this.pnlClass.Controls.Add(this.pbClass);
             this.pnlClass.Controls.Add(this.cboClass);
-            this.pnlClass.Location = new System.Drawing.Point(3, 0);
+            this.pnlClass.Location = new System.Drawing.Point(3, 39);
             this.pnlClass.Name = "pnlClass";
-            this.pnlClass.Size = new System.Drawing.Size(110, 420);
+            this.pnlClass.Size = new System.Drawing.Size(210, 381);
             this.pnlClass.TabIndex = 7;
             // 
             // cboClass
@@ -65,20 +66,20 @@
             "Templar",
             "Warden",
             "Warlock"});
-            this.cboClass.Location = new System.Drawing.Point(0, 220);
+            this.cboClass.Location = new System.Drawing.Point(3, 3);
             this.cboClass.Name = "cboClass";
-            this.cboClass.Size = new System.Drawing.Size(110, 21);
+            this.cboClass.Size = new System.Drawing.Size(203, 21);
             this.cboClass.TabIndex = 0;
             this.cboClass.SelectedIndexChanged += new System.EventHandler(this.CboClass_SelectedIndexChanged);
             // 
             // pbClass
             // 
-            this.pbClass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbClass.Location = new System.Drawing.Point(0, 90);
+            this.pbClass.Location = new System.Drawing.Point(3, 28);
             this.pbClass.Name = "pbClass";
-            this.pbClass.Size = new System.Drawing.Size(110, 120);
-            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbClass.Size = new System.Drawing.Size(200, 350);
+            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbClass.TabIndex = 1;
             this.pbClass.TabStop = false;
             // 
@@ -90,7 +91,7 @@
             this.pnlClassData.Controls.Add(this.lblSkillPointsCaption);
             this.pnlClassData.Controls.Add(this.lblTree);
             this.pnlClassData.Controls.Add(this.pnlTrees);
-            this.pnlClassData.Location = new System.Drawing.Point(120, 0);
+            this.pnlClassData.Location = new System.Drawing.Point(220, 0);
             this.pnlClassData.Name = "pnlClassData";
             this.pnlClassData.Size = new System.Drawing.Size(560, 420);
             this.pnlClassData.TabIndex = 7;
@@ -198,12 +199,23 @@
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Rockwell", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(1, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(128, 26);
+            this.lblTitle.TabIndex = 8;
+            this.lblTitle.Text = "ChroniCalc";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(684, 427);
+            this.ClientSize = new System.Drawing.Size(784, 427);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pnlClass);
             this.Controls.Add(this.pnlClassData);
             this.DoubleBuffered = true;
@@ -215,6 +227,7 @@
             this.pnlClassData.PerformLayout();
             this.pnlTrees.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -232,6 +245,7 @@
         private System.Windows.Forms.Label lblTree;
         private System.Windows.Forms.Label lblSkillPointsCaption;
         private System.Windows.Forms.Label lblSkillPoints;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
 

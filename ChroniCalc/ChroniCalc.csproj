@@ -206,6 +206,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Images\Class\Warlock.gif" />
+    <None Include="Assets\Images\Class\Warden.gif" />
+    <None Include="Assets\Images\Class\Templar.gif" />
+    <None Include="Assets\Images\Class\Berserker.gif" />
     <Content Include="Assets\Images\Class\Berserker.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
