@@ -42,7 +42,7 @@
             // 
             // SkillButton
             // 
-            this.Click += new System.EventHandler(this.SkillButton_Click);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SkillButton_MouseUp);
             this.ResumeLayout(false);
 
         }

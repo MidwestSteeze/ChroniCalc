@@ -259,7 +259,7 @@ namespace ChroniCalc
                 switch (selectedClass.name)
                 {
                     case "Berserker":
-                        pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Berserker");  //TODOSSG swap these for GIFs and some fyre
+                        pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Berserker");
                         break;
                     case "Templar":
                         pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Templar");
@@ -274,7 +274,6 @@ namespace ChroniCalc
                         //TODOSSG what's the best way to handle exceptions? error message to user? debug log? email call stack?
                         throw new Exception("ChangeClass: characterClass of " + selectedClass.name + " was not added to Switch for setting the Class iamge.");
                 }
-                //pbClass.Load(IMAGE_CLASS + (sender as ComboBox).SelectedItem.ToString() + PNG_EXT);
 
                 //Reset all things involved with the current character (ie. stats, trees, gear)        
                 ResetCharacter(selectedClass);
@@ -501,7 +500,7 @@ namespace ChroniCalc
             }
         }
 
-        private void LoadTree(Tree tree, TableLayoutPanel tlpTree)
+        private void LoadTree(Tree tree, TreeTableLayoutPanel tlpTree)
         {
             List<Skill> MultiSelectionSkills = new List<Skill>();
 
@@ -517,9 +516,11 @@ namespace ChroniCalc
                     //Create a new control to hold this skill at the skills X and Y location
                     SkillButton btnSkill = new SkillButton(skill);
 
-                    //Add an onClick event handler for debugging purposes
-                    //  (this can be removed once you implement a proper Hover to show the skill)
-                    //btnSkill.Click += new EventHandler(ShowSelectedSkillData);
+                    //Disable button if it's the Class skill counter (the one that provides the passive damage bonus based on # of points spent)
+                    if (skill.name == tree.name)
+                    {
+                        btnSkill.Enabled = false;
+                    }
 
                     //Add the skill button to the tree
                     tlpTree.Controls.Add(btnSkill, skill.x, skill.y);
@@ -529,11 +530,11 @@ namespace ChroniCalc
 
         //Look at all skills within the current Tree to see if there are multiples that share the same position (ie. Dive, Jump, Flame Dash)
         // where only 1 should be selected by the user
-        private void LoadMultiSelectionSkills(Tree tree, TableLayoutPanel tlpTree, ref List<Skill> MultiSelectionSkills)
+        private void LoadMultiSelectionSkills(Tree tree, TreeTableLayoutPanel tlpTree, ref List<Skill> MultiSelectionSkills)
         {
             int xPos;
             int yPos;
-            SkillSelectButton btnSkill;
+            SkillSelectButton btnSkillSelect;
             List<Skill> MultipleSkills = new List<Skill>();
 
             //Loop through each skill in the tree to analyze its X and Y properties and see if more than 1 skill exists at this position
@@ -558,8 +559,8 @@ namespace ChroniCalc
                 if (MultipleSkills.Count > 1)
                 {
                     //Add a SkillSelect Button ("+" button) to the shared X,Y position on the tree
-                    MultiSkillSelectButton btnSkillSelect = new MultiSkillSelectButton(xPos, yPos);
-                    tlpTree.Controls.Add(btnSkillSelect, xPos, yPos);
+                    MultiSkillSelectButton btnMultiSkillSelect = new MultiSkillSelectButton(xPos, yPos);
+                    tlpTree.Controls.Add(btnMultiSkillSelect, xPos, yPos);
 
                     //Instantiate a new SkillSelect Panel to hold the multiple skills
                     SkillSelectPanel pnlSkillSelect = new SkillSelectPanel();
@@ -569,23 +570,24 @@ namespace ChroniCalc
                     pnlSkillSelect.Parent = pnlTrees;
 
                     //Tie the panel to the SkillSelect Button that holds the position for which this panel and its skills apply to
-                    btnSkillSelect.skillSelectPanel = pnlSkillSelect;
+                    btnMultiSkillSelect.skillSelectPanel = pnlSkillSelect;
 
                     //Set the width of the SkillSelect Panel to the number of skill buttons it will contain
                     pnlSkillSelect.Width = ((MultipleSkills.Count + 1) * (new SkillSelectButton().Width)) + ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING - SKILL_BUTTON_PADDING / 2); //last # is accounting for 3px padding on each side of each button
 
-                    //Create a button for each skill and place it in the SKillSelect Panel
+                    //Create a button for each skill and place it in the SkillSelect Panel
                     foreach (Skill multiSkill in MultipleSkills)
                     {
-                        btnSkill = new SkillSelectButton();
-                        btnSkill.skill = multiSkill;
-                        btnSkill.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("ImageNotFound"); //TODOSSG change when you have all pics in place (multiSkill.name);
+                        btnSkillSelect = new SkillSelectButton();
+                        btnSkillSelect.skill = multiSkill;
+                        btnSkillSelect.treeControl = tlpTree;
+                        btnSkillSelect.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("ImageNotFound"); //TODOSSG change when you have all pics in place (multiSkill.id);
 
                         //Add the button to the panel  //TOODSSG how to get the correct order? may need to hard-code this?
-                        pnlSkillSelect.Controls.Add(btnSkill);
+                        pnlSkillSelect.Controls.Add(btnSkillSelect);
 
                         //Specify the position the button within the panel
-                        btnSkill.Location = new Point((pnlSkillSelect.Controls.Count * btnSkill.Width), 3);
+                        btnSkillSelect.Location = new Point((pnlSkillSelect.Controls.Count * btnSkillSelect.Width), 3);
 
                         //Add these skills to a list for future reference so we know which are multi-selection skills
                         MultiSelectionSkills.Add(multiSkill);

@@ -17,8 +17,9 @@ namespace ChroniCalc
     {
         readonly ResourceManager ResourceManagerImageSkill;
         public Skill skill;
+        public TreeTableLayoutPanel treeControl;
 
-        public SkillSelectButton() //TODOSSG change constructor to require things so theyre not forgotten? (ie. skill and image)
+        public SkillSelectButton() //TODOSSG change constructor to require things so theyre not forgotten? (ie. skill, treeControl and image)
         {
             InitializeComponent();
 
@@ -47,26 +48,22 @@ namespace ChroniCalc
                             "YPos:" + this.skill.y;
             ;
             MessageBox.Show(debugMessage);
-            //END Debug Info
+            //END Debug Info            
 
-            //Put the contents of this button into the Tree (ie. TableLayoutPanel) and make it the active skill
-            //TODO
+            //Create a new button to hold the seleceted Skill
+            SkillButton btnSkill = new SkillButton(this.skill);
 
-            /*
-             * get the TLPTree control
-             * ...TableLayoutPanel tlpTree = this.Parent as TableLayoutPanel;
-            
-             * remove the current control at this.skill.x and this.skill.y
-             * ...Control btnSkill = tlpTree.GetControlFromPosition(xPos, yPos);
-             * 
-             * create a new SkillButton and populate its defaults (ie. skill, image, etc)
-             * ...
-             * 
-             * add the SKillButton to the TLP Tree at position this.skill.x and this.skill.y
-             * tlpTree.Controls.Add(skillButton, this.skill.x, this.skill.y);
-             * 
-             * 
-             */
+            //Remove the current control at the currently-selected position
+            // NOTE: Removing a control moves all controls after it "up" 1 cell by index, but adding a control in its place immediately after will put all skills back in their place
+            MultiSkillSelectButton btnMultiSkillSelect = (MultiSkillSelectButton)this.treeControl.GetControlFromPosition(this.skill.x, this.skill.y);
+            this.treeControl.Controls.Remove(btnMultiSkillSelect);
+
+            //Add the skill button to the Tree at the currently-selected position
+            this.treeControl.Controls.Add(btnSkill, this.skill.x, this.skill.y);
+
+            //Hide the SkillSelectPanel now that the user chose a skill //TODOSSG delete it to reduce instantiated controls in memory?
+            this.Parent.Hide();
+
         }
     }
 }
