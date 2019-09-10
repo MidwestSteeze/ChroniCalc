@@ -30,6 +30,7 @@
         {
             this.pnlClass = new System.Windows.Forms.Panel();
             this.cboClass = new System.Windows.Forms.ComboBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pbClass = new System.Windows.Forms.PictureBox();
             this.pnlClassData = new System.Windows.Forms.Panel();
             this.lblSkillPoints = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.btnTree3 = new System.Windows.Forms.Button();
             this.btnTree4 = new System.Windows.Forms.Button();
             this.btnTreeMastery = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             this.pnlClassData.SuspendLayout();
@@ -71,6 +71,16 @@
             this.cboClass.Size = new System.Drawing.Size(203, 21);
             this.cboClass.TabIndex = 0;
             this.cboClass.SelectedIndexChanged += new System.EventHandler(this.CboClass_SelectedIndexChanged);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Rockwell", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(1, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(128, 26);
+            this.lblTitle.TabIndex = 8;
+            this.lblTitle.Text = "ChroniCalc";
             // 
             // pbClass
             // 
@@ -147,6 +157,7 @@
             // btnTree1
             // 
             this.btnTree1.BackColor = System.Drawing.Color.Transparent;
+            this.btnTree1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTree1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTree1.Location = new System.Drawing.Point(24, 3);
             this.btnTree1.Name = "btnTree1";
@@ -158,6 +169,7 @@
             // btnTree2
             // 
             this.btnTree2.BackColor = System.Drawing.Color.Transparent;
+            this.btnTree2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTree2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTree2.Location = new System.Drawing.Point(67, 3);
             this.btnTree2.Name = "btnTree2";
@@ -169,6 +181,7 @@
             // btnTree3
             // 
             this.btnTree3.BackColor = System.Drawing.Color.Transparent;
+            this.btnTree3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTree3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTree3.Location = new System.Drawing.Point(111, 3);
             this.btnTree3.Name = "btnTree3";
@@ -180,6 +193,7 @@
             // btnTree4
             // 
             this.btnTree4.BackColor = System.Drawing.Color.Transparent;
+            this.btnTree4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTree4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTree4.Location = new System.Drawing.Point(157, 3);
             this.btnTree4.Name = "btnTree4";
@@ -191,6 +205,8 @@
             // btnTreeMastery
             // 
             this.btnTreeMastery.BackColor = System.Drawing.Color.Transparent;
+            this.btnTreeMastery.BackgroundImage = global::ChroniCalc.ResourceImageTree.IconMastery;
+            this.btnTreeMastery.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTreeMastery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTreeMastery.Location = new System.Drawing.Point(201, 3);
             this.btnTreeMastery.Name = "btnTreeMastery";
@@ -198,16 +214,6 @@
             this.btnTreeMastery.TabIndex = 5;
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Rockwell", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(1, 9);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(128, 26);
-            this.lblTitle.TabIndex = 8;
-            this.lblTitle.Text = "ChroniCalc";
             // 
             // MainForm
             // 

@@ -322,7 +322,7 @@ namespace ChroniCalc
                     treePanels[0].name = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "Sky_Lord";
+                    treeName = "SkyLord";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].name = treeName;
@@ -374,19 +374,19 @@ namespace ChroniCalc
                     treePanels[0].name = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "Winter_Herald";
+                    treeName = "WinterHerald";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].name = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "Storm_Caller";
+                    treeName = "StormCaller";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].name = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "Wind_Ranger";
+                    treeName = "WindRanger";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].name = treeName;
@@ -462,9 +462,9 @@ namespace ChroniCalc
         private void LoadTreeIconButtonImage(ResourceManager resourceManager, Button button, string name)
         {
             //Load the image into the specificed control but fall-back to an ImageNotFound image incase one hasn't been added to the Resource Manager yet
-            if (!((Image)resourceManager.GetObject(name + "Icon") is null))
+            if (!((Image)resourceManager.GetObject("Icon" + name) is null))
             {
-                button.BackgroundImage = (Image)resourceManager.GetObject(name + "Icon");
+                button.BackgroundImage = (Image)resourceManager.GetObject("Icon" + name);
             }
             else
             {
@@ -561,6 +561,7 @@ namespace ChroniCalc
                     //Add a SkillSelect Button ("+" button) to the shared X,Y position on the tree
                     MultiSkillSelectButton btnMultiSkillSelect = new MultiSkillSelectButton(xPos, yPos);
                     tlpTree.Controls.Add(btnMultiSkillSelect, xPos, yPos);
+                    //TODOSSG at this same position, set backgroundimage of the cell to be the texture so you don't have to photoshop out the skill counter in Chronicon controls
 
                     //Instantiate a new SkillSelect Panel to hold the multiple skills
                     SkillSelectPanel pnlSkillSelect = new SkillSelectPanel();

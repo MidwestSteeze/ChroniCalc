@@ -206,6 +206,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ToDo.txt" />
+    <None Include="Assets\Images\Tree\SkyLord.png" />
+    <None Include="Assets\Images\Tree\Frostborn.png" />
+    <None Include="Assets\Images\Tree\Dragonkin.png" />
+    <None Include="Assets\Images\Tree\Guardian.png" />
+    <None Include="Assets\Images\Tree\IconSkyLord.png" />
+    <None Include="Assets\Images\Tree\IconGuardian.png" />
+    <None Include="Assets\Images\Tree\IconFrostborn.png" />
+    <None Include="Assets\Images\Tree\IconDragonkin.png" />
+    <None Include="Assets\Images\Tree\IconMastery.png" />
     <None Include="Assets\Images\Class\Warlock.gif" />
     <None Include="Assets\Images\Class\Warden.gif" />
     <None Include="Assets\Images\Class\Templar.gif" />

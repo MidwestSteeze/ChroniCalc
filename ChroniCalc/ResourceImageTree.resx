@@ -118,13 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Dragonkin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Dragonkin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Frostborn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Frostborn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Guardian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Guardian.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconDragonkin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\IconDragonkin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconFrostborn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\IconFrostborn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconGuardian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\IconGuardian.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconMastery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\IconMastery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconSkyLord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\IconSkyLord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ImageNotFound" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\ImageNotFound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MultiSkillSelectButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\MultiSkillSelectButton.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Sky_LordIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\Sky_LordIcon.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SkyLord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\SkyLord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

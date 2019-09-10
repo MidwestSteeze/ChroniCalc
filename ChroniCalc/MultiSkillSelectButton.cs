@@ -40,6 +40,10 @@ namespace ChroniCalc
 
             //Image Layout
             this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            //Anchor location within its parent control
+            //this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+            this.Anchor = AnchorStyles.None;
         }
 
         protected override void OnPaint(PaintEventArgs pe)

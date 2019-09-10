@@ -26,6 +26,9 @@ namespace ChroniCalc
             //Set the Skill
             skill = inSkill;
 
+            //Set the .Name property based on the Skill's ID
+            this.Name = skill.id.ToString();
+
             //Specify defaults for this custom control
 
             //Size
@@ -48,6 +51,10 @@ namespace ChroniCalc
             //Image Layout
             this.BackgroundImageLayout = ImageLayout.Stretch;
 
+            //Anchor location within its parent control
+            //this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+            this.Anchor = AnchorStyles.None;
+
             //Font
             this.Font = new System.Drawing.Font("TechnicBold", 12F, FontStyle.Bold);
         }
@@ -64,25 +71,63 @@ namespace ChroniCalc
 
             debugMessage = "Skill: " + this.skill.name + "\n" +
                             "XPos: " + this.skill.x + "\n" +
-                            "YPos:" + this.skill.y;
+                            "YPos:" + this.skill.y + "\n" + 
+                            "Width:" + this.Width + "\n" +
+                            "height:" + this.Height;
             ;
             MessageBox.Show(debugMessage);
             //END Debug Info
 
             //Adjust the level of the skill, ensuring we're not beyond the min/max allowed
-            if (e.Button == MouseButtons.Left && this.level < this.skill.max_rank)
+            if (e.Button == MouseButtons.Left && this.level < this.skill.max_rank && HavePrereqs())
             {
                 this.level++;
             }
             else if (e.Button == MouseButtons.Right && this.level > 0)
             {
+                //TODO don't let user de-level if it's going to set level to 0 and this skill is a needed prereq
                 this.level--;
             }
 
             //Update the displayed level on the skill button
-            this.Text = this.level.ToString();
+            if (this.level == 0)
+            {
+                this.Text = "";
+            }
+            else
+            {
+                this.Text = this.level.ToString();
+            }
 
             //TODO update stats (damage, health, mana, etc)
+        }
+
+        private bool HavePrereqs()
+        {
+            bool result = true;
+            SkillButton preReqSkillButton;
+
+            //Get the Tree this Skill belong to
+            TreeTableLayoutPanel ttlp = (TreeTableLayoutPanel)this.Parent;
+
+            //Compile list of prereq skill ids from the current skill's skill_requirement property
+            int[] prereqs = this.skill.skill_requirement;
+
+            //Analyze each prereq skill id to see if it's leveled
+            foreach (int prereqSkillId in prereqs)
+            {
+                //Get the Skill button from the Tree by ID
+                preReqSkillButton = (SkillButton)ttlp.Controls.Find(prereqSkillId.ToString(), false).First();
+
+                //Verify the prereq skill is leveled
+                if (preReqSkillButton.level < 1)
+                {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }

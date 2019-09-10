@@ -19,27 +19,25 @@ namespace ChroniCalc
 
             //Specify defaults for this custom control
 
-            //Column Count and Size
+            //Column/Row Counts and Size
             this.ColumnCount = 10;
-
-            for (int i = 0; i < this.ColumnCount - 1; i++)
-            {
-                this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, (100 / this.ColumnCount))); //10F, maybe (single)?
-            }
-
-            //Row Count and Size
             this.RowCount = 7;
 
-            for (int i = 0; i < this.RowCount - 1; i++)
+            for (int i = 0; i < this.ColumnCount; i++)
             {
-                this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, (100 / this.RowCount))); //14.28571F, maybe (single)?
+                this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, (10F)));
             }
+
+            for (int i = 0; i < this.RowCount; i++)
+            {
+                this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, (14.28571F)));
+            }
+
+            //Size
+            this.Size = new System.Drawing.Size(475, 279);
 
             //Assign the Parent Control
             parentControl.Controls.Add(this); //TODOSSG this next
-
-            //Size
-            this.Size = new System.Drawing.Size(475, 280);
 
             //Location
             this.Location = new System.Drawing.Point(24, 37);
@@ -50,11 +48,21 @@ namespace ChroniCalc
 
             //Visibility
             this.Visible = false;
+
+            //Cell Borderes (TODO delete before commit)
+            this.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            this.BorderStyle = BorderStyle.FixedSingle;
         }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
+        }
+
+        private void TreeTableLayoutPanel_Click(object sender, EventArgs e)
+        {
+            //Show debug info of cell clicked to figure out sizing issue
+            //TODO            
         }
     }
 }

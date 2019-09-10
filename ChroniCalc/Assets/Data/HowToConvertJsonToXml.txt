@@ -1,0 +1,4 @@
+ - Get game json by pressing key combo in-game and navigating to: 
+ - Run extracted game json thru convertjson.com
+ - open resulting xml in notepad++ and use find/replace to remove "_" in all tree names (ie. Sky_Lord --> SkyLord)
+   -- Sky_Lord, Winter_Herald, Storm_Caller, Wind_Ranger

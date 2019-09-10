@@ -1,0 +1,15 @@
+﻿ ToDo
+ 
+ CLASSES:
+	- ?
+ 
+ SKILLS:
+	- ?
+ 
+ TREES:
+	- screenshot all trees with 1 point in every skill so connection bars are activated
+		- then, photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
+	- ?
+
+MISC UI:
+	- ?
