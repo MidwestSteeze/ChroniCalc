@@ -21,6 +21,8 @@ namespace ChroniCalc
     {
         //Skill Tree
         const int SKILL_BUTTON_PADDING = 6;
+        public const int SKILL_POINTS_MAX = 100;
+        public int SkillPointsUsed;
 
         //Resource Managers for pulling assets (ie. data, images, etc.) which is a reflection of the Assets directory
         ResourceManager ResourceManagerImageClass;
@@ -38,6 +40,9 @@ namespace ChroniCalc
         public MainForm()
         {
             InitializeComponent();
+
+            //Set the # of available skill points that can be spent to build the character
+            lblSkillPointsRemaining.Text = SKILL_POINTS_MAX.ToString();
 
             //Init resource managers for pulling assets (ie. data, images, etc.)
             ResourceManagerImageClass = new ResourceManager("ChroniCalc.ResourceImageClass", Assembly.GetExecutingAssembly());
@@ -514,7 +519,7 @@ namespace ChroniCalc
                 if (!(IsMultiSelectionSkill(skill, MultiSelectionSkills)))
                 {
                     //Create a new control to hold this skill at the skills X and Y location
-                    SkillButton btnSkill = new SkillButton(skill);
+                    SkillButton btnSkill = new SkillButton(skill, tlpTree);
 
                     //Disable button if it's the Class skill counter (the one that provides the passive damage bonus based on # of points spent)
                     if (skill.name == tree.name)

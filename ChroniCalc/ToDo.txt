@@ -4,12 +4,20 @@
 	- ?
  
  SKILLS:
-	- ?
+	- MouseHover capability for Skills to show text and numbers
+
+ STATS: 
+	- Damage calculation (need stat screen first)
  
  TREES:
-	- screenshot all trees with 1 point in every skill so connection bars are activated
+	- images: class tree backgrounds: screenshot all trees with 1 point in every skill so connection bars are activated
 		- then, photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
-	- ?
+	- images: make and set all skill images (name then by skill id)
+	- images: make and set skillselectpanel background image
 
-MISC UI:
-	- ?
+MISC:
+	- MainForm: Skill Point Maximum and enforce it
+	- MainForm: Mastery Point counter (no Maximum)
+	- MainForm: Character name, also allow input for in when creating or saving a build
+	- Stat screen
+	- Save/Load build and share

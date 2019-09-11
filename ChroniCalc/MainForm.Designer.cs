@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.pnlClass = new System.Windows.Forms.Panel();
+            this.pbClass = new System.Windows.Forms.PictureBox();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.pbClass = new System.Windows.Forms.PictureBox();
             this.pnlClassData = new System.Windows.Forms.Panel();
-            this.lblSkillPoints = new System.Windows.Forms.Label();
-            this.lblSkillPointsCaption = new System.Windows.Forms.Label();
+            this.lblLevel = new System.Windows.Forms.Label();
+            this.lblLevelCaption = new System.Windows.Forms.Label();
+            this.lblSkillPointsRemaining = new System.Windows.Forms.Label();
+            this.lblSkillPointsRemainingCaption = new System.Windows.Forms.Label();
             this.lblTree = new System.Windows.Forms.Label();
             this.pnlTrees = new System.Windows.Forms.Panel();
             this.btnTree1 = new System.Windows.Forms.Button();
@@ -56,6 +58,17 @@
             this.pnlClass.Name = "pnlClass";
             this.pnlClass.Size = new System.Drawing.Size(210, 381);
             this.pnlClass.TabIndex = 7;
+            // 
+            // pbClass
+            // 
+            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbClass.Location = new System.Drawing.Point(3, 28);
+            this.pbClass.Name = "pbClass";
+            this.pbClass.Size = new System.Drawing.Size(200, 350);
+            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbClass.TabIndex = 1;
+            this.pbClass.TabStop = false;
             // 
             // cboClass
             // 
@@ -82,23 +95,14 @@
             this.lblTitle.TabIndex = 8;
             this.lblTitle.Text = "ChroniCalc";
             // 
-            // pbClass
-            // 
-            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbClass.Location = new System.Drawing.Point(3, 28);
-            this.pbClass.Name = "pbClass";
-            this.pbClass.Size = new System.Drawing.Size(200, 350);
-            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbClass.TabIndex = 1;
-            this.pbClass.TabStop = false;
-            // 
             // pnlClassData
             // 
             this.pnlClassData.BackgroundImage = global::ChroniCalc.Properties.Resources.background;
             this.pnlClassData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pnlClassData.Controls.Add(this.lblSkillPoints);
-            this.pnlClassData.Controls.Add(this.lblSkillPointsCaption);
+            this.pnlClassData.Controls.Add(this.lblLevel);
+            this.pnlClassData.Controls.Add(this.lblLevelCaption);
+            this.pnlClassData.Controls.Add(this.lblSkillPointsRemaining);
+            this.pnlClassData.Controls.Add(this.lblSkillPointsRemainingCaption);
             this.pnlClassData.Controls.Add(this.lblTree);
             this.pnlClassData.Controls.Add(this.pnlTrees);
             this.pnlClassData.Location = new System.Drawing.Point(220, 0);
@@ -106,29 +110,53 @@
             this.pnlClassData.Size = new System.Drawing.Size(560, 420);
             this.pnlClassData.TabIndex = 7;
             // 
-            // lblSkillPoints
+            // lblLevel
             // 
-            this.lblSkillPoints.AutoSize = true;
-            this.lblSkillPoints.BackColor = System.Drawing.Color.Transparent;
-            this.lblSkillPoints.Font = new System.Drawing.Font("Comic Sans MS", 11F);
-            this.lblSkillPoints.ForeColor = System.Drawing.Color.White;
-            this.lblSkillPoints.Location = new System.Drawing.Point(127, 39);
-            this.lblSkillPoints.Name = "lblSkillPoints";
-            this.lblSkillPoints.Size = new System.Drawing.Size(18, 20);
-            this.lblSkillPoints.TabIndex = 9;
-            this.lblSkillPoints.Text = "0";
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.BackColor = System.Drawing.Color.Transparent;
+            this.lblLevel.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblLevel.ForeColor = System.Drawing.Color.White;
+            this.lblLevel.Location = new System.Drawing.Point(197, 24);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(18, 20);
+            this.lblLevel.TabIndex = 11;
+            this.lblLevel.Text = "0";
             // 
-            // lblSkillPointsCaption
+            // lblLevelCaption
             // 
-            this.lblSkillPointsCaption.AutoSize = true;
-            this.lblSkillPointsCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblSkillPointsCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
-            this.lblSkillPointsCaption.ForeColor = System.Drawing.Color.White;
-            this.lblSkillPointsCaption.Location = new System.Drawing.Point(39, 39);
-            this.lblSkillPointsCaption.Name = "lblSkillPointsCaption";
-            this.lblSkillPointsCaption.Size = new System.Drawing.Size(90, 20);
-            this.lblSkillPointsCaption.TabIndex = 8;
-            this.lblSkillPointsCaption.Text = "Skill Points:";
+            this.lblLevelCaption.AutoSize = true;
+            this.lblLevelCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblLevelCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblLevelCaption.ForeColor = System.Drawing.Color.White;
+            this.lblLevelCaption.Location = new System.Drawing.Point(151, 24);
+            this.lblLevelCaption.Name = "lblLevelCaption";
+            this.lblLevelCaption.Size = new System.Drawing.Size(48, 20);
+            this.lblLevelCaption.TabIndex = 10;
+            this.lblLevelCaption.Text = "Level:";
+            // 
+            // lblSkillPointsRemaining
+            // 
+            this.lblSkillPointsRemaining.AutoSize = true;
+            this.lblSkillPointsRemaining.BackColor = System.Drawing.Color.Transparent;
+            this.lblSkillPointsRemaining.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblSkillPointsRemaining.ForeColor = System.Drawing.Color.White;
+            this.lblSkillPointsRemaining.Location = new System.Drawing.Point(127, 39);
+            this.lblSkillPointsRemaining.Name = "lblSkillPointsRemaining";
+            this.lblSkillPointsRemaining.Size = new System.Drawing.Size(18, 20);
+            this.lblSkillPointsRemaining.TabIndex = 9;
+            this.lblSkillPointsRemaining.Text = "0";
+            // 
+            // lblSkillPointsRemainingCaption
+            // 
+            this.lblSkillPointsRemainingCaption.AutoSize = true;
+            this.lblSkillPointsRemainingCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblSkillPointsRemainingCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblSkillPointsRemainingCaption.ForeColor = System.Drawing.Color.White;
+            this.lblSkillPointsRemainingCaption.Location = new System.Drawing.Point(39, 39);
+            this.lblSkillPointsRemainingCaption.Name = "lblSkillPointsRemainingCaption";
+            this.lblSkillPointsRemainingCaption.Size = new System.Drawing.Size(90, 20);
+            this.lblSkillPointsRemainingCaption.TabIndex = 8;
+            this.lblSkillPointsRemainingCaption.Text = "Skill Points:";
             // 
             // lblTree
             // 
@@ -249,9 +277,11 @@
         private System.Windows.Forms.ComboBox cboClass;
         private System.Windows.Forms.PictureBox pbClass;
         private System.Windows.Forms.Label lblTree;
-        private System.Windows.Forms.Label lblSkillPointsCaption;
-        private System.Windows.Forms.Label lblSkillPoints;
+        private System.Windows.Forms.Label lblSkillPointsRemainingCaption;
+        private System.Windows.Forms.Label lblSkillPointsRemaining;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.Label lblLevelCaption;
     }
 }
 
