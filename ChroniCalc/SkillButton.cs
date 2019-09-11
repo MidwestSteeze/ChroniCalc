@@ -155,6 +155,12 @@ namespace ChroniCalc
                     result = false;
                     break;
                 }
+                else
+                {
+                    //We found a leveled PreReq, there is no need to search the others so break out of the loop
+                    result = true;
+                    break;
+                }
             }
 
             return result;

@@ -11,13 +11,13 @@
  
  TREES:
 	- images: class tree backgrounds: screenshot all trees with 1 point in every skill so connection bars are activated
+		- (Berserker, Warlock, Warden, Templar)
 		- then, photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
 	- images: make and set all skill images (name then by skill id)
 	- images: make and set skillselectpanel background image
 
 MISC:
-	- MainForm: Skill Point Maximum and enforce it
 	- MainForm: Mastery Point counter (no Maximum)
-	- MainForm: Character name, also allow input for in when creating or saving a build
+	- MainForm: Character name, also allow input for it when creating or saving a build
 	- Stat screen
-	- Save/Load build and share
+	- Save/Load/Share build
