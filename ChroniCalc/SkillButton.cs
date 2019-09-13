@@ -15,12 +15,13 @@ namespace ChroniCalc
     //A custom button that has the ability to hold a Skill object
     public partial class SkillButton : Button
     {
-        private int level;
+        public int level;
         readonly ResourceManager ResourceManagerImageSkill;
         readonly private MainForm form;
         public Skill skill;
+        //TODO public Tree tree <-- would it be helpful to have?
 
-        public SkillButton(Skill inSkill, Control parentControl)
+        public SkillButton(Skill inSkill, TreeTableLayoutPanel parentControl)
         {
             InitializeComponent();
 
@@ -31,8 +32,8 @@ namespace ChroniCalc
             //Set the Skill
             skill = inSkill;
 
-            //Set the .Name property based on the Skill's ID
-            this.Name = skill.id.ToString();
+            //Set the .Name property based on the Skill's Name
+            this.Name = skill.name;
 
             //Specify defaults for this custom control
 
@@ -62,6 +63,9 @@ namespace ChroniCalc
 
             //Font
             this.Font = new System.Drawing.Font("TechnicBold", 12F, FontStyle.Bold);
+
+            //Level
+            this.level = 0;
         }
 
         protected override void OnPaint(PaintEventArgs pe)
@@ -173,6 +177,11 @@ namespace ChroniCalc
             //Adjust the total spent skill points counter
             form.SkillPointsUsed += levelAdjust;
             skillPointsUsed = form.SkillPointsUsed;
+
+            //Update the total spent skill points on this particular Tree for the passive bonus stats
+            SkillButton passiveBonusBtn = (SkillButton)this.Parent.Controls.Find(this.Parent.Name, true).First();
+            passiveBonusBtn.level = passiveBonusBtn.level + levelAdjust;
+            passiveBonusBtn.Text = passiveBonusBtn.level.ToString();
 
             //Update the label that shows remaining points that can be spent
            (form.Controls.Find("lblSkillPointsRemaining", true).First() as Label).Text = (MainForm.SKILL_POINTS_MAX - skillPointsUsed).ToString();

@@ -5,6 +5,7 @@
  
  SKILLS:
 	- MouseHover capability for Skills to show text and numbers
+	- add passive point counter on tree's passive damage increaser for each point spent
 
  STATS: 
 	- Damage calculation (need stat screen first)

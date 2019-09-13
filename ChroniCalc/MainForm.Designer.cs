@@ -44,6 +44,8 @@
             this.btnTree3 = new System.Windows.Forms.Button();
             this.btnTree4 = new System.Windows.Forms.Button();
             this.btnTreeMastery = new System.Windows.Forms.Button();
+            this.lblMastery = new System.Windows.Forms.Label();
+            this.lblMasteryCaption = new System.Windows.Forms.Label();
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             this.pnlClassData.SuspendLayout();
@@ -99,6 +101,8 @@
             // 
             this.pnlClassData.BackgroundImage = global::ChroniCalc.Properties.Resources.background;
             this.pnlClassData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnlClassData.Controls.Add(this.lblMastery);
+            this.pnlClassData.Controls.Add(this.lblMasteryCaption);
             this.pnlClassData.Controls.Add(this.lblLevel);
             this.pnlClassData.Controls.Add(this.lblLevelCaption);
             this.pnlClassData.Controls.Add(this.lblSkillPointsRemaining);
@@ -116,7 +120,7 @@
             this.lblLevel.BackColor = System.Drawing.Color.Transparent;
             this.lblLevel.Font = new System.Drawing.Font("Comic Sans MS", 11F);
             this.lblLevel.ForeColor = System.Drawing.Color.White;
-            this.lblLevel.Location = new System.Drawing.Point(197, 24);
+            this.lblLevel.Location = new System.Drawing.Point(184, 24);
             this.lblLevel.Name = "lblLevel";
             this.lblLevel.Size = new System.Drawing.Size(18, 20);
             this.lblLevel.TabIndex = 11;
@@ -130,9 +134,9 @@
             this.lblLevelCaption.ForeColor = System.Drawing.Color.White;
             this.lblLevelCaption.Location = new System.Drawing.Point(151, 24);
             this.lblLevelCaption.Name = "lblLevelCaption";
-            this.lblLevelCaption.Size = new System.Drawing.Size(48, 20);
+            this.lblLevelCaption.Size = new System.Drawing.Size(27, 20);
             this.lblLevelCaption.TabIndex = 10;
-            this.lblLevelCaption.Text = "Level:";
+            this.lblLevelCaption.Text = "Lv.";
             // 
             // lblSkillPointsRemaining
             // 
@@ -243,6 +247,30 @@
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);
             // 
+            // lblMastery
+            // 
+            this.lblMastery.AutoSize = true;
+            this.lblMastery.BackColor = System.Drawing.Color.Transparent;
+            this.lblMastery.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblMastery.ForeColor = System.Drawing.Color.White;
+            this.lblMastery.Location = new System.Drawing.Point(237, 24);
+            this.lblMastery.Name = "lblMastery";
+            this.lblMastery.Size = new System.Drawing.Size(18, 20);
+            this.lblMastery.TabIndex = 13;
+            this.lblMastery.Text = "0";
+            // 
+            // lblMasteryCaption
+            // 
+            this.lblMasteryCaption.AutoSize = true;
+            this.lblMasteryCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblMasteryCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblMasteryCaption.ForeColor = System.Drawing.Color.White;
+            this.lblMasteryCaption.Location = new System.Drawing.Point(209, 24);
+            this.lblMasteryCaption.Name = "lblMasteryCaption";
+            this.lblMasteryCaption.Size = new System.Drawing.Size(22, 20);
+            this.lblMasteryCaption.TabIndex = 12;
+            this.lblMasteryCaption.Text = "M";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,6 +310,8 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.Label lblLevelCaption;
+        private System.Windows.Forms.Label lblMastery;
+        private System.Windows.Forms.Label lblMasteryCaption;
     }
 }
 
