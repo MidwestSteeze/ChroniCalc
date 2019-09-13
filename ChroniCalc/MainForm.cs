@@ -218,7 +218,7 @@ namespace ChroniCalc
             //Show the corresponding tlpTree by finding a match and bringing it in front of the others
             foreach (TreeTableLayoutPanel ttlp in treePanels)
             {
-                if (ttlp.name == btnTree.Tag.ToString())
+                if (ttlp.Name == btnTree.Tag.ToString())
                 {
                     ttlp.Show();
                     ttlp.BringToFront();
@@ -324,25 +324,25 @@ namespace ChroniCalc
                     treeName = "Guardian";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
-                    treePanels[0].name = treeName;
+                    treePanels[0].Name = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "SkyLord";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
-                    treePanels[1].name = treeName;
+                    treePanels[1].Name = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Dragonkin";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
-                    treePanels[2].name = treeName;
+                    treePanels[2].Name = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Frostborn";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
-                    treePanels[3].name = treeName;
+                    treePanels[3].Name = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
 
@@ -350,25 +350,25 @@ namespace ChroniCalc
                     treeName = "Redemption";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
-                    treePanels[0].name = treeName;
+                    treePanels[0].Name = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Conviction";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
-                    treePanels[1].name = treeName;
+                    treePanels[1].Name = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Wrath";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
-                    treePanels[2].name = treeName;
+                    treePanels[2].Name = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Vengeance";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
-                    treePanels[3].name = treeName;
+                    treePanels[3].Name = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
 
@@ -376,25 +376,25 @@ namespace ChroniCalc
                     treeName = "Druid";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
-                    treePanels[0].name = treeName;
+                    treePanels[0].Name = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "WinterHerald";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
-                    treePanels[1].name = treeName;
+                    treePanels[1].Name = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "StormCaller";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
-                    treePanels[2].name = treeName;
+                    treePanels[2].Name = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "WindRanger";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
-                    treePanels[3].name = treeName;
+                    treePanels[3].Name = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
 
@@ -402,25 +402,25 @@ namespace ChroniCalc
                     treeName = "Reaper";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
-                    treePanels[0].name = treeName;
+                    treePanels[0].Name = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Corruptor";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
-                    treePanels[1].name = treeName;
+                    treePanels[1].Name = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Lich";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
-                    treePanels[2].name = treeName;
+                    treePanels[2].Name = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Demonologist";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
-                    treePanels[3].name = treeName;
+                    treePanels[3].Name = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
 
@@ -491,7 +491,7 @@ namespace ChroniCalc
             foreach (TreeTableLayoutPanel tlpTree in treePanels)
             {
                 //Pull the correct Tree object for the current TreeTableLayoutPanel from the currently selected Class
-                tree = selectedClass.trees.Find(x => x.name == tlpTree.name);
+                tree = selectedClass.trees.Find(x => x.name == tlpTree.Name);
 
                 if (!(tree is null))
                 {
@@ -500,7 +500,7 @@ namespace ChroniCalc
                 }
                 else
                 {
-                    //TODOSSG throw error that tlpTree.name is not found in the currently-loaded Trees object for the selected Class
+                    //TODOSSG throw error that tlpTree.Name is not found in the currently-loaded Trees object for the selected Class
                 }
             }
         }

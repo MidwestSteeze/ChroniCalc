@@ -12,7 +12,6 @@ namespace ChroniCalc
 {
     public partial class TreeTableLayoutPanel : TableLayoutPanel
     {
-        public string name;
         public TreeTableLayoutPanel(Panel parentControl)
         {
             InitializeComponent();
