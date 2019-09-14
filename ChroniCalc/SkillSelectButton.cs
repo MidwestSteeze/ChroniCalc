@@ -16,14 +16,17 @@ namespace ChroniCalc
     public partial class SkillSelectButton : Button
     {
         readonly ResourceManager ResourceManagerImageSkill;
+        private MainForm form;
         public Skill skill;
         public TreeTableLayoutPanel treeControl;
 
-        public SkillSelectButton() //TODOSSG change constructor to require things so theyre not forgotten? (ie. skill, treeControl and image)
+        public SkillSelectButton(MainForm inForm)
         {
             InitializeComponent();
 
             //Specify defaults for this custom control
+
+            this.form = inForm;
 
             //Size
             this.Height = 30;
@@ -50,8 +53,9 @@ namespace ChroniCalc
             MessageBox.Show(debugMessage);
             //END Debug Info            
 
-            //Create a new button to hold the seleceted Skill
-            SkillButton btnSkill = new SkillButton(this.skill, this.treeControl);
+            //Create a new button to hold the selected Skill
+            SkillTooltipPanel pnlSkillTooltip = form.CreateSkillTooltip(this.skill);
+            SkillButton btnSkill = new SkillButton(this.skill, this.treeControl, pnlSkillTooltip, form);
 
             //Remove the current control at the currently-selected position
             // NOTE: Removing a control moves all controls after it "up" 1 cell by index, but adding a control in its place immediately after will put all skills back in their place

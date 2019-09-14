@@ -325,24 +325,28 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
+                    treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "SkyLord";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
+                    treePanels[1].passiveSkillName = "Sky Lord";  //Overridden from treeName;  //this is manually written by looking it up in the xml data (this wouldn't be an issue if you could work with the raw json)
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Dragonkin";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
+                    treePanels[2].passiveSkillName = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Frostborn";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
+                    treePanels[3].passiveSkillName = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
 
@@ -351,24 +355,28 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
+                    treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Conviction";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
+                    treePanels[1].passiveSkillName = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Wrath";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
+                    treePanels[2].passiveSkillName = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Vengeance";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
+                    treePanels[3].passiveSkillName = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
 
@@ -377,24 +385,28 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
+                    treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "WinterHerald";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
+                    treePanels[1].passiveSkillName = "Winter Herald";  //Overridden from treeName
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "StormCaller";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
+                    treePanels[2].passiveSkillName = "Storm Caller";  //Overridden from treeName
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "WindRanger";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
+                    treePanels[3].passiveSkillName = "Wind Ranger";  //Overridden from treeName
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
 
@@ -403,24 +415,28 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
+                    treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Corruptor";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
+                    treePanels[1].passiveSkillName = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Lich";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
+                    treePanels[2].passiveSkillName = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
                     treeName = "Demonologist";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
+                    treePanels[3].passiveSkillName = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
 
@@ -518,8 +534,9 @@ namespace ChroniCalc
                 //Load all remaining skill slots, ensuring it's not a Mutli-skill slot that was already loaded
                 if (!(IsMultiSelectionSkill(skill, MultiSelectionSkills)))
                 {
+                    SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(skill);
                     //Create a new control to hold this skill at the skills X and Y location
-                    SkillButton btnSkill = new SkillButton(skill, tlpTree);
+                    SkillButton btnSkill = new SkillButton(skill, tlpTree, pnlSkillTooltip, this);
 
                     //Disable button if it's the Class skill counter (the one that provides the passive damage bonus based on # of points spent)
                     if (skill.name == tree.name)
@@ -579,12 +596,12 @@ namespace ChroniCalc
                     btnMultiSkillSelect.skillSelectPanel = pnlSkillSelect;
 
                     //Set the width of the SkillSelect Panel to the number of skill buttons it will contain
-                    pnlSkillSelect.Width = ((MultipleSkills.Count + 1) * (new SkillSelectButton().Width)) + ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING - SKILL_BUTTON_PADDING / 2); //last # is accounting for 3px padding on each side of each button
+                    pnlSkillSelect.Width = ((MultipleSkills.Count + 1) * (new SkillSelectButton(this).Width)) + ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING - SKILL_BUTTON_PADDING / 2); //last # is accounting for 3px padding on each side of each button
 
                     //Create a button for each skill and place it in the SkillSelect Panel
                     foreach (Skill multiSkill in MultipleSkills)
                     {
-                        btnSkillSelect = new SkillSelectButton();
+                        btnSkillSelect = new SkillSelectButton(this);
                         btnSkillSelect.skill = multiSkill;
                         btnSkillSelect.treeControl = tlpTree;
                         btnSkillSelect.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("ImageNotFound"); //TODOSSG change when you have all pics in place (multiSkill.id);
@@ -610,6 +627,15 @@ namespace ChroniCalc
         {
             //Verify the current skill hasn't already been loaded by the LoadMultiSelectionSkills process
             return MultiSelectionSkills.Contains(skill);
+        }
+
+        public SkillTooltipPanel CreateSkillTooltip(Skill skill)
+        {
+            SkillTooltipPanel pnlSkillTooltip;
+
+            pnlSkillTooltip = new SkillTooltipPanel(skill, this);
+
+            return pnlSkillTooltip;
         }
 
         private void ShowSelectedSkillData(object sender, EventArgs e)

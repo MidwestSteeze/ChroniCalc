@@ -15,19 +15,20 @@ namespace ChroniCalc
     //A custom button that has the ability to hold a Skill object
     public partial class SkillButton : Button
     {
+        private MainForm form;
         public int level;
         readonly ResourceManager ResourceManagerImageSkill;
-        readonly private MainForm form;
         public Skill skill;
+        public SkillTooltipPanel skillTooltipPanel;
         //TODO public Tree tree <-- would it be helpful to have?
 
-        public SkillButton(Skill inSkill, TreeTableLayoutPanel parentControl)
+        public SkillButton(Skill inSkill, TreeTableLayoutPanel parentControl, SkillTooltipPanel skillTooltip, MainForm inForm)
         {
             InitializeComponent();
 
             this.Parent = parentControl;
-
-            form = (MainForm)this.FindForm();
+            this.form = inForm;
+            this.skillTooltipPanel = skillTooltip;
 
             //Set the Skill
             skill = inSkill;
@@ -173,13 +174,15 @@ namespace ChroniCalc
         private void UpdateSkillPointAndLevelCounter(int levelAdjust)
         {
             int skillPointsUsed;
+            TreeTableLayoutPanel tree = (TreeTableLayoutPanel)this.Parent;
 
             //Adjust the total spent skill points counter
             form.SkillPointsUsed += levelAdjust;
             skillPointsUsed = form.SkillPointsUsed;
 
             //Update the total spent skill points on this particular Tree for the passive bonus stats
-            SkillButton passiveBonusBtn = (SkillButton)this.Parent.Controls.Find(this.Parent.Name, true).First();
+
+            SkillButton passiveBonusBtn = (SkillButton)tree.Controls.Find(tree.passiveSkillName, true).First();
             passiveBonusBtn.level = passiveBonusBtn.level + levelAdjust;
             passiveBonusBtn.Text = passiveBonusBtn.level.ToString();
 
@@ -188,6 +191,12 @@ namespace ChroniCalc
 
             //Update the current level of the character based on how many skill points have been spent
             (form.Controls.Find("lblLevel", true).First() as Label).Text = skillPointsUsed.ToString();
+        }
+
+        private void SkillButton_MouseHover(object sender, EventArgs e)
+        {
+            //Display the Skill Tooltip
+
         }
     }
 }

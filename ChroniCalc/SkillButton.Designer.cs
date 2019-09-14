@@ -42,6 +42,7 @@
             // 
             // SkillButton
             // 
+            this.MouseHover += new System.EventHandler(this.SkillButton_MouseHover);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SkillButton_MouseUp);
             this.ResumeLayout(false);
 

@@ -5,7 +5,6 @@
  
  SKILLS:
 	- MouseHover capability for Skills to show text and numbers
-	- add passive point counter on tree's passive damage increaser for each point spent
 
  STATS: 
 	- Damage calculation (need stat screen first)
@@ -14,7 +13,7 @@
 	- images: class tree backgrounds: screenshot all trees with 1 point in every skill so connection bars are activated
 		- (Berserker, Warlock, Warden, Templar)
 		- then, photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
-	- images: make and set all skill images (name then by skill id)
+	- images: make and set all skill images (name them by skill id)
 	- images: make and set skillselectpanel background image
 
 MISC:

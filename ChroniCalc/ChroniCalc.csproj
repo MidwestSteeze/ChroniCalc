@@ -85,8 +85,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceImageUI.resx</DependentUpon>
     </Compile>
-    <Compile Include="SampleRoot.cs" />
-    <Compile Include="SampleCharacterClass.cs" />
     <Compile Include="CharacterClass.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -96,8 +94,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleSkill.cs" />
-    <Compile Include="SampleTree.cs" />
     <Compile Include="Skill.cs" />
     <Compile Include="SkillButton.cs">
       <SubType>Component</SubType>
@@ -110,6 +106,12 @@
     </Compile>
     <Compile Include="MultiSkillSelectButton.Designer.cs">
       <DependentUpon>MultiSkillSelectButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SkillTooltipPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SkillTooltipPanel.Designer.cs">
+      <DependentUpon>SkillTooltipPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="SkillSelectButton.cs">
       <SubType>Component</SubType>
@@ -170,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MultiSkillSelectButton.resx">
       <DependentUpon>MultiSkillSelectButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkillTooltipPanel.resx">
+      <DependentUpon>SkillTooltipPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SkillSelectButton.resx">
       <DependentUpon>SkillSelectButton.cs</DependentUpon>
