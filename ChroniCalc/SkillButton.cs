@@ -174,16 +174,17 @@ namespace ChroniCalc
         private void UpdateSkillPointAndLevelCounter(int levelAdjust)
         {
             int skillPointsUsed;
-            TreeTableLayoutPanel tree = (TreeTableLayoutPanel)this.Parent;
+            TreeTableLayoutPanel ttlpTree = (TreeTableLayoutPanel)this.Parent;
 
             //Adjust the total spent skill points counter
             form.SkillPointsUsed += levelAdjust;
             skillPointsUsed = form.SkillPointsUsed;
 
             //Update the total spent skill points on this particular Tree for the passive bonus stats
+            ttlpTree.skillPointsAllocated = ttlpTree.skillPointsAllocated + levelAdjust;
 
-            SkillButton passiveBonusBtn = (SkillButton)tree.Controls.Find(tree.passiveSkillName, true).First();
-            passiveBonusBtn.level = passiveBonusBtn.level + levelAdjust;
+            SkillButton passiveBonusBtn = (SkillButton)ttlpTree.Controls.Find(ttlpTree.passiveSkillName, true).First();
+            passiveBonusBtn.level = ttlpTree.skillPointsAllocated;
             passiveBonusBtn.Text = passiveBonusBtn.level.ToString();
 
             //Update the label that shows remaining points that can be spent
