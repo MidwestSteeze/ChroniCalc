@@ -470,6 +470,7 @@ namespace ChroniCalc
             foreach (TreeTableLayoutPanel tree in treePanels)
             {
                 tree.Controls.Clear();
+                //TODOSSG tree.skillPointsAllocated = 0; //TODOSSG clear the passivebonusbtn too?
             }
 
             //Clear the images on the tree selection buttons
@@ -478,6 +479,8 @@ namespace ChroniCalc
                 treeButton.BackgroundImage = null;
                 treeButton.Tag = "";
             }
+
+            //TODOSSG Clear the Character Level and Skill Points Remaining
         }
 
         private void LoadTreeIconButtonImage(ResourceManager resourceManager, Button button, string name)
