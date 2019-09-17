@@ -35,11 +35,9 @@ namespace ChroniCalc
             skill = inSkill;
 
             //Set the .Name property based on the Skill's Name
-            this.Name = skill.name;
+            this.Name = skill.id.ToString();
 
             //Specify defaults for this custom control
-
-            this.FlatAppearance.BorderSize = 0;
 
             //Background Image
             ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
@@ -170,7 +168,7 @@ namespace ChroniCalc
             //Update the total spent skill points on this particular Tree for the passive bonus stats
             ttlpTree.skillPointsAllocated = ttlpTree.skillPointsAllocated + levelAdjust;
 
-            SkillButton passiveBonusBtn = (SkillButton)ttlpTree.Controls.Find(ttlpTree.passiveSkillName, true).First();
+            SkillButton passiveBonusBtn = (SkillButton)ttlpTree.Controls.Find(ttlpTree.passiveSkillId.ToString(), true).First();
             passiveBonusBtn.level = ttlpTree.skillPointsAllocated;
             passiveBonusBtn.Text = passiveBonusBtn.level.ToString();
 

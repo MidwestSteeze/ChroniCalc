@@ -7,7 +7,6 @@
 	- HI: Re-create SkillButton as CustomControl so it's a Panel with the following:
 		- 1 button: contains the skill background image
 		- 1 label: a square box with black background and white border which displays the current level (retain .level on the SkillButton, though)
-	- HI: not all skills can be allocated, debug on the SKillButton.Click to see why the level is not increasing
 	- MouseHover capability for Skills to show text and numbers
 	- Test that changing a picture requires (or doesn't) an update of the image as it's persisted in the ResourceImageSkill; if so, it may be hard to identify changes to skill images and you may want to consider a directory-based system and loading by relative path instead of a ResourceManager
 

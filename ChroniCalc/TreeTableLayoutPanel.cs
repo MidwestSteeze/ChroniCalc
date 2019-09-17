@@ -13,6 +13,7 @@ namespace ChroniCalc
     public partial class TreeTableLayoutPanel : TableLayoutPanel
     {
         public int skillPointsAllocated = 0;
+        public int passiveSkillId;
         public string passiveSkillName; //Need this to differentiate between the spelling differences of the xml node name and the skill's name property (spaces and underscores)
 
         public TreeTableLayoutPanel(Panel parentControl)
