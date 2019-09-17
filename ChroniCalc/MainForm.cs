@@ -20,6 +20,7 @@ namespace ChroniCalc
     public partial class MainForm : Form
     {
         //Skill Tree
+        public const string IMAGE_FILENAME_PREFIX = "spr_spellicons_";
         const int SKILL_BUTTON_PADDING = 6;
         public const int SKILL_POINTS_MAX = 100;
         public int SkillPointsUsed;
@@ -607,7 +608,16 @@ namespace ChroniCalc
                         btnSkillSelect = new SkillSelectButton(this);
                         btnSkillSelect.skill = multiSkill;
                         btnSkillSelect.treeControl = tlpTree;
-                        btnSkillSelect.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("ImageNotFound"); //TODOSSG change when you have all pics in place (multiSkill.id);
+
+                        if (!((Image)ResourceManagerImageSkill.GetObject(IMAGE_FILENAME_PREFIX + multiSkill.id.ToString()) is null))
+                        {
+                            btnSkillSelect.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(IMAGE_FILENAME_PREFIX + multiSkill.id.ToString());
+                        }
+                        else
+                        {
+                            //Use an ImageNotFound image as a placeholder until the skill's image is created and added to the Resource Manager
+                            btnSkillSelect.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("ImageNotFound");
+                        }
 
                         //Add the button to the panel  //TOODSSG how to get the correct order? may need to hard-code this?
                         pnlSkillSelect.Controls.Add(btnSkillSelect);

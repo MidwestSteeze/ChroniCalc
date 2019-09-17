@@ -50,10 +50,6 @@ namespace ChroniCalc
 
             //Visibility
             this.Visible = false;
-
-            //Cell Borderes (TODO delete before commit)
-            this.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            this.BorderStyle = BorderStyle.FixedSingle;
         }
 
         protected override void OnPaint(PaintEventArgs pe)

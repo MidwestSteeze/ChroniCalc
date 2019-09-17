@@ -28,6 +28,7 @@ namespace ChroniCalc
 
             this.Parent = parentControl;
             this.form = inForm;
+            this.level = 0;
             this.skillTooltipPanel = skillTooltip;
 
             //Set the Skill
@@ -38,16 +39,14 @@ namespace ChroniCalc
 
             //Specify defaults for this custom control
 
-            //Size
-            this.Height = 30;
-            this.Width = 30;
+            this.FlatAppearance.BorderSize = 0;
 
             //Background Image
             ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
 
-            if (!((Image)ResourceManagerImageSkill.GetObject(skill.id.ToString()) is null))
+            if (!((Image)ResourceManagerImageSkill.GetObject(MainForm.IMAGE_FILENAME_PREFIX + skill.id.ToString()) is null))
             {                
-                this.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(skill.id.ToString());
+                this.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(MainForm.IMAGE_FILENAME_PREFIX + skill.id.ToString());
             }
             else
             {
@@ -55,18 +54,6 @@ namespace ChroniCalc
                 this.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("ImageNotFound");
             }
 
-            //Image Layout
-            this.BackgroundImageLayout = ImageLayout.Stretch;
-
-            //Anchor location within its parent control
-            //this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            this.Anchor = AnchorStyles.None;
-
-            //Font
-            this.Font = new System.Drawing.Font("TechnicBold", 12F, FontStyle.Bold);
-
-            //Level
-            this.level = 0;
         }
 
         protected override void OnPaint(PaintEventArgs pe)
@@ -77,16 +64,16 @@ namespace ChroniCalc
         private void SkillButton_MouseUp(object sender, MouseEventArgs e)
         {
             //START Debug Info
-            string debugMessage;
+            //string debugMessage;
 
-            debugMessage = "Skill: " + this.skill.name + "\n" +
-                            "XPos: " + this.skill.x + "\n" +
-                            "YPos:" + this.skill.y + "\n" +
-                            "id:" + this.skill.id + "\n" +
-                            "Width:" + this.Width + "\n" +
-                            "height:" + this.Height;
+            //debugMessage = "Skill: " + this.skill.name + "\n" +
+            //                "XPos: " + this.skill.x + "\n" +
+            //                "YPos:" + this.skill.y + "\n" +
+            //                "id:" + this.skill.id + "\n" +
+            //                "Width:" + this.Width + "\n" +
+            //                "height:" + this.Height;
 
-            MessageBox.Show(debugMessage);
+            //MessageBox.Show(debugMessage);
             //END Debug Info
 
             //Adjust the level of the skill, ensuring we're not beyond the min/max allowed
