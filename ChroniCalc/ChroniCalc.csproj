@@ -95,12 +95,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill.cs" />
-    <Compile Include="SkillButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SkillButton.Designer.cs">
-      <DependentUpon>SkillButton.cs</DependentUpon>
-    </Compile>
     <Compile Include="MultiSkillSelectButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -172,9 +166,6 @@
     <EmbeddedResource Include="ResourceImageUI.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceImageUI.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SkillButton.resx">
-      <DependentUpon>SkillButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiSkillSelectButton.resx">
       <DependentUpon>MultiSkillSelectButton.cs</DependentUpon>
