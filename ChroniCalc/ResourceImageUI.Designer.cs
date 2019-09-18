@@ -73,9 +73,9 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SkillSelectPanel {
+        internal static System.Drawing.Bitmap spr_menu_button_thin_0 {
             get {
-                object obj = ResourceManager.GetObject("SkillSelectPanel", resourceCulture);
+                object obj = ResourceManager.GetObject("spr_menu_button_thin_0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

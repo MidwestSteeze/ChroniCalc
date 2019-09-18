@@ -36,7 +36,7 @@ namespace ChroniCalc
 
             //Background Image
             ResourceManagerImageTree = new ResourceManager("ChroniCalc.ResourceImageTree", Assembly.GetExecutingAssembly());
-            this.BackgroundImage = (Image)ResourceManagerImageTree.GetObject("MultiSkillSelectButton");
+            this.BackgroundImage = (Image)ResourceManagerImageTree.GetObject("spr_empty_skill_slot_0");
 
             //Image Layout
             this.BackgroundImageLayout = ImageLayout.Stretch;

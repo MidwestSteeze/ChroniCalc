@@ -44,13 +44,13 @@ namespace ChroniCalc
         private void SkillSelectButton_Click(object sender, EventArgs e)
         {
             //START Debug Info
-            string debugMessage;
+            //string debugMessage;
 
-            debugMessage = "Skill: " + this.skill.name + "\n" +
-                            "XPos: " + this.skill.x + "\n" +
-                            "YPos:" + this.skill.y;
-            ;
-            MessageBox.Show(debugMessage);
+            //debugMessage = "Skill: " + this.skill.name + "\n" +
+            //                "XPos: " + this.skill.x + "\n" +
+            //                "YPos:" + this.skill.y;
+            //;
+            //MessageBox.Show(debugMessage);
             //END Debug Info            
 
             //Create a new button to hold the selected Skill

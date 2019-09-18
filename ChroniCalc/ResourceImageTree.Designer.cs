@@ -153,9 +153,9 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap MultiSkillSelectButton {
+        public static System.Drawing.Bitmap SkyLord {
             get {
-                object obj = ResourceManager.GetObject("MultiSkillSelectButton", resourceCulture);
+                object obj = ResourceManager.GetObject("SkyLord", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap SkyLord {
+        public static System.Drawing.Bitmap spr_empty_skill_slot_0 {
             get {
-                object obj = ResourceManager.GetObject("SkyLord", resourceCulture);
+                object obj = ResourceManager.GetObject("spr_empty_skill_slot_0", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

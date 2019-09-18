@@ -973,6 +973,9 @@
     <None Include="Assets\Images\Skill\spr_spellicons_759.png" />
     <None Include="Assets\Images\Skill\spr_spellicons_760.png" />
     <None Include="Assets\Images\Skill\spr_spellicons_761.png" />
+    <None Include="Assets\Images\Tree\spr_empty_skill_slot_0.png" />
+    <None Include="Assets\Images\UI\spr_menu_button_thin_0.png" />
+    <None Include="Assets\Images\Skill\spr_menu_icon_11.png" />
     <Content Include="ToDo.txt" />
     <None Include="Assets\Images\Tree\SkyLord.png" />
     <None Include="Assets\Images\Tree\Frostborn.png" />

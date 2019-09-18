@@ -28,7 +28,7 @@ namespace ChroniCalc
 
             //Background Image
             ResourceManagerImageUI = new ResourceManager("ChroniCalc.ResourceImageUI", Assembly.GetExecutingAssembly());
-            this.BackgroundImage = (Image)ResourceManagerImageUI.GetObject("SkillSelectPanel");
+            this.BackgroundImage = (Image)ResourceManagerImageUI.GetObject("spr_menu_button_thin_0");
 
             //Image Layout
             this.BackgroundImageLayout = ImageLayout.Stretch;

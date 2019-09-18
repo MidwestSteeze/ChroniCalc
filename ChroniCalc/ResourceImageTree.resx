@@ -145,10 +145,10 @@
   <data name="ImageNotFound" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\ImageNotFound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MultiSkillSelectButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\MultiSkillSelectButton.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SkyLord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\SkyLord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_empty_skill_slot_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\spr_empty_skill_slot_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

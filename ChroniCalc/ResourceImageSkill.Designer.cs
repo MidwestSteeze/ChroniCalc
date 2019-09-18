@@ -73,6 +73,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_menu_icon_11 {
+            get {
+                object obj = ResourceManager.GetObject("spr_menu_icon_11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_spellicons_0 {
             get {
                 object obj = ResourceManager.GetObject("spr_spellicons_0", resourceCulture);
@@ -7686,16 +7696,6 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap spr_spellicons_99 {
             get {
                 object obj = ResourceManager.GetObject("spr_spellicons_99", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap UnassignSkillButton {
-            get {
-                object obj = ResourceManager.GetObject("UnassignSkillButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

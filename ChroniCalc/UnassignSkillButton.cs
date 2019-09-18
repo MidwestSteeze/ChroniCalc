@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ChroniCalc
 {
-    public partial class UnassignSkillButton : Control
+    public partial class UnassignSkillButton : Button
     {
         readonly ResourceManager ResourceManagerImageSkill;
 
@@ -27,9 +27,12 @@ namespace ChroniCalc
             this.Height = 30;
             this.Width = 30;
 
+            //Location
+            this.Location = new Point(0, 3);
+
             //Background Image
             ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
-            this.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("UnassignSkillButton");
+            this.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("spr_menu_icon_11");
 
             //Image Layout
             this.BackgroundImageLayout = ImageLayout.Stretch;

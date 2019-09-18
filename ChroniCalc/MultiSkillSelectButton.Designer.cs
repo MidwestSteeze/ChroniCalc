@@ -33,7 +33,7 @@
             // 
             // button1
             // 
-            this.button1.Image = global::ChroniCalc.ResourceImageTree.MultiSkillSelectButton;
+            this.button1.Image = global::ChroniCalc.ResourceImageTree.spr_empty_skill_slot_0;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);

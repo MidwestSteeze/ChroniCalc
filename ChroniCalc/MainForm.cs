@@ -303,7 +303,14 @@ namespace ChroniCalc
 
         private void ResetStats()
         {
+            //Reset Character Level
+            lblLevel.Text = "0";
+
+            //Reset # of Skill Points Remaining
+            lblSkillPointsRemaining.Text = SKILL_POINTS_MAX.ToString();
+
             //TODOSSG
+            //Reset all Stats (dmg, health, etc)
         }
 
         private void ResetGear()
@@ -483,11 +490,16 @@ namespace ChroniCalc
 
         private void ClearTrees()
         {
+            //Reset the total counted allocated skill points amongst all Trees
+            SkillPointsUsed = 0;
+
             //Clear all content from the existing trees (ie. treePanels)
             foreach (TreeTableLayoutPanel tree in treePanels)
             {
                 tree.Controls.Clear();
-                //TODOSSG tree.skillPointsAllocated = 0; //TODOSSG clear the passivebonusbtn too?
+
+                //Reset the skill points allocated on the tree
+                tree.skillPointsAllocated = 0;
             }
 
             //Clear the images on the tree selection buttons
