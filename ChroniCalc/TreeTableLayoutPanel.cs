@@ -51,6 +51,10 @@ namespace ChroniCalc
 
             //Visibility
             this.Visible = false;
+
+            //Cell Borderes (TODO delete before commit)
+            //this.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            //this.BorderStyle = BorderStyle.FixedSingle;
         }
 
         protected override void OnPaint(PaintEventArgs pe)
@@ -61,7 +65,19 @@ namespace ChroniCalc
         private void TreeTableLayoutPanel_Click(object sender, EventArgs e)
         {
             //Show debug info of cell clicked to figure out sizing issue
-            //TODO            
+            //START Debug Info
+            //Panel skillButtonNewPanel = (Panel)sender;
+            //TableLayoutPanelCellPosition pos = this.GetCellPosition((Panel)sender);
+            //int width = this.GetColumnWidths()[0];
+            //int height = this.GetRowHeights()[0];
+
+            //string debugMessage;
+
+            //debugMessage = "Width:" + width + "\n" +
+            //               "height:" + height;
+
+            //MessageBox.Show(debugMessage);
+            //END Debug Info
         }
     }
 }

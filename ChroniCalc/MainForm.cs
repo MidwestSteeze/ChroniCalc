@@ -556,13 +556,7 @@ namespace ChroniCalc
                 {
                     SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(skill);
                     //Create a new control to hold this skill at the skills X and Y location
-                    SkillButton btnSkill = new SkillButton(skill, tlpTree, pnlSkillTooltip, this);
-
-                    //Disable button if it's the Class skill counter (the one that provides the passive damage bonus based on # of points spent)
-                    if (skill.name == tree.name)
-                    {
-                        btnSkill.Enabled = false;
-                    }
+                    SkillButtonNew btnSkill = new SkillButtonNew(skill, tlpTree, pnlSkillTooltip, this);
 
                     //Add the skill button to the tree
                     tlpTree.Controls.Add(btnSkill, skill.x, skill.y);

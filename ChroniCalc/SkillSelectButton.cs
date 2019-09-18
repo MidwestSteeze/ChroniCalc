@@ -55,7 +55,7 @@ namespace ChroniCalc
 
             //Create a new button to hold the selected Skill
             SkillTooltipPanel pnlSkillTooltip = form.CreateSkillTooltip(this.skill);
-            SkillButton btnSkill = new SkillButton(this.skill, this.treeControl, pnlSkillTooltip, form);
+            SkillButtonNew btnSkill = new SkillButtonNew(this.skill, this.treeControl, pnlSkillTooltip, form);
 
             //Remove the current control at the currently-selected position
             // NOTE: Removing a control moves all controls after it "up" 1 cell by index, but adding a control in its place immediately after will put all skills back in their place
