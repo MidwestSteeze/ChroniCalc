@@ -66,7 +66,7 @@ namespace ChroniCalc
         {
             //Show debug info of cell clicked to figure out sizing issue
             //START Debug Info
-            //Panel skillButtonNewPanel = (Panel)sender;
+            //Panel skillButtonPanel = (Panel)sender;
             //TableLayoutPanelCellPosition pos = this.GetCellPosition((Panel)sender);
             //int width = this.GetColumnWidths()[0];
             //int height = this.GetRowHeights()[0];

@@ -1,6 +1,6 @@
 ﻿namespace ChroniCalc
 {
-    partial class SkillButtonNew
+    partial class SkillButton
     {
         /// <summary> 
         /// Required designer variable.
@@ -80,17 +80,17 @@
             this.pbSkillIcon.Size = new System.Drawing.Size(40, 40);
             this.pbSkillIcon.TabIndex = 0;
             this.pbSkillIcon.TabStop = false;
-            this.pbSkillIcon.MouseHover += new System.EventHandler(this.SkillButtonNew_MouseHover);
-            this.pbSkillIcon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SkillButtonNew_MouseUp);
+            this.pbSkillIcon.MouseHover += new System.EventHandler(this.SkillButton_MouseHover);
+            this.pbSkillIcon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SkillButton_MouseUp);
             // 
-            // SkillButtonNew
+            // SkillButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnlSkillButton);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "SkillButtonNew";
+            this.Name = "SkillButton";
             this.Size = new System.Drawing.Size(58, 56);
             this.pnlSkillButton.ResumeLayout(false);
             this.pnlSkillButton.PerformLayout();

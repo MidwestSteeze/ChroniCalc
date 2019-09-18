@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace ChroniCalc
 {
 	//A custom button that has the ability to hold a Skill object
-    public partial class SkillButtonNew : UserControl
+    public partial class SkillButton : UserControl
     {
         private MainForm form;
         public int level;
@@ -22,7 +22,7 @@ namespace ChroniCalc
         public SkillTooltipPanel skillTooltipPanel;
         //TODO public Tree tree <-- would it be helpful to have?
 
-        public SkillButtonNew(Skill inSkill, TreeTableLayoutPanel parentControl, SkillTooltipPanel skillTooltip, MainForm inForm)
+        public SkillButton(Skill inSkill, TreeTableLayoutPanel parentControl, SkillTooltipPanel skillTooltip, MainForm inForm)
         {
             InitializeComponent();
 
@@ -61,7 +61,7 @@ namespace ChroniCalc
             base.OnPaint(pe);
         }
 
-        public void SkillButtonNew_MouseUp(object sender, MouseEventArgs e)
+        public void SkillButton_MouseUp(object sender, MouseEventArgs e)
         {
             //START Debug Info
             //string debugMessage = "";
@@ -115,7 +115,7 @@ namespace ChroniCalc
         {
             bool result = true;
             Control[] preReqControls;
-            SkillButtonNew preReqSkillButton;
+            SkillButton preReqSkillButton;
 
             //Get the Tree this Skill belong to
             TreeTableLayoutPanel ttlp = (TreeTableLayoutPanel)this.Parent;
@@ -144,7 +144,7 @@ namespace ChroniCalc
                     continue;
                 }
 
-                preReqSkillButton = (SkillButtonNew)preReqControls.First();
+                preReqSkillButton = (SkillButton)preReqControls.First();
 
                 //Verify the PreReq skill is leveled
                 if (preReqSkillButton.level < 1)
@@ -175,7 +175,7 @@ namespace ChroniCalc
             //Update the total spent skill points on this particular Tree for the passive bonus stats
             ttlpTree.skillPointsAllocated = ttlpTree.skillPointsAllocated + levelAdjust;
 
-            SkillButtonNew passiveBonusBtn = (SkillButtonNew)ttlpTree.Controls.Find(ttlpTree.passiveSkillId.ToString(), true).First();
+            SkillButton passiveBonusBtn = (SkillButton)ttlpTree.Controls.Find(ttlpTree.passiveSkillId.ToString(), true).First();
             passiveBonusBtn.level = ttlpTree.skillPointsAllocated;
             passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.level.ToString();
 
@@ -186,7 +186,7 @@ namespace ChroniCalc
             (form.Controls.Find("lblLevel", true).First() as Label).Text = skillPointsUsed.ToString();
         }
 
-        private void SkillButtonNew_MouseHover(object sender, EventArgs e)
+        private void SkillButton_MouseHover(object sender, EventArgs e)
         {
             //Display the Skill Tooltip
 

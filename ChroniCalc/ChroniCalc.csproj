@@ -101,11 +101,11 @@
     <Compile Include="MultiSkillSelectButton.Designer.cs">
       <DependentUpon>MultiSkillSelectButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="SkillButtonNew.cs">
+    <Compile Include="SkillButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SkillButtonNew.Designer.cs">
-      <DependentUpon>SkillButtonNew.cs</DependentUpon>
+    <Compile Include="SkillButton.Designer.cs">
+      <DependentUpon>SkillButton.cs</DependentUpon>
     </Compile>
     <Compile Include="SkillTooltipPanel.cs">
       <SubType>UserControl</SubType>
@@ -170,8 +170,8 @@
     <EmbeddedResource Include="MultiSkillSelectButton.resx">
       <DependentUpon>MultiSkillSelectButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SkillButtonNew.resx">
-      <DependentUpon>SkillButtonNew.cs</DependentUpon>
+    <EmbeddedResource Include="SkillButton.resx">
+      <DependentUpon>SkillButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SkillTooltipPanel.resx">
       <DependentUpon>SkillTooltipPanel.cs</DependentUpon>

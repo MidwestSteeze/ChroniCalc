@@ -556,7 +556,7 @@ namespace ChroniCalc
                 {
                     SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(skill);
                     //Create a new control to hold this skill at the skills X and Y location
-                    SkillButtonNew btnSkill = new SkillButtonNew(skill, tlpTree, pnlSkillTooltip, this);
+                    SkillButton btnSkill = new SkillButton(skill, tlpTree, pnlSkillTooltip, this);
 
                     //Add the skill button to the tree
                     tlpTree.Controls.Add(btnSkill, skill.x, skill.y);
