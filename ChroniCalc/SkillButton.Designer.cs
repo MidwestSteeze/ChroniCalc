@@ -80,7 +80,8 @@
             this.pbSkillIcon.Size = new System.Drawing.Size(40, 40);
             this.pbSkillIcon.TabIndex = 0;
             this.pbSkillIcon.TabStop = false;
-            this.pbSkillIcon.MouseHover += new System.EventHandler(this.SkillButton_MouseHover);
+            this.pbSkillIcon.MouseHover += new System.EventHandler(this.PbSkillIcon_MouseHover);
+            this.pbSkillIcon.MouseLeave += new System.EventHandler(this.PbSkillIcon_MouseLeave);
             this.pbSkillIcon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SkillButton_MouseUp);
             // 
             // SkillButton

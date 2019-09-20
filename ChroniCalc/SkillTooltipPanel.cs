@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +15,7 @@ namespace ChroniCalc
     public partial class SkillTooltipPanel : UserControl
     {
         private MainForm form;
+        readonly ResourceManager ResourceManagerImageSkill;
         public Skill skill;
         public TreeTableLayoutPanel treeTableLayoutPanel;
 
@@ -28,13 +31,26 @@ namespace ChroniCalc
             this.Visible = false;
 
             //Fill out the controls on this custom SkillTooltipPanel
-            this.lblType.Text = this.skill.type;
             this.lblDescription.Text = PopulateDescription(false);
             this.lblElement.Text = this.skill.element;
             this.lblMaxRankDescription.Text = PopulateDescription(true);
             this.lblName.Text = this.skill.name;
             this.lblPointsRequirement.Text = GetPointsRequirement().ToString();
-            this.lblRank.Text = GetCurrentRank().ToString();            
+            this.lblRank.Text = "0";
+            this.lblType.Text = this.skill.type;
+
+            //Background Image
+            ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
+
+            if (!((Image)ResourceManagerImageSkill.GetObject(MainForm.IMAGE_FILENAME_PREFIX + skill.id.ToString()) is null))
+            {
+                this.pbIcon.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(MainForm.IMAGE_FILENAME_PREFIX + skill.id.ToString());
+            }
+            else
+            {
+                //Use an ImageNotFound image as a placeholder until the skill's image is created and added to the Resource Manager
+                this.pbIcon.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("ImageNotFound");
+            }
         }
 
         private string PopulateDescription(bool maxRank)
@@ -64,14 +80,10 @@ namespace ChroniCalc
             return requiredPoints;
         }
 
-        private int GetCurrentRank()
+        private void UpdateRank()
         {
-            int rank = 0;
-
-            //Get the current level of this skill
+            //Set the current level of this skill
             //TODO
-
-            return rank;
         }
     }
 }

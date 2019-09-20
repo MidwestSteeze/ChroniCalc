@@ -1,4 +1,9 @@
 ﻿ ToDo
+
+ MAJORS:
+  - Skill Tooltips
+  - Save/Load/Share builds
+  - Stat calculation and screen (damage, health, etc)
  
  CLASSES:
 	- ?
@@ -23,3 +28,4 @@ MISC:
 	- MainForm: Character name, also allow input for it when creating or saving a build
 	- Stat screen
 	- Save/Load/Share build
+	- fix screen flash when loading trees

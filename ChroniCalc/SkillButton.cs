@@ -184,12 +184,30 @@ namespace ChroniCalc
 
             //Update the current level of the character based on how many skill points have been spent
             (form.Controls.Find("lblLevel", true).First() as Label).Text = skillPointsUsed.ToString();
+
+            //Update the level as shown in the SkillTooltipPanel
+            this.skillTooltipPanel.Controls.Find("lblRank", true).First().Text = this.level.ToString();
         }
 
-        private void SkillButton_MouseHover(object sender, EventArgs e)
+        private void PbSkillIcon_MouseHover(object sender, EventArgs e)
         {
-            //Display the Skill Tooltip
+            if (!this.skillTooltipPanel.Visible)
+            {
+                this.skillTooltipPanel.BringToFront();
+                this.skillTooltipPanel.Visible = true;
+            }
+        }
 
+        private void PbSkillIcon_MouseLeave(object sender, EventArgs e)
+        {
+            //Only hide the panel if the mouse truly is no longer focused on the tooltip or pnskillicon
+            //if (!(pbSkillIcon.Focused && this.skillTooltipPanel.ContainsFocus)) //TODOSSG
+            //{
+                if (this.skillTooltipPanel.Visible)
+                {
+                    this.skillTooltipPanel.Visible = false;
+                }
+            //}
         }
     }
 }
