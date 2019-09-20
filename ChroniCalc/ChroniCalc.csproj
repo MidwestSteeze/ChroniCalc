@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Element.cs" />
     <Compile Include="ResourceImageClass.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -976,6 +977,7 @@
     <None Include="Assets\Images\Tree\spr_empty_skill_slot_0.png" />
     <None Include="Assets\Images\UI\spr_menu_button_thin_0.png" />
     <None Include="Assets\Images\Skill\spr_menu_icon_11.png" />
+    <None Include="Assets\Images\Skill\SkillTooltipDivider.png" />
     <Content Include="ToDo.txt" />
     <None Include="Assets\Images\Tree\SkyLord.png" />
     <None Include="Assets\Images\Tree\Frostborn.png" />

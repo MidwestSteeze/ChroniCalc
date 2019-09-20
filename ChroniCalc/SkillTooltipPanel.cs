@@ -14,6 +14,7 @@ namespace ChroniCalc
 {
     public partial class SkillTooltipPanel : UserControl
     {
+        private Element element;
         private MainForm form;
         readonly ResourceManager ResourceManagerImageSkill;
         public Skill skill;
@@ -25,18 +26,25 @@ namespace ChroniCalc
 
             this.form = inForm;
             this.skill = inSkill;
+            this.element = new Element(this.skill.element);
 
             //Specify defaults for this custom control
+            //Max width and height of labels (to enable word-wrapping)
+            lblDescription.MaximumSize = new Size(lblDescription.Parent.Width - (lblDescription.Left * 2), this.lblDescription.Font.Height * 3);
+            lblMaxRankDescription.MaximumSize = new Size(lblMaxRankDescription.Parent.Width - (lblMaxRankDescription.Left * 2), this.lblMaxRankDescription.Font.Height * 3);
+
             this.Parent = form.Controls.Find("pnlTrees", true).First();
             this.Visible = false;
 
             //Fill out the controls on this custom SkillTooltipPanel
             this.lblDescription.Text = PopulateDescription(false);
+
             this.lblElement.Text = this.skill.element;
+            this.lblElement.ForeColor = this.element.color;
+
             this.lblMaxRankDescription.Text = PopulateDescription(true);
             this.lblName.Text = this.skill.name;
-            this.lblPointsRequirement.Text = GetPointsRequirement().ToString();
-            this.lblRank.Text = "0";
+            UpdateRankText(0); //this updates lblRank.Text
             this.lblType.Text = this.skill.type;
 
             //Background Image
@@ -63,27 +71,10 @@ namespace ChroniCalc
             return description;
         }
 
-        private int GetPointsRequirement()
-        {
-            int requiredPoints = 0;
-
-            //Determine how many points are needed to be spent before this skill can be allocated
-            /*
-             * TODO: will need a .level property on the TreeTableLayoutPanel itself
-             * #PointsInTree = tree.skillPointsAllocated;
-             * this.skill.x = Find the X position in the tree
-             * this.skill.x * 5 = # of points (to get to each X requires 5 points)
-             * (this.skill.x * 5) - #PointsInTree --> Positive means it can be allocated, negative means display msg in this.lblPointsRequirement.Text
-             */
-            //TODO
-
-            return requiredPoints;
-        }
-
-        private void UpdateRank()
+        public void UpdateRankText(int level)
         {
             //Set the current level of this skill
-            //TODO
+            lblRank.Text = "Rank " + level.ToString() + "/" + this.skill.max_rank.ToString();
         }
     }
 }

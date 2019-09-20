@@ -1,7 +1,8 @@
 ﻿ ToDo
 
  MAJORS:
-  - Skill Tooltips
+  - Skill Tooltips: fix position when it wants to display offscreen
+  - Skill Tooltips: add for MultiSkillSelect buttons
   - Save/Load/Share builds
   - Stat calculation and screen (damage, health, etc)
  

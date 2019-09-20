@@ -186,13 +186,24 @@ namespace ChroniCalc
             (form.Controls.Find("lblLevel", true).First() as Label).Text = skillPointsUsed.ToString();
 
             //Update the level as shown in the SkillTooltipPanel
-            this.skillTooltipPanel.Controls.Find("lblRank", true).First().Text = this.level.ToString();
+            this.skillTooltipPanel.UpdateRankText(level);
         }
 
         private void PbSkillIcon_MouseHover(object sender, EventArgs e)
         {
+            Point CursorPosition;
+            Point PointToClient;
+            Point ParentContainerLocationOffsetLeft;
+            Point ParentContainerLocationOffsetTop;
+
             if (!this.skillTooltipPanel.Visible)
             {
+                CursorPosition = Cursor.Position;
+                PointToClient = this.form.PointToClient(CursorPosition);
+                ParentContainerLocationOffsetLeft = this.form.Controls.Find("pnlClassData", false).First().Location;
+                ParentContainerLocationOffsetTop = this.skillTooltipPanel.Parent.Location;
+
+                this.skillTooltipPanel.Location = new Point(PointToClient.X - ParentContainerLocationOffsetLeft.X + 20, PointToClient.Y - ParentContainerLocationOffsetTop.Y);
                 this.skillTooltipPanel.BringToFront();
                 this.skillTooltipPanel.Visible = true;
             }

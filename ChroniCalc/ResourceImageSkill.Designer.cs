@@ -73,6 +73,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SkillTooltipDivider {
+            get {
+                object obj = ResourceManager.GetObject("SkillTooltipDivider", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_menu_icon_11 {
             get {
                 object obj = ResourceManager.GetObject("spr_menu_icon_11", resourceCulture);
