@@ -191,19 +191,9 @@ namespace ChroniCalc
 
         private void PbSkillIcon_MouseHover(object sender, EventArgs e)
         {
-            Point CursorPosition;
-            Point PointToClient;
-            Point ParentContainerLocationOffsetLeft;
-            Point ParentContainerLocationOffsetTop;
-
             if (!this.skillTooltipPanel.Visible)
             {
-                CursorPosition = Cursor.Position;
-                PointToClient = this.form.PointToClient(CursorPosition);
-                ParentContainerLocationOffsetLeft = this.form.Controls.Find("pnlClassData", false).First().Location;
-                ParentContainerLocationOffsetTop = this.skillTooltipPanel.Parent.Location;
-
-                this.skillTooltipPanel.Location = new Point(PointToClient.X - ParentContainerLocationOffsetLeft.X + 20, PointToClient.Y - ParentContainerLocationOffsetTop.Y);
+                this.skillTooltipPanel.Location = GetTooltipLocation();
                 this.skillTooltipPanel.BringToFront();
                 this.skillTooltipPanel.Visible = true;
             }
@@ -219,6 +209,61 @@ namespace ChroniCalc
                     this.skillTooltipPanel.Visible = false;
                 }
             //}
+        }
+
+        private Point GetTooltipLocation()
+        {
+            int availableHeight;
+            int availableWidth;
+            int tooltipHeight;
+            int tooltipWidth;
+            
+            Point cursorPosition;
+            Point location;
+            Point pointToClient;
+            Point parentContainerLocationOffsetLeft;
+            Point parentContainerLocationOffsetTop;
+            
+            //Get the position of the cursor relative to the Application
+            cursorPosition = Cursor.Position;
+            pointToClient = this.form.PointToClient(cursorPosition);
+            parentContainerLocationOffsetLeft = this.form.Controls.Find("pnlClassData", false).First().Location;
+            parentContainerLocationOffsetTop = this.skillTooltipPanel.Parent.Location;
+
+            //Location to display the tooltip based on where the mouse cursor hover event occured
+            location = new Point(pointToClient.X - parentContainerLocationOffsetLeft.X + 10, pointToClient.Y - parentContainerLocationOffsetTop.Y);
+            
+            //Check if the tooltip is going off one of the edges of the screen and adjust as necessary
+            // Height of the panel the tooltip is contained within
+            availableHeight = this.Parent.Parent.Height;
+            // Width of the panel the tooltip is contained within
+            availableWidth = this.Parent.Parent.Width;
+            // Height of the tooltip
+            tooltipHeight = this.skillTooltipPanel.Height;
+            // Width of the tooltip
+            tooltipWidth = this.skillTooltipPanel.Width;
+
+            
+            if (location.X + tooltipWidth > availableWidth)
+            {
+                //The tooltip went off the right edge of the screen, so position it left of the mouse cursor instead of the right
+                location.X = location.X - tooltipWidth - 20;
+            }
+
+            if (location.Y + tooltipHeight > availableHeight)
+            {
+                //The tooltip went off the lower edge of the screen, so position it above the mouse cursor instead of below
+                location.Y = location.Y - tooltipHeight;
+
+                //See if the tooltip now goes off the top edge of the screen
+                if (location.Y < 0)
+                {
+                    //It does, so just position it along the top edge
+                    location.Y = 0;
+                }
+            }
+
+            return location;
         }
     }
 }

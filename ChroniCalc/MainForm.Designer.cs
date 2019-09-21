@@ -281,6 +281,8 @@
             this.Controls.Add(this.pnlClass);
             this.Controls.Add(this.pnlClassData);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "ChroniCalc";
             this.pnlClass.ResumeLayout(false);
