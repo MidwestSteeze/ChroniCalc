@@ -43,6 +43,8 @@
             // SkillSelectButton
             // 
             this.Click += new System.EventHandler(this.SkillSelectButton_Click);
+            this.MouseLeave += new System.EventHandler(this.SkillSelectButton_MouseLeave);
+            this.MouseHover += new System.EventHandler(this.SkillSelectButton_MouseHover);
             this.ResumeLayout(false);
 
         }

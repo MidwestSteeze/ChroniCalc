@@ -143,7 +143,7 @@ namespace ChroniCalc
                         skill.cost100 = !(skillNode.SelectSingleNode("cost100") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("cost100").InnerXml) : -1;
                         skill.skill_requirement = NodeHasValue(skillNode.SelectSingleNode("skill_requirement"), new string[] { "none"}) ? Array.ConvertAll(skillNode.SelectSingleNode("skill_requirement").InnerXml.Trim('[', ']').Split(','), int.Parse) : new int[] { };
                         skill.x = !(skillNode.SelectSingleNode("x") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("x").InnerXml) : -1;
-                        skill.damage = !(skillNode.SelectSingleNode("damage") is null) ? skillNode.SelectSingleNode("damage").InnerXml.Split('.') : new string[] { }; //TODOSSG convert this to hold just the value and remove the "%"?
+                        skill.damage = !(skillNode.SelectSingleNode("damage") is null) ? skillNode.SelectSingleNode("damage").InnerXml.Split(',') : new string[] { }; //TODOSSG convert this to hold just the value and remove the "%"?
                         skill.range2 = NodeHasValue(skillNode.SelectSingleNode("range2")) ? Array.ConvertAll(skillNode.SelectSingleNode("range2").InnerXml.Split(','), double.Parse) : new double[] { };
                         skill.family = !(skillNode.SelectSingleNode("family") is null) ? skillNode.SelectSingleNode("family").InnerXml : "None";
                         skill.min_level = !(skillNode.SelectSingleNode("min_level") is null) ? skillNode.SelectSingleNode("min_level").InnerXml : "N/A";
@@ -195,7 +195,8 @@ namespace ChroniCalc
                 }
                 else
                 {
-                    hasValue = false;
+                    //There are no additional conditions to apply against this node, 
+					// so we have a value
                 }
             }
             else
@@ -566,7 +567,7 @@ namespace ChroniCalc
                 //Load all remaining skill slots, ensuring it's not a Mutli-skill slot that was already loaded
                 if (!(IsMultiSelectionSkill(skill, MultiSelectionSkills)))
                 {
-                    SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(skill);
+                    SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(skill, tlpTree);
                     //Create a new control to hold this skill at the skills X and Y location
                     SkillButton btnSkill = new SkillButton(skill, tlpTree, pnlSkillTooltip, this);
 
@@ -574,6 +575,9 @@ namespace ChroniCalc
                     tlpTree.Controls.Add(btnSkill, skill.x, skill.y);
                 }
             }
+
+            //With all Skills added to the tree, populate all descriptions for each skill
+            PopulateSkillDescriptions(tlpTree);
         }
 
         //Look at all skills within the current Tree to see if there are multiples that share the same position (ie. Dive, Jump, Flame Dash)
@@ -621,13 +625,14 @@ namespace ChroniCalc
                     //Tie the panel to the SkillSelect Button that holds the position for which this panel and its skills apply to
                     btnMultiSkillSelect.skillSelectPanel = pnlSkillSelect;
 
-                    //Set the width of the SkillSelect Panel to the number of skill buttons it will contain
-                    pnlSkillSelect.Width = ((MultipleSkills.Count + 1) * (new SkillSelectButton(this).Width)) + ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING - SKILL_BUTTON_PADDING / 2); //last # is accounting for 3px padding on each side of each button
+                    //Set the width of the SkillSelect Panel to the number of skill buttons it will contain (30 = width of SkillSelectButton)
+                    pnlSkillSelect.Width = ((MultipleSkills.Count + 1) * 30) + ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING - SKILL_BUTTON_PADDING / 2); //last # is accounting for 3px padding on each side of each button
 
                     //Create a button for each skill and place it in the SkillSelect Panel
                     foreach (Skill multiSkill in MultipleSkills)
                     {
-                        btnSkillSelect = new SkillSelectButton(this);
+                        SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(multiSkill, tlpTree);
+                        btnSkillSelect = new SkillSelectButton(this, pnlSkillTooltip);
                         btnSkillSelect.skill = multiSkill;
                         btnSkillSelect.treeControl = tlpTree;
 
@@ -664,13 +669,40 @@ namespace ChroniCalc
             return MultiSelectionSkills.Contains(skill);
         }
 
-        public SkillTooltipPanel CreateSkillTooltip(Skill skill)
+        public SkillTooltipPanel CreateSkillTooltip(Skill skill, TreeTableLayoutPanel tlpTree)
         {
             SkillTooltipPanel pnlSkillTooltip;
 
-            pnlSkillTooltip = new SkillTooltipPanel(skill, this);
+            pnlSkillTooltip = new SkillTooltipPanel(skill, tlpTree, this);
 
             return pnlSkillTooltip;
+        }
+
+        private void PopulateSkillDescriptions(TreeTableLayoutPanel treeTableLayoutPanel)
+        {
+            //For each skill in the tree, populate its description by loading values in place of the placeholders
+            foreach (Control skill in treeTableLayoutPanel.Controls)
+            {
+                //TODOSSG determine if should build description as maxrank or not; for now, don't
+
+                if (skill is MultiSkillSelectButton)
+                {
+                    //Populate description for each skill
+                    foreach (SkillSelectButton singleSkill in (skill as MultiSkillSelectButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
+                    {
+                        singleSkill.skillTooltipPanel.PopulateDescription(false);
+                    }
+                }
+                else if (skill is SkillButton)
+                {
+                    //Populate description of the skill
+                    (skill as SkillButton).skillTooltipPanel.PopulateDescription(false);
+                }
+                else
+                {
+                    //A non-skill button control has been found within the TreeTableLayoutPanel, should I be concerned?
+                }
+            }
         }
 
         private void ShowSelectedSkillData(object sender, EventArgs e)

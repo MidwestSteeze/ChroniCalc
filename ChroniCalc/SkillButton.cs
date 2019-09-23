@@ -81,7 +81,7 @@ namespace ChroniCalc
             //MessageBox.Show(debugMessage);
             //END Debug Info
 
-            //Don't process this MouseUp event on the bbutton if it's the Class skill counter (the one that provides the passive damage bonus based on # of points spent)
+            //Don't process this MouseUp event on the button if it's the Class skill counter (the one that provides the passive damage bonus based on # of points spent)
             //  NOTE: doing this instead of disabling the button entirely because we still want hover capabilities AND disabling actually hides the control
             if (this.skill.name == (this.Parent as TreeTableLayoutPanel).passiveSkillName)
             {
@@ -107,6 +107,9 @@ namespace ChroniCalc
 
             //Update the displayed level on the skill button
             this.lblSkillLevel.Text = this.level.ToString();
+
+            //Update the tooltip description based on the new level of the skill
+            this.skillTooltipPanel.PopulateDescription(false);
 
             //TODO update stats (damage, health, mana, etc)
         }
@@ -242,7 +245,6 @@ namespace ChroniCalc
             tooltipHeight = this.skillTooltipPanel.Height;
             // Width of the tooltip
             tooltipWidth = this.skillTooltipPanel.Width;
-
             
             if (location.X + tooltipWidth > availableWidth)
             {
