@@ -17,9 +17,12 @@ namespace ChroniCalc
     {
         private const int MARGIN_VERTICAL = 3;
         private const int PADDING_VERTICAL = 3;
+
         private Element element;
         private MainForm form;
         private int level;
+        private List<string> replaceWords;
+
         readonly ResourceManager ResourceManagerImageSkill;
         public Skill skill;
         public TreeTableLayoutPanel treeTableLayoutPanel;
@@ -66,36 +69,52 @@ namespace ChroniCalc
 
             //Dynamically adjust the size of the tooltip based on the heght of its label controls now that they're populated
             //UpdateHeightAndControlPositions();
+
+            this.replaceWords = BuildReplaceWordsList();
+        }
+
+        private List<string> BuildReplaceWordsList()
+        {
+			//A list of capitalized words found in a skill's description that are placeholders to be replaced
+			// with actual values based on the skill's level
+            List<string> capitalWords = new List<string>
+            {
+                "DAMAGE",
+                "DURATION",
+                "EFFECT",
+                "PROC",
+                "RANGE",
+                "RANGE2",
+                "REQUIRED",
+                "VALUE"
+            };
+
+            return capitalWords;
         }
 
         public void PopulateDescription(bool maxRank)
         {
             string replaceValue;
-            string replaceWord;
             string description;
-            IEnumerable<string> capitalWords;
-            List<string> replaceWords = new List<string>();
 
+            //Get the skill's base description with words that need to be replaced
             description = this.skill.description;
-            
-            //Capture all uppercase words in the description that should be replaced with data from the skill itself (ie. DAMAGE, DURATION, RANGE, etc)
-            capitalWords = description.Split(' ').Where(x => x == x.ToUpper()); //TODOSSG change this to only look at words >= 2 characters, or build a stored list of replaceWords so there's no confusion
 
             //Loop through all words to be replaced with values
-            foreach (string capitalWord in capitalWords)
+            foreach (string replaceWord in this.replaceWords)
             {
-                //Remove any non-alpha characters (ie. ".", "%", etc)
-                replaceWord = Regex.Replace(capitalWord, "[^A-Z0-9]", string.Empty, RegexOptions.Compiled);
-                replaceWords.Add(replaceWord);
+                //See if the current replaceWord exists in the skill's description
+                if (description.Contains(replaceWord))
+                {
+                    //Pull the value from the xml for the current word to be replaced with a value
+                    replaceValue = GetReplacementValue(replaceWord);
 
-                //Pull the value from the xml for the current word to be replaced with a value
-                replaceValue = GetReplacementValue(replaceWord);
-
-                //Once you have the value, do a StringReplace(replaceWord, replaceValue);
-                description = description.Replace(replaceWord, replaceValue);
+                    //Replace the placeholder word with the found value into the description
+                    description = description.Replace(replaceWord, replaceValue);
+                }
             }
 
-            //Set the updated description onto the Skill and also on the label that shows it
+            //Update the description label text
             this.lblDescription.Text = description;
 
             //Dynamically adjust the size of the tooltip based on the heght of its label controls now that they're populated
@@ -122,11 +141,23 @@ namespace ChroniCalc
             //Define a mapping for which replaceWord should pull which skill.property
             switch (replaceWord)
             {
-                case "EFFECT":
-                    replaceValue = skill.effect[index];
+                case "DAMAGE":
+                    replaceValue = skill.damage[index];
                     break;
                 case "DURATION":
                     replaceValue = skill.duration[index].ToString();
+                    break;
+                case "EFFECT":
+                    replaceValue = skill.effect[index];
+                    break;
+                case "PROC":
+                    replaceValue = skill.proc[index].ToString();
+                    break;
+                case "RANGE":
+                    replaceValue = skill.range[index].ToString();
+                    break;
+                case "RANGE2":
+                    replaceValue = skill.range2[index].ToString();
                     break;
                 case "REQUIRED":
                     Control[] preReqControls;
@@ -175,56 +206,12 @@ namespace ChroniCalc
                         replaceValue = preReqSkillButton.skill.name;
                     }
                     break;
-                //case "":
-                //    replaceValue = skill.x.ToString();
-                    //break;
-                case "DAMAGE":
-                    replaceValue = skill.damage[index];
-                    break;
-                case "RANGE2":
-                    replaceValue = skill.range2[index].ToString();
-                    break;
-                //case "":
-                //    replaceValue = skill.family;
-                //    break;
-                //case "":
-                //    replaceValue = skill.min_level;
-                //    break;
-                //case "":
-                //    replaceValue = skill.id;
-                //    break;
-                case "RANGE":
-                    replaceValue = skill.range[index].ToString();
-                    break;
-                //case "":
-                //    replaceValue = skill.element;
-                //    break;
                 case "VALUE":
                     replaceValue = skill.value[index].ToString();
                     break;
-                case "PROC":
-                    replaceValue = skill.proc[index].ToString();
-                    break;
-                //case "":
-                //    replaceValue = skill.type;
-                //    break;
-                //case "":
-                //    replaceValue = skill.description_next;
-                //    break;
-                //case "":
-                //    replaceValue = skill.description;
-                //    break;
-                //case "":
-                //    replaceValue = skill.max_rank;
-                //    break;
-                //case "":
-                //    replaceValue = skill.y;
-                //    break;
-                //case "":
-                //    replaceValue = skill.name;
-                //    break;
                 default:
-                    break; //throw error that mapping was not found for replaceWord and needs to be added
+                    MessageBox.Show("SkillTooltipPanel.GetReplacementValue(): No mapping found for " + replaceWord + ".");
+                    break;
             }
 
             return replaceValue;
