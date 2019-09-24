@@ -1,8 +1,6 @@
 ﻿ ToDo
 
  MAJORS:
-  - Skill Tooltips: fix position when it wants to display offscreen
-  - Skill Tooltips: add for MultiSkillSelect buttons
   - Save/Load/Share builds
   - Stat calculation and screen (damage, health, etc)
  
@@ -10,7 +8,6 @@
 	- ?
  
  SKILLS:
-	- MouseHover capability for Skills to show text and numbers
 	- Changing a picture requires an update of the image because it's persisted in the ResourceImageSkill; so, it may be hard to identify changes to skill images and you may want to consider a directory-based system and loading by relative path instead of a ResourceManager
 
  STATS: 
@@ -20,7 +17,6 @@
 	- images: class tree backgrounds: screenshot all trees with 1 point in every skill so connection bars are activated
 		- (Berserker, Warlock, Warden, Templar)
 		- then, photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
-	- images: make and set all skill images (name them by skill id)
 	- images: make and set skillselectpanel background image
 	- images: update the position and image of "unassign skill" in the MultiSkillSelectPanel
 

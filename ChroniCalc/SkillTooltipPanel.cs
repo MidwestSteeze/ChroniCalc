@@ -133,8 +133,8 @@ namespace ChroniCalc
             }
             else
             {
-                //No level is yet assigned so show the max_rank value
-                index = skill.max_rank - 1;
+                //No level is yet assigned so show the level 1 value
+                index = 0;
             }
 
             //Define a mapping for which replaceWord should pull which skill.property
