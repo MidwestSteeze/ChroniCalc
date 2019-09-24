@@ -978,6 +978,10 @@
     <None Include="Assets\Images\UI\spr_menu_button_thin_0.png" />
     <None Include="Assets\Images\Skill\spr_menu_icon_11.png" />
     <None Include="Assets\Images\Skill\SkillTooltipDivider.png" />
+    <None Include="Assets\Images\Tree\Corruptor.png" />
+    <None Include="Assets\Images\Tree\Demonologist.png" />
+    <None Include="Assets\Images\Tree\Lich.png" />
+    <None Include="Assets\Images\Tree\Reaper.png" />
     <Content Include="ToDo.txt" />
     <None Include="Assets\Images\Tree\SkyLord.png" />
     <None Include="Assets\Images\Tree\Frostborn.png" />

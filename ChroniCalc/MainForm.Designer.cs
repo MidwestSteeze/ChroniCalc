@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.pnlClass = new System.Windows.Forms.Panel();
-            this.pbClass = new System.Windows.Forms.PictureBox();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.pbClass = new System.Windows.Forms.PictureBox();
             this.pnlClassData = new System.Windows.Forms.Panel();
+            this.lblMastery = new System.Windows.Forms.Label();
+            this.lblMasteryCaption = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
             this.lblLevelCaption = new System.Windows.Forms.Label();
             this.lblSkillPointsRemaining = new System.Windows.Forms.Label();
@@ -44,8 +46,7 @@
             this.btnTree3 = new System.Windows.Forms.Button();
             this.btnTree4 = new System.Windows.Forms.Button();
             this.btnTreeMastery = new System.Windows.Forms.Button();
-            this.lblMastery = new System.Windows.Forms.Label();
-            this.lblMasteryCaption = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             this.pnlClassData.SuspendLayout();
@@ -60,17 +61,6 @@
             this.pnlClass.Name = "pnlClass";
             this.pnlClass.Size = new System.Drawing.Size(210, 381);
             this.pnlClass.TabIndex = 7;
-            // 
-            // pbClass
-            // 
-            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbClass.Location = new System.Drawing.Point(3, 28);
-            this.pbClass.Name = "pbClass";
-            this.pbClass.Size = new System.Drawing.Size(200, 350);
-            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbClass.TabIndex = 1;
-            this.pbClass.TabStop = false;
             // 
             // cboClass
             // 
@@ -97,6 +87,17 @@
             this.lblTitle.TabIndex = 8;
             this.lblTitle.Text = "ChroniCalc";
             // 
+            // pbClass
+            // 
+            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbClass.Location = new System.Drawing.Point(3, 28);
+            this.pbClass.Name = "pbClass";
+            this.pbClass.Size = new System.Drawing.Size(200, 350);
+            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbClass.TabIndex = 1;
+            this.pbClass.TabStop = false;
+            // 
             // pnlClassData
             // 
             this.pnlClassData.BackgroundImage = global::ChroniCalc.Properties.Resources.background;
@@ -114,13 +115,37 @@
             this.pnlClassData.Size = new System.Drawing.Size(560, 420);
             this.pnlClassData.TabIndex = 7;
             // 
+            // lblMastery
+            // 
+            this.lblMastery.AutoSize = true;
+            this.lblMastery.BackColor = System.Drawing.Color.Transparent;
+            this.lblMastery.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblMastery.ForeColor = System.Drawing.Color.White;
+            this.lblMastery.Location = new System.Drawing.Point(125, 15);
+            this.lblMastery.Name = "lblMastery";
+            this.lblMastery.Size = new System.Drawing.Size(18, 20);
+            this.lblMastery.TabIndex = 13;
+            this.lblMastery.Text = "0";
+            // 
+            // lblMasteryCaption
+            // 
+            this.lblMasteryCaption.AutoSize = true;
+            this.lblMasteryCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblMasteryCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblMasteryCaption.ForeColor = System.Drawing.Color.White;
+            this.lblMasteryCaption.Location = new System.Drawing.Point(97, 15);
+            this.lblMasteryCaption.Name = "lblMasteryCaption";
+            this.lblMasteryCaption.Size = new System.Drawing.Size(22, 20);
+            this.lblMasteryCaption.TabIndex = 12;
+            this.lblMasteryCaption.Text = "M";
+            // 
             // lblLevel
             // 
             this.lblLevel.AutoSize = true;
             this.lblLevel.BackColor = System.Drawing.Color.Transparent;
             this.lblLevel.Font = new System.Drawing.Font("Comic Sans MS", 11F);
             this.lblLevel.ForeColor = System.Drawing.Color.White;
-            this.lblLevel.Location = new System.Drawing.Point(184, 24);
+            this.lblLevel.Location = new System.Drawing.Point(72, 15);
             this.lblLevel.Name = "lblLevel";
             this.lblLevel.Size = new System.Drawing.Size(18, 20);
             this.lblLevel.TabIndex = 11;
@@ -132,7 +157,7 @@
             this.lblLevelCaption.BackColor = System.Drawing.Color.Transparent;
             this.lblLevelCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
             this.lblLevelCaption.ForeColor = System.Drawing.Color.White;
-            this.lblLevelCaption.Location = new System.Drawing.Point(151, 24);
+            this.lblLevelCaption.Location = new System.Drawing.Point(39, 15);
             this.lblLevelCaption.Name = "lblLevelCaption";
             this.lblLevelCaption.Size = new System.Drawing.Size(27, 20);
             this.lblLevelCaption.TabIndex = 10;
@@ -144,7 +169,7 @@
             this.lblSkillPointsRemaining.BackColor = System.Drawing.Color.Transparent;
             this.lblSkillPointsRemaining.Font = new System.Drawing.Font("Comic Sans MS", 11F);
             this.lblSkillPointsRemaining.ForeColor = System.Drawing.Color.White;
-            this.lblSkillPointsRemaining.Location = new System.Drawing.Point(127, 39);
+            this.lblSkillPointsRemaining.Location = new System.Drawing.Point(127, 35);
             this.lblSkillPointsRemaining.Name = "lblSkillPointsRemaining";
             this.lblSkillPointsRemaining.Size = new System.Drawing.Size(18, 20);
             this.lblSkillPointsRemaining.TabIndex = 9;
@@ -156,7 +181,7 @@
             this.lblSkillPointsRemainingCaption.BackColor = System.Drawing.Color.Transparent;
             this.lblSkillPointsRemainingCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
             this.lblSkillPointsRemainingCaption.ForeColor = System.Drawing.Color.White;
-            this.lblSkillPointsRemainingCaption.Location = new System.Drawing.Point(39, 39);
+            this.lblSkillPointsRemainingCaption.Location = new System.Drawing.Point(39, 35);
             this.lblSkillPointsRemainingCaption.Name = "lblSkillPointsRemainingCaption";
             this.lblSkillPointsRemainingCaption.Size = new System.Drawing.Size(90, 20);
             this.lblSkillPointsRemainingCaption.TabIndex = 8;
@@ -247,29 +272,15 @@
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);
             // 
-            // lblMastery
+            // lblVersion
             // 
-            this.lblMastery.AutoSize = true;
-            this.lblMastery.BackColor = System.Drawing.Color.Transparent;
-            this.lblMastery.Font = new System.Drawing.Font("Comic Sans MS", 11F);
-            this.lblMastery.ForeColor = System.Drawing.Color.White;
-            this.lblMastery.Location = new System.Drawing.Point(237, 24);
-            this.lblMastery.Name = "lblMastery";
-            this.lblMastery.Size = new System.Drawing.Size(18, 20);
-            this.lblMastery.TabIndex = 13;
-            this.lblMastery.Text = "0";
-            // 
-            // lblMasteryCaption
-            // 
-            this.lblMasteryCaption.AutoSize = true;
-            this.lblMasteryCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblMasteryCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
-            this.lblMasteryCaption.ForeColor = System.Drawing.Color.White;
-            this.lblMasteryCaption.Location = new System.Drawing.Point(209, 24);
-            this.lblMasteryCaption.Name = "lblMasteryCaption";
-            this.lblMasteryCaption.Size = new System.Drawing.Size(22, 20);
-            this.lblMasteryCaption.TabIndex = 12;
-            this.lblMasteryCaption.Text = "M";
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Rockwell", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Location = new System.Drawing.Point(130, 9);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(23, 26);
+            this.lblVersion.TabIndex = 9;
+            this.lblVersion.Text = "v";
             // 
             // MainForm
             // 
@@ -277,6 +288,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(784, 427);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pnlClass);
             this.Controls.Add(this.pnlClassData);
@@ -314,6 +326,7 @@
         private System.Windows.Forms.Label lblLevelCaption;
         private System.Windows.Forms.Label lblMastery;
         private System.Windows.Forms.Label lblMasteryCaption;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 

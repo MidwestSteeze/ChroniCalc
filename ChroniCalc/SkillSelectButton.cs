@@ -83,14 +83,10 @@ namespace ChroniCalc
 
         private void SkillSelectButton_MouseLeave(object sender, EventArgs e)
         {
-            //Only hide the panel if the mouse truly is no longer focused on the tooltip or pnskillicon
-            //if (!(pbSkillIcon.Focused && this.skillTooltipPanel.ContainsFocus)) //TODOSSG
-            //{
             if (this.skillTooltipPanel.Visible)
             {
                 this.skillTooltipPanel.Visible = false;
             }
-            //}
         }
 
         private Point GetTooltipLocation() //TODOSSG duplicate code of SkillButton.GetTooltipLocation

@@ -21,8 +21,8 @@
 	- images: update the position and image of "unassign skill" in the MultiSkillSelectPanel
 
 MISC:
-	- MainForm: Mastery Point counter (no Maximum)
-	- MainForm: Character name, also allow input for it when creating or saving a build
-	- Stat screen
 	- Save/Load/Share build
+	- MainForm: Mastery Point counter (no Maximum)
+	- Stat screen
 	- fix screen flash when loading trees
+	- splash screen on initial load of program

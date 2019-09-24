@@ -42,6 +42,9 @@ namespace ChroniCalc
         {
             InitializeComponent();
 
+            //Updates the version as shown on screen
+            lblVersion.Text = "v" + this.ProductVersion;
+
             //Set the # of available skill points that can be spent to build the character
             lblSkillPointsRemaining.Text = SKILL_POINTS_MAX.ToString();
 
@@ -509,8 +512,6 @@ namespace ChroniCalc
                 treeButton.BackgroundImage = null;
                 treeButton.Tag = "";
             }
-
-            //TODOSSG Clear the Character Level and Skill Points Remaining
         }
 
         private void LoadTreeIconButtonImage(ResourceManager resourceManager, Button button, string name)

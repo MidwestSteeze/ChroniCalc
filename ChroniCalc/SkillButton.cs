@@ -98,7 +98,6 @@ namespace ChroniCalc
             }
             else if (e.Button == MouseButtons.Right && this.level > 0)
             {
-                //TODO don't let user de-level if it's going to set level to 0 and this skill is a needed prereq
                 //Decrease the level
                 this.level--;
 
@@ -204,14 +203,10 @@ namespace ChroniCalc
 
         private void PbSkillIcon_MouseLeave(object sender, EventArgs e)
         {
-            //Only hide the panel if the mouse truly is no longer focused on the tooltip or pnskillicon
-            //if (!(pbSkillIcon.Focused && this.skillTooltipPanel.ContainsFocus)) //TODOSSG
-            //{
-                if (this.skillTooltipPanel.Visible)
-                {
-                    this.skillTooltipPanel.Visible = false;
-                }
-            //}
+            if (this.skillTooltipPanel.Visible)
+            {
+                this.skillTooltipPanel.Visible = false;
+            }
         }
 
         private Point GetTooltipLocation()
