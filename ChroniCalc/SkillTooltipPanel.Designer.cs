@@ -30,9 +30,6 @@
         {
             this.pnlTooltip = new System.Windows.Forms.Panel();
             this.pbDivider = new System.Windows.Forms.PictureBox();
-            this.pnlMaxRank = new System.Windows.Forms.Panel();
-            this.lblMaxRankCaption = new System.Windows.Forms.Label();
-            this.lblMaxRankDescription = new System.Windows.Forms.Label();
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblRank = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
@@ -41,7 +38,6 @@
             this.pbIcon = new System.Windows.Forms.PictureBox();
             this.pnlTooltip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDivider)).BeginInit();
-            this.pnlMaxRank.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +46,6 @@
             this.pnlTooltip.BackColor = System.Drawing.Color.Black;
             this.pnlTooltip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlTooltip.Controls.Add(this.pbDivider);
-            this.pnlTooltip.Controls.Add(this.pnlMaxRank);
             this.pnlTooltip.Controls.Add(this.lblDescription);
             this.pnlTooltip.Controls.Add(this.lblRank);
             this.pnlTooltip.Controls.Add(this.lblType);
@@ -71,38 +66,6 @@
             this.pbDivider.Size = new System.Drawing.Size(215, 2);
             this.pbDivider.TabIndex = 10;
             this.pbDivider.TabStop = false;
-            // 
-            // pnlMaxRank
-            // 
-            this.pnlMaxRank.BackColor = System.Drawing.Color.Black;
-            this.pnlMaxRank.Controls.Add(this.lblMaxRankCaption);
-            this.pnlMaxRank.Controls.Add(this.lblMaxRankDescription);
-            this.pnlMaxRank.Location = new System.Drawing.Point(5, 118);
-            this.pnlMaxRank.Name = "pnlMaxRank";
-            this.pnlMaxRank.Size = new System.Drawing.Size(200, 52);
-            this.pnlMaxRank.TabIndex = 9;
-            // 
-            // lblMaxRankCaption
-            // 
-            this.lblMaxRankCaption.AutoSize = true;
-            this.lblMaxRankCaption.BackColor = System.Drawing.Color.Black;
-            this.lblMaxRankCaption.ForeColor = System.Drawing.Color.White;
-            this.lblMaxRankCaption.Location = new System.Drawing.Point(0, 3);
-            this.lblMaxRankCaption.Name = "lblMaxRankCaption";
-            this.lblMaxRankCaption.Size = new System.Drawing.Size(72, 13);
-            this.lblMaxRankCaption.TabIndex = 7;
-            this.lblMaxRankCaption.Text = "At Max Rank:";
-            // 
-            // lblMaxRankDescription
-            // 
-            this.lblMaxRankDescription.AutoSize = true;
-            this.lblMaxRankDescription.BackColor = System.Drawing.Color.Black;
-            this.lblMaxRankDescription.ForeColor = System.Drawing.Color.White;
-            this.lblMaxRankDescription.Location = new System.Drawing.Point(0, 16);
-            this.lblMaxRankDescription.Name = "lblMaxRankDescription";
-            this.lblMaxRankDescription.Size = new System.Drawing.Size(105, 13);
-            this.lblMaxRankDescription.TabIndex = 8;
-            this.lblMaxRankDescription.Text = "maxRankDescription";
             // 
             // lblDescription
             // 
@@ -179,8 +142,6 @@
             this.pnlTooltip.ResumeLayout(false);
             this.pnlTooltip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDivider)).EndInit();
-            this.pnlMaxRank.ResumeLayout(false);
-            this.pnlMaxRank.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
             this.ResumeLayout(false);
 
@@ -189,9 +150,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlTooltip;
-        private System.Windows.Forms.Panel pnlMaxRank;
-        private System.Windows.Forms.Label lblMaxRankCaption;
-        private System.Windows.Forms.Label lblMaxRankDescription;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblRank;
         private System.Windows.Forms.Label lblType;

@@ -39,7 +39,6 @@ namespace ChroniCalc
             //Specify defaults for this custom control
             //Max width and height of labels (to enable word-wrapping)
             lblDescription.MaximumSize = new Size(lblDescription.Parent.Width - (lblDescription.Left * 2), this.lblDescription.Font.Height * 7);
-            lblMaxRankDescription.MaximumSize = new Size(lblMaxRankDescription.Parent.Width - (lblMaxRankDescription.Left * 2), this.lblMaxRankDescription.Font.Height * 7);
 
             this.Parent = form.Controls.Find("pnlTrees", true).First();
             this.Visible = false;
@@ -92,7 +91,7 @@ namespace ChroniCalc
             return capitalWords;
         }
 
-        public void PopulateDescription(bool maxRank)
+        public void PopulateDescription()
         {
             string replaceValue;
             string description;
@@ -227,14 +226,11 @@ namespace ChroniCalc
         public void UpdateHeightAndControlPositions()
         {
             //Adjust position and size of controls that may have been imapcted by dynamically-sized controls above it
-            // Set a new Height and Top for pnlMaxRank since the lblDescription control above it may have changed in size once its text was set
-            pnlMaxRank.Height = lblMaxRankCaption.Height + lblMaxRankDescription.Height + PADDING_VERTICAL;
-            pnlMaxRank.Top = lblDescription.Location.Y + lblDescription.Height + MARGIN_VERTICAL;
 
             // Set the height of the tooltip now that all controls are sized and positioned within it based on their content
             // NOTE: Need to set the SkillTooltipPanel control Height AND the pnlTooltip Height because the main control (SkillTooltipPanel) is not set to Autosize as pnlTooltip grows
-            this.Height = pnlMaxRank.Location.Y + pnlMaxRank.Height + (MARGIN_VERTICAL * 2);
-            this.pnlTooltip.Height = pnlMaxRank.Location.Y + pnlMaxRank.Height + (MARGIN_VERTICAL * 2);
+            this.Height = lblDescription.Location.Y + lblDescription.Height + (MARGIN_VERTICAL * 2);
+            this.pnlTooltip.Height = lblDescription.Location.Y + lblDescription.Height + (MARGIN_VERTICAL * 2);
         }
     }
 }

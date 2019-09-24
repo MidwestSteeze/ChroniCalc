@@ -683,20 +683,18 @@ namespace ChroniCalc
             //For each skill in the tree, populate its description by loading values in place of the placeholders
             foreach (Control skill in treeTableLayoutPanel.Controls)
             {
-                //TODOSSG determine if should build description as maxrank or not; for now, don't
-
                 if (skill is MultiSkillSelectButton)
                 {
                     //Populate description for each skill
                     foreach (SkillSelectButton singleSkill in (skill as MultiSkillSelectButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
                     {
-                        singleSkill.skillTooltipPanel.PopulateDescription(false);
+                        singleSkill.skillTooltipPanel.PopulateDescription();
                     }
                 }
                 else if (skill is SkillButton)
                 {
                     //Populate description of the skill
-                    (skill as SkillButton).skillTooltipPanel.PopulateDescription(false);
+                    (skill as SkillButton).skillTooltipPanel.PopulateDescription();
                 }
                 else
                 {

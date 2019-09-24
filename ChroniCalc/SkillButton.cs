@@ -109,7 +109,7 @@ namespace ChroniCalc
             this.lblSkillLevel.Text = this.level.ToString();
 
             //Update the tooltip description based on the new level of the skill
-            this.skillTooltipPanel.PopulateDescription(false);
+            this.skillTooltipPanel.PopulateDescription();
 
             //TODO update stats (damage, health, mana, etc)
         }
