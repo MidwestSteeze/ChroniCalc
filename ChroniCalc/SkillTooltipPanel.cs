@@ -166,7 +166,6 @@ namespace ChroniCalc
                     if (skill.skill_requirement.Length > 1)
                     {
                         //The skills prereq is a multiselect skill so find which one the user chose
-                        //TODOSSG i have this logic somewhere i can reuse
                         foreach (int id in skill.skill_requirement)
                         {
                             preReqControls = treeTableLayoutPanel.Controls.Find(id.ToString(), false);
@@ -176,7 +175,8 @@ namespace ChroniCalc
                                 if (Array.IndexOf(skill.skill_requirement, id) == skill.skill_requirement.Length - 1)
                                 {
                                     //PreReq control not found; this is because no Skill has yet been selected from the positions SkillSelect panel
-                                    //TODOSSG test this and see how to handle it
+                                    // so use some generic placeholder verbiage
+                                    replaceValue = "Previous Skill";
                                     break;
                                 }
 
