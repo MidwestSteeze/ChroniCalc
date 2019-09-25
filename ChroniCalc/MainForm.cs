@@ -215,7 +215,6 @@ namespace ChroniCalc
             Button btnTree = (sender as Button);
             //Determine which tree the user selected to be shown
             string treeName = btnTree.Tag.ToString();
-            lblTree.Text = treeName;
 
             //Show the corresponding tlpTree by finding a match and bringing it in front of the others
             foreach (TreeTableLayoutPanel ttlp in treePanels)
@@ -224,7 +223,12 @@ namespace ChroniCalc
                 {
                     ttlp.Show();
                     ttlp.BringToFront();
-                    break;
+                    lblTree.Text = ttlp.passiveSkillName;
+                }
+                else
+                {
+                    //Hide the non-selected Tree
+                    ttlp.Hide();
                 }
             }
 
