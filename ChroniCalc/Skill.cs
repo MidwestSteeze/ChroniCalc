@@ -36,8 +36,9 @@ namespace ChroniCalc
         [JsonProperty("range2")]
         public double[] range2;
 
+        //For creating links between skills (ie. Passive A affects all X family type skills)
         [JsonProperty("family")]
-        public string family; //TODOSSG change to Enum
+        public string family; //TODOSSG change to Enum?
 
         [JsonProperty("min_level")]
         public string min_level;

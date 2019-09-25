@@ -40,7 +40,7 @@ namespace ChroniCalc
             this.Size = new System.Drawing.Size(475, 279);
 
             //Assign the Parent Control
-            parentControl.Controls.Add(this); //TODOSSG this next
+            parentControl.Controls.Add(this);
 
             //Location
             this.Location = new System.Drawing.Point(24, 37);
@@ -51,10 +51,6 @@ namespace ChroniCalc
 
             //Visibility
             this.Visible = false;
-
-            //Cell Borderes (TODO delete before commit)
-            //this.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            //this.BorderStyle = BorderStyle.FixedSingle;
         }
 
         protected override void OnPaint(PaintEventArgs pe)

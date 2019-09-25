@@ -217,9 +217,6 @@ namespace ChroniCalc
             string treeName = btnTree.Tag.ToString();
             lblTree.Text = treeName;
 
-            //Change the background image of the TreeTableLayoutPanel that will be shown for the selected Tree
-            //TODO
-
             //Show the corresponding tlpTree by finding a match and bringing it in front of the others
             foreach (TreeTableLayoutPanel ttlp in treePanels)
             {
@@ -322,7 +319,7 @@ namespace ChroniCalc
             //TODOSSG
         }
 
-        private void ResetTrees(CharacterClass selectedClass)  //TODOSSG correct the order of the Trees for all classes (Berserker fixed)
+        private void ResetTrees(CharacterClass selectedClass)  //TODOSSG correct the order of the Trees for all classes (Berserker, Warlock done)
         {
             string treeName;
 
@@ -435,35 +432,35 @@ namespace ChroniCalc
                     break;
 
                 case "Warlock":
-                    treeName = "Reaper";
+                    treeName = "Corruptor";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 182;
+                    treePanels[0].passiveSkillId = 150;
                     treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "Corruptor";
+                    treeName = "Lich";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
-                    treePanels[1].passiveSkillId = 150;
+                    treePanels[1].passiveSkillId = 748;
                     treePanels[1].passiveSkillName = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "Lich";
+                    treeName = "Demonologist";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
-                    treePanels[2].passiveSkillId = 748;
+                    treePanels[2].passiveSkillId = 707;
                     treePanels[2].passiveSkillName = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "Demonologist";
+                    treeName = "Reaper";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
-                    treePanels[3].passiveSkillId = 707;
+                    treePanels[3].passiveSkillId = 182;
                     treePanels[3].passiveSkillName = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
@@ -614,7 +611,6 @@ namespace ChroniCalc
                     //Add a SkillSelect Button ("+" button) to the shared X,Y position on the tree
                     MultiSkillSelectButton btnMultiSkillSelect = new MultiSkillSelectButton(xPos, yPos);
                     tlpTree.Controls.Add(btnMultiSkillSelect, xPos, yPos);
-                    //TODOSSG at this same position, set backgroundimage of the cell to be the texture so you don't have to photoshop out the skill counter in Chronicon controls
 
                     //Instantiate a new SkillSelect Panel to hold the multiple skills
                     SkillSelectPanel pnlSkillSelect = new SkillSelectPanel();

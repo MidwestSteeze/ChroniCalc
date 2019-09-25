@@ -66,11 +66,6 @@ namespace ChroniCalc
             //START Debug Info
             //string debugMessage = "";
 
-            //foreach (Control control in this.Controls) //TODOSSG the panel isn't resizing to fit the cell
-            //{
-            //    debugMessage += "Control: " + control.Name + "; Width: " + control.Width + "; Height: " + control.Height + "\n";
-            //}
-
             //debugMessage += "Skill: " + this.skill.name + "\n" +
             //                "XPos: " + this.skill.x + "\n" +
             //                "YPos:" + this.skill.y + "\n" +

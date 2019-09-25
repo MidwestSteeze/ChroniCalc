@@ -66,7 +66,9 @@ namespace ChroniCalc
             //Add the skill button to the Tree at the currently-selected position
             this.treeControl.Controls.Add(btnSkill, this.skill.x, this.skill.y);
 
-            //Hide the SkillSelectPanel now that the user chose a skill //TODOSSG delete it to reduce instantiated controls in memory?
+            //Hide the SkillSelectPanel now that the user chose a skill
+            // (Not deleting it so the user can switch it out if they change their mind)
+            //TODO setup a right-click on these types of buttons to re-display the SkillSelectPanel
             this.Parent.Hide();
 
         }

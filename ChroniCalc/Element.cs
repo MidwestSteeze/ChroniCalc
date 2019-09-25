@@ -15,8 +15,12 @@ namespace ChroniCalc
 
         public Element(string elementType)
         {
-            switch (elementType) //TODO finish this list and verify all properties
+            switch (elementType) //TODO Update colors for all that are currently Color.White
             {
+                case "Ethereal":
+                    color = Color.White;
+                    name = "Ethereal";
+                    break;
                 case "Fire":
                     color = Color.Red;
                     name = "Fire";
@@ -25,13 +29,25 @@ namespace ChroniCalc
                     color = Color.Cyan;
                     name = "Frost";
                     break;
+                case "Holy":
+                    color = Color.White;
+                    name = "Holy";
+                    break;
                 case "Lightning":
                     color = Color.LightBlue;
                     name = "Lightning";
                     break;
+                case "Poison":
+                    color = Color.White;
+                    name = "Poison";
+                    break;
                 case "Physical":
                     color = Color.Gray;
                     name = "Physical";
+                    break;
+                case "Shadow":
+                    color = Color.White;
+                    name = "Shadow";
                     break;
                 default:
                     break;
