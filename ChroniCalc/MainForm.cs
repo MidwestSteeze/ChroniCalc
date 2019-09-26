@@ -716,5 +716,16 @@ namespace ChroniCalc
                             ;
             MessageBox.Show(debugMessage);
         }
+
+        // Used to reduce appearance of Control Paint lag when toggling visibility of TreeTableLayoutPanels (ie. Trees)
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED
+                return cp;
+            }
+        }
     }
 }
