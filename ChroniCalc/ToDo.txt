@@ -1,13 +1,15 @@
 ﻿ ToDo
 
  MAJORS:
-  - Save/Load/Share builds
+  - Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
+  - Save/Load/Share builds (Json format to correlate with in-game build import/exporter)
   - Stat calculation and screen (damage, health, etc)
  
  CLASSES:
 	- ?
  
  SKILLS:
+	- add Family into the Tooltip and other locations it may be needed (ie. SkillButton, Skill, etc)
 	- Changing a picture requires an update of the image because it's persisted in the ResourceImageSkill; so, it may be hard to identify changes to skill images and you may want to consider a directory-based system and loading by relative path instead of a ResourceManager
 
  STATS: 
@@ -15,7 +17,7 @@
  
  TREES:
 	- images: class tree backgrounds: screenshot all trees with 1 point in every skill so connection bars are activated
-		- (Berserker, Warlock, Warden, Templar)
+		- (TODO cus missing link highlights: Berserker, Warden Wind Ranger)
 		- then, photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
 	- images: make and set skillselectpanel background image
 	- images: update the position and image of "unassign skill" in the MultiSkillSelectPanel

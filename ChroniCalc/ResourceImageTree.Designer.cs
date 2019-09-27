@@ -103,6 +103,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Druid {
+            get {
+                object obj = ResourceManager.GetObject("Druid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Frostborn {
             get {
                 object obj = ResourceManager.GetObject("Frostborn", resourceCulture);
@@ -233,9 +243,39 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap StormCaller {
+            get {
+                object obj = ResourceManager.GetObject("StormCaller", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Vengeance {
             get {
                 object obj = ResourceManager.GetObject("Vengeance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap WindRanger {
+            get {
+                object obj = ResourceManager.GetObject("WindRanger", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap WinterHerald {
+            get {
+                object obj = ResourceManager.GetObject("WinterHerald", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -986,6 +986,10 @@
     <None Include="Assets\Images\Tree\Redemption.png" />
     <None Include="Assets\Images\Tree\Vengeance.png" />
     <None Include="Assets\Images\Tree\Wrath.png" />
+    <None Include="Assets\Images\Tree\Druid.png" />
+    <None Include="Assets\Images\Tree\StormCaller.png" />
+    <None Include="Assets\Images\Tree\WindRanger.png" />
+    <None Include="Assets\Images\Tree\WinterHerald.png" />
     <Content Include="ToDo.txt" />
     <None Include="Assets\Images\Tree\SkyLord.png" />
     <None Include="Assets\Images\Tree\Frostborn.png" />
