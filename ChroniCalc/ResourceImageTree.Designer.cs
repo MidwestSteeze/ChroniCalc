@@ -63,6 +63,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Conviction {
+            get {
+                object obj = ResourceManager.GetObject("Conviction", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Corruptor {
             get {
                 object obj = ResourceManager.GetObject("Corruptor", resourceCulture);
@@ -193,6 +203,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Redemption {
+            get {
+                object obj = ResourceManager.GetObject("Redemption", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap SkyLord {
             get {
                 object obj = ResourceManager.GetObject("SkyLord", resourceCulture);
@@ -206,6 +226,26 @@ namespace ChroniCalc {
         public static System.Drawing.Bitmap spr_empty_skill_slot_0 {
             get {
                 object obj = ResourceManager.GetObject("spr_empty_skill_slot_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Vengeance {
+            get {
+                object obj = ResourceManager.GetObject("Vengeance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Wrath {
+            get {
+                object obj = ResourceManager.GetObject("Wrath", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

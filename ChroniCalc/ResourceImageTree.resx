@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Conviction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Conviction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Corruptor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\Corruptor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -157,10 +160,19 @@
   <data name="Reaper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\Reaper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Redemption" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Redemption.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SkyLord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\SkyLord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="spr_empty_skill_slot_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\spr_empty_skill_slot_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Vengeance" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Vengeance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Wrath" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Wrath.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
