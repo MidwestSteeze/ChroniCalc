@@ -42,6 +42,10 @@ namespace ChroniCalc
         {
             InitializeComponent();
 
+            //Add a tooltip for the Reset Button so the user knows what it is before clicking it
+            ToolTip ttResetTree = new System.Windows.Forms.ToolTip();
+            ttResetTree.SetToolTip(this.btnResetTree, "Reset Tree");
+
             //Updates the version as shown on screen
             lblVersion.Text = "v" + this.ProductVersion;
 
@@ -63,8 +67,8 @@ namespace ChroniCalc
             treeButtons.Add(btnTree3);
             treeButtons.Add(btnTree4);
 
-            treePanels = new List<TreeTableLayoutPanel>();
             //Add 4 trees to the list of available Trees for a Class
+            treePanels = new List<TreeTableLayoutPanel>();
             for (int i = 0; i <= 3; i++)
             {
                 TreeTableLayoutPanel ttlp = new TreeTableLayoutPanel(pnlTrees);
@@ -330,6 +334,9 @@ namespace ChroniCalc
             //Clear all content from the current trees
             ClearTrees();
 
+            //Set the current correct group of tree objects based on the selected class
+            trees = selectedClass.trees;
+
             //Depending on Class, load up Image and Tag on Tree tabs and update the Mastery tree
             switch (selectedClass.name)
             {
@@ -440,7 +447,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 150;
+                    treePanels[0].passiveSkillId = 642;
                     treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -495,16 +502,10 @@ namespace ChroniCalc
 
         private void ClearTrees()
         {
-            //Reset the total counted allocated skill points amongst all Trees
-            SkillPointsUsed = 0;
-
             //Clear all content from the existing trees (ie. treePanels)
-            foreach (TreeTableLayoutPanel tree in treePanels)
+            foreach (TreeTableLayoutPanel ttlpTree in treePanels)
             {
-                tree.Controls.Clear();
-
-                //Reset the skill points allocated on the tree
-                tree.skillPointsAllocated = 0;
+                ClearTree(ttlpTree);
             }
 
             //Clear the images on the tree selection buttons
@@ -513,6 +514,24 @@ namespace ChroniCalc
                 treeButton.BackgroundImage = null;
                 treeButton.Tag = "";
             }
+        }
+
+        private void ClearTree(TreeTableLayoutPanel ttlpTree)
+        {
+            ttlpTree.Controls.Clear();
+
+            //Subtract the # of skill points spent on this tree from all skill points currently used since we're clearing the tree
+            this.SkillPointsUsed -= ttlpTree.skillPointsAllocated;
+
+            //Update the labels showing current character level and skill points available
+            this.lblLevel.Text = this.SkillPointsUsed.ToString();
+            this.lblSkillPointsRemaining.Text = (SKILL_POINTS_MAX - this.SkillPointsUsed).ToString();
+
+            //Reset the skill points allocated on the tree
+            ttlpTree.skillPointsAllocated = 0;
+
+            //TODOSSG Update Stats here because we may have cleared a bunch of active/passive skills
+            //UpdateStats()
         }
 
         private void LoadTreeIconButtonImage(ResourceManager resourceManager, Button button, string name)
@@ -539,15 +558,15 @@ namespace ChroniCalc
             Tree tree;
 
             //Load each of the 4 Tree panels with the data for the selected class
-            foreach (TreeTableLayoutPanel tlpTree in treePanels)
+            foreach (TreeTableLayoutPanel ttlpTree in treePanels)
             {
                 //Pull the correct Tree object for the current TreeTableLayoutPanel from the currently selected Class
-                tree = selectedClass.trees.Find(x => x.name == tlpTree.Name);
+                tree = selectedClass.trees.Find(x => x.name == ttlpTree.Name);
 
                 if (!(tree is null))
                 {
                     //Load every aspect of the current Tree into the current Tree Panel
-                    LoadTree(tree, tlpTree);
+                    LoadTree(tree, ttlpTree);
                 }
                 else
                 {
@@ -556,12 +575,12 @@ namespace ChroniCalc
             }
         }
 
-        private void LoadTree(Tree tree, TreeTableLayoutPanel tlpTree)
+        private void LoadTree(Tree tree, TreeTableLayoutPanel ttlpTree)
         {
             List<Skill> MultiSelectionSkills = new List<Skill>();
 
             //Load any skill slot that beings with a "+" for the user to pick between multiple skills
-            LoadMultiSelectionSkills(tree, tlpTree, ref MultiSelectionSkills);
+            LoadMultiSelectionSkills(tree, ttlpTree, ref MultiSelectionSkills);
 
             //Loop through each Skill and place it into the correct slot in the TableLayoutPanel
             foreach (Skill skill in tree.skills)
@@ -569,17 +588,17 @@ namespace ChroniCalc
                 //Load all remaining skill slots, ensuring it's not a Mutli-skill slot that was already loaded
                 if (!(IsMultiSelectionSkill(skill, MultiSelectionSkills)))
                 {
-                    SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(skill, tlpTree);
+                    SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(skill, ttlpTree);
                     //Create a new control to hold this skill at the skills X and Y location
-                    SkillButton btnSkill = new SkillButton(skill, tlpTree, pnlSkillTooltip, this);
+                    SkillButton btnSkill = new SkillButton(skill, ttlpTree, pnlSkillTooltip, this);
 
                     //Add the skill button to the tree
-                    tlpTree.Controls.Add(btnSkill, skill.x, skill.y);
+                    ttlpTree.Controls.Add(btnSkill, skill.x, skill.y);
                 }
             }
 
             //With all Skills added to the tree, populate all descriptions for each skill
-            PopulateSkillDescriptions(tlpTree);
+            PopulateSkillDescriptions(ttlpTree);
         }
 
         //Look at all skills within the current Tree to see if there are multiples that share the same position (ie. Dive, Jump, Flame Dash)
@@ -725,6 +744,46 @@ namespace ChroniCalc
                 CreateParams cp = base.CreateParams;
                 cp.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED
                 return cp;
+            }
+        }
+
+        private void BtnResetTree_Click(object sender, EventArgs e)
+        {
+            Tree tree;
+            TreeTableLayoutPanel ttlpTree;
+
+            // Find the currently-shown tree
+            ttlpTree = new TreeTableLayoutPanel(pnlTrees);
+
+            foreach (TreeTableLayoutPanel ttlp in treePanels)
+            {
+                if (ttlp.Visible)
+                {
+                    ttlpTree = ttlp;
+                    break;
+                }
+            }
+
+            // Only reset the tree if a TreeTableLayoutPanel is visible and is loaded with controls (ie. skills)
+            //   (this rules out if the application has done an initial load and no character was selected/loaded)
+            if (ttlpTree.HasChildren)
+            {
+                // Find the corresponding Tree to the current TreeTableLayoutPanel shown
+                tree = new Tree();
+
+                tree = trees.Find(x => x.name == ttlpTree.Name);
+
+                // Throw an error if we don't have a ttlp or tree, since we made assumptions when finding it
+                if (ttlpTree is null || tree is null)
+                {
+                    throw new Exception("BtnResetTree_Click(): Tree not found");
+                }
+
+                // Remove all controls from the currently-shown tree
+                ClearTree(ttlpTree);
+
+                // Add all controls back onto the currently-shown tree
+                LoadTree(tree, ttlpTree);
             }
         }
     }

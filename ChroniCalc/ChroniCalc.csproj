@@ -990,6 +990,7 @@
     <None Include="Assets\Images\Tree\StormCaller.png" />
     <None Include="Assets\Images\Tree\WindRanger.png" />
     <None Include="Assets\Images\Tree\WinterHerald.png" />
+    <None Include="Assets\Images\UI\ResetTree.png" />
     <Content Include="ToDo.txt" />
     <None Include="Assets\Images\Tree\SkyLord.png" />
     <None Include="Assets\Images\Tree\Frostborn.png" />

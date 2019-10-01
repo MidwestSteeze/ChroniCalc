@@ -31,6 +31,7 @@
             this.pnlClass = new System.Windows.Forms.Panel();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.pbClass = new System.Windows.Forms.PictureBox();
             this.pnlClassData = new System.Windows.Forms.Panel();
             this.lblMastery = new System.Windows.Forms.Label();
@@ -41,12 +42,12 @@
             this.lblSkillPointsRemainingCaption = new System.Windows.Forms.Label();
             this.lblTree = new System.Windows.Forms.Label();
             this.pnlTrees = new System.Windows.Forms.Panel();
+            this.btnResetTree = new System.Windows.Forms.Button();
             this.btnTree1 = new System.Windows.Forms.Button();
             this.btnTree2 = new System.Windows.Forms.Button();
             this.btnTree3 = new System.Windows.Forms.Button();
             this.btnTree4 = new System.Windows.Forms.Button();
             this.btnTreeMastery = new System.Windows.Forms.Button();
-            this.lblVersion = new System.Windows.Forms.Label();
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             this.pnlClassData.SuspendLayout();
@@ -86,6 +87,16 @@
             this.lblTitle.Size = new System.Drawing.Size(128, 26);
             this.lblTitle.TabIndex = 8;
             this.lblTitle.Text = "ChroniCalc";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Rockwell", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Location = new System.Drawing.Point(130, 9);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(23, 26);
+            this.lblVersion.TabIndex = 9;
+            this.lblVersion.Text = "v";
             // 
             // pbClass
             // 
@@ -201,6 +212,7 @@
             // pnlTrees
             // 
             this.pnlTrees.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTrees.Controls.Add(this.btnResetTree);
             this.pnlTrees.Controls.Add(this.btnTree1);
             this.pnlTrees.Controls.Add(this.btnTree2);
             this.pnlTrees.Controls.Add(this.btnTree3);
@@ -210,6 +222,24 @@
             this.pnlTrees.Name = "pnlTrees";
             this.pnlTrees.Size = new System.Drawing.Size(540, 317);
             this.pnlTrees.TabIndex = 6;
+            // 
+            // btnResetTree
+            // 
+            this.btnResetTree.AutoSize = true;
+            this.btnResetTree.BackColor = System.Drawing.Color.Transparent;
+            this.btnResetTree.BackgroundImage = global::ChroniCalc.ResourceImageUI.ResetTree;
+            this.btnResetTree.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnResetTree.FlatAppearance.BorderSize = 0;
+            this.btnResetTree.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnResetTree.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnResetTree.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnResetTree.ForeColor = System.Drawing.Color.White;
+            this.btnResetTree.Location = new System.Drawing.Point(507, 6);
+            this.btnResetTree.Name = "btnResetTree";
+            this.btnResetTree.Size = new System.Drawing.Size(30, 27);
+            this.btnResetTree.TabIndex = 6;
+            this.btnResetTree.UseVisualStyleBackColor = false;
+            this.btnResetTree.Click += new System.EventHandler(this.BtnResetTree_Click);
             // 
             // btnTree1
             // 
@@ -272,16 +302,6 @@
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);
             // 
-            // lblVersion
-            // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Font = new System.Drawing.Font("Rockwell", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(130, 9);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(23, 26);
-            this.lblVersion.TabIndex = 9;
-            this.lblVersion.Text = "v";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +322,7 @@
             this.pnlClassData.ResumeLayout(false);
             this.pnlClassData.PerformLayout();
             this.pnlTrees.ResumeLayout(false);
+            this.pnlTrees.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,6 +348,7 @@
         private System.Windows.Forms.Label lblMastery;
         private System.Windows.Forms.Label lblMasteryCaption;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Button btnResetTree;
     }
 }
 
