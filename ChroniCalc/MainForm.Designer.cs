@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.pnlClass = new System.Windows.Forms.Panel();
+            this.pbClass = new System.Windows.Forms.PictureBox();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.pbClass = new System.Windows.Forms.PictureBox();
             this.pnlClassData = new System.Windows.Forms.Panel();
             this.lblMastery = new System.Windows.Forms.Label();
             this.lblMasteryCaption = new System.Windows.Forms.Label();
@@ -62,6 +62,17 @@
             this.pnlClass.Name = "pnlClass";
             this.pnlClass.Size = new System.Drawing.Size(210, 381);
             this.pnlClass.TabIndex = 7;
+            // 
+            // pbClass
+            // 
+            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbClass.Location = new System.Drawing.Point(3, 28);
+            this.pbClass.Name = "pbClass";
+            this.pbClass.Size = new System.Drawing.Size(200, 350);
+            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbClass.TabIndex = 1;
+            this.pbClass.TabStop = false;
             // 
             // cboClass
             // 
@@ -97,17 +108,6 @@
             this.lblVersion.Size = new System.Drawing.Size(23, 26);
             this.lblVersion.TabIndex = 9;
             this.lblVersion.Text = "v";
-            // 
-            // pbClass
-            // 
-            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbClass.Location = new System.Drawing.Point(3, 28);
-            this.pbClass.Name = "pbClass";
-            this.pbClass.Size = new System.Drawing.Size(200, 350);
-            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbClass.TabIndex = 1;
-            this.pbClass.TabStop = false;
             // 
             // pnlClassData
             // 
@@ -245,10 +245,11 @@
             // 
             this.btnTree1.BackColor = System.Drawing.Color.Transparent;
             this.btnTree1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTree1.FlatAppearance.BorderSize = 0;
             this.btnTree1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTree1.Location = new System.Drawing.Point(24, 3);
+            this.btnTree1.Location = new System.Drawing.Point(24, 1);
             this.btnTree1.Name = "btnTree1";
-            this.btnTree1.Size = new System.Drawing.Size(30, 30);
+            this.btnTree1.Size = new System.Drawing.Size(35, 35);
             this.btnTree1.TabIndex = 1;
             this.btnTree1.UseVisualStyleBackColor = false;
             this.btnTree1.Click += new System.EventHandler(this.ShowTree);
@@ -257,10 +258,11 @@
             // 
             this.btnTree2.BackColor = System.Drawing.Color.Transparent;
             this.btnTree2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTree2.FlatAppearance.BorderSize = 0;
             this.btnTree2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTree2.Location = new System.Drawing.Point(67, 3);
+            this.btnTree2.Location = new System.Drawing.Point(67, 1);
             this.btnTree2.Name = "btnTree2";
-            this.btnTree2.Size = new System.Drawing.Size(30, 30);
+            this.btnTree2.Size = new System.Drawing.Size(35, 35);
             this.btnTree2.TabIndex = 2;
             this.btnTree2.UseVisualStyleBackColor = false;
             this.btnTree2.Click += new System.EventHandler(this.ShowTree);
@@ -269,10 +271,11 @@
             // 
             this.btnTree3.BackColor = System.Drawing.Color.Transparent;
             this.btnTree3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTree3.FlatAppearance.BorderSize = 0;
             this.btnTree3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTree3.Location = new System.Drawing.Point(111, 3);
+            this.btnTree3.Location = new System.Drawing.Point(110, 1);
             this.btnTree3.Name = "btnTree3";
-            this.btnTree3.Size = new System.Drawing.Size(30, 30);
+            this.btnTree3.Size = new System.Drawing.Size(35, 35);
             this.btnTree3.TabIndex = 3;
             this.btnTree3.UseVisualStyleBackColor = false;
             this.btnTree3.Click += new System.EventHandler(this.ShowTree);
@@ -281,10 +284,11 @@
             // 
             this.btnTree4.BackColor = System.Drawing.Color.Transparent;
             this.btnTree4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTree4.FlatAppearance.BorderSize = 0;
             this.btnTree4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTree4.Location = new System.Drawing.Point(157, 3);
+            this.btnTree4.Location = new System.Drawing.Point(153, 1);
             this.btnTree4.Name = "btnTree4";
-            this.btnTree4.Size = new System.Drawing.Size(30, 30);
+            this.btnTree4.Size = new System.Drawing.Size(35, 35);
             this.btnTree4.TabIndex = 4;
             this.btnTree4.UseVisualStyleBackColor = false;
             this.btnTree4.Click += new System.EventHandler(this.ShowTree);
@@ -294,10 +298,11 @@
             this.btnTreeMastery.BackColor = System.Drawing.Color.Transparent;
             this.btnTreeMastery.BackgroundImage = global::ChroniCalc.ResourceImageTree.IconMastery;
             this.btnTreeMastery.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTreeMastery.FlatAppearance.BorderSize = 0;
             this.btnTreeMastery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTreeMastery.Location = new System.Drawing.Point(201, 3);
+            this.btnTreeMastery.Location = new System.Drawing.Point(196, 1);
             this.btnTreeMastery.Name = "btnTreeMastery";
-            this.btnTreeMastery.Size = new System.Drawing.Size(30, 30);
+            this.btnTreeMastery.Size = new System.Drawing.Size(35, 35);
             this.btnTreeMastery.TabIndex = 5;
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);

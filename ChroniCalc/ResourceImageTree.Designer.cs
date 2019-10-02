@@ -133,9 +133,49 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap IconConviction {
+            get {
+                object obj = ResourceManager.GetObject("IconConviction", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap IconCorruptor {
+            get {
+                object obj = ResourceManager.GetObject("IconCorruptor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap IconDemonologist {
+            get {
+                object obj = ResourceManager.GetObject("IconDemonologist", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap IconDragonkin {
             get {
                 object obj = ResourceManager.GetObject("IconDragonkin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap IconDruid {
+            get {
+                object obj = ResourceManager.GetObject("IconDruid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,6 +203,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap IconLich {
+            get {
+                object obj = ResourceManager.GetObject("IconLich", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap IconMastery {
             get {
                 object obj = ResourceManager.GetObject("IconMastery", resourceCulture);
@@ -173,9 +223,79 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap IconReaper {
+            get {
+                object obj = ResourceManager.GetObject("IconReaper", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap IconRedemption {
+            get {
+                object obj = ResourceManager.GetObject("IconRedemption", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap IconSkyLord {
             get {
                 object obj = ResourceManager.GetObject("IconSkyLord", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap IconStormCaller {
+            get {
+                object obj = ResourceManager.GetObject("IconStormCaller", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap IconVengeance {
+            get {
+                object obj = ResourceManager.GetObject("IconVengeance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap IconWindRanger {
+            get {
+                object obj = ResourceManager.GetObject("IconWindRanger", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap IconWinterHerald {
+            get {
+                object obj = ResourceManager.GetObject("IconWinterHerald", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap IconWrath {
+            get {
+                object obj = ResourceManager.GetObject("IconWrath", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
