@@ -19,7 +19,7 @@
  
  TREES:
 	- images: class tree backgrounds: screenshot all trees with 1 point in every skill so connection bars are activated
-		- (TODO cus missing link highlights: Berserker, Warden Wind Ranger)
+		- (TODO cus missing link highlights: Warden Wind Ranger)
 		- then, photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
 	- images: make and set skillselectpanel background image
 	- images: update the position and image of "unassign skill" in the MultiSkillSelectPanel
