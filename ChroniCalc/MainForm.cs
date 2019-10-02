@@ -241,13 +241,13 @@ namespace ChroniCalc
             {
                 if (btn == btnTree)
                 {
-                    //Highlight the button
-                    btn.FlatAppearance.BorderColor = Color.White;
+                    //Highlight the button by adding a border
+                    btn.FlatAppearance.BorderSize = 1;
                 }
                 else
                 {
-                    //Unhighlight the non-selected buttons
-                    btn.FlatAppearance.BorderColor = Color.Black;
+                    //Unhighlight the non-selected buttons by removing the border
+                    btn.FlatAppearance.BorderSize = 0;
                 }
             }
         }

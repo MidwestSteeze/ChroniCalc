@@ -18,7 +18,6 @@
 	- Damage calculation (need stat screen first)
  
  TREES:
-   - add highlighting around selected tree icon button
 	- images: class tree backgrounds: screenshot all trees with 1 point in every skill so connection bars are activated
 		- (TODO cus missing link highlights: Berserker, Warden Wind Ranger)
 		- then, photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them

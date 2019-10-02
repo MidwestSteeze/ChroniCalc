@@ -245,6 +245,7 @@
             // 
             this.btnTree1.BackColor = System.Drawing.Color.Transparent;
             this.btnTree1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTree1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree1.FlatAppearance.BorderSize = 0;
             this.btnTree1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTree1.Location = new System.Drawing.Point(24, 1);
@@ -258,6 +259,7 @@
             // 
             this.btnTree2.BackColor = System.Drawing.Color.Transparent;
             this.btnTree2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTree2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree2.FlatAppearance.BorderSize = 0;
             this.btnTree2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTree2.Location = new System.Drawing.Point(67, 1);
@@ -271,6 +273,7 @@
             // 
             this.btnTree3.BackColor = System.Drawing.Color.Transparent;
             this.btnTree3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTree3.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree3.FlatAppearance.BorderSize = 0;
             this.btnTree3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTree3.Location = new System.Drawing.Point(110, 1);
@@ -284,6 +287,7 @@
             // 
             this.btnTree4.BackColor = System.Drawing.Color.Transparent;
             this.btnTree4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTree4.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree4.FlatAppearance.BorderSize = 0;
             this.btnTree4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTree4.Location = new System.Drawing.Point(153, 1);
@@ -298,6 +302,7 @@
             this.btnTreeMastery.BackColor = System.Drawing.Color.Transparent;
             this.btnTreeMastery.BackgroundImage = global::ChroniCalc.ResourceImageTree.IconMastery;
             this.btnTreeMastery.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTreeMastery.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTreeMastery.FlatAppearance.BorderSize = 0;
             this.btnTreeMastery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTreeMastery.Location = new System.Drawing.Point(196, 1);
