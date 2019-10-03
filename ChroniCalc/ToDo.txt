@@ -4,7 +4,9 @@
   - Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
       - could also retain use of XML within program but output as JSON (ie. JsonConvert.SerializeXmlNodeDoc())
 	  - see project JsonImporter, has it working but requires adjustment to JSON
-  - Save/Load/Share builds (Json format to correlate with in-game build import/exporter)
+  - Save/Load/Share builds (Json format to correlate with in-game build import/exporter
+	- Turn the icons in top right of background into useable buttons to show various panels (Tree, Inventory, Manage Builds, etc)
+		- get screenshots of each of those icons activated so they're highlighted (DONE: Trees)
   - Stat calculation and screen (damage, health, etc)
  
  CLASSES:
@@ -18,9 +20,7 @@
 	- Damage calculation (need stat screen first)
  
  TREES:
-	- images: class tree backgrounds: screenshot all trees with 1 point in every skill so connection bars are activated
-		- (TODO cus missing link highlights: Warden Wind Ranger)
-		- then, photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
+	- images: photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
 	- images: make and set skillselectpanel background image
 	- images: update the position and image of "unassign skill" in the MultiSkillSelectPanel
 	- add Reset button so they don't have to pick a new character and clear all other trees
