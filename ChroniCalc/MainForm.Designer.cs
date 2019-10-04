@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlClass = new System.Windows.Forms.Panel();
             this.pbClass = new System.Windows.Forms.PictureBox();
             this.cboClass = new System.Windows.Forms.ComboBox();
@@ -48,6 +49,7 @@
             this.btnTree3 = new System.Windows.Forms.Button();
             this.btnTree4 = new System.Windows.Forms.Button();
             this.btnTreeMastery = new System.Windows.Forms.Button();
+            this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             this.pnlClassData.SuspendLayout();
@@ -238,6 +240,7 @@
             this.btnResetTree.Name = "btnResetTree";
             this.btnResetTree.Size = new System.Drawing.Size(30, 27);
             this.btnResetTree.TabIndex = 6;
+            this.toolTipInfo.SetToolTip(this.btnResetTree, "Reset Tree");
             this.btnResetTree.UseVisualStyleBackColor = false;
             this.btnResetTree.Click += new System.EventHandler(this.BtnResetTree_Click);
             // 
@@ -359,6 +362,7 @@
         private System.Windows.Forms.Label lblMasteryCaption;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnResetTree;
+        private System.Windows.Forms.ToolTip toolTipInfo;
     }
 }
 

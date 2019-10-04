@@ -42,10 +42,6 @@ namespace ChroniCalc
         {
             InitializeComponent();
 
-            //Add a tooltip for the Reset Button so the user knows what it is before clicking it
-            ToolTip ttResetTree = new System.Windows.Forms.ToolTip();
-            ttResetTree.SetToolTip(this.btnResetTree, "Reset Tree");
-
             //Updates the version as shown on screen
             lblVersion.Text = "v" + this.ProductVersion;
 
@@ -786,5 +782,5 @@ namespace ChroniCalc
                 LoadTree(tree, ttlpTree);
             }
         }
-    }
+        }
 }
