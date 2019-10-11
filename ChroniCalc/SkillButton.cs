@@ -16,8 +16,8 @@ namespace ChroniCalc
     public partial class SkillButton : UserControl
     {
         private MainForm form;
-        public int level;
         readonly ResourceManager ResourceManagerImageSkill;
+        public bool isPassiveBonusButton;
         public Skill skill;
         public SkillTooltipPanel skillTooltipPanel;
         //TODO public Tree tree <-- would it be helpful to have?
@@ -26,13 +26,13 @@ namespace ChroniCalc
         {
             InitializeComponent();
 
-            this.Parent = parentControl;
-            this.form = inForm;
-            this.level = 0;
-            this.skillTooltipPanel = skillTooltip;
-
             //Set the Skill
             skill = inSkill;
+
+            this.Parent = parentControl;
+            this.form = inForm;
+            this.lblSkillLevel.Text = this.skill.level.ToString();
+            this.skillTooltipPanel = skillTooltip;
 
             //Set the .Name property based on the Skill's Name
             this.Name = skill.id.ToString();
@@ -84,23 +84,23 @@ namespace ChroniCalc
             }
 
             //Adjust the level of the skill, ensuring we're not beyond the min/max allowed
-            if (e.Button == MouseButtons.Left && this.level < this.skill.max_rank && HavePrereqs() && (form.SkillPointsUsed < MainForm.SKILL_POINTS_MAX))
+            if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && (form.build.level < MainForm.SKILL_POINTS_MAX))
             {
                 //Increase the level
-                this.level++;
+                this.skill.level++;
 
                 UpdateSkillPointAndLevelCounter(1);
             }
-            else if (e.Button == MouseButtons.Right && this.level > 0)
+            else if (e.Button == MouseButtons.Right && this.skill.level > 0)
             {
                 //Decrease the level
-                this.level--;
+                this.skill.level--;
 
                 UpdateSkillPointAndLevelCounter(-1);
             }
 
             //Update the displayed level on the skill button
-            this.lblSkillLevel.Text = this.level.ToString();
+            this.lblSkillLevel.Text = this.skill.level.ToString();
 
             //Update the tooltip description based on the new level of the skill
             this.skillTooltipPanel.PopulateDescription();
@@ -144,7 +144,7 @@ namespace ChroniCalc
                 preReqSkillButton = (SkillButton)preReqControls.First();
 
                 //Verify the PreReq skill is leveled
-                if (preReqSkillButton.level < 1)
+                if (preReqSkillButton.skill.level < 1)
                 {
                     result = false;
                     break;
@@ -162,28 +162,27 @@ namespace ChroniCalc
 
         private void UpdateSkillPointAndLevelCounter(int levelAdjust)
         {
-            int skillPointsUsed;
             TreeTableLayoutPanel ttlpTree = (TreeTableLayoutPanel)this.Parent;
 
             //Adjust the total spent skill points counter
-            form.SkillPointsUsed += levelAdjust;
-            skillPointsUsed = form.SkillPointsUsed;
+
+            //Adjust the level of the Build
+            form.build.level += levelAdjust;
 
             //Update the total spent skill points on this particular Tree for the passive bonus stats
             ttlpTree.skillPointsAllocated = ttlpTree.skillPointsAllocated + levelAdjust;
-
             SkillButton passiveBonusBtn = (SkillButton)ttlpTree.Controls.Find(ttlpTree.passiveSkillId.ToString(), true).First();
-            passiveBonusBtn.level = ttlpTree.skillPointsAllocated;
-            passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.level.ToString();
+            passiveBonusBtn.skill.level = ttlpTree.skillPointsAllocated;
+            passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
 
             //Update the label that shows remaining points that can be spent
-           (form.Controls.Find("lblSkillPointsRemaining", true).First() as Label).Text = (MainForm.SKILL_POINTS_MAX - skillPointsUsed).ToString();
+           (form.Controls.Find("lblSkillPointsRemaining", true).First() as Label).Text = (MainForm.SKILL_POINTS_MAX - form.build.level).ToString();
 
             //Update the current level of the character based on how many skill points have been spent
-            (form.Controls.Find("lblLevel", true).First() as Label).Text = skillPointsUsed.ToString();
+            (form.Controls.Find("lblLevel", true).First() as Label).Text = form.build.level.ToString();
 
             //Update the level as shown in the SkillTooltipPanel
-            this.skillTooltipPanel.UpdateRankText(level);
+            this.skillTooltipPanel.UpdateRankText(this.skill.level);
         }
 
         private void PbSkillIcon_MouseHover(object sender, EventArgs e)

@@ -1,5 +1,10 @@
 ﻿ ToDo
 
+ RESUME AT:
+ save/open/delete builds: cleanup and commit
+ open build: Update tooltip info
+ save build: if save file found, prompt if want to overwrite existing build
+
  MAJORS:
   - Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
       - could also retain use of XML within program but output as JSON (ie. JsonConvert.SerializeXmlNodeDoc())
@@ -28,3 +33,8 @@
 MISC:
 	- MainForm: Mastery Point counter (no Maximum)
 	- splash screen on initial load of program
+	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stats
+	- Nav buttons get the remaining 3 (Inventory, Trees, Builds) from in-game as an active icon
+        - rework global selectedClass object to instead pull from build.characterClass, if possible
+        - add try/catch around LoadBuildsIntoBuildsList() incase a non-build .xml file is put in there or doesn't serialize properly (due to change in class/tree/skill structure)
+    - Show Build Name at the top

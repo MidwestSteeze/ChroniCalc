@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Build.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="ResourceImageClass.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1003,6 +1004,8 @@
     <None Include="Assets\Images\Tree\IconCorruptor.png" />
     <None Include="Assets\Images\Tree\IconLich.png" />
     <None Include="Assets\Images\Tree\IconReaper.png" />
+    <None Include="Assets\Images\UI\IconSave.png" />
+    <None Include="Assets\Images\UI\IconSaveAs.png" />
     <Content Include="ToDo.txt" />
     <None Include="Assets\Images\Tree\SkyLord.png" />
     <None Include="Assets\Images\Tree\Frostborn.png" />

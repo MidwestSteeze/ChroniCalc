@@ -29,11 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlClass = new System.Windows.Forms.Panel();
             this.pbClass = new System.Windows.Forms.PictureBox();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.btnNavSaveAs = new System.Windows.Forms.Button();
+            this.btnNavSave = new System.Windows.Forms.Button();
+            this.btnNavBuilds = new System.Windows.Forms.Button();
+            this.btnNavTrees = new System.Windows.Forms.Button();
+            this.btnNavInventory = new System.Windows.Forms.Button();
+            this.btnResetTree = new System.Windows.Forms.Button();
             this.pnlClassData = new System.Windows.Forms.Panel();
             this.lblMastery = new System.Windows.Forms.Label();
             this.lblMasteryCaption = new System.Windows.Forms.Label();
@@ -43,17 +53,23 @@
             this.lblSkillPointsRemainingCaption = new System.Windows.Forms.Label();
             this.lblTree = new System.Windows.Forms.Label();
             this.pnlTrees = new System.Windows.Forms.Panel();
-            this.btnResetTree = new System.Windows.Forms.Button();
             this.btnTree1 = new System.Windows.Forms.Button();
             this.btnTree2 = new System.Windows.Forms.Button();
             this.btnTree3 = new System.Windows.Forms.Button();
             this.btnTree4 = new System.Windows.Forms.Button();
             this.btnTreeMastery = new System.Windows.Forms.Button();
-            this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.pnlBuilds = new System.Windows.Forms.Panel();
+            this.btnBuildDelete = new System.Windows.Forms.Button();
+            this.btnBuildOpen = new System.Windows.Forms.Button();
+            this.dgvBuilds = new System.Windows.Forms.DataGridView();
+            this.BuildName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             this.pnlClassData.SuspendLayout();
             this.pnlTrees.SuspendLayout();
+            this.pnlBuilds.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlClass
@@ -111,10 +127,106 @@
             this.lblVersion.TabIndex = 9;
             this.lblVersion.Text = "v";
             // 
+            // btnNavSaveAs
+            // 
+            this.btnNavSaveAs.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavSaveAs.BackgroundImage = global::ChroniCalc.ResourceImageUI.IconSaveAs;
+            this.btnNavSaveAs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNavSaveAs.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNavSaveAs.FlatAppearance.BorderSize = 0;
+            this.btnNavSaveAs.Location = new System.Drawing.Point(511, 15);
+            this.btnNavSaveAs.Name = "btnNavSaveAs";
+            this.btnNavSaveAs.Size = new System.Drawing.Size(31, 31);
+            this.btnNavSaveAs.TabIndex = 19;
+            this.toolTipInfo.SetToolTip(this.btnNavSaveAs, "Save As...");
+            this.btnNavSaveAs.UseVisualStyleBackColor = false;
+            this.btnNavSaveAs.Click += new System.EventHandler(this.BtnNavSaveAs_Click);
+            // 
+            // btnNavSave
+            // 
+            this.btnNavSave.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavSave.BackgroundImage = global::ChroniCalc.ResourceImageUI.IconSave;
+            this.btnNavSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNavSave.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNavSave.FlatAppearance.BorderSize = 0;
+            this.btnNavSave.Location = new System.Drawing.Point(474, 15);
+            this.btnNavSave.Name = "btnNavSave";
+            this.btnNavSave.Size = new System.Drawing.Size(31, 31);
+            this.btnNavSave.TabIndex = 18;
+            this.toolTipInfo.SetToolTip(this.btnNavSave, "Save");
+            this.btnNavSave.UseVisualStyleBackColor = false;
+            this.btnNavSave.Click += new System.EventHandler(this.BtnNavSave_Click);
+            // 
+            // btnNavBuilds
+            // 
+            this.btnNavBuilds.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavBuilds.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNavBuilds.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNavBuilds.FlatAppearance.BorderSize = 0;
+            this.btnNavBuilds.Location = new System.Drawing.Point(437, 15);
+            this.btnNavBuilds.Name = "btnNavBuilds";
+            this.btnNavBuilds.Size = new System.Drawing.Size(31, 31);
+            this.btnNavBuilds.TabIndex = 17;
+            this.toolTipInfo.SetToolTip(this.btnNavBuilds, "Builds");
+            this.btnNavBuilds.UseVisualStyleBackColor = false;
+            this.btnNavBuilds.Click += new System.EventHandler(this.BtnNavBuilds_Click);
+            // 
+            // btnNavTrees
+            // 
+            this.btnNavTrees.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavTrees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNavTrees.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNavTrees.FlatAppearance.BorderSize = 0;
+            this.btnNavTrees.Location = new System.Drawing.Point(400, 15);
+            this.btnNavTrees.Name = "btnNavTrees";
+            this.btnNavTrees.Size = new System.Drawing.Size(31, 31);
+            this.btnNavTrees.TabIndex = 16;
+            this.toolTipInfo.SetToolTip(this.btnNavTrees, "Trees");
+            this.btnNavTrees.UseVisualStyleBackColor = false;
+            this.btnNavTrees.Click += new System.EventHandler(this.BtnNavTrees_Click);
+            // 
+            // btnNavInventory
+            // 
+            this.btnNavInventory.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavInventory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNavInventory.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNavInventory.FlatAppearance.BorderSize = 0;
+            this.btnNavInventory.Location = new System.Drawing.Point(363, 15);
+            this.btnNavInventory.Name = "btnNavInventory";
+            this.btnNavInventory.Size = new System.Drawing.Size(31, 31);
+            this.btnNavInventory.TabIndex = 15;
+            this.toolTipInfo.SetToolTip(this.btnNavInventory, "Inventory");
+            this.btnNavInventory.UseVisualStyleBackColor = false;
+            this.btnNavInventory.Click += new System.EventHandler(this.BtnNavInventory_Click);
+            // 
+            // btnResetTree
+            // 
+            this.btnResetTree.AutoSize = true;
+            this.btnResetTree.BackColor = System.Drawing.Color.Transparent;
+            this.btnResetTree.BackgroundImage = global::ChroniCalc.ResourceImageUI.ResetTree;
+            this.btnResetTree.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnResetTree.FlatAppearance.BorderSize = 0;
+            this.btnResetTree.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnResetTree.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnResetTree.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnResetTree.ForeColor = System.Drawing.Color.White;
+            this.btnResetTree.Location = new System.Drawing.Point(507, 6);
+            this.btnResetTree.Name = "btnResetTree";
+            this.btnResetTree.Size = new System.Drawing.Size(30, 27);
+            this.btnResetTree.TabIndex = 6;
+            this.toolTipInfo.SetToolTip(this.btnResetTree, "Reset Tree");
+            this.btnResetTree.UseVisualStyleBackColor = false;
+            this.btnResetTree.Click += new System.EventHandler(this.BtnResetTree_Click);
+            // 
             // pnlClassData
             // 
             this.pnlClassData.BackgroundImage = global::ChroniCalc.Properties.Resources.background;
             this.pnlClassData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnlClassData.Controls.Add(this.btnNavSaveAs);
+            this.pnlClassData.Controls.Add(this.btnNavSave);
+            this.pnlClassData.Controls.Add(this.btnNavBuilds);
+            this.pnlClassData.Controls.Add(this.btnNavTrees);
+            this.pnlClassData.Controls.Add(this.btnNavInventory);
             this.pnlClassData.Controls.Add(this.lblMastery);
             this.pnlClassData.Controls.Add(this.lblMasteryCaption);
             this.pnlClassData.Controls.Add(this.lblLevel);
@@ -123,6 +235,7 @@
             this.pnlClassData.Controls.Add(this.lblSkillPointsRemainingCaption);
             this.pnlClassData.Controls.Add(this.lblTree);
             this.pnlClassData.Controls.Add(this.pnlTrees);
+            this.pnlClassData.Controls.Add(this.pnlBuilds);
             this.pnlClassData.Location = new System.Drawing.Point(220, 0);
             this.pnlClassData.Name = "pnlClassData";
             this.pnlClassData.Size = new System.Drawing.Size(560, 420);
@@ -225,25 +338,6 @@
             this.pnlTrees.Size = new System.Drawing.Size(540, 317);
             this.pnlTrees.TabIndex = 6;
             // 
-            // btnResetTree
-            // 
-            this.btnResetTree.AutoSize = true;
-            this.btnResetTree.BackColor = System.Drawing.Color.Transparent;
-            this.btnResetTree.BackgroundImage = global::ChroniCalc.ResourceImageUI.ResetTree;
-            this.btnResetTree.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnResetTree.FlatAppearance.BorderSize = 0;
-            this.btnResetTree.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnResetTree.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnResetTree.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnResetTree.ForeColor = System.Drawing.Color.White;
-            this.btnResetTree.Location = new System.Drawing.Point(507, 6);
-            this.btnResetTree.Name = "btnResetTree";
-            this.btnResetTree.Size = new System.Drawing.Size(30, 27);
-            this.btnResetTree.TabIndex = 6;
-            this.toolTipInfo.SetToolTip(this.btnResetTree, "Reset Tree");
-            this.btnResetTree.UseVisualStyleBackColor = false;
-            this.btnResetTree.Click += new System.EventHandler(this.BtnResetTree_Click);
-            // 
             // btnTree1
             // 
             this.btnTree1.BackColor = System.Drawing.Color.Transparent;
@@ -315,6 +409,93 @@
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);
             // 
+            // pnlBuilds
+            // 
+            this.pnlBuilds.BackColor = System.Drawing.Color.Transparent;
+            this.pnlBuilds.Controls.Add(this.btnBuildDelete);
+            this.pnlBuilds.Controls.Add(this.btnBuildOpen);
+            this.pnlBuilds.Controls.Add(this.dgvBuilds);
+            this.pnlBuilds.Location = new System.Drawing.Point(0, 83);
+            this.pnlBuilds.Name = "pnlBuilds";
+            this.pnlBuilds.Size = new System.Drawing.Size(540, 317);
+            this.pnlBuilds.TabIndex = 14;
+            // 
+            // btnBuildDelete
+            // 
+            this.btnBuildDelete.Location = new System.Drawing.Point(115, 10);
+            this.btnBuildDelete.Name = "btnBuildDelete";
+            this.btnBuildDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnBuildDelete.TabIndex = 2;
+            this.btnBuildDelete.Text = "Delete";
+            this.btnBuildDelete.UseVisualStyleBackColor = true;
+            this.btnBuildDelete.Click += new System.EventHandler(this.BtnBuildDelete_Click);
+            // 
+            // btnBuildOpen
+            // 
+            this.btnBuildOpen.Location = new System.Drawing.Point(34, 10);
+            this.btnBuildOpen.Name = "btnBuildOpen";
+            this.btnBuildOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnBuildOpen.TabIndex = 1;
+            this.btnBuildOpen.Text = "Open";
+            this.btnBuildOpen.UseVisualStyleBackColor = true;
+            this.btnBuildOpen.Click += new System.EventHandler(this.BtnBuildOpen_Click);
+            // 
+            // dgvBuilds
+            // 
+            this.dgvBuilds.AllowUserToAddRows = false;
+            this.dgvBuilds.AllowUserToDeleteRows = false;
+            this.dgvBuilds.AllowUserToResizeColumns = false;
+            this.dgvBuilds.AllowUserToResizeRows = false;
+            this.dgvBuilds.BackgroundColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBuilds.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBuilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBuilds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BuildName,
+            this.Stats});
+            this.dgvBuilds.Location = new System.Drawing.Point(34, 42);
+            this.dgvBuilds.MultiSelect = false;
+            this.dgvBuilds.Name = "dgvBuilds";
+            this.dgvBuilds.ReadOnly = true;
+            this.dgvBuilds.RowHeadersVisible = false;
+            this.dgvBuilds.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvBuilds.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBuilds.Size = new System.Drawing.Size(483, 272);
+            this.dgvBuilds.TabIndex = 0;
+            // 
+            // BuildName
+            // 
+            this.BuildName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.BuildName.DefaultCellStyle = dataGridViewCellStyle2;
+            this.BuildName.HeaderText = "Name";
+            this.BuildName.Name = "BuildName";
+            this.BuildName.ReadOnly = true;
+            this.BuildName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Stats
+            // 
+            this.Stats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.Stats.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Stats.HeaderText = "Stats";
+            this.Stats.Name = "Stats";
+            this.Stats.ReadOnly = true;
+            this.Stats.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Stats.Width = 135;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,6 +517,8 @@
             this.pnlClassData.PerformLayout();
             this.pnlTrees.ResumeLayout(false);
             this.pnlTrees.PerformLayout();
+            this.pnlBuilds.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,7 +545,18 @@
         private System.Windows.Forms.Label lblMasteryCaption;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnResetTree;
+        private System.Windows.Forms.Panel pnlBuilds;
+        private System.Windows.Forms.Button btnNavBuilds;
+        private System.Windows.Forms.Button btnNavTrees;
+        private System.Windows.Forms.Button btnNavInventory;
+        private System.Windows.Forms.DataGridView dgvBuilds;
+        private System.Windows.Forms.Button btnBuildDelete;
+        private System.Windows.Forms.Button btnBuildOpen;
+        private System.Windows.Forms.Button btnNavSaveAs;
+        private System.Windows.Forms.Button btnNavSave;
         private System.Windows.Forms.ToolTip toolTipInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BuildName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Stats;
     }
 }
 

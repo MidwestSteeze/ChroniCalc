@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 
 namespace ChroniCalc
 {
-    class CharacterClass
+    [Serializable]
+    public class CharacterClass
     {
         [JsonProperty("name")]
         public string name;
 
         [JsonProperty("tree")]
         public List<Tree> trees;
+
+        public CharacterClass()
+        {
+
+        }
 
         public CharacterClass(string aName, List<Tree> aTrees)
         {

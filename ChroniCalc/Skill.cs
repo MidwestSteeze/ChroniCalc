@@ -9,6 +9,8 @@ namespace ChroniCalc
 {
     public class Skill
     {
+        // START Skill Json Properties
+
         [JsonProperty("effect")]
         public string[] effect;
 
@@ -85,5 +87,10 @@ namespace ChroniCalc
         //The name as seen on the tree
         [JsonProperty("name")]
         public string name;
+
+        // END Skill Json Properties
+
+        [JsonProperty("level")]
+        public int level;
     }
 }

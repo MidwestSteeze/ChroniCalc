@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace ChroniCalc
 {
-    class Tree
+    [Serializable]
+    public class Tree
     {
-        //[JsonProperty("inside")]
+        //[JsonProperty("level")]
+        public int level;
+
         public string name;
 
-        //[JsonProperty("again")]
         public List<Skill> skills;
     }
 }

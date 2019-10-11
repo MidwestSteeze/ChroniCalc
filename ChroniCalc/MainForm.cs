@@ -14,23 +14,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace ChroniCalc
 {
     public partial class MainForm : Form
     {
+        enum TreeStatus
+        {
+            Importing,
+            Resetting
+        }
+
         //Skill Tree
         public const string IMAGE_FILENAME_PREFIX = "spr_spellicons_";
         const int SKILL_BUTTON_PADDING = 6;
         public const int SKILL_POINTS_MAX = 100;
-        public int SkillPointsUsed;
+        const string XML_EXT = ".xml";
+
+        private string BuildsDirectory;
+        private TreeStatus treeStatus;
 
         //Resource Managers for pulling assets (ie. data, images, etc.) which is a reflection of the Assets directory
         ResourceManager ResourceManagerImageClass;
         ResourceManager ResourceManagerImageSkill;
         ResourceManager ResourceManagerImageTree;
 
-        //List Objects
+        //Lists and Objects
+        public Build build;
+        CharacterClass selectedClass;
         List<CharacterClass> characterClasses;
         List<Tree> trees;
         List<Skill> skills;
@@ -45,6 +57,15 @@ namespace ChroniCalc
             //Updates the version as shown on screen
             lblVersion.Text = "v" + this.ProductVersion;
 
+            //Set the directory where Builds are stored
+            BuildsDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\Builds";
+
+            //Create the directory where saved builds are to be stored, if it doesn't yet exist
+            if (!Directory.Exists(BuildsDirectory))
+            {
+                Directory.CreateDirectory(BuildsDirectory);
+            }
+
             //Set the # of available skill points that can be spent to build the character
             lblSkillPointsRemaining.Text = SKILL_POINTS_MAX.ToString();
 
@@ -54,6 +75,7 @@ namespace ChroniCalc
             ResourceManagerImageTree = new ResourceManager("ChroniCalc.ResourceImageTree", Assembly.GetExecutingAssembly());
 
             //Init global variables
+            build = new Build("", null, 0, 0);
             characterClasses = new List<CharacterClass>();
 
             //Add all tree buttons to a list for looping over and finding within later as needed
@@ -72,6 +94,40 @@ namespace ChroniCalc
             }
 
             PopulateSkillTrees();
+            LoadBuildsIntoBuildsList();
+
+            //Show the Builds list at start
+            pnlBuilds.BringToFront();
+        }
+
+        private void LoadBuildsIntoBuildsList()
+        {
+            string[] buildFiles;
+            Build loadedBuild;
+            XmlSerializer serializer;
+
+            buildFiles = Directory.GetFiles(BuildsDirectory, "*.xml");
+
+            foreach (string buildFile in buildFiles)
+            {
+                // Load the saved build content from the file into a Build object
+                using (var stream = new StreamReader(buildFile))
+                {
+                    serializer = new XmlSerializer(typeof(Build));
+                    loadedBuild = serializer.Deserialize(stream) as Build;
+                }
+
+                AddBuildToBuildsList(loadedBuild);
+            }
+        }
+
+        private void AddBuildToBuildsList(Build loadedBuild)
+        {
+            DataGridViewRow row = new DataGridViewRow();
+            row.CreateCells(dgvBuilds);
+            row.Cells[0].Value = loadedBuild.name;
+            row.Cells[1].Value = loadedBuild.characterClass.name + " Lvl" + loadedBuild.level + " M" + loadedBuild.masteryLevel;
+            dgvBuilds.Rows.Add(row);
         }
 
         public void PopulateSkillTrees()
@@ -251,14 +307,16 @@ namespace ChroniCalc
         private void CboClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             string characterClass = (sender as ComboBox).SelectedItem.ToString();
-            CharacterClass selectedClass;
 
             //Prompt user ensuring they want to reset their character
             DialogResult dialogResult = MessageBox.Show("Changing Class will reset this character.  Continue?", "Change Class", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
-                //Get the selected class
+                //Clear everything related to the previous build
+                ClearCharacter(build);
+
+                //Get the newly-selected class
                 selectedClass = characterClasses.Find(x => x.name == characterClass);
 
                 if (selectedClass is null)
@@ -266,72 +324,61 @@ namespace ChroniCalc
                     //TODOSSG throw error that the selected class was not found in the current list of character classes
                 }
 
-                //Change the Class image
-                switch (selectedClass.name)
-                {
-                    case "Berserker":
-                        pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Berserker");
-                        break;
-                    case "Templar":
-                        pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Templar");
-                        break;
-                    case "Warden":
-                        pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Warden");
-                        break;
-                    case "Warlock":
-                        pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Warlock");
-                        break;
-                    default:
-                        //TODOSSG what's the best way to handle exceptions? error message to user? debug log? email call stack?
-                        throw new Exception("ChangeClass: characterClass of " + selectedClass.name + " was not added to Switch for setting the Class iamge.");
-                }
+                //Update data on the build (everything not listed here was handled in the ResetCharacter() code (e.g. level, masteryLevel, trees, skills, etc)
+                build.characterClass = selectedClass;
+                build.name = "";
 
-                //Reset all things involved with the current character (ie. stats, trees, gear)        
-                ResetCharacter(selectedClass);
+                InitializeBuild(build);
 
-                //Default focus to the first Tree
-                ShowTree(treeButtons.First(), new EventArgs());
+                // Show the Trees, incase a different view (e.g. Inventory, Builds, etc) was being shown
+                pnlTrees.BringToFront();
             }
         }
 
-        private void ResetCharacter(CharacterClass selectedClass)
+        private void ClearCharacter(Build build)
         {
-            //TODOSSG Set all stats back to their defaults
-            ResetStats();
+            ClearGear();
 
-            //TODOSSG Remove all gear
-            ResetGear();
+            // Clear all Trees if we currently have a build in progress
+            //  (read: this basically covers our butt during the first selection of a class from the drop-down, or load from a saved build file, where no build is in place yet)
+            if (!(build.characterClass is null))
+            {
+                //Change which trees are available
+                ClearTrees(build.characterClass.trees);
+            }
 
-            //Change which trees are available
-            ResetTrees(selectedClass);
+            //UpdateStats(build);
         }
 
-        private void ResetStats()
+        private void UpdateStats(Build build)
         {
-            //Reset Character Level
-            lblLevel.Text = "0";
+            //Update Character Level
+            lblLevel.Text = build.level.ToString();
 
-            //Reset # of Skill Points Remaining
-            lblSkillPointsRemaining.Text = SKILL_POINTS_MAX.ToString();
+            //Update Mastery level
+            lblMastery.Text = build.masteryLevel.ToString();
+
+            //Update # of Skill Points Remaining
+            lblSkillPointsRemaining.Text = (SKILL_POINTS_MAX - build.level).ToString();
 
             //TODOSSG
-            //Reset all Stats (dmg, health, etc)
+            //Update all Stats (dmg, health, etc)
         }
 
-        private void ResetGear()
+        private void ClearGear()
         {
             //TODOSSG
         }
 
-        private void ResetTrees(CharacterClass selectedClass)
+        private void ResetTrees()
         {
             string treeName;
 
-            //Clear all content from the current trees
-            ClearTrees();
-
             //Set the current correct group of tree objects based on the selected class
             trees = selectedClass.trees;
+
+            //Clear all content from the current trees
+            ClearTrees(trees);
 
             //Depending on Class, load up Image and Tag on Tree tabs and update the Mastery tree
             switch (selectedClass.name)
@@ -496,12 +543,15 @@ namespace ChroniCalc
             ResetMasteryTree(selectedClass.name);
         }
 
-        private void ClearTrees()
+        private void ClearTrees(List<Tree> trees)
         {
+            Tree tree;
+
             //Clear all content from the existing trees (ie. treePanels)
             foreach (TreeTableLayoutPanel ttlpTree in treePanels)
             {
-                ClearTree(ttlpTree);
+                tree = new Tree();
+                ClearTree(tree, ttlpTree);
             }
 
             //Clear the images on the tree selection buttons
@@ -512,22 +562,36 @@ namespace ChroniCalc
             }
         }
 
-        private void ClearTree(TreeTableLayoutPanel ttlpTree)
+        private void ClearTree(Tree tree, TreeTableLayoutPanel ttlpTree)
         {
+            SkillButton skillButton;
+
+            //Reset the skill points allocated on the Tree control's skills
+            foreach (Control control in ttlpTree.Controls)
+            {
+                if (control is SkillButton)
+                {
+                    skillButton = (control as SkillButton);
+
+                    //Update the level of the build since we're removing skill points spent in this Tree
+                    // NOTE: Only if this is a build we're importing, not one we're resetting //TODOSSG test this, this may not be conditioned on anymore but is working
+                    if (!skillButton.isPassiveBonusButton) // && build.level > 0) //TODOSSG this is a hack for the NOTE above //TODOSSG this note is maybe no longer applicable
+                    {
+                        build.level -= skillButton.skill.level;
+                    }                    
+
+                    //Lastly, reset the level of the skill
+                    skillButton.skill.level = 0;
+                }
+            }
+
             ttlpTree.Controls.Clear();
 
-            //Subtract the # of skill points spent on this tree from all skill points currently used since we're clearing the tree
-            this.SkillPointsUsed -= ttlpTree.skillPointsAllocated;
-
-            //Update the labels showing current character level and skill points available
-            this.lblLevel.Text = this.SkillPointsUsed.ToString();
-            this.lblSkillPointsRemaining.Text = (SKILL_POINTS_MAX - this.SkillPointsUsed).ToString();
-
-            //Reset the skill points allocated on the tree
+            //Reset the total number of skill points allocated on the Tree control
             ttlpTree.skillPointsAllocated = 0;
 
-            //TODOSSG Update Stats here because we may have cleared a bunch of active/passive skills
-            //UpdateStats()
+            //Update Stats here because we may have cleared a bunch of active/passive skills
+            UpdateStats(build);
         }
 
         private void LoadTreeIconButtonImage(ResourceManager resourceManager, Button button, string name)
@@ -567,12 +631,15 @@ namespace ChroniCalc
                 else
                 {
                     //TODOSSG throw error that tlpTree.Name is not found in the currently-loaded Trees object for the selected Class
+                    MessageBox.Show("LoadTrees(): Tree not found: " + ttlpTree.Name);  //TODO replace this with an exception so it gets logged?
                 }
             }
         }
 
         private void LoadTree(Tree tree, TreeTableLayoutPanel ttlpTree)
         {
+            int treeSkillPointsAllocated = 0;
+
             List<Skill> MultiSelectionSkills = new List<Skill>();
 
             //Load any skill slot that beings with a "+" for the user to pick between multiple skills
@@ -588,10 +655,29 @@ namespace ChroniCalc
                     //Create a new control to hold this skill at the skills X and Y location
                     SkillButton btnSkill = new SkillButton(skill, ttlpTree, pnlSkillTooltip, this);
 
+                    //Specify the passive bonus skill button as being such, we'll need this info for other situations
+                    if (skill.name == ttlpTree.passiveSkillName)
+                    {
+                        btnSkill.isPassiveBonusButton = true;
+                    }
+
                     //Add the skill button to the tree
                     ttlpTree.Controls.Add(btnSkill, skill.x, skill.y);
+
+                    //Keep a running total of skill points spent on this tree (if we're loading a saved build)
+                    // NOTE: Don't include the level of the passive bonus with the running total of points spent on the tree
+                    if (!btnSkill.isPassiveBonusButton)
+                    {
+                        treeSkillPointsAllocated += skill.level;
+                    }
                 }
             }
+
+            //Update the Tree's level
+            ttlpTree.skillPointsAllocated = treeSkillPointsAllocated;
+
+            //Update Stats here because we may have loaded a build with invested skill points
+            UpdateStats(build);
 
             //With all Skills added to the tree, populate all descriptions for each skill
             PopulateSkillDescriptions(ttlpTree);
@@ -601,6 +687,7 @@ namespace ChroniCalc
         // where only 1 should be selected by the user
         private void LoadMultiSelectionSkills(Tree tree, TreeTableLayoutPanel tlpTree, ref List<Skill> MultiSelectionSkills)
         {
+            bool alreadyChoseASkill;
             int xPos;
             int yPos;
             SkillSelectButton btnSkillSelect;
@@ -609,6 +696,9 @@ namespace ChroniCalc
             //Loop through each skill in the tree to analyze its X and Y properties and see if more than 1 skill exists at this position
             foreach (Skill skill in tree.skills)
             {
+                //Reset the flag since we're working with a new skill/group of Skills
+                alreadyChoseASkill = false;
+
                 //Get the current position of this skill on the tree
                 xPos = skill.x;
                 yPos = skill.y;
@@ -616,7 +706,7 @@ namespace ChroniCalc
                 //Check you haven't already captured skills for this position
                 if (MultiSelectionSkills.FindAll(ms => ms.x == xPos && ms.y == yPos).Count > 1)
                 {
-                    //This skill position has already been captured into the MultiSelectionSkills list so move onto the next skill
+                    //This skill position has already been captured into the MultiSelectionSkills list
                     continue;
                 }
 
@@ -624,8 +714,28 @@ namespace ChroniCalc
                 MultipleSkills.Clear();
                 MultipleSkills = tree.skills.FindAll(s => s.x == xPos && s.y == yPos);
 
+                //Check for if we're loading a saved build and the user actually already picked a skill
+                //  TODO I can check if they leveled it but if they picked 1 and didn't level it it'll go back to a "+" button. Do I care?
+                if ((treeStatus == TreeStatus.Importing) && MultipleSkills.FindAll(ms => ms.level > 0).Count > 0)
+                {                
+                    foreach (Skill multiSkill in MultipleSkills)
+                    {
+                        if (multiSkill.level > 0)
+                        {
+                            //Mark this section as already having been picked and don't add it to the MultiSelectionSkills list;
+                            //  this'll ensure it gets loaded as an individual skill back in LoadTree()
+                            alreadyChoseASkill = true;
+                        }
+                        else
+                        {
+                            //Add the not-selected skill to the MultiSelectionSkills list so we don't load it
+                            MultiSelectionSkills.Add(multiSkill);  //TODO is this being doubly-added with the MultiSelectionSkills.Add in the below-for each loop as well?
+                        }
+                    }
+                }
+
                 //Check if more than 1 skill does infact exist at the current position
-                if (MultipleSkills.Count > 1)
+                if (MultipleSkills.Count > 1 && !alreadyChoseASkill)
                 {
                     //Add a SkillSelect Button ("+" button) to the shared X,Y position on the tree
                     MultiSkillSelectButton btnMultiSkillSelect = new MultiSkillSelectButton(xPos, yPos);
@@ -748,6 +858,8 @@ namespace ChroniCalc
             Tree tree;
             TreeTableLayoutPanel ttlpTree;
 
+            treeStatus = TreeStatus.Resetting;
+
             // Find the currently-shown tree
             ttlpTree = new TreeTableLayoutPanel(pnlTrees);
 
@@ -767,7 +879,7 @@ namespace ChroniCalc
                 // Find the corresponding Tree to the current TreeTableLayoutPanel shown
                 tree = new Tree();
 
-                tree = trees.Find(x => x.name == ttlpTree.Name);
+                tree = build.characterClass.trees.Find(x => x.name == ttlpTree.Name);
 
                 // Throw an error if we don't have a ttlp or tree, since we made assumptions when finding it
                 if (ttlpTree is null || tree is null)
@@ -776,11 +888,368 @@ namespace ChroniCalc
                 }
 
                 // Remove all controls from the currently-shown tree
-                ClearTree(ttlpTree);
+                ClearTree(tree, ttlpTree);
 
                 // Add all controls back onto the currently-shown tree
                 LoadTree(tree, ttlpTree);
             }
         }
+
+        private void BtnNavBuilds_Click(object sender, EventArgs e)
+        {
+            // Show the Builds tab
+            pnlBuilds.BringToFront();
         }
+
+        private void BtnNavInventory_Click(object sender, EventArgs e)
+        {
+            // Show the Inventory tab
+            //pnlInventory.BringToFront();
+        }
+
+        private void BtnNavTrees_Click(object sender, EventArgs e)
+        {
+            // Show the Trees tab
+            pnlTrees.BringToFront();
+        }
+
+        private void BtnNavSave_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow dgvRow;
+            string fileNameAndPath;
+            int rowIndex = -1;
+
+            fileNameAndPath = BuildsDirectory + "\\" + build.name + XML_EXT;
+
+            // Find the build file within the Builds directory, by name, and open it
+            if (File.Exists(fileNameAndPath))
+            {
+                SaveBuild(fileNameAndPath);
+
+                // Update the row in the Builds list
+                DataGridViewRow row = dgvBuilds.Rows.Cast<DataGridViewRow>()
+                    .Where(r => r.Cells["BuildName"].Value.ToString().Equals(build.name)).First();
+
+                rowIndex = row.Index;
+
+                dgvRow = dgvBuilds.Rows[rowIndex];
+                dgvRow.Cells["Stats"].Value = "Level " + build.level + "M " + build.masteryLevel;
+                dgvRow.Selected = true;
+            }
+            else
+            {
+                // The build has not yet been saved so allow the user to save it as a new build
+                BtnNavSaveAs_Click(sender, e);
+            }
+            
+        }
+
+        private void BtnNavSaveAs_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            saveFileDialog.FilterIndex = 0;
+            saveFileDialog.InitialDirectory = BuildsDirectory;
+            saveFileDialog.RestoreDirectory = true;
+
+            // Save the build as a new build
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Update the name of the build based on the filename
+                build.name = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
+
+                SaveBuild(saveFileDialog.FileName);
+
+                // Add the newly-saved build to the Builds list so it can be loaded later if needed
+                AddBuildToBuildsList(build);
+            }
+        }
+
+        private void SaveBuild(string fileNameAndPath)
+        {
+            XmlSerializer serializer;
+
+            // Save the build to the specified file
+            using (var writer = new StreamWriter(fileNameAndPath))
+            {
+                // Serialize the build object into xml (this should make saving/loading builds easy)
+                serializer = new XmlSerializer(build.GetType());
+                serializer.Serialize(writer, build);  //TODO add try/catch around this incase serialization fails
+                writer.Flush();
+            }
+        }
+
+        private void BtnBuildDelete_Click(object sender, EventArgs e)
+        {
+            string buildName;
+            DataGridViewRow dgvRow;
+            DialogResult dialogResult;
+            string fileNameAndPath;
+            
+            // Get the row in the builds list that the user has selected to delete
+            dgvRow = (dgvBuilds.SelectedRows[0] as DataGridViewRow);  //TODO ensure the user can only select 1 row in the grid
+            buildName = dgvRow.Cells["BuildName"].Value.ToString();
+
+            // Ensure the user wants to delete this build
+            dialogResult = MessageBox.Show("Are you sure you want to delete Build \"" + buildName + "\"?", "Delete Build", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                fileNameAndPath = BuildsDirectory + "\\" + buildName + XML_EXT;
+                // Find the build file within the Builds directory, by name, and delete it
+                if (File.Exists(BuildsDirectory + "\\" + buildName + XML_EXT))
+                {
+                    File.Delete(BuildsDirectory + "\\" + buildName + XML_EXT);
+
+                    // Remove the build from the builds list
+                    dgvBuilds.Rows.Remove(dgvRow);
+                }
+                else
+                {
+                    MessageBox.Show("No save file found to delete for Build \"" + buildName + "\".");
+                }
+            }
+        }
+
+        private void BtnBuildOpen_Click(object sender, EventArgs e)
+        {
+            string fileNameAndPath;
+
+            fileNameAndPath = BuildsDirectory + "\\" + dgvBuilds.CurrentRow.Cells["BuildName"].Value.ToString() + XML_EXT;
+
+            treeStatus = TreeStatus.Importing;
+
+            // Find the build file within the Builds directory, by name, and open it
+            if (File.Exists(fileNameAndPath))
+            {
+                OpenBuild(fileNameAndPath);
+            }
+            else
+            {
+                //TODO display message that build not found for some reason
+            }
+            
+        }
+
+        private void OpenBuild(string fileNameAndPath)
+        {
+            XmlSerializer serializer;
+
+            // Clear everything related to the previous build
+            ClearCharacter(build);
+
+            // Load the saved build content from the file into a Build object
+            using (var stream = new StreamReader(fileNameAndPath))
+            {
+                serializer = new XmlSerializer(typeof(Build));
+                build = serializer.Deserialize(stream) as Build;  //TODO add try/catch around this incase Deserialization fails
+            }
+
+            // Using the newly assigned Build object, create and populate all controls for this build
+            InitializeBuild(build);
+
+            // Set the correct class in the Class selector to match the build that was loaded
+            // Suppress change events
+            cboClass.SelectedIndexChanged -= CboClass_SelectedIndexChanged;
+
+            cboClass.SelectedIndex = cboClass.Items.IndexOf(build.characterClass.name);
+
+            // Unsuppress change events
+            cboClass.SelectedIndexChanged += CboClass_SelectedIndexChanged;
+
+            // Show the Trees
+            pnlTrees.BringToFront();
+        }
+
+        private void InitializeBuild(Build build)
+        {
+            string treeName;
+
+            //Change the Class image  //TODO move this logic into the switch below it since it's the same condition
+            switch (build.characterClass.name)
+            {
+                case "Berserker":
+                    pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Berserker");
+                    break;
+                case "Templar":
+                    pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Templar");
+                    break;
+                case "Warden":
+                    pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Warden");
+                    break;
+                case "Warlock":
+                    pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Warlock");
+                    break;
+                default:
+                    //TODOSSG what's the best way to handle exceptions? error message to user? debug log? email call stack?
+                    throw new Exception("ChangeClass: characterClass of " + build.characterClass.name + " was not added to Switch for setting the Class iamge.");
+            }
+
+            //Depending on Class, load up Image and Tag on Tree tabs and update the Mastery tree
+            switch (build.characterClass.name)
+            {
+                case "Berserker":
+                    treeName = "Guardian";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
+                    btnTree1.Tag = treeName;
+                    treePanels[0].Name = treeName;
+                    treePanels[0].passiveSkillId = 380;
+                    treePanels[0].passiveSkillName = treeName;
+                    treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "SkyLord";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
+                    btnTree2.Tag = treeName;
+                    treePanels[1].Name = treeName;
+                    treePanels[1].passiveSkillId = 478;
+                    treePanels[1].passiveSkillName = "Sky Lord";  //Overridden from treeName;  //this is manually written by looking it up in the xml data (this wouldn't be an issue if you could work with the raw json)
+                    treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "Dragonkin";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
+                    btnTree3.Tag = treeName;
+                    treePanels[2].Name = treeName;
+                    treePanels[2].passiveSkillId = 82;
+                    treePanels[2].passiveSkillName = treeName;
+                    treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "Frostborn";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
+                    btnTree4.Tag = treeName;
+                    treePanels[3].Name = treeName;
+                    treePanels[3].passiveSkillId = 93;
+                    treePanels[3].passiveSkillName = treeName;
+                    treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+                    break;
+
+                case "Templar":
+                    treeName = "Vengeance";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
+                    btnTree1.Tag = treeName;
+                    treePanels[0].Name = treeName;
+                    treePanels[0].passiveSkillId = 241;
+                    treePanels[0].passiveSkillName = treeName;
+                    treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "Wrath";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
+                    btnTree2.Tag = treeName;
+                    treePanels[1].Name = treeName;
+                    treePanels[1].passiveSkillId = 242;
+                    treePanels[1].passiveSkillName = treeName;
+                    treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "Conviction";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
+                    btnTree3.Tag = treeName;
+                    treePanels[2].Name = treeName;
+                    treePanels[2].passiveSkillId = 273;
+                    treePanels[2].passiveSkillName = treeName;
+                    treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "Redemption";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
+                    btnTree4.Tag = treeName;
+                    treePanels[3].Name = treeName;
+                    treePanels[3].passiveSkillId = 274;
+                    treePanels[3].passiveSkillName = treeName;
+                    treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+                    break;
+
+                case "Warden":
+                    treeName = "WindRanger";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
+                    btnTree1.Tag = treeName;
+                    treePanels[0].Name = treeName;
+                    treePanels[0].passiveSkillId = 512;
+                    treePanels[0].passiveSkillName = "Wind Ranger";  //Overridden from treeName
+                    treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "Druid";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
+                    btnTree2.Tag = treeName;
+                    treePanels[1].Name = treeName;
+                    treePanels[1].passiveSkillId = 545;
+                    treePanels[1].passiveSkillName = treeName;
+                    treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "StormCaller";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
+                    btnTree3.Tag = treeName;
+                    treePanels[2].Name = treeName;
+                    treePanels[2].passiveSkillId = 124;
+                    treePanels[2].passiveSkillName = "Storm Caller";  //Overridden from treeName
+                    treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "WinterHerald";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
+                    btnTree4.Tag = treeName;
+                    treePanels[3].Name = treeName;
+                    treePanels[3].passiveSkillId = 609;
+                    treePanels[3].passiveSkillName = "Winter Herald";  //Overridden from treeName
+                    treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+                    break;
+
+                case "Warlock":
+                    treeName = "Corruptor";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
+                    btnTree1.Tag = treeName;
+                    treePanels[0].Name = treeName;
+                    treePanels[0].passiveSkillId = 642;
+                    treePanels[0].passiveSkillName = treeName;
+                    treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "Lich";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
+                    btnTree2.Tag = treeName;
+                    treePanels[1].Name = treeName;
+                    treePanels[1].passiveSkillId = 748;
+                    treePanels[1].passiveSkillName = treeName;
+                    treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "Demonologist";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
+                    btnTree3.Tag = treeName;
+                    treePanels[2].Name = treeName;
+                    treePanels[2].passiveSkillId = 707;
+                    treePanels[2].passiveSkillName = treeName;
+                    treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+
+                    treeName = "Reaper";
+                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
+                    btnTree4.Tag = treeName;
+                    treePanels[3].Name = treeName;
+                    treePanels[3].passiveSkillId = 182;
+                    treePanels[3].passiveSkillName = treeName;
+                    treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
+                    break;
+
+                default:
+                    //TODOSSG what's the best way to handle exceptions? error message to user? debug log? email call stack?
+                    throw new Exception("InitializeBuild(): characterClass of " + build.characterClass.name + " not found.");
+                    //break;
+            }
+
+            //Update each Tree thumbnail
+            foreach (Button treeButton in treeButtons)
+            {
+                //Look at the the button's Tag to determine which image to load into it
+                LoadTreeIconButtonImage(ResourceManagerImageTree, treeButton, treeButton.Tag.ToString());
+            }
+
+            //Load all trees for the selected class into their corresponding tree table layout panels
+            LoadTrees(build.characterClass);
+
+            //Set the Mastery tree button's Tag to the currently-selected Class
+            btnTreeMastery.Tag = build.characterClass.name;
+
+            //TODOSSG
+            //Update the rows in the Mastery tree to be specific to the newly-selected Class
+            //ResetMasteryTree(selectedClass.name);
+
+            //Default focus to the first Tree
+            ShowTree(treeButtons.First(), new EventArgs());
+        }
+    }
 }
