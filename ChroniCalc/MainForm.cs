@@ -947,7 +947,7 @@ namespace ChroniCalc
                     rowIndex = row.Index;
 
                     dgvRow = dgvBuilds.Rows[rowIndex];
-                    dgvRow.Cells["Stats"].Value = "Level " + build.level + "M " + build.masteryLevel;
+                    dgvRow.Cells["Stats"].Value = build.characterClass.name + " Lvl" + build.level + " M" + build.masteryLevel;
                     dgvRow.Selected = true;
                 }
             }
