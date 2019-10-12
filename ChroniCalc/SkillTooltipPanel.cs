@@ -50,7 +50,7 @@ namespace ChroniCalc
 
 
             this.lblName.Text = this.skill.name;
-            UpdateRankText(0); //this updates lblRank.Text
+            UpdateRankText(skill.level);
             this.lblType.Text = this.skill.type;
 
             //Background Image
