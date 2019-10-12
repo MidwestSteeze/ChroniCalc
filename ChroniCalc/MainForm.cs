@@ -916,6 +916,7 @@ namespace ChroniCalc
         private void BtnNavSave_Click(object sender, EventArgs e)
         {
             DataGridViewRow dgvRow;
+            DialogResult dialogResult;
             string fileNameAndPath;
             int rowIndex = -1;
 
@@ -924,17 +925,23 @@ namespace ChroniCalc
             // Find the build file within the Builds directory, by name, and open it
             if (File.Exists(fileNameAndPath))
             {
-                SaveBuild(fileNameAndPath);
+                // Ensure the user wants to overwrite this build
+                dialogResult = MessageBox.Show("Are you sure you want to overwrite Build \"" + build.name + "\"?", "Save Build", MessageBoxButtons.YesNo);
 
-                // Update the row in the Builds list
-                DataGridViewRow row = dgvBuilds.Rows.Cast<DataGridViewRow>()
-                    .Where(r => r.Cells["BuildName"].Value.ToString().Equals(build.name)).First();
+                if (dialogResult == DialogResult.Yes)
+                {
+                     SaveBuild(fileNameAndPath);
 
-                rowIndex = row.Index;
+                    // Update the row in the Builds list
+                    DataGridViewRow row = dgvBuilds.Rows.Cast<DataGridViewRow>()
+                        .Where(r => r.Cells["BuildName"].Value.ToString().Equals(build.name)).First();
 
-                dgvRow = dgvBuilds.Rows[rowIndex];
-                dgvRow.Cells["Stats"].Value = "Level " + build.level + "M " + build.masteryLevel;
-                dgvRow.Selected = true;
+                    rowIndex = row.Index;
+
+                    dgvRow = dgvBuilds.Rows[rowIndex];
+                    dgvRow.Cells["Stats"].Value = "Level " + build.level + "M " + build.masteryLevel;
+                    dgvRow.Selected = true;
+                }
             }
             else
             {

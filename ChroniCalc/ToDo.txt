@@ -1,7 +1,7 @@
 ﻿ ToDo
 
  RESUME AT:
- save build: if save file found, prompt if want to overwrite existing build
+ Reset tree: ask for confirmation
 
  MAJORS:
   - Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
