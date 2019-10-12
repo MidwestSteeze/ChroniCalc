@@ -855,43 +855,51 @@ namespace ChroniCalc
 
         private void BtnResetTree_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult;
             Tree tree;
             TreeTableLayoutPanel ttlpTree;
 
-            treeStatus = TreeStatus.Resetting;
+            // Ensure the user wants to reset this tree
+            dialogResult = MessageBox.Show("Are you sure you want to reset this Tree?", "Reset Tree", MessageBoxButtons.YesNo);
 
-            // Find the currently-shown tree
-            ttlpTree = new TreeTableLayoutPanel(pnlTrees);
-
-            foreach (TreeTableLayoutPanel ttlp in treePanels)
+            if (dialogResult == DialogResult.Yes)
             {
-                if (ttlp.Visible)
+
+                treeStatus = TreeStatus.Resetting;
+
+                // Find the currently-shown tree
+                ttlpTree = new TreeTableLayoutPanel(pnlTrees);
+
+                foreach (TreeTableLayoutPanel ttlp in treePanels)
                 {
-                    ttlpTree = ttlp;
-                    break;
-                }
-            }
-
-            // Only reset the tree if a TreeTableLayoutPanel is visible and is loaded with controls (ie. skills)
-            //   (this rules out if the application has done an initial load and no character was selected/loaded)
-            if (ttlpTree.HasChildren)
-            {
-                // Find the corresponding Tree to the current TreeTableLayoutPanel shown
-                tree = new Tree();
-
-                tree = build.characterClass.trees.Find(x => x.name == ttlpTree.Name);
-
-                // Throw an error if we don't have a ttlp or tree, since we made assumptions when finding it
-                if (ttlpTree is null || tree is null)
-                {
-                    throw new Exception("BtnResetTree_Click(): Tree not found");
+                    if (ttlp.Visible)
+                    {
+                        ttlpTree = ttlp;
+                        break;
+                    }
                 }
 
-                // Remove all controls from the currently-shown tree
-                ClearTree(tree, ttlpTree);
+                // Only reset the tree if a TreeTableLayoutPanel is visible and is loaded with controls (ie. skills)
+                //   (this rules out if the application has done an initial load and no character was selected/loaded)
+                if (ttlpTree.HasChildren)
+                {
+                    // Find the corresponding Tree to the current TreeTableLayoutPanel shown
+                    tree = new Tree();
 
-                // Add all controls back onto the currently-shown tree
-                LoadTree(tree, ttlpTree);
+                    tree = build.characterClass.trees.Find(x => x.name == ttlpTree.Name);
+
+                    // Throw an error if we don't have a ttlp or tree, since we made assumptions when finding it
+                    if (ttlpTree is null || tree is null)
+                    {
+                        throw new Exception("BtnResetTree_Click(): Tree not found");
+                    }
+
+                    // Remove all controls from the currently-shown tree
+                    ClearTree(tree, ttlpTree);
+
+                    // Add all controls back onto the currently-shown tree
+                    LoadTree(tree, ttlpTree);
+                }
             }
         }
 
