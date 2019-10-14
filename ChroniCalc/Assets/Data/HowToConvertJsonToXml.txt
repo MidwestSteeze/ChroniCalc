@@ -1,4 +1,5 @@
- - Get game json by pressing key combo in-game and navigating to: 
- - Run extracted game json thru convertjson.com
+ - Get game json by pressing key combo (Control + S + J) in-game and navigating to: C:\Users\username\AppData\Local\Chronicon\skilldata_0.94.2.json
+ - Open json in text editor and delete the version header line
+ - Run extracted game json thru http://convertjson.com/json-to-xml.htm
  - open resulting xml in notepad++ and use find/replace to remove "_" in all tree names (ie. Sky_Lord --> SkyLord)
    -- Sky_Lord, Winter_Herald, Storm_Caller, Wind_Ranger
