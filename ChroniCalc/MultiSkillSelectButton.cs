@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace ChroniCalc
 {
     //The "+" button that appears on the tree which the user needs to click to open a pop-up in order to select from multiple skill options
-    public partial class MultiSkillSelectButton : Control
+    public partial class MultiSkillSelectButton : UserControl
     {
         readonly ResourceManager ResourceManagerImageTree;
         public SkillSelectPanel skillSelectPanel;
@@ -30,20 +30,16 @@ namespace ChroniCalc
             this.xPos = x;
             this.yPos = y;
 
-            //Size
-            this.Height = 30;
-            this.Width = 30;
+            //Anchor location within its parent control
+            this.pnlMultiSkillSelectButton.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom);
+            this.pnlMultiSkillSelectButton.Dock = DockStyle.Fill;
 
             //Background Image
             ResourceManagerImageTree = new ResourceManager("ChroniCalc.ResourceImageTree", Assembly.GetExecutingAssembly());
-            this.BackgroundImage = (Image)ResourceManagerImageTree.GetObject("spr_empty_skill_slot_0");
+            pbMultiSkillSelectIcon.BackgroundImage = (Image)ResourceManagerImageTree.GetObject("spr_empty_skill_slot_0");
 
             //Image Layout
-            this.BackgroundImageLayout = ImageLayout.Stretch;
-
-            //Anchor location within its parent control
-            //this.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            this.Anchor = AnchorStyles.None;
+            pbMultiSkillSelectIcon.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         protected override void OnPaint(PaintEventArgs pe)

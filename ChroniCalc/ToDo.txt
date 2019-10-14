@@ -16,6 +16,7 @@
 	- ?
  
  SKILLS:
+    - MultiSkillSelect Popup panel location (ie. click "+" and notice popup is not centered) in SkillSelectButton_Click
 	- add Family into the Tooltip and other locations it may be needed (ie. SkillButton, Skill, etc)
 	- add shift+click functionality for changing MultiSkillSelect skills? or is the panel already gone?
 
@@ -23,7 +24,6 @@
 	- Damage calculation (need stat screen first)
  
  TREES:
-	- images: photoshop out the skill buttons, and extend the connection bars if needed, because yours will overlay them
 	- images: make and set skillselectpanel background image
 	- images: update the position and image of "unassign skill" in the MultiSkillSelectPanel
 	- add Reset button so they don't have to pick a new character and clear all other trees

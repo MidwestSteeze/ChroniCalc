@@ -46,7 +46,7 @@
             this.pnlSkillButton.Location = new System.Drawing.Point(0, 0);
             this.pnlSkillButton.Margin = new System.Windows.Forms.Padding(0);
             this.pnlSkillButton.Name = "pnlSkillButton";
-            this.pnlSkillButton.Size = new System.Drawing.Size(58, 56);
+            this.pnlSkillButton.Size = new System.Drawing.Size(56, 54);
             this.pnlSkillButton.TabIndex = 0;
             // 
             // lblSkillLevel
@@ -59,7 +59,7 @@
             this.lblSkillLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSkillLevel.Font = new System.Drawing.Font("TechnicBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.lblSkillLevel.ForeColor = System.Drawing.Color.White;
-            this.lblSkillLevel.Location = new System.Drawing.Point(25, 0);
+            this.lblSkillLevel.Location = new System.Drawing.Point(27, 0);
             this.lblSkillLevel.Margin = new System.Windows.Forms.Padding(0);
             this.lblSkillLevel.Name = "lblSkillLevel";
             this.lblSkillLevel.Size = new System.Drawing.Size(17, 16);
@@ -74,14 +74,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pbSkillIcon.BackColor = System.Drawing.Color.Transparent;
             this.pbSkillIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbSkillIcon.Location = new System.Drawing.Point(9, 8);
+            this.pbSkillIcon.Location = new System.Drawing.Point(4, 4);
             this.pbSkillIcon.Margin = new System.Windows.Forms.Padding(0);
             this.pbSkillIcon.Name = "pbSkillIcon";
-            this.pbSkillIcon.Size = new System.Drawing.Size(40, 40);
+            this.pbSkillIcon.Size = new System.Drawing.Size(44, 46);
             this.pbSkillIcon.TabIndex = 0;
             this.pbSkillIcon.TabStop = false;
-            this.pbSkillIcon.MouseHover += new System.EventHandler(this.PbSkillIcon_MouseHover);
             this.pbSkillIcon.MouseLeave += new System.EventHandler(this.PbSkillIcon_MouseLeave);
+            this.pbSkillIcon.MouseHover += new System.EventHandler(this.PbSkillIcon_MouseHover);
             this.pbSkillIcon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SkillButton_MouseUp);
             // 
             // SkillButton
@@ -92,7 +92,7 @@
             this.Controls.Add(this.pnlSkillButton);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "SkillButton";
-            this.Size = new System.Drawing.Size(58, 56);
+            this.Size = new System.Drawing.Size(56, 54);
             this.pnlSkillButton.ResumeLayout(false);
             this.pnlSkillButton.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSkillIcon)).EndInit();
