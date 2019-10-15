@@ -42,7 +42,6 @@ namespace ChroniCalc
 
         //Lists and Objects
         public Build build;
-        CharacterClass selectedClass;
         List<CharacterClass> characterClasses;
         List<Tree> trees;
         List<Skill> skills;
@@ -306,6 +305,7 @@ namespace ChroniCalc
 
         private void CboClass_SelectedIndexChanged(object sender, EventArgs e)
         {
+            CharacterClass selectedClass;
             string characterClass = (sender as ComboBox).SelectedItem.ToString();
 
             //Prompt user ensuring they want to reset their character
@@ -369,179 +369,6 @@ namespace ChroniCalc
         private void ClearGear()
         {
             //TODOSSG
-        }
-
-        private void ResetTrees()
-        {
-            string treeName;
-
-            //Set the current correct group of tree objects based on the selected class
-            trees = selectedClass.trees;
-
-            //Clear all content from the current trees
-            ClearTrees(trees);
-
-            //Depending on Class, load up Image and Tag on Tree tabs and update the Mastery tree
-            switch (selectedClass.name)
-            {
-                case "Berserker":
-                    treeName = "Guardian";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
-                    btnTree1.Tag = treeName;
-                    treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 380;
-                    treePanels[0].passiveSkillName = treeName;
-                    treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "SkyLord";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
-                    btnTree2.Tag = treeName;
-                    treePanels[1].Name = treeName;
-                    treePanels[1].passiveSkillId = 478;
-                    treePanels[1].passiveSkillName = "Sky Lord";  //Overridden from treeName;  //this is manually written by looking it up in the xml data (this wouldn't be an issue if you could work with the raw json)
-                    treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "Dragonkin";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
-                    btnTree3.Tag = treeName;
-                    treePanels[2].Name = treeName;
-                    treePanels[2].passiveSkillId = 82;
-                    treePanels[2].passiveSkillName = treeName;
-                    treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "Frostborn";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
-                    btnTree4.Tag = treeName;
-                    treePanels[3].Name = treeName;
-                    treePanels[3].passiveSkillId = 93;
-                    treePanels[3].passiveSkillName = treeName;
-                    treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-                    break;
-
-                case "Templar":
-                    treeName = "Vengeance";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
-                    btnTree1.Tag = treeName;
-                    treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 241;
-                    treePanels[0].passiveSkillName = treeName;
-                    treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "Wrath";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
-                    btnTree2.Tag = treeName;
-                    treePanels[1].Name = treeName;
-                    treePanels[1].passiveSkillId = 242;
-                    treePanels[1].passiveSkillName = treeName;
-                    treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "Conviction";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
-                    btnTree3.Tag = treeName;
-                    treePanels[2].Name = treeName;
-                    treePanels[2].passiveSkillId = 273;
-                    treePanels[2].passiveSkillName = treeName;
-                    treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "Redemption";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
-                    btnTree4.Tag = treeName;
-                    treePanels[3].Name = treeName;
-                    treePanels[3].passiveSkillId = 274;
-                    treePanels[3].passiveSkillName = treeName;
-                    treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-                    break;
-
-                case "Warden":
-                    treeName = "WindRanger";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
-                    btnTree1.Tag = treeName;
-                    treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 512;
-                    treePanels[0].passiveSkillName = "Wind Ranger";  //Overridden from treeName
-                    treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "Druid";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
-                    btnTree2.Tag = treeName;
-                    treePanels[1].Name = treeName;
-                    treePanels[1].passiveSkillId = 545;
-                    treePanels[1].passiveSkillName = treeName;
-                    treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "StormCaller";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
-                    btnTree3.Tag = treeName;
-                    treePanels[2].Name = treeName;
-                    treePanels[2].passiveSkillId = 124;
-                    treePanels[2].passiveSkillName = "Storm Caller";  //Overridden from treeName
-                    treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "WinterHerald";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
-                    btnTree4.Tag = treeName;
-                    treePanels[3].Name = treeName;
-                    treePanels[3].passiveSkillId = 609;
-                    treePanels[3].passiveSkillName = "Winter Herald";  //Overridden from treeName
-                    treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-                    break;
-
-                case "Warlock":
-                    treeName = "Corruptor";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
-                    btnTree1.Tag = treeName;
-                    treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 642;
-                    treePanels[0].passiveSkillName = treeName;
-                    treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "Lich";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
-                    btnTree2.Tag = treeName;
-                    treePanels[1].Name = treeName;
-                    treePanels[1].passiveSkillId = 748;
-                    treePanels[1].passiveSkillName = treeName;
-                    treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "Demonologist";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
-                    btnTree3.Tag = treeName;
-                    treePanels[2].Name = treeName;
-                    treePanels[2].passiveSkillId = 707;
-                    treePanels[2].passiveSkillName = treeName;
-                    treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-
-                    treeName = "Reaper";
-                    LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
-                    btnTree4.Tag = treeName;
-                    treePanels[3].Name = treeName;
-                    treePanels[3].passiveSkillId = 182;
-                    treePanels[3].passiveSkillName = treeName;
-                    treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
-                    break;
-
-                default:
-                    //TODOSSG what's the best way to handle exceptions? error message to user? debug log? email call stack?
-                    throw new Exception("ResetTrees(): characterClass of " + selectedClass.name + " not found.");
-                    //break;
-            }
-
-            //Update each Tree thumbnail
-            foreach (Button treeButton in treeButtons)
-            {
-                //Look at the the button's Tag to determine which image to load into it
-                LoadTreeIconButtonImage(ResourceManagerImageTree, treeButton, treeButton.Tag.ToString());
-            }
-
-            //Load all trees for the selected class into their corresponding tree table layout panels
-            LoadTrees(selectedClass);
-
-            //Set the Mastery tree button's Tag to the currently-selected Class
-            btnTreeMastery.Tag = selectedClass.name;
-
-            //TODOSSG
-            //Update the rows in the Mastery tree to be specific to the newly-selected Class
-            ResetMasteryTree(selectedClass.name);
         }
 
         private void ClearTrees(List<Tree> trees)
@@ -1263,7 +1090,7 @@ namespace ChroniCalc
 
             //TODOSSG
             //Update the rows in the Mastery tree to be specific to the newly-selected Class
-            //ResetMasteryTree(selectedClass.name);
+            //ResetMasteryTree(build.characterClass.name);
 
             //Default focus to the first Tree
             ShowTree(treeButtons.First(), new EventArgs());

@@ -3,7 +3,6 @@
  RESUME AT:
 	- hide SkillSelectPanel when focus on it is lost (ie. different "+" button clicked, different tree viewed, etc)
 	- add shift+click functionality for changing MultiSkillSelect skills? or is the panel already gone?
-    - rework global selectedClass object to instead pull from build.characterClass, if possible
     - add try/catch around LoadBuildsIntoBuildsList() incase a non-build .xml file is put in there or doesn't serialize properly (due to change in class/tree/skill structure)
 	- Share Build: Add pastebin generator of xml content so files don't have to be passed around
 
