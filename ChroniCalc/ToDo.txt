@@ -8,29 +8,27 @@
       - could also retain use of XML within program but output as JSON (ie. JsonConvert.SerializeXmlNodeDoc())
 	  - see project JsonImporter, has it working but requires adjustment to JSON
   - Save/Load/Share builds (Json format to correlate with in-game build import/exporter
+  - Share Build: Add pastebin generator of xml content so files don't have to be passed around
   - Stat calculation and screen (damage, health, etc)
  
  CLASSES:
 	- ?
  
  SKILLS:
-    - MultiSkillSelect Popup panel location (ie. click "+" and notice popup is not centered) in SkillSelectButton_Click
 	- add Family into the Tooltip and other locations it may be needed (ie. SkillButton, Skill, etc)
 	- add shift+click functionality for changing MultiSkillSelect skills? or is the panel already gone?
+	- hide SkillSelectPanel when focus on it is lost (ie. different + button clicked, diffrerent tree viewed, etc)
 
  STATS: 
-	- Damage calculation (need stat screen first)
  
  TREES:
 	- images: make and set skillselectpanel background image
 	- images: update the position and image of "unassign skill" in the MultiSkillSelectPanel
-	- add Reset button so they don't have to pick a new character and clear all other trees
 
 MISC:
 	- MainForm: Mastery Point counter (no Maximum)
 	- splash screen on initial load of program
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stats
-	- Nav buttons get the remaining 3 (Inventory, Trees, Builds) from in-game as an active icon
-        - rework global selectedClass object to instead pull from build.characterClass, if possible
-        - add try/catch around LoadBuildsIntoBuildsList() incase a non-build .xml file is put in there or doesn't serialize properly (due to change in class/tree/skill structure)
+    - rework global selectedClass object to instead pull from build.characterClass, if possible
+    - add try/catch around LoadBuildsIntoBuildsList() incase a non-build .xml file is put in there or doesn't serialize properly (due to change in class/tree/skill structure)
     - Show Build Name at the top
