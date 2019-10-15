@@ -1,8 +1,8 @@
 ﻿ ToDo
 
  RESUME AT:
- 	- images: update the position and image of "unassign skill" in the SkillSelectPanel
 	- hide SkillSelectPanel when focus on it is lost (ie. different + button clicked, diffrerent tree viewed, etc)
+	- move SkillButton.pbSKillIcon down a few px as you can see bottom edge of background skill for multi-select skills
 	- add shift+click functionality for changing MultiSkillSelect skills? or is the panel already gone?
     - rework global selectedClass object to instead pull from build.characterClass, if possible
     - add try/catch around LoadBuildsIntoBuildsList() incase a non-build .xml file is put in there or doesn't serialize properly (due to change in class/tree/skill structure)

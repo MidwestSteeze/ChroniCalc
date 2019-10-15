@@ -777,14 +777,14 @@ namespace ChroniCalc
                         pnlSkillSelect.Controls.Add(btnSkillSelect);
 
                         //Specify the position the button within the panel
-                        btnSkillSelect.Location = new Point((pnlSkillSelect.Controls.Count * btnSkillSelect.Width) + SKILL_BUTTON_PADDING, 3);
+                        btnSkillSelect.Location = new Point(((pnlSkillSelect.Controls.Count - 1) * btnSkillSelect.Width) + SKILL_BUTTON_PADDING, 3);
 
                         //Add these skills to a list for future reference so we know which are multi-selection skills
                         MultiSelectionSkills.Add(multiSkill);
                     }
 
                     //Add a default UnassignSkill button at the end incase the user chooses to not pick a skill at this time but wants to close the panel
-                    pnlSkillSelect.Controls.Add(new UnassignSkillButton());
+                    pnlSkillSelect.Controls.Add(new UnassignSkillButton(pnlSkillSelect.Controls.Count, SKILL_BUTTON_PADDING));
                 }
             }
 

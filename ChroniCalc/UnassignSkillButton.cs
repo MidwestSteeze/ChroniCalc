@@ -16,7 +16,7 @@ namespace ChroniCalc
     {
         readonly ResourceManager ResourceManagerImageSkill;
 
-        public UnassignSkillButton()
+        public UnassignSkillButton(int skillSelectButtonCount, int buttonMargin)
         {
             InitializeComponent();
 
@@ -27,8 +27,8 @@ namespace ChroniCalc
             this.Height = 30;
             this.Width = 30;
 
-            //Location
-            this.Location = new Point(6, 3);
+            //Location - use the parameters to place it at the end of the other SkillSelect buttons in the panel
+            this.Location = new Point(skillSelectButtonCount * this.Width + buttonMargin, 3);
 
             //Background Image
             ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
