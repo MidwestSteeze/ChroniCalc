@@ -8,8 +8,6 @@
       - could also retain use of XML within program but output as JSON (ie. JsonConvert.SerializeXmlNodeDoc())
 	  - see project JsonImporter, has it working but requires adjustment to JSON
   - Save/Load/Share builds (Json format to correlate with in-game build import/exporter
-	- Turn the icons in top right of background into useable buttons to show various panels (Tree, Inventory, Manage Builds, etc)
-		- get screenshots of each of those icons activated so they're highlighted (DONE: Trees)
   - Stat calculation and screen (damage, health, etc)
  
  CLASSES:

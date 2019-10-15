@@ -29,22 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlClass = new System.Windows.Forms.Panel();
-            this.pbClass = new System.Windows.Forms.PictureBox();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.pbClass = new System.Windows.Forms.PictureBox();
+            this.pnlClassData = new System.Windows.Forms.Panel();
             this.btnNavSaveAs = new System.Windows.Forms.Button();
             this.btnNavSave = new System.Windows.Forms.Button();
             this.btnNavBuilds = new System.Windows.Forms.Button();
             this.btnNavTrees = new System.Windows.Forms.Button();
             this.btnNavInventory = new System.Windows.Forms.Button();
-            this.btnResetTree = new System.Windows.Forms.Button();
-            this.pnlClassData = new System.Windows.Forms.Panel();
             this.lblMastery = new System.Windows.Forms.Label();
             this.lblMasteryCaption = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.lblSkillPointsRemainingCaption = new System.Windows.Forms.Label();
             this.lblTree = new System.Windows.Forms.Label();
             this.pnlTrees = new System.Windows.Forms.Panel();
+            this.btnResetTree = new System.Windows.Forms.Button();
             this.btnTree1 = new System.Windows.Forms.Button();
             this.btnTree2 = new System.Windows.Forms.Button();
             this.btnTree3 = new System.Windows.Forms.Button();
@@ -80,17 +80,6 @@
             this.pnlClass.Name = "pnlClass";
             this.pnlClass.Size = new System.Drawing.Size(210, 381);
             this.pnlClass.TabIndex = 7;
-            // 
-            // pbClass
-            // 
-            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbClass.Location = new System.Drawing.Point(3, 28);
-            this.pbClass.Name = "pbClass";
-            this.pbClass.Size = new System.Drawing.Size(200, 350);
-            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbClass.TabIndex = 1;
-            this.pbClass.TabStop = false;
             // 
             // cboClass
             // 
@@ -127,6 +116,40 @@
             this.lblVersion.TabIndex = 9;
             this.lblVersion.Text = "v";
             // 
+            // pbClass
+            // 
+            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbClass.Location = new System.Drawing.Point(3, 28);
+            this.pbClass.Name = "pbClass";
+            this.pbClass.Size = new System.Drawing.Size(200, 350);
+            this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbClass.TabIndex = 1;
+            this.pbClass.TabStop = false;
+            // 
+            // pnlClassData
+            // 
+            this.pnlClassData.BackgroundImage = global::ChroniCalc.Properties.Resources.background;
+            this.pnlClassData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnlClassData.Controls.Add(this.btnNavSaveAs);
+            this.pnlClassData.Controls.Add(this.btnNavSave);
+            this.pnlClassData.Controls.Add(this.btnNavBuilds);
+            this.pnlClassData.Controls.Add(this.btnNavTrees);
+            this.pnlClassData.Controls.Add(this.btnNavInventory);
+            this.pnlClassData.Controls.Add(this.lblMastery);
+            this.pnlClassData.Controls.Add(this.lblMasteryCaption);
+            this.pnlClassData.Controls.Add(this.lblLevel);
+            this.pnlClassData.Controls.Add(this.lblLevelCaption);
+            this.pnlClassData.Controls.Add(this.lblSkillPointsRemaining);
+            this.pnlClassData.Controls.Add(this.lblSkillPointsRemainingCaption);
+            this.pnlClassData.Controls.Add(this.lblTree);
+            this.pnlClassData.Controls.Add(this.pnlTrees);
+            this.pnlClassData.Controls.Add(this.pnlBuilds);
+            this.pnlClassData.Location = new System.Drawing.Point(220, 0);
+            this.pnlClassData.Name = "pnlClassData";
+            this.pnlClassData.Size = new System.Drawing.Size(560, 420);
+            this.pnlClassData.TabIndex = 7;
+            // 
             // btnNavSaveAs
             // 
             this.btnNavSaveAs.BackColor = System.Drawing.Color.Transparent;
@@ -160,6 +183,7 @@
             // btnNavBuilds
             // 
             this.btnNavBuilds.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavBuilds.BackgroundImage = global::ChroniCalc.ResourceImageUI.IconBuilds;
             this.btnNavBuilds.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNavBuilds.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnNavBuilds.FlatAppearance.BorderSize = 0;
@@ -174,6 +198,7 @@
             // btnNavTrees
             // 
             this.btnNavTrees.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavTrees.BackgroundImage = global::ChroniCalc.ResourceImageUI.IconTrees;
             this.btnNavTrees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNavTrees.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnNavTrees.FlatAppearance.BorderSize = 0;
@@ -188,6 +213,7 @@
             // btnNavInventory
             // 
             this.btnNavInventory.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavInventory.BackgroundImage = global::ChroniCalc.ResourceImageUI.IconInventory;
             this.btnNavInventory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNavInventory.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnNavInventory.FlatAppearance.BorderSize = 0;
@@ -198,48 +224,6 @@
             this.toolTipInfo.SetToolTip(this.btnNavInventory, "Inventory");
             this.btnNavInventory.UseVisualStyleBackColor = false;
             this.btnNavInventory.Click += new System.EventHandler(this.BtnNavInventory_Click);
-            // 
-            // btnResetTree
-            // 
-            this.btnResetTree.AutoSize = true;
-            this.btnResetTree.BackColor = System.Drawing.Color.Transparent;
-            this.btnResetTree.BackgroundImage = global::ChroniCalc.ResourceImageUI.ResetTree;
-            this.btnResetTree.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnResetTree.FlatAppearance.BorderSize = 0;
-            this.btnResetTree.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnResetTree.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnResetTree.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnResetTree.ForeColor = System.Drawing.Color.White;
-            this.btnResetTree.Location = new System.Drawing.Point(507, 6);
-            this.btnResetTree.Name = "btnResetTree";
-            this.btnResetTree.Size = new System.Drawing.Size(30, 27);
-            this.btnResetTree.TabIndex = 6;
-            this.toolTipInfo.SetToolTip(this.btnResetTree, "Reset Tree");
-            this.btnResetTree.UseVisualStyleBackColor = false;
-            this.btnResetTree.Click += new System.EventHandler(this.BtnResetTree_Click);
-            // 
-            // pnlClassData
-            // 
-            this.pnlClassData.BackgroundImage = global::ChroniCalc.Properties.Resources.background;
-            this.pnlClassData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pnlClassData.Controls.Add(this.btnNavSaveAs);
-            this.pnlClassData.Controls.Add(this.btnNavSave);
-            this.pnlClassData.Controls.Add(this.btnNavBuilds);
-            this.pnlClassData.Controls.Add(this.btnNavTrees);
-            this.pnlClassData.Controls.Add(this.btnNavInventory);
-            this.pnlClassData.Controls.Add(this.lblMastery);
-            this.pnlClassData.Controls.Add(this.lblMasteryCaption);
-            this.pnlClassData.Controls.Add(this.lblLevel);
-            this.pnlClassData.Controls.Add(this.lblLevelCaption);
-            this.pnlClassData.Controls.Add(this.lblSkillPointsRemaining);
-            this.pnlClassData.Controls.Add(this.lblSkillPointsRemainingCaption);
-            this.pnlClassData.Controls.Add(this.lblTree);
-            this.pnlClassData.Controls.Add(this.pnlTrees);
-            this.pnlClassData.Controls.Add(this.pnlBuilds);
-            this.pnlClassData.Location = new System.Drawing.Point(220, 0);
-            this.pnlClassData.Name = "pnlClassData";
-            this.pnlClassData.Size = new System.Drawing.Size(560, 420);
-            this.pnlClassData.TabIndex = 7;
             // 
             // lblMastery
             // 
@@ -337,6 +321,25 @@
             this.pnlTrees.Name = "pnlTrees";
             this.pnlTrees.Size = new System.Drawing.Size(540, 317);
             this.pnlTrees.TabIndex = 6;
+            // 
+            // btnResetTree
+            // 
+            this.btnResetTree.AutoSize = true;
+            this.btnResetTree.BackColor = System.Drawing.Color.Transparent;
+            this.btnResetTree.BackgroundImage = global::ChroniCalc.ResourceImageUI.ResetTree;
+            this.btnResetTree.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnResetTree.FlatAppearance.BorderSize = 0;
+            this.btnResetTree.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnResetTree.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnResetTree.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnResetTree.ForeColor = System.Drawing.Color.White;
+            this.btnResetTree.Location = new System.Drawing.Point(507, 6);
+            this.btnResetTree.Name = "btnResetTree";
+            this.btnResetTree.Size = new System.Drawing.Size(30, 27);
+            this.btnResetTree.TabIndex = 6;
+            this.toolTipInfo.SetToolTip(this.btnResetTree, "Reset Tree");
+            this.btnResetTree.UseVisualStyleBackColor = false;
+            this.btnResetTree.Click += new System.EventHandler(this.BtnResetTree_Click);
             // 
             // btnTree1
             // 
@@ -447,14 +450,14 @@
             this.dgvBuilds.AllowUserToResizeColumns = false;
             this.dgvBuilds.AllowUserToResizeRows = false;
             this.dgvBuilds.BackgroundColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBuilds.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBuilds.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBuilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBuilds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BuildName,
@@ -472,11 +475,11 @@
             // BuildName
             // 
             this.BuildName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.BuildName.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.BuildName.DefaultCellStyle = dataGridViewCellStyle5;
             this.BuildName.HeaderText = "Name";
             this.BuildName.Name = "BuildName";
             this.BuildName.ReadOnly = true;
@@ -485,11 +488,11 @@
             // Stats
             // 
             this.Stats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.Stats.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.Stats.DefaultCellStyle = dataGridViewCellStyle6;
             this.Stats.HeaderText = "Stats";
             this.Stats.Name = "Stats";
             this.Stats.ReadOnly = true;
