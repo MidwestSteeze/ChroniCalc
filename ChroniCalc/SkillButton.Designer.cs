@@ -59,7 +59,7 @@
             this.lblSkillLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSkillLevel.Font = new System.Drawing.Font("TechnicBold", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.lblSkillLevel.ForeColor = System.Drawing.Color.White;
-            this.lblSkillLevel.Location = new System.Drawing.Point(27, 0);
+            this.lblSkillLevel.Location = new System.Drawing.Point(27, 2);
             this.lblSkillLevel.Margin = new System.Windows.Forms.Padding(0);
             this.lblSkillLevel.Name = "lblSkillLevel";
             this.lblSkillLevel.Size = new System.Drawing.Size(17, 16);
@@ -74,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pbSkillIcon.BackColor = System.Drawing.Color.Transparent;
             this.pbSkillIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbSkillIcon.Location = new System.Drawing.Point(4, 4);
+            this.pbSkillIcon.Location = new System.Drawing.Point(4, 6);
             this.pbSkillIcon.Margin = new System.Windows.Forms.Padding(0);
             this.pbSkillIcon.Name = "pbSkillIcon";
             this.pbSkillIcon.Size = new System.Drawing.Size(44, 46);
