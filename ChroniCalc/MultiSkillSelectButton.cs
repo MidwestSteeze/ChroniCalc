@@ -49,24 +49,54 @@ namespace ChroniCalc
 
         private void SkillSelectButton_Click(object sender, EventArgs e)
         {
-            int left;
-            int top;
-
-            //Get the pixel location of the current MultiSkillSelect Button (ie. the "+" button) in the TableLayoutPanel
-            TableLayoutPanel tlpTree = this.Parent as TableLayoutPanel;
-            Control btnSkill = tlpTree.GetControlFromPosition(xPos, yPos);
-            left = (xPos + 1) * Convert.ToInt32(btnSkill.Width);
-            top = (yPos + 1) * Convert.ToInt32(btnSkill.Height);
-
-            skillSelectPanel.Location = new Point(left, top);
+            //Set the pixel location of the Skill Select Panel to popup for the user
+            skillSelectPanel.Location = GetSkillSelectLocation();
             skillSelectPanel.BringToFront();
 
-
-            //Show the SkillSelect Panel
+            //Show the Skill Select Panel
             if (!skillSelectPanel.Visible)
             {
                 skillSelectPanel.Show();
             }
+        }
+
+        private Point GetSkillSelectLocation()
+        {
+            int availableWidth;
+            int left;
+            int top;
+            Point location;
+
+            //Get the position of the cursor relative to the Application
+            TableLayoutPanel tlpTree = this.Parent as TableLayoutPanel;
+            Control btnSkill = tlpTree.GetControlFromPosition(xPos, yPos);
+
+            //Position the Skill Select Panel centered in relation to the MultiSkillSelect (+) button
+            left = (xPos + 1) * Convert.ToInt32(btnSkill.Width) - (Convert.ToInt32(this.skillSelectPanel.Width) / 2);
+
+            //Position the Skill Select Panel above the MultiSkillSelect (+) button
+            top = (yPos + 1) * Convert.ToInt32(btnSkill.Height) - Convert.ToInt32(this.skillSelectPanel.Height);
+
+            //Location to display the Skill Select Panel based on where the clicked MultiSkillSelect (+) button is
+            location = new Point(left, top); 
+
+            //Check if the Skill Select Panel is going off one of the edges of the screen and adjust as necessary
+            // Width of the panel the Skill Select Panel is contained within
+            availableWidth = this.Parent.Parent.Width;
+
+            if (location.X + this.skillSelectPanel.Width > availableWidth)
+            {
+                //The Skill Select Panel went off the right edge of the available area, so position it left of the MultiSkillSelect (+) button that was clicked, instead of the right
+                location.X = availableWidth - this.skillSelectPanel.Width;
+            }
+
+            if (location.Y < Convert.ToInt32(this.skillSelectPanel.Height))
+            {
+                //The Skill Select Panel went off the top edge of the available area, so position it below the MultiSkillSelect (+) button that was clicked, instead of above
+                location.Y = Convert.ToInt32(this.skillSelectPanel.Height * 2);
+            }
+
+            return location;
         }
     }
 }
