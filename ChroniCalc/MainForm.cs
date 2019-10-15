@@ -753,7 +753,7 @@ namespace ChroniCalc
                     btnMultiSkillSelect.skillSelectPanel = pnlSkillSelect;
 
                     //Set the width of the SkillSelect Panel to the number of skill buttons it will contain (30 = width of SkillSelectButton)
-                    pnlSkillSelect.Width = ((MultipleSkills.Count + 1) * 30) + ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING - SKILL_BUTTON_PADDING / 2); //last # is accounting for 3px padding on each side of each button
+                    pnlSkillSelect.Width = ((MultipleSkills.Count + 1) * 30) + ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING - ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING / 2)); //last # is accounting for 3px margin on each side of each button
 
                     //Create a button for each skill and place it in the SkillSelect Panel
                     foreach (Skill multiSkill in MultipleSkills)
@@ -777,7 +777,7 @@ namespace ChroniCalc
                         pnlSkillSelect.Controls.Add(btnSkillSelect);
 
                         //Specify the position the button within the panel
-                        btnSkillSelect.Location = new Point((pnlSkillSelect.Controls.Count * btnSkillSelect.Width), 3);
+                        btnSkillSelect.Location = new Point((pnlSkillSelect.Controls.Count * btnSkillSelect.Width) + SKILL_BUTTON_PADDING, 3);
 
                         //Add these skills to a list for future reference so we know which are multi-selection skills
                         MultiSelectionSkills.Add(multiSkill);

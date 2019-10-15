@@ -28,7 +28,7 @@ namespace ChroniCalc
             this.Width = 30;
 
             //Location
-            this.Location = new Point(0, 3);
+            this.Location = new Point(6, 3);
 
             //Background Image
             ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
