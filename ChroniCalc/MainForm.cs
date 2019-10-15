@@ -352,7 +352,8 @@ namespace ChroniCalc
 
         private void UpdateStats(Build build)
         {
-            //Update Character Level
+            //Update Character Name and Level
+            lblBuildName.Text = build.name;
             lblLevel.Text = build.level.ToString();
 
             //Update Mastery level
@@ -973,6 +974,7 @@ namespace ChroniCalc
             {
                 // Update the name of the build based on the filename
                 build.name = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
+                lblBuildName.Text = build.name;
 
                 SaveBuild(saveFileDialog.FileName);
 
