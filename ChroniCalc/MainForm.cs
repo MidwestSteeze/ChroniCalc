@@ -123,7 +123,7 @@ namespace ChroniCalc
                 catch (Exception)
                 {
                     //The file loaded was xml but did not serialize cleanly into the Build object; explain this to the user and continue on to loading the next file
-                    MessageBox.Show("Unable to load Build file '" + Path.GetFileName(buildFile) + "' into the saved Builds list in the Builds tab.  If this is not an actual Build file, please remove it from the Builds folder on disk to stop seeing this message.  If it's happening for all Build files, then the Build structure from the game data extract changed and was not updated within the application to match so bug the ChroniCalc developer pls.");
+                    MessageBox.Show("Unable to load Build file '" + Path.GetFileName(buildFile) + "' into the saved Builds list in the Builds tab.  If this is not an actual Build file, please remove it from the Builds folder on disk to stop seeing this message.");
                 }
 
             }
