@@ -47,7 +47,7 @@ namespace ChroniCalc
             base.OnPaint(pe);
         }
 
-        private void SkillSelectButton_Click(object sender, EventArgs e)
+        private void MultiSkillSelectButton_Click(object sender, EventArgs e)
         {
             //Set the pixel location of the Skill Select Panel to popup for the user
             skillSelectPanel.Location = GetSkillSelectLocation();

@@ -78,7 +78,7 @@
             this.pbMultiSkillSelectIcon.Size = new System.Drawing.Size(44, 47);
             this.pbMultiSkillSelectIcon.TabIndex = 0;
             this.pbMultiSkillSelectIcon.TabStop = false;
-            this.pbMultiSkillSelectIcon.Click += new System.EventHandler(this.SkillSelectButton_Click);
+            this.pbMultiSkillSelectIcon.Click += new System.EventHandler(this.MultiSkillSelectButton_Click);
             // 
             // MultiSkillSelectButton
             // 
@@ -87,7 +87,7 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MultiSkillSelectButton";
             this.Size = new System.Drawing.Size(56, 54);
-            this.Click += new System.EventHandler(this.SkillSelectButton_Click);
+            this.Click += new System.EventHandler(this.MultiSkillSelectButton_Click);
             this.pnlMultiSkillSelectButton.ResumeLayout(false);
             this.pnlMultiSkillSelectButton.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMultiSkillSelectIcon)).EndInit();
