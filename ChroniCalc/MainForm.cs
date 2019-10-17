@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
@@ -885,18 +886,30 @@ namespace ChroniCalc
             
         }
 
-        private void OpenBuild(string fileNameAndPath)
+        private void OpenBuild(string buildContent, bool pasteBinImport = false)
         {
             XmlSerializer serializer;
 
             // Clear everything related to the previous build
             ClearCharacter(build);
 
-            // Load the saved build content from the file into a Build object
-            using (var stream = new StreamReader(fileNameAndPath))
+            // Deserialize the content the appropriate way depending on what was passed in (ie. pastebin Raw Text extract or a filepath to an XML file on disk)
+            if (pasteBinImport)
             {
-                serializer = new XmlSerializer(typeof(Build));
-                build = serializer.Deserialize(stream) as Build;  //TODO add try/catch around this incase Deserialization fails
+                using (var stringReader = new StringReader(buildContent))
+                {
+                    serializer = new XmlSerializer(typeof(Build));
+                    build = serializer.Deserialize(stringReader) as Build;  //TODO add try/catch around this incase Deserialization fails
+                }
+            }
+            else
+            {
+                // Load the saved build content from the file into a Build object
+                using (var stream = new StreamReader(buildContent))
+                {
+                    serializer = new XmlSerializer(typeof(Build));
+                    build = serializer.Deserialize(stream) as Build;  //TODO add try/catch around this incase Deserialization fails
+                }
             }
 
             // Using the newly assigned Build object, create and populate all controls for this build
@@ -1103,6 +1116,79 @@ namespace ChroniCalc
 
             //Default focus to the first Tree
             ShowTree(treeButtons.First(), new EventArgs());
+        }
+
+        private void BtnBuildLoad_Click(object sender, EventArgs e)
+        {
+            // Decipher the content of the Pastebin URL into a Build
+            PasteBinClient pasteBinClient;
+            string pastebinExtract;
+
+            //Prmopt for save/if user really wants to load, overwriting current build
+            //TODO
+
+            pasteBinClient = new PasteBinClient();
+            pastebinExtract = pasteBinClient.Extract(txtBuildShare.Text);
+
+            OpenBuild(pastebinExtract, true);
+        }
+
+        private void BtnBuildShare_Click(object sender, EventArgs e)
+        {
+            // Generate a Pastebin URL of the current Build for the user to share
+            string buildAsText;
+            string pasteUrl;
+            XmlSerializer serializer;
+
+            string apiKey = "9074d08a3c19871f793663a0361c6976";
+            var client = new PasteBinClient(apiKey);
+
+            // Optional; will publish as a guest if not logged in; could enable this to see how many pastes people are using but
+            //   this exposes username/password since it's on Github (CCalcShare//CCalcSharer)
+            //client.Login(userName, password); //this'll set User Key
+
+            serializer = new XmlSerializer(build.GetType());
+
+            // Save the build to a string format
+            using (StringWriter writer = new StringWriter())
+            {
+                serializer.Serialize(writer, build);  //TODO add try/catch around this incase serialization fails
+                buildAsText = writer.ToString();
+            }
+
+            // Setup the data for the Pastebin
+            var entry = new PasteBinEntry
+            {
+                Title = "ChroniCalc Build Share",
+                Text = buildAsText,
+                Expiration = PasteBinExpiration.Never,
+                Private = false,
+                Format = "xml"
+            };
+
+            // Call through the Pastebin API to get the URL
+            pasteUrl = client.Paste(entry);
+
+            // Show the Pastebin URL in the textbox
+            txtBuildShare.Text = pasteUrl;
+        }
+
+        private void TxtBuildShare_Leave(object sender, EventArgs e)
+        {
+            // Set the placeholder text if user left the control and now the text is empty
+            if (txtBuildShare.Text == string.Empty)
+            {
+                txtBuildShare.Text = "Pastebin URL";
+            }
+        }
+
+        private void TxtBuildShare_Click(object sender, EventArgs e)
+        {
+            // Clear placeholder text if user entered the control to paste their URL
+            if (txtBuildShare.Text == "Pastebin URL")
+            {
+                txtBuildShare.Text = string.Empty;
+            }
         }
     }
 }

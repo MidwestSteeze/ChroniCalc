@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Build.cs" />
     <Compile Include="Element.cs" />
+    <Compile Include="PasteBinClient.cs" />
     <Compile Include="ResourceImageClass.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,7 +99,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Skill.cs" />
     <Compile Include="MultiSkillSelectButton.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MultiSkillSelectButton.Designer.cs">
       <DependentUpon>MultiSkillSelectButton.cs</DependentUpon>

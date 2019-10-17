@@ -3,7 +3,10 @@
  RESUME AT:
 	- hide SkillSelectPanel when focus on it is lost (ie. different "+" button clicked, different tree viewed, etc)
 	- add shift+click functionality for changing MultiSkillSelect skills? or is the panel already gone?
-	- Share Build: Add pastebin generator of xml content so files don't have to be passed around
+	- Get an initial release available on Git for download/install
+	- add double-click to open from build list
+	- ensure prompt for save is in all necessary places (closing application, loading pastebin build, loading build over pastebin build, etc)
+    - adjust UI of pastebin build load/share to possibly its own popup/panel
 
  MAJORS:
   - Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
@@ -25,7 +28,7 @@
 	- images: make and set skillselectpanel background image
 	- Is the Unassign Skill button bigger than the other SkillSelect buttons?
 
-MISC:
+ MISC:
 	- MainForm: Mastery Point counter (no Maximum)
 	- splash screen on initial load of program
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat

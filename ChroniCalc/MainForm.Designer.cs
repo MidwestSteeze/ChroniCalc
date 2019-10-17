@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlClass = new System.Windows.Forms.Panel();
             this.pbClass = new System.Windows.Forms.PictureBox();
             this.cboClass = new System.Windows.Forms.ComboBox();
@@ -44,7 +44,17 @@
             this.btnNavTrees = new System.Windows.Forms.Button();
             this.btnNavInventory = new System.Windows.Forms.Button();
             this.btnResetTree = new System.Windows.Forms.Button();
+            this.btnBuildLoad = new System.Windows.Forms.Button();
+            this.btnBuildShare = new System.Windows.Forms.Button();
+            this.txtBuildShare = new System.Windows.Forms.TextBox();
             this.pnlClassData = new System.Windows.Forms.Panel();
+            this.pnlBuilds = new System.Windows.Forms.Panel();
+            this.lblBuildSharing = new System.Windows.Forms.Label();
+            this.btnBuildDelete = new System.Windows.Forms.Button();
+            this.btnBuildOpen = new System.Windows.Forms.Button();
+            this.dgvBuilds = new System.Windows.Forms.DataGridView();
+            this.BuildName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTree = new System.Windows.Forms.Label();
             this.pnlTrees = new System.Windows.Forms.Panel();
             this.btnTree1 = new System.Windows.Forms.Button();
@@ -52,12 +62,6 @@
             this.btnTree3 = new System.Windows.Forms.Button();
             this.btnTree4 = new System.Windows.Forms.Button();
             this.btnTreeMastery = new System.Windows.Forms.Button();
-            this.pnlBuilds = new System.Windows.Forms.Panel();
-            this.btnBuildDelete = new System.Windows.Forms.Button();
-            this.btnBuildOpen = new System.Windows.Forms.Button();
-            this.dgvBuilds = new System.Windows.Forms.DataGridView();
-            this.BuildName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlClassCaptions = new System.Windows.Forms.Panel();
             this.lblBuildName = new System.Windows.Forms.Label();
             this.lblMastery = new System.Windows.Forms.Label();
@@ -69,9 +73,9 @@
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             this.pnlClassData.SuspendLayout();
-            this.pnlTrees.SuspendLayout();
             this.pnlBuilds.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).BeginInit();
+            this.pnlTrees.SuspendLayout();
             this.pnlClassCaptions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -224,10 +228,47 @@
             this.btnResetTree.UseVisualStyleBackColor = false;
             this.btnResetTree.Click += new System.EventHandler(this.BtnResetTree_Click);
             // 
+            // btnBuildLoad
+            // 
+            this.btnBuildLoad.Location = new System.Drawing.Point(323, 10);
+            this.btnBuildLoad.Name = "btnBuildLoad";
+            this.btnBuildLoad.Size = new System.Drawing.Size(43, 23);
+            this.btnBuildLoad.TabIndex = 4;
+            this.btnBuildLoad.Text = "Load";
+            this.toolTipInfo.SetToolTip(this.btnBuildLoad, "Loads Pastebin URL of a shared Build");
+            this.btnBuildLoad.UseVisualStyleBackColor = true;
+            this.btnBuildLoad.Click += new System.EventHandler(this.BtnBuildLoad_Click);
+            // 
+            // btnBuildShare
+            // 
+            this.btnBuildShare.Location = new System.Drawing.Point(478, 10);
+            this.btnBuildShare.Name = "btnBuildShare";
+            this.btnBuildShare.Size = new System.Drawing.Size(43, 23);
+            this.btnBuildShare.TabIndex = 5;
+            this.btnBuildShare.Text = "Share";
+            this.toolTipInfo.SetToolTip(this.btnBuildShare, "Generates a Pastebin URL to share your Build");
+            this.btnBuildShare.UseVisualStyleBackColor = true;
+            this.btnBuildShare.Click += new System.EventHandler(this.BtnBuildShare_Click);
+            // 
+            // txtBuildShare
+            // 
+            this.txtBuildShare.BackColor = System.Drawing.Color.Black;
+            this.txtBuildShare.ForeColor = System.Drawing.Color.White;
+            this.txtBuildShare.Location = new System.Drawing.Point(372, 12);
+            this.txtBuildShare.Name = "txtBuildShare";
+            this.txtBuildShare.Size = new System.Drawing.Size(100, 20);
+            this.txtBuildShare.TabIndex = 6;
+            this.txtBuildShare.Text = "Pastebin URL";
+            this.toolTipInfo.SetToolTip(this.txtBuildShare, "Enter a URL here to load it into a new Build or copy the generated URL to share w" +
+        "ith friends");
+            this.txtBuildShare.Click += new System.EventHandler(this.TxtBuildShare_Click);
+            this.txtBuildShare.Leave += new System.EventHandler(this.TxtBuildShare_Leave);
+            // 
             // pnlClassData
             // 
             this.pnlClassData.BackgroundImage = global::ChroniCalc.Properties.Resources.background;
             this.pnlClassData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnlClassData.Controls.Add(this.pnlBuilds);
             this.pnlClassData.Controls.Add(this.btnNavSaveAs);
             this.pnlClassData.Controls.Add(this.btnNavSave);
             this.pnlClassData.Controls.Add(this.btnNavBuilds);
@@ -235,12 +276,113 @@
             this.pnlClassData.Controls.Add(this.btnNavInventory);
             this.pnlClassData.Controls.Add(this.lblTree);
             this.pnlClassData.Controls.Add(this.pnlTrees);
-            this.pnlClassData.Controls.Add(this.pnlBuilds);
             this.pnlClassData.Controls.Add(this.pnlClassCaptions);
             this.pnlClassData.Location = new System.Drawing.Point(220, 0);
             this.pnlClassData.Name = "pnlClassData";
             this.pnlClassData.Size = new System.Drawing.Size(560, 420);
             this.pnlClassData.TabIndex = 7;
+            // 
+            // pnlBuilds
+            // 
+            this.pnlBuilds.BackColor = System.Drawing.Color.Transparent;
+            this.pnlBuilds.Controls.Add(this.txtBuildShare);
+            this.pnlBuilds.Controls.Add(this.btnBuildShare);
+            this.pnlBuilds.Controls.Add(this.btnBuildLoad);
+            this.pnlBuilds.Controls.Add(this.lblBuildSharing);
+            this.pnlBuilds.Controls.Add(this.btnBuildDelete);
+            this.pnlBuilds.Controls.Add(this.btnBuildOpen);
+            this.pnlBuilds.Controls.Add(this.dgvBuilds);
+            this.pnlBuilds.Location = new System.Drawing.Point(0, 83);
+            this.pnlBuilds.Name = "pnlBuilds";
+            this.pnlBuilds.Size = new System.Drawing.Size(540, 317);
+            this.pnlBuilds.TabIndex = 14;
+            // 
+            // lblBuildSharing
+            // 
+            this.lblBuildSharing.AutoSize = true;
+            this.lblBuildSharing.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuildSharing.ForeColor = System.Drawing.Color.White;
+            this.lblBuildSharing.Location = new System.Drawing.Point(237, 14);
+            this.lblBuildSharing.Name = "lblBuildSharing";
+            this.lblBuildSharing.Size = new System.Drawing.Size(80, 15);
+            this.lblBuildSharing.TabIndex = 3;
+            this.lblBuildSharing.Text = "Build Sharing:";
+            // 
+            // btnBuildDelete
+            // 
+            this.btnBuildDelete.Location = new System.Drawing.Point(115, 10);
+            this.btnBuildDelete.Name = "btnBuildDelete";
+            this.btnBuildDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnBuildDelete.TabIndex = 2;
+            this.btnBuildDelete.Text = "Delete";
+            this.btnBuildDelete.UseVisualStyleBackColor = true;
+            this.btnBuildDelete.Click += new System.EventHandler(this.BtnBuildDelete_Click);
+            // 
+            // btnBuildOpen
+            // 
+            this.btnBuildOpen.Location = new System.Drawing.Point(34, 10);
+            this.btnBuildOpen.Name = "btnBuildOpen";
+            this.btnBuildOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnBuildOpen.TabIndex = 1;
+            this.btnBuildOpen.Text = "Open";
+            this.btnBuildOpen.UseVisualStyleBackColor = true;
+            this.btnBuildOpen.Click += new System.EventHandler(this.BtnBuildOpen_Click);
+            // 
+            // dgvBuilds
+            // 
+            this.dgvBuilds.AllowUserToAddRows = false;
+            this.dgvBuilds.AllowUserToDeleteRows = false;
+            this.dgvBuilds.AllowUserToResizeColumns = false;
+            this.dgvBuilds.AllowUserToResizeRows = false;
+            this.dgvBuilds.BackgroundColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBuilds.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.dgvBuilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBuilds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BuildName,
+            this.Stats});
+            this.dgvBuilds.Location = new System.Drawing.Point(34, 42);
+            this.dgvBuilds.MultiSelect = false;
+            this.dgvBuilds.Name = "dgvBuilds";
+            this.dgvBuilds.ReadOnly = true;
+            this.dgvBuilds.RowHeadersVisible = false;
+            this.dgvBuilds.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvBuilds.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBuilds.Size = new System.Drawing.Size(483, 272);
+            this.dgvBuilds.TabIndex = 0;
+            // 
+            // BuildName
+            // 
+            this.BuildName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
+            this.BuildName.DefaultCellStyle = dataGridViewCellStyle20;
+            this.BuildName.HeaderText = "Name";
+            this.BuildName.Name = "BuildName";
+            this.BuildName.ReadOnly = true;
+            this.BuildName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Stats
+            // 
+            this.Stats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White;
+            this.Stats.DefaultCellStyle = dataGridViewCellStyle21;
+            this.Stats.HeaderText = "Stats";
+            this.Stats.Name = "Stats";
+            this.Stats.ReadOnly = true;
+            this.Stats.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Stats.Width = 135;
             // 
             // lblTree
             // 
@@ -337,93 +479,6 @@
             this.btnTreeMastery.TabIndex = 5;
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);
-            // 
-            // pnlBuilds
-            // 
-            this.pnlBuilds.BackColor = System.Drawing.Color.Transparent;
-            this.pnlBuilds.Controls.Add(this.btnBuildDelete);
-            this.pnlBuilds.Controls.Add(this.btnBuildOpen);
-            this.pnlBuilds.Controls.Add(this.dgvBuilds);
-            this.pnlBuilds.Location = new System.Drawing.Point(0, 83);
-            this.pnlBuilds.Name = "pnlBuilds";
-            this.pnlBuilds.Size = new System.Drawing.Size(540, 317);
-            this.pnlBuilds.TabIndex = 14;
-            // 
-            // btnBuildDelete
-            // 
-            this.btnBuildDelete.Location = new System.Drawing.Point(115, 10);
-            this.btnBuildDelete.Name = "btnBuildDelete";
-            this.btnBuildDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnBuildDelete.TabIndex = 2;
-            this.btnBuildDelete.Text = "Delete";
-            this.btnBuildDelete.UseVisualStyleBackColor = true;
-            this.btnBuildDelete.Click += new System.EventHandler(this.BtnBuildDelete_Click);
-            // 
-            // btnBuildOpen
-            // 
-            this.btnBuildOpen.Location = new System.Drawing.Point(34, 10);
-            this.btnBuildOpen.Name = "btnBuildOpen";
-            this.btnBuildOpen.Size = new System.Drawing.Size(75, 23);
-            this.btnBuildOpen.TabIndex = 1;
-            this.btnBuildOpen.Text = "Open";
-            this.btnBuildOpen.UseVisualStyleBackColor = true;
-            this.btnBuildOpen.Click += new System.EventHandler(this.BtnBuildOpen_Click);
-            // 
-            // dgvBuilds
-            // 
-            this.dgvBuilds.AllowUserToAddRows = false;
-            this.dgvBuilds.AllowUserToDeleteRows = false;
-            this.dgvBuilds.AllowUserToResizeColumns = false;
-            this.dgvBuilds.AllowUserToResizeRows = false;
-            this.dgvBuilds.BackgroundColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBuilds.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvBuilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBuilds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.BuildName,
-            this.Stats});
-            this.dgvBuilds.Location = new System.Drawing.Point(34, 42);
-            this.dgvBuilds.MultiSelect = false;
-            this.dgvBuilds.Name = "dgvBuilds";
-            this.dgvBuilds.ReadOnly = true;
-            this.dgvBuilds.RowHeadersVisible = false;
-            this.dgvBuilds.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvBuilds.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBuilds.Size = new System.Drawing.Size(483, 272);
-            this.dgvBuilds.TabIndex = 0;
-            // 
-            // BuildName
-            // 
-            this.BuildName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.BuildName.DefaultCellStyle = dataGridViewCellStyle2;
-            this.BuildName.HeaderText = "Name";
-            this.BuildName.Name = "BuildName";
-            this.BuildName.ReadOnly = true;
-            this.BuildName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Stats
-            // 
-            this.Stats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.Stats.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Stats.HeaderText = "Stats";
-            this.Stats.Name = "Stats";
-            this.Stats.ReadOnly = true;
-            this.Stats.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Stats.Width = 135;
             // 
             // pnlClassCaptions
             // 
@@ -550,10 +605,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).EndInit();
             this.pnlClassData.ResumeLayout(false);
             this.pnlClassData.PerformLayout();
+            this.pnlBuilds.ResumeLayout(false);
+            this.pnlBuilds.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).EndInit();
             this.pnlTrees.ResumeLayout(false);
             this.pnlTrees.PerformLayout();
-            this.pnlBuilds.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).EndInit();
             this.pnlClassCaptions.ResumeLayout(false);
             this.pnlClassCaptions.PerformLayout();
             this.ResumeLayout(false);
@@ -596,6 +652,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Stats;
         private System.Windows.Forms.Panel pnlClassCaptions;
         private System.Windows.Forms.Label lblBuildName;
+        private System.Windows.Forms.Label lblBuildSharing;
+        private System.Windows.Forms.Button btnBuildLoad;
+        private System.Windows.Forms.Button btnBuildShare;
+        private System.Windows.Forms.TextBox txtBuildShare;
     }
 }
 
