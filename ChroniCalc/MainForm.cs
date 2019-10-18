@@ -54,6 +54,9 @@ namespace ChroniCalc
         {
             InitializeComponent();
 
+            //Assign ParentForm to UserControls dropped on the Form that need it
+            this.pbpBuildShare.ParentForm = this;
+
             //Updates the version as shown on screen
             lblVersion.Text = "v" + this.ProductVersion;
 
@@ -886,7 +889,7 @@ namespace ChroniCalc
             
         }
 
-        private void OpenBuild(string buildContent, bool pasteBinImport = false)
+        public void OpenBuild(string buildContent, bool pasteBinImport = false)
         {
             XmlSerializer serializer;
 
@@ -1118,76 +1121,11 @@ namespace ChroniCalc
             ShowTree(treeButtons.First(), new EventArgs());
         }
 
-        private void BtnBuildLoad_Click(object sender, EventArgs e)
+        private void btnBuildSharing_Click(object sender, EventArgs e)
         {
-            // Decipher the content of the Pastebin URL into a Build
-            PasteBinClient pasteBinClient;
-            string pastebinExtract;
-
-            //Prmopt for save/if user really wants to load, overwriting current build
-            //TODO
-
-            pasteBinClient = new PasteBinClient();
-            pastebinExtract = pasteBinClient.Extract(txtBuildShare.Text);
-
-            OpenBuild(pastebinExtract, true);
-        }
-
-        private void BtnBuildShare_Click(object sender, EventArgs e)
-        {
-            // Generate a Pastebin URL of the current Build for the user to share
-            string buildAsText;
-            string pasteUrl;
-            XmlSerializer serializer;
-
-            string apiKey = "9074d08a3c19871f793663a0361c6976";
-            var client = new PasteBinClient(apiKey);
-
-            // Optional; will publish as a guest if not logged in; could enable this to see how many pastes people are using but
-            //   this exposes username/password since it's on Github (CCalcShare//CCalcSharer)
-            //client.Login(userName, password); //this'll set User Key
-
-            serializer = new XmlSerializer(build.GetType());
-
-            // Save the build to a string format
-            using (StringWriter writer = new StringWriter())
+            if (!pbpBuildShare.Visible)
             {
-                serializer.Serialize(writer, build);  //TODO add try/catch around this incase serialization fails
-                buildAsText = writer.ToString();
-            }
-
-            // Setup the data for the Pastebin
-            var entry = new PasteBinEntry
-            {
-                Title = "ChroniCalc Build Share",
-                Text = buildAsText,
-                Expiration = PasteBinExpiration.Never,
-                Private = false,
-                Format = "xml"
-            };
-
-            // Call through the Pastebin API to get the URL
-            pasteUrl = client.Paste(entry);
-
-            // Show the Pastebin URL in the textbox
-            txtBuildShare.Text = pasteUrl;
-        }
-
-        private void TxtBuildShare_Leave(object sender, EventArgs e)
-        {
-            // Set the placeholder text if user left the control and now the text is empty
-            if (txtBuildShare.Text == string.Empty)
-            {
-                txtBuildShare.Text = "Pastebin URL";
-            }
-        }
-
-        private void TxtBuildShare_Click(object sender, EventArgs e)
-        {
-            // Clear placeholder text if user entered the control to paste their URL
-            if (txtBuildShare.Text == "Pastebin URL")
-            {
-                txtBuildShare.Text = string.Empty;
+                pbpBuildShare.Show();
             }
         }
     }

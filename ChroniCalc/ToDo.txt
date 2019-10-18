@@ -4,7 +4,6 @@
 	- hide SkillSelectPanel when focus on it is lost (ie. different "+" button clicked, different tree viewed, etc)
 	- Get an initial release available on Git for download/install
 	- ensure prompt for save is in all necessary places (closing application, loading pastebin build, loading build over pastebin build, etc)
-    - adjust UI of pastebin build load/share to possibly its own popup/panel
 
  MAJORS:
   - Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)

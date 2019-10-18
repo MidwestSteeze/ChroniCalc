@@ -68,6 +68,12 @@
     <Compile Include="Build.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="PasteBinClient.cs" />
+    <Compile Include="PastebinPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PastebinPanel.Designer.cs">
+      <DependentUpon>PastebinPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ResourceImageClass.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -143,6 +149,9 @@
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PastebinPanel.resx">
+      <DependentUpon>PastebinPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1010,6 +1019,7 @@
     <None Include="Assets\Images\UI\IconBuilds.png" />
     <None Include="Assets\Images\UI\IconInventory.png" />
     <None Include="Assets\Images\UI\IconTrees.png" />
+    <None Include="Assets\Images\UI\IconClose.png" />
     <Content Include="ToDo.txt" />
     <None Include="Assets\Images\Tree\SkyLord.png" />
     <None Include="Assets\Images\Tree\Frostborn.png" />

@@ -44,12 +44,10 @@
             this.btnNavTrees = new System.Windows.Forms.Button();
             this.btnNavInventory = new System.Windows.Forms.Button();
             this.btnResetTree = new System.Windows.Forms.Button();
-            this.btnBuildLoad = new System.Windows.Forms.Button();
-            this.btnBuildShare = new System.Windows.Forms.Button();
-            this.txtBuildShare = new System.Windows.Forms.TextBox();
+            this.btnBuildSharing = new System.Windows.Forms.Button();
             this.pnlClassData = new System.Windows.Forms.Panel();
             this.pnlBuilds = new System.Windows.Forms.Panel();
-            this.lblBuildSharing = new System.Windows.Forms.Label();
+            this.pbpBuildShare = new ChroniCalc.PastebinPanel();
             this.btnBuildDelete = new System.Windows.Forms.Button();
             this.btnBuildOpen = new System.Windows.Forms.Button();
             this.dgvBuilds = new System.Windows.Forms.DataGridView();
@@ -228,41 +226,16 @@
             this.btnResetTree.UseVisualStyleBackColor = false;
             this.btnResetTree.Click += new System.EventHandler(this.BtnResetTree_Click);
             // 
-            // btnBuildLoad
+            // btnBuildSharing
             // 
-            this.btnBuildLoad.Location = new System.Drawing.Point(323, 10);
-            this.btnBuildLoad.Name = "btnBuildLoad";
-            this.btnBuildLoad.Size = new System.Drawing.Size(43, 23);
-            this.btnBuildLoad.TabIndex = 4;
-            this.btnBuildLoad.Text = "Load";
-            this.toolTipInfo.SetToolTip(this.btnBuildLoad, "Loads Pastebin URL of a shared Build");
-            this.btnBuildLoad.UseVisualStyleBackColor = true;
-            this.btnBuildLoad.Click += new System.EventHandler(this.BtnBuildLoad_Click);
-            // 
-            // btnBuildShare
-            // 
-            this.btnBuildShare.Location = new System.Drawing.Point(478, 10);
-            this.btnBuildShare.Name = "btnBuildShare";
-            this.btnBuildShare.Size = new System.Drawing.Size(43, 23);
-            this.btnBuildShare.TabIndex = 5;
-            this.btnBuildShare.Text = "Share";
-            this.toolTipInfo.SetToolTip(this.btnBuildShare, "Generates a Pastebin URL to share your Build");
-            this.btnBuildShare.UseVisualStyleBackColor = true;
-            this.btnBuildShare.Click += new System.EventHandler(this.BtnBuildShare_Click);
-            // 
-            // txtBuildShare
-            // 
-            this.txtBuildShare.BackColor = System.Drawing.Color.Black;
-            this.txtBuildShare.ForeColor = System.Drawing.Color.White;
-            this.txtBuildShare.Location = new System.Drawing.Point(372, 12);
-            this.txtBuildShare.Name = "txtBuildShare";
-            this.txtBuildShare.Size = new System.Drawing.Size(100, 20);
-            this.txtBuildShare.TabIndex = 6;
-            this.txtBuildShare.Text = "Pastebin URL";
-            this.toolTipInfo.SetToolTip(this.txtBuildShare, "Enter a URL here to load it into a new Build or copy the generated URL to share w" +
-        "ith friends");
-            this.txtBuildShare.Click += new System.EventHandler(this.TxtBuildShare_Click);
-            this.txtBuildShare.Leave += new System.EventHandler(this.TxtBuildShare_Leave);
+            this.btnBuildSharing.Location = new System.Drawing.Point(429, 10);
+            this.btnBuildSharing.Name = "btnBuildSharing";
+            this.btnBuildSharing.Size = new System.Drawing.Size(88, 23);
+            this.btnBuildSharing.TabIndex = 7;
+            this.btnBuildSharing.Text = "Build Sharing...";
+            this.toolTipInfo.SetToolTip(this.btnBuildSharing, "Opens the Build Sharing panel for Loading or Sharing Builds");
+            this.btnBuildSharing.UseVisualStyleBackColor = true;
+            this.btnBuildSharing.Click += new System.EventHandler(this.btnBuildSharing_Click);
             // 
             // pnlClassData
             // 
@@ -285,10 +258,8 @@
             // pnlBuilds
             // 
             this.pnlBuilds.BackColor = System.Drawing.Color.Transparent;
-            this.pnlBuilds.Controls.Add(this.txtBuildShare);
-            this.pnlBuilds.Controls.Add(this.btnBuildShare);
-            this.pnlBuilds.Controls.Add(this.btnBuildLoad);
-            this.pnlBuilds.Controls.Add(this.lblBuildSharing);
+            this.pnlBuilds.Controls.Add(this.pbpBuildShare);
+            this.pnlBuilds.Controls.Add(this.btnBuildSharing);
             this.pnlBuilds.Controls.Add(this.btnBuildDelete);
             this.pnlBuilds.Controls.Add(this.btnBuildOpen);
             this.pnlBuilds.Controls.Add(this.dgvBuilds);
@@ -297,16 +268,13 @@
             this.pnlBuilds.Size = new System.Drawing.Size(540, 317);
             this.pnlBuilds.TabIndex = 14;
             // 
-            // lblBuildSharing
+            // pbpBuildShare
             // 
-            this.lblBuildSharing.AutoSize = true;
-            this.lblBuildSharing.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuildSharing.ForeColor = System.Drawing.Color.White;
-            this.lblBuildSharing.Location = new System.Drawing.Point(237, 14);
-            this.lblBuildSharing.Name = "lblBuildSharing";
-            this.lblBuildSharing.Size = new System.Drawing.Size(80, 15);
-            this.lblBuildSharing.TabIndex = 3;
-            this.lblBuildSharing.Text = "Build Sharing:";
+            this.pbpBuildShare.Location = new System.Drawing.Point(111, 53);
+            this.pbpBuildShare.Name = "pbpBuildShare";
+            this.pbpBuildShare.Size = new System.Drawing.Size(325, 150);
+            this.pbpBuildShare.TabIndex = 8;
+            this.pbpBuildShare.Visible = false;
             // 
             // btnBuildDelete
             // 
@@ -607,7 +575,6 @@
             this.pnlClassData.ResumeLayout(false);
             this.pnlClassData.PerformLayout();
             this.pnlBuilds.ResumeLayout(false);
-            this.pnlBuilds.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).EndInit();
             this.pnlTrees.ResumeLayout(false);
             this.pnlTrees.PerformLayout();
@@ -653,10 +620,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Stats;
         private System.Windows.Forms.Panel pnlClassCaptions;
         private System.Windows.Forms.Label lblBuildName;
-        private System.Windows.Forms.Label lblBuildSharing;
-        private System.Windows.Forms.Button btnBuildLoad;
-        private System.Windows.Forms.Button btnBuildShare;
-        private System.Windows.Forms.TextBox txtBuildShare;
+        private System.Windows.Forms.Button btnBuildSharing;
+        private PastebinPanel pbpBuildShare;
     }
 }
 
