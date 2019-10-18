@@ -753,7 +753,7 @@ namespace ChroniCalc
         private void BtnNavInventory_Click(object sender, EventArgs e)
         {
             // Show the Inventory tab
-            //pnlInventory.BringToFront();
+            pnlInventory.BringToFront();
         }
 
         private void BtnNavTrees_Click(object sender, EventArgs e)

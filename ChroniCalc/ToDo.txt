@@ -6,13 +6,15 @@
 	- ensure prompt for save is in all necessary places (closing application, loading pastebin build, loading build over pastebin build, etc)
 
  MAJORS:
-  - Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
+  - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
       - could also retain use of XML within program but output as JSON (ie. JsonConvert.SerializeXmlNodeDoc())
 	  - see project JsonImporter, has it working but requires adjustment to JSON
-  - Save/Load/Share builds (Json format to correlate with in-game build import/exporter
   - Stat calculation and screen (damage, health, etc)
  
  CLASSES:
+
+
+ INVENTORY:
 
  
  SKILLS:

@@ -54,6 +54,8 @@
             this.BuildName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stats = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTree = new System.Windows.Forms.Label();
+            this.pnlInventory = new System.Windows.Forms.Panel();
+            this.pnlInventoryGear = new System.Windows.Forms.Panel();
             this.pnlTrees = new System.Windows.Forms.Panel();
             this.btnTree1 = new System.Windows.Forms.Button();
             this.btnTree2 = new System.Windows.Forms.Button();
@@ -73,6 +75,7 @@
             this.pnlClassData.SuspendLayout();
             this.pnlBuilds.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).BeginInit();
+            this.pnlInventory.SuspendLayout();
             this.pnlTrees.SuspendLayout();
             this.pnlClassCaptions.SuspendLayout();
             this.SuspendLayout();
@@ -248,6 +251,7 @@
             this.pnlClassData.Controls.Add(this.btnNavTrees);
             this.pnlClassData.Controls.Add(this.btnNavInventory);
             this.pnlClassData.Controls.Add(this.lblTree);
+            this.pnlClassData.Controls.Add(this.pnlInventory);
             this.pnlClassData.Controls.Add(this.pnlTrees);
             this.pnlClassData.Controls.Add(this.pnlClassCaptions);
             this.pnlClassData.Location = new System.Drawing.Point(220, 0);
@@ -363,6 +367,24 @@
             this.lblTree.Name = "lblTree";
             this.lblTree.Size = new System.Drawing.Size(0, 20);
             this.lblTree.TabIndex = 7;
+            // 
+            // pnlInventory
+            // 
+            this.pnlInventory.BackColor = System.Drawing.Color.Transparent;
+            this.pnlInventory.Controls.Add(this.pnlInventoryGear);
+            this.pnlInventory.Location = new System.Drawing.Point(10, 83);
+            this.pnlInventory.Name = "pnlInventory";
+            this.pnlInventory.Size = new System.Drawing.Size(540, 317);
+            this.pnlInventory.TabIndex = 20;
+            // 
+            // pnlInventoryGear
+            // 
+            this.pnlInventoryGear.BackgroundImage = global::ChroniCalc.ResourceImageInventory.Inventory;
+            this.pnlInventoryGear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlInventoryGear.Location = new System.Drawing.Point(10, 44);
+            this.pnlInventoryGear.Name = "pnlInventoryGear";
+            this.pnlInventoryGear.Size = new System.Drawing.Size(520, 222);
+            this.pnlInventoryGear.TabIndex = 0;
             // 
             // pnlTrees
             // 
@@ -576,6 +598,7 @@
             this.pnlClassData.PerformLayout();
             this.pnlBuilds.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).EndInit();
+            this.pnlInventory.ResumeLayout(false);
             this.pnlTrees.ResumeLayout(false);
             this.pnlTrees.PerformLayout();
             this.pnlClassCaptions.ResumeLayout(false);
@@ -592,6 +615,7 @@
         private System.Windows.Forms.Button btnTree4;
         private System.Windows.Forms.Button btnTreeMastery;
         private System.Windows.Forms.Panel pnlTrees;
+        private System.Windows.Forms.Panel pnlInventory;
         private System.Windows.Forms.Panel pnlClassData;
         private System.Windows.Forms.Panel pnlClass;
         private System.Windows.Forms.ComboBox cboClass;
@@ -622,6 +646,7 @@
         private System.Windows.Forms.Label lblBuildName;
         private System.Windows.Forms.Button btnBuildSharing;
         private PastebinPanel pbpBuildShare;
+        private System.Windows.Forms.Panel pnlInventoryGear;
     }
 }
 

@@ -79,6 +79,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceImageClass.resx</DependentUpon>
     </Compile>
+    <Compile Include="ResourceImageInventory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceImageInventory.resx</DependentUpon>
+    </Compile>
     <Compile Include="ResourceImageSkill.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,6 +171,10 @@
     <EmbeddedResource Include="ResourceImageClass.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceImageClass.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceImageInventory.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceImageInventory.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceImageSkill.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1020,6 +1029,7 @@
     <None Include="Assets\Images\UI\IconInventory.png" />
     <None Include="Assets\Images\UI\IconTrees.png" />
     <None Include="Assets\Images\UI\IconClose.png" />
+    <None Include="Assets\Images\Inventory\Inventory.png" />
     <Content Include="ToDo.txt" />
     <None Include="Assets\Images\Tree\SkyLord.png" />
     <None Include="Assets\Images\Tree\Frostborn.png" />
