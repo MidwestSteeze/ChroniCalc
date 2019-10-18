@@ -19,6 +19,7 @@ namespace ChroniCalc
         readonly ResourceManager ResourceManagerImageSkill;
         public bool isPassiveBonusButton;
         public Skill skill;
+        public SkillSelectPanel skillSelectPanel;
         public SkillTooltipPanel skillTooltipPanel;
         //TODO public Tree tree <-- would it be helpful to have?
 
@@ -83,29 +84,39 @@ namespace ChroniCalc
                 return;
             }
 
-            //Adjust the level of the skill, ensuring we're not beyond the min/max allowed
-            if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && (form.build.level < MainForm.SKILL_POINTS_MAX))
+            if (e.Button == MouseButtons.Left && Control.ModifierKeys == Keys.Shift && this.skillSelectPanel != null)
             {
-                //Increase the level
-                this.skill.level++;
-
-                UpdateSkillPointAndLevelCounter(1);
+                //Redisplay the Skill Select Panel if the skill was shift-clicked
+                if (!this.skillSelectPanel.Visible)
+                {
+                    this.skillSelectPanel.Show();
+                }
             }
-            else if (e.Button == MouseButtons.Right && this.skill.level > 0)
-            {
-                //Decrease the level
-                this.skill.level--;
+            else
+            { 
+                if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && (form.build.level < MainForm.SKILL_POINTS_MAX))
+                {
+                    //Increase the level
+                    this.skill.level++;
 
-                UpdateSkillPointAndLevelCounter(-1);
+                    UpdateSkillPointAndLevelCounter(1);
+                }
+                else if (e.Button == MouseButtons.Right && this.skill.level > 0)
+                {
+                    //Decrease the level
+                    this.skill.level--;
+
+                    UpdateSkillPointAndLevelCounter(-1);
+                }
+
+                //Update the displayed level on the skill button
+                this.lblSkillLevel.Text = this.skill.level.ToString();
+
+                //Update the tooltip description based on the new level of the skill
+                this.skillTooltipPanel.PopulateDescription();
+
+                 //TODO update stats (damage, health, mana, etc)
             }
-
-            //Update the displayed level on the skill button
-            this.lblSkillLevel.Text = this.skill.level.ToString();
-
-            //Update the tooltip description based on the new level of the skill
-            this.skillTooltipPanel.PopulateDescription();
-
-            //TODO update stats (damage, health, mana, etc)
         }
 
         private bool HavePrereqs()

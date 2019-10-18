@@ -60,7 +60,7 @@ namespace ChroniCalc
 
             //Remove the current control at the currently-selected position
             // NOTE: Removing a control moves all controls after it "up" 1 cell by index, but adding a control in its place immediately after will put all skills back in their place
-            MultiSkillSelectButton btnMultiSkillSelect = (MultiSkillSelectButton)this.treeControl.GetControlFromPosition(this.skill.x, this.skill.y);
+            Control btnMultiSkillSelect = this.treeControl.GetControlFromPosition(this.skill.x, this.skill.y);
             this.treeControl.Controls.Remove(btnMultiSkillSelect);
 
             //Add the skill button to the Tree at the currently-selected position
@@ -68,9 +68,10 @@ namespace ChroniCalc
 
             //Hide the SkillSelectPanel now that the user chose a skill
             // (Not deleting it so the user can switch it out if they change their mind)
-            //TODO setup a right-click on these types of buttons to re-display the SkillSelectPanel
             this.Parent.Hide();
 
+ 			//Move the SkillSelectPanel over to the newly-selected SkillButton so it can be re-displayed if wanted
+            btnSkill.skillSelectPanel = this.Parent as SkillSelectPanel;
         }
 
         private void SkillSelectButton_MouseHover(object sender, EventArgs e)  //TODOSSG duplicate code of SkillButton MouseHover/Leave events

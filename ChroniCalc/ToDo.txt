@@ -2,7 +2,6 @@
 
  RESUME AT:
 	- hide SkillSelectPanel when focus on it is lost (ie. different "+" button clicked, different tree viewed, etc)
-	- add shift+click functionality for changing MultiSkillSelect skills? or is the panel already gone?
 	- Get an initial release available on Git for download/install
 	- add double-click to open from build list
 	- ensure prompt for save is in all necessary places (closing application, loading pastebin build, loading build over pastebin build, etc)
