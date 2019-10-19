@@ -43,6 +43,7 @@
             // UnassignSkillButton
             // 
             this.Click += new System.EventHandler(this.UnassignSkillButton_Click);
+            this.MouseLeave += new System.EventHandler(this.UnassignSkillButton_MouseLeave);
             this.ResumeLayout(false);
 
         }

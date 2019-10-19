@@ -1,7 +1,6 @@
 ﻿ ToDo
 
  RESUME AT:
-	- hide SkillSelectPanel when focus on it is lost (ie. different "+" button clicked, different tree viewed, etc)
 	- Get an initial release available on Git for download/install
 	- ensure prompt for save is in all necessary places (closing application, loading pastebin build, loading build over pastebin build, etc)
 

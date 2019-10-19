@@ -90,6 +90,9 @@ namespace ChroniCalc
             {
                 this.skillTooltipPanel.Visible = false;
             }
+
+            // Mark the control as no longer being in focus by the mouse, so it can be automatically hidden when the mouse leaves its parent panel
+            (this.Parent as SkillSelectPanel).mouseFocused = false;
         }
 
         private Point GetTooltipLocation() //TODOSSG duplicate code of SkillButton.GetTooltipLocation

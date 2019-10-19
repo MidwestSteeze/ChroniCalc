@@ -40,7 +40,9 @@
             // 
             // SkillSelectPanel
             // 
+            this.VisibleChanged += new System.EventHandler(this.SkillSelectPanel_VisibleChanged);
             this.Click += new System.EventHandler(this.SkillSelectPanel_Click);
+            this.MouseLeave += new System.EventHandler(this.SkillSelectPanel_MouseLeave);
             this.ResumeLayout(false);
 
         }

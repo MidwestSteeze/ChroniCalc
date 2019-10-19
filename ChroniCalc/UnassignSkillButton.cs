@@ -48,5 +48,11 @@ namespace ChroniCalc
             //Close the Parent panel
             this.Parent.Hide();
         }
+
+        private void UnassignSkillButton_MouseLeave(object sender, EventArgs e)
+        {
+            // Mark the control as no longer being in focus by the mouse, so it can be automatically hidden when the mouse leaves its parent panel
+            (this.Parent as SkillSelectPanel).mouseFocused = false;
+        }
     }
 }

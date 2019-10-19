@@ -15,10 +15,13 @@ namespace ChroniCalc
     public partial class SkillSelectPanel : Control
     {
         readonly ResourceManager ResourceManagerImageUI;
+        public bool mouseFocused = false;
 
         public SkillSelectPanel()
         {
             InitializeComponent();
+
+            WireMouseLeaveEventToAllChildren(this);
 
             //Specify defaults for this custom control
 
@@ -45,6 +48,34 @@ namespace ChroniCalc
         private void SkillSelectPanel_Click(object sender, EventArgs e)
         {
             //It's here if you need it for something
+        }
+
+        private void WireMouseLeaveEventToAllChildren(Control container)
+        {
+			// This is required in order to track when the mouse has left all Multi SkillSelect buttons and their container so we can auto-hide it
+            foreach (Control c in container.Controls)
+            {
+                c.MouseHover += (s, e) => OnMouseLeave(e);
+
+                WireMouseLeaveEventToAllChildren(c);
+            };
+        }
+
+        private void SkillSelectPanel_MouseLeave(object sender, EventArgs e)
+        {
+            if (!this.mouseFocused)
+            {
+                this.Hide();
+            }
+        }
+
+        private void SkillSelectPanel_VisibleChanged(object sender, EventArgs e)
+        {
+			// Flag the control as having mouse focus when it's displayed
+            if (this.Visible)
+            {
+                this.mouseFocused = true;
+            }
         }
     }
 }
