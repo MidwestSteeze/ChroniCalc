@@ -1,8 +1,8 @@
 ﻿ ToDo
 
  RESUME AT:
+    - close buildsharing panel when focus is changed off the build tab
 	- Get an initial release available on Git for download/install
-	- ensure prompt for save is in all necessary places (closing application, loading pastebin build, loading build over pastebin build, etc)
 
  MAJORS:
   - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
@@ -23,8 +23,7 @@
 
  
  TREES:
-	- images: make and set skillselectpanel background image
-	- Is the Unassign Skill button bigger than the other SkillSelect buttons?
+
 
  MISC:
 	- MainForm: Mastery Point counter (no Maximum)

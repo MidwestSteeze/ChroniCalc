@@ -73,7 +73,10 @@ namespace ChroniCalc
             string pastebinExtract;
 
             //Prompt for save/if user really wants to load, overwriting current build
-            //TODO
+            if (!ParentForm.SaveBuildShouldContinue())
+            {
+                return;
+            }
 
             pasteBinClient = new PasteBinClient();
             pastebinExtract = pasteBinClient.Extract(txtPastebinLoad.Text);

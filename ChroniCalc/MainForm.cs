@@ -326,6 +326,21 @@ namespace ChroniCalc
 
             if (dialogResult == DialogResult.Yes)
             {
+				//Prompt for save/if user really wants to start a new character, overwriting current build
+            	if (!SaveBuildShouldContinue())
+            	{
+                    //Reset the selected class since the user chose to cancel
+                    // Suppress change events
+                    cboClass.SelectedIndexChanged -= CboClass_SelectedIndexChanged;
+
+                    cboClass.SelectedIndex = cboClass.Items.IndexOf(build.characterClass.name);
+
+                    // Unsuppress change events
+                    cboClass.SelectedIndexChanged += CboClass_SelectedIndexChanged;
+
+                    return;
+	            }
+
                 //Clear everything related to the previous build
                 ClearCharacter(build);
 
@@ -873,6 +888,12 @@ namespace ChroniCalc
         {
             string fileNameAndPath;
 
+			//Prompt for save/if user really wants to open the Build, overwriting current build
+            if (!SaveBuildShouldContinue())
+            {
+                return;
+            }
+
             fileNameAndPath = BuildsDirectory + "\\" + dgvBuilds.CurrentRow.Cells["BuildName"].Value.ToString() + XML_EXT;
 
             treeStatus = TreeStatus.Importing;
@@ -1127,6 +1148,55 @@ namespace ChroniCalc
             {
                 pbpBuildShare.Show();
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+			//Prompt for save/if user really wants to save the build before closing the application //TODO fix this, application still exists on selecting "Cancel"
+            if (SaveBuildShouldContinue())
+            {
+                Application.Exit();
+            }
+        }
+
+        public bool SaveBuildShouldContinue()
+        {
+            bool shouldContinue = false;
+            DialogResult dialogResult;
+            string fileNameAndPath;
+
+            fileNameAndPath = BuildsDirectory + "\\" + build.name + XML_EXT;
+
+            // Find the build file within the Builds directory, by name, and open it
+            if (!File.Exists(fileNameAndPath) && !(build.characterClass is null))
+            {
+                // Ensure the user wants to overwrite this build
+                dialogResult = MessageBox.Show("The current Build is not saved.  Would you like to save it before continuing?", "Save Build", MessageBoxButtons.YesNoCancel);
+
+                switch (dialogResult)
+                {
+                    case DialogResult.Yes:
+                        BtnNavSaveAs_Click(this, EventArgs.Empty);
+                        shouldContinue = true; //TODO what if the SaveAs procs but the user decides not to save it?
+                        break;
+                    case DialogResult.No:
+                        // They don't want to save the build, but want to continue
+                        shouldContinue = true;
+                        break;
+                    case DialogResult.Cancel:
+                        //They dont want to continue with the requested process
+                        shouldContinue = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                shouldContinue = true;
+            }
+
+            return shouldContinue;
         }
     }
 }

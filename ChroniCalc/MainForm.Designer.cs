@@ -592,6 +592,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "ChroniCalc";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.pnlClass.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).EndInit();
             this.pnlClassData.ResumeLayout(false);
