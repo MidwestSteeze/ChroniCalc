@@ -280,6 +280,12 @@ namespace ChroniCalc
         
         private void ShowTree(object sender, EventArgs e)
         {
+            // Don't continue on if there is no build initialized/loaded yet (ie. on initial load of application)
+            if (build.characterClass is null)
+            {
+                return;
+            }
+
             Button btnTree = (sender as Button);
             //Determine which tree the user selected to be shown
             string treeName = btnTree.Tag.ToString();
