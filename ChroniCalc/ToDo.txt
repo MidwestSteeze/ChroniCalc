@@ -1,7 +1,7 @@
 ﻿ ToDo
 
  RESUME AT:
-	- opening a build, changing a skill doesn't flag it as unsaved and doesn't prompt to save on create/open/load of another build
+    - open a build, change a skill, start a new build will prompt a save-as isntead of an automatic overwrite of the current build before creating the new one
 	- Get an initial release available on Git for download/install
 
  MAJORS:

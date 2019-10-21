@@ -94,7 +94,7 @@ namespace ChroniCalc
             }
             else
             { 
-                if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && (form.build.level < MainForm.SKILL_POINTS_MAX))
+                if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && (form.build.Level < MainForm.SKILL_POINTS_MAX))
                 {
                     //Increase the level
                     this.skill.level++;
@@ -178,7 +178,7 @@ namespace ChroniCalc
             //Adjust the total spent skill points counter
 
             //Adjust the level of the Build
-            form.build.level += levelAdjust;
+            form.build.Level += levelAdjust;
 
             //Update the total spent skill points on this particular Tree for the passive bonus stats
             ttlpTree.skillPointsAllocated = ttlpTree.skillPointsAllocated + levelAdjust;
@@ -187,10 +187,10 @@ namespace ChroniCalc
             passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
 
             //Update the label that shows remaining points that can be spent
-           (form.Controls.Find("lblSkillPointsRemaining", true).First() as Label).Text = (MainForm.SKILL_POINTS_MAX - form.build.level).ToString();
+           (form.Controls.Find("lblSkillPointsRemaining", true).First() as Label).Text = (MainForm.SKILL_POINTS_MAX - form.build.Level).ToString();
 
             //Update the current level of the character based on how many skill points have been spent
-            (form.Controls.Find("lblLevel", true).First() as Label).Text = form.build.level.ToString();
+            (form.Controls.Find("lblLevel", true).First() as Label).Text = form.build.Level.ToString();
 
             //Update the level as shown in the SkillTooltipPanel
             this.skillTooltipPanel.UpdateRankText(this.skill.level);

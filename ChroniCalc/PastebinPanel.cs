@@ -54,7 +54,7 @@ namespace ChroniCalc
             {
                 Title = "ChroniCalc Build Share",
                 Text = buildAsText,
-                Expiration = PasteBinExpiration.Never,
+                Expiration = PasteBinExpiration.OneDay, //Never, TODO change back for deployment
                 Private = false,
                 Format = "xml"
             };

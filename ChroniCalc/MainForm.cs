@@ -138,7 +138,7 @@ namespace ChroniCalc
             DataGridViewRow row = new DataGridViewRow();
             row.CreateCells(dgvBuilds);
             row.Cells[0].Value = loadedBuild.name;
-            row.Cells[1].Value = loadedBuild.characterClass.name + " Lvl" + loadedBuild.level + " M" + loadedBuild.masteryLevel;
+            row.Cells[1].Value = loadedBuild.characterClass.name + " Lvl" + loadedBuild.Level + " M" + loadedBuild.MasteryLevel;
             dgvBuilds.Rows.Add(row);
         }
 
@@ -388,13 +388,13 @@ namespace ChroniCalc
         {
             //Update Character Name and Level
             lblBuildName.Text = build.name;
-            lblLevel.Text = build.level.ToString();
+            lblLevel.Text = build.Level.ToString();
 
             //Update Mastery level
-            lblMastery.Text = build.masteryLevel.ToString();
+            lblMastery.Text = build.MasteryLevel.ToString();
 
             //Update # of Skill Points Remaining
-            lblSkillPointsRemaining.Text = (SKILL_POINTS_MAX - build.level).ToString();
+            lblSkillPointsRemaining.Text = (SKILL_POINTS_MAX - build.Level).ToString();
 
             //TODOSSG
             //Update all Stats (dmg, health, etc)
@@ -439,7 +439,7 @@ namespace ChroniCalc
                     // NOTE: Only if this is a build we're importing, not one we're resetting //TODOSSG test this, this may not be conditioned on anymore but is working
                     if (!skillButton.isPassiveBonusButton) // && build.level > 0) //TODOSSG this is a hack for the NOTE above //TODOSSG this note is maybe no longer applicable
                     {
-                        build.level -= skillButton.skill.level;
+                        build.Level -= skillButton.skill.level;
                     }                    
 
                     //Lastly, reset the level of the skill
@@ -809,7 +809,7 @@ namespace ChroniCalc
                     rowIndex = row.Index;
 
                     dgvRow = dgvBuilds.Rows[rowIndex];
-                    dgvRow.Cells["Stats"].Value = build.characterClass.name + " Lvl" + build.level + " M" + build.masteryLevel;
+                    dgvRow.Cells["Stats"].Value = build.characterClass.name + " Lvl" + build.Level + " M" + build.MasteryLevel;
                     dgvRow.Selected = true;
                 }
             }
@@ -823,6 +823,12 @@ namespace ChroniCalc
 
         private void BtnNavSaveAs_Click(object sender, EventArgs e)
         {
+            if (build.characterClass is null)
+            {
+                MessageBox.Show("No Build has been created or loaded.  Please start a Build before attempting to save it.");
+                return;
+            }
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
             saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
@@ -847,6 +853,10 @@ namespace ChroniCalc
         private void SaveBuild(string fileNameAndPath)
         {
             XmlSerializer serializer;
+
+            // Set a few last-minute properties
+            build.lastSaved = DateTime.Now;
+            build.buildStatus = Build.BuildStatus.Saved;
 
             // Save the build to the specified file
             using (var writer = new StreamWriter(fileNameAndPath))
@@ -914,11 +924,15 @@ namespace ChroniCalc
                 //TODO display message that build not found for some reason
             }
             
+            //TODO clear treeStatus?
         }
 
         public void OpenBuild(string buildContent, bool pasteBinImport = false)
         {
             XmlSerializer serializer;
+
+			// Set the Build Status so we don't trigger certain events (e.g. Build.SetAsModified())
+            build.buildStatus = Build.BuildStatus.Opening;
 
             // Clear everything related to the previous build
             ClearCharacter(build);
@@ -956,6 +970,9 @@ namespace ChroniCalc
 
             // Show the Trees
             pnlTrees.BringToFront();
+
+			// Clear the Build Status
+            build.buildStatus = Build.BuildStatus.None;
         }
 
         private void InitializeBuild(Build build)
@@ -1173,8 +1190,8 @@ namespace ChroniCalc
 
             fileNameAndPath = BuildsDirectory + "\\" + build.name + XML_EXT;
 
-            // Find the build file within the Builds directory, by name, and open it
-            if (!File.Exists(fileNameAndPath) && !(build.characterClass is null))
+            // Check if the Build is modified or there isn't yet a save file for it and it needs to be Saved before continuing
+            if (!File.Exists(fileNameAndPath) && !(build.characterClass is null) || (build.IsModified()))
             {
                 // Ensure the user wants to overwrite this build
                 dialogResult = MessageBox.Show("The current Build is not saved.  Would you like to save it before continuing?", "Save Build", MessageBoxButtons.YesNoCancel);
