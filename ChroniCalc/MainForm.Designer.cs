@@ -403,6 +403,7 @@
             // btnTree1
             // 
             this.btnTree1.BackColor = System.Drawing.Color.Transparent;
+            this.btnTree1.BackgroundImage = global::ChroniCalc.ResourceImageTree.IconTree;
             this.btnTree1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTree1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree1.FlatAppearance.BorderSize = 0;
@@ -417,6 +418,7 @@
             // btnTree2
             // 
             this.btnTree2.BackColor = System.Drawing.Color.Transparent;
+            this.btnTree2.BackgroundImage = global::ChroniCalc.ResourceImageTree.IconTree;
             this.btnTree2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTree2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree2.FlatAppearance.BorderSize = 0;
@@ -431,6 +433,7 @@
             // btnTree3
             // 
             this.btnTree3.BackColor = System.Drawing.Color.Transparent;
+            this.btnTree3.BackgroundImage = global::ChroniCalc.ResourceImageTree.IconTree;
             this.btnTree3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTree3.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree3.FlatAppearance.BorderSize = 0;
@@ -445,6 +448,7 @@
             // btnTree4
             // 
             this.btnTree4.BackColor = System.Drawing.Color.Transparent;
+            this.btnTree4.BackgroundImage = global::ChroniCalc.ResourceImageTree.IconTree;
             this.btnTree4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnTree4.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree4.FlatAppearance.BorderSize = 0;

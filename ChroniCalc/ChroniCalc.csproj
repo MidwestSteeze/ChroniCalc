@@ -1030,6 +1030,7 @@
     <None Include="Assets\Images\UI\IconTrees.png" />
     <None Include="Assets\Images\UI\IconClose.png" />
     <None Include="Assets\Images\Inventory\Inventory.png" />
+    <None Include="Assets\Images\Tree\IconTree.png" />
     <Content Include="ToDo.txt" />
     <None Include="Assets\Images\Tree\SkyLord.png" />
     <None Include="Assets\Images\Tree\Frostborn.png" />

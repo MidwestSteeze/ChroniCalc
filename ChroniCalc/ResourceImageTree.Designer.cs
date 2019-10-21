@@ -263,6 +263,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap IconTree {
+            get {
+                object obj = ResourceManager.GetObject("IconTree", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap IconVengeance {
             get {
                 object obj = ResourceManager.GetObject("IconVengeance", resourceCulture);

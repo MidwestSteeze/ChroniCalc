@@ -1153,10 +1153,10 @@ namespace ChroniCalc
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 			//Prompt for save/if user really wants to save the build before closing the application //TODO fix this, application still exists on selecting "Cancel"
-            if (SaveBuildShouldContinue())
-            {
-                Application.Exit();
-            }
+            //if (SaveBuildShouldContinue())
+            //{
+            //    Application.Exit();
+            //}
         }
 
         public bool SaveBuildShouldContinue()
