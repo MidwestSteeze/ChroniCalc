@@ -812,6 +812,11 @@ namespace ChroniCalc
                     dgvRow.Cells["Stats"].Value = build.characterClass.name + " Lvl" + build.Level + " M" + build.MasteryLevel;
                     dgvRow.Selected = true;
                 }
+                else
+                {
+                    // The user changed their mind and doesn't want to overwrite the current Build so allow them to save it as a new one
+                    BtnNavSaveAs_Click(sender, e);
+                }
             }
             else
             {
@@ -1199,8 +1204,8 @@ namespace ChroniCalc
                 switch (dialogResult)
                 {
                     case DialogResult.Yes:
-                        BtnNavSaveAs_Click(this, EventArgs.Empty);
-                        shouldContinue = true; //TODO what if the SaveAs procs but the user decides not to save it?
+                        BtnNavSave_Click(this, EventArgs.Empty);
+                        shouldContinue = true;
                         break;
                     case DialogResult.No:
                         // They don't want to save the build, but want to continue
