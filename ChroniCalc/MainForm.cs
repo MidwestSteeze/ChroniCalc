@@ -122,7 +122,7 @@ namespace ChroniCalc
                         loadedBuild = serializer.Deserialize(stream) as Build;
                     }
 
-                    AddBuildToBuildsList(loadedBuild);
+                    UpdateBuildsList(loadedBuild);
                 }
                 catch (Exception)
                 {
@@ -133,13 +133,38 @@ namespace ChroniCalc
             }
         }
 
-        private void AddBuildToBuildsList(Build loadedBuild)
+        private void UpdateBuildsList(Build buildToList)
         {
-            DataGridViewRow row = new DataGridViewRow();
-            row.CreateCells(dgvBuilds);
-            row.Cells[0].Value = loadedBuild.name;
-            row.Cells[1].Value = loadedBuild.characterClass.name + " Lvl" + loadedBuild.Level + " M" + loadedBuild.MasteryLevel;
-            dgvBuilds.Rows.Add(row);
+            DataGridViewRow existingRow;
+            DataGridViewRow buildRow = null;
+            int rowIndex;
+            string buildStats = buildToList.characterClass.name + " Lvl" + buildToList.Level + " M" + buildToList.MasteryLevel;
+
+            if (dgvBuilds.RowCount > 0)
+            {
+                // Look for the Build in the Builds list
+                buildRow = dgvBuilds.Rows.Cast<DataGridViewRow>()
+                            .Where(r => r.Cells["BuildName"].Value.ToString().Equals(buildToList.name)).FirstOrDefault();
+            }
+
+            if (!(buildRow is null))
+            {
+                // Update the Build in the Builds list since it already exists
+                rowIndex = buildRow.Index;
+
+                existingRow = dgvBuilds.Rows[rowIndex];
+                existingRow.Cells["Stats"].Value = buildStats;
+                existingRow.Selected = true;
+            }
+            else
+            {
+                // Add the Build to the Builds list
+                buildRow = new DataGridViewRow();
+                buildRow.CreateCells(dgvBuilds);
+                buildRow.Cells[0].Value = buildToList.name;
+                buildRow.Cells[1].Value = buildStats;
+                dgvBuilds.Rows.Add(buildRow);
+            }
         }
 
         public void PopulateSkillTrees()
@@ -325,10 +350,21 @@ namespace ChroniCalc
         private void CboClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             CharacterClass selectedClass;
+            DialogResult dialogResult;
+
             string characterClass = (sender as ComboBox).SelectedItem.ToString();
 
-            //Prompt user ensuring they want to reset their character
-            DialogResult dialogResult = MessageBox.Show("Changing Class will reset this character.  Continue?", "Change Class", MessageBoxButtons.YesNo);
+            // See if we have a Build loaded or not (it's possible this was executed on initial load of the aplication and there is no Build loaded yet
+            if (!(build.characterClass is null))
+            {
+                //Prompt user ensuring they want to reset their character
+                dialogResult = MessageBox.Show("Changing Class will reset this character.  Continue?", "Change Class", MessageBoxButtons.YesNo);
+            }
+            else
+            {
+                // No Build is loaded, so set the dialogResult to Yes to allow the new Build to be created
+                dialogResult = DialogResult.Yes;
+            }
 
             if (dialogResult == DialogResult.Yes)
             {
@@ -366,6 +402,17 @@ namespace ChroniCalc
 
                 // Show the Trees, incase a different view (e.g. Inventory, Builds, etc) was being shown
                 pnlTrees.BringToFront();
+            }
+            else
+            {
+                //TODO set cboClass back to the previously selected characterClass
+                // Suppress change events
+                //cboClass.SelectedIndexChanged -= CboClass_SelectedIndexChanged;
+
+                //cboClass.SelectedIndex = cboClass.Items.IndexOf(build.characterClass.name);
+
+                //// Unsuppress change events
+                //cboClass.SelectedIndexChanged += CboClass_SelectedIndexChanged;
             }
         }
 
@@ -800,17 +847,8 @@ namespace ChroniCalc
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                     SaveBuild(fileNameAndPath);
-
-                    // Update the row in the Builds list
-                    DataGridViewRow row = dgvBuilds.Rows.Cast<DataGridViewRow>()
-                        .Where(r => r.Cells["BuildName"].Value.ToString().Equals(build.name)).First();
-
-                    rowIndex = row.Index;
-
-                    dgvRow = dgvBuilds.Rows[rowIndex];
-                    dgvRow.Cells["Stats"].Value = build.characterClass.name + " Lvl" + build.Level + " M" + build.MasteryLevel;
-                    dgvRow.Selected = true;
+                    SaveBuild(fileNameAndPath);
+                    UpdateBuildsList(build);
                 }
                 else
                 {
@@ -844,14 +882,17 @@ namespace ChroniCalc
             // Save the build as a new build
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Update the name of the build based on the filename
-                build.name = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
-                lblBuildName.Text = build.name;
+                if (!(File.Exists(saveFileDialog.FileName)))
+                {
+                    // Update the Build name if this is a new Build being saved (ie. not a file being overwritten)
+                    build.name = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
+                    lblBuildName.Text = build.name;
+                }
 
                 SaveBuild(saveFileDialog.FileName);
+                UpdateBuildsList(build);
 
-                // Add the newly-saved build to the Builds list so it can be loaded later if needed
-                AddBuildToBuildsList(build);
+                //TODO Set the SaveAs'd Build as selected in the Builds list
             }
         }
 
