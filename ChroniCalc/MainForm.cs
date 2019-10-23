@@ -57,9 +57,6 @@ namespace ChroniCalc
             //Assign ParentForm to UserControls dropped on the Form that need it
             this.pbpBuildShare.ParentForm = this;
 
-            //Updates the version as shown on screen
-            lblVersion.Text = "v" + this.ProductVersion;
-
             //Set the directory where Builds are stored
             BuildsDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\Builds";
 

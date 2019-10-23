@@ -63,6 +63,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap background_panel {
+            get {
+                object obj = ResourceManager.GetObject("background_panel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IconBuilds {
             get {
                 object obj = ResourceManager.GetObject("IconBuilds", resourceCulture);
@@ -126,6 +136,16 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap ImageNotFound {
             get {
                 object obj = ResourceManager.GetObject("ImageNotFound", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo {
+            get {
+                object obj = ResourceManager.GetObject("Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

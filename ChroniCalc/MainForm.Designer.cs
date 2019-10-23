@@ -35,8 +35,6 @@
             this.pnlClass = new System.Windows.Forms.Panel();
             this.pbClass = new System.Windows.Forms.PictureBox();
             this.cboClass = new System.Windows.Forms.ComboBox();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblVersion = new System.Windows.Forms.Label();
             this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
             this.btnNavSaveAs = new System.Windows.Forms.Button();
             this.btnNavSave = new System.Windows.Forms.Button();
@@ -45,6 +43,7 @@
             this.btnNavInventory = new System.Windows.Forms.Button();
             this.btnResetTree = new System.Windows.Forms.Button();
             this.btnBuildSharing = new System.Windows.Forms.Button();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.pnlClassData = new System.Windows.Forms.Panel();
             this.pnlBuilds = new System.Windows.Forms.Panel();
             this.pbpBuildShare = new ChroniCalc.PastebinPanel();
@@ -70,8 +69,10 @@
             this.lblLevelCaption = new System.Windows.Forms.Label();
             this.lblSkillPointsRemaining = new System.Windows.Forms.Label();
             this.lblSkillPointsRemainingCaption = new System.Windows.Forms.Label();
+            this.lblClass = new System.Windows.Forms.Label();
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnlClassData.SuspendLayout();
             this.pnlBuilds.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).BeginInit();
@@ -82,20 +83,24 @@
             // 
             // pnlClass
             // 
+            this.pnlClass.BackColor = System.Drawing.Color.Transparent;
+            this.pnlClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlClass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlClass.Controls.Add(this.lblClass);
             this.pnlClass.Controls.Add(this.pbClass);
             this.pnlClass.Controls.Add(this.cboClass);
-            this.pnlClass.Location = new System.Drawing.Point(3, 39);
+            this.pnlClass.Location = new System.Drawing.Point(16, 78);
             this.pnlClass.Name = "pnlClass";
-            this.pnlClass.Size = new System.Drawing.Size(210, 381);
+            this.pnlClass.Size = new System.Drawing.Size(185, 342);
             this.pnlClass.TabIndex = 7;
             // 
             // pbClass
             // 
-            this.pbClass.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbClass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pbClass.Location = new System.Drawing.Point(3, 28);
             this.pbClass.Name = "pbClass";
-            this.pbClass.Size = new System.Drawing.Size(200, 350);
+            this.pbClass.Size = new System.Drawing.Size(177, 309);
             this.pbClass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbClass.TabIndex = 1;
             this.pbClass.TabStop = false;
@@ -109,31 +114,11 @@
             "Templar",
             "Warden",
             "Warlock"});
-            this.cboClass.Location = new System.Drawing.Point(3, 3);
+            this.cboClass.Location = new System.Drawing.Point(53, 3);
             this.cboClass.Name = "cboClass";
-            this.cboClass.Size = new System.Drawing.Size(203, 21);
+            this.cboClass.Size = new System.Drawing.Size(127, 21);
             this.cboClass.TabIndex = 0;
             this.cboClass.SelectedIndexChanged += new System.EventHandler(this.CboClass_SelectedIndexChanged);
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Rockwell", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(1, 9);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(128, 26);
-            this.lblTitle.TabIndex = 8;
-            this.lblTitle.Text = "ChroniCalc";
-            // 
-            // lblVersion
-            // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Font = new System.Drawing.Font("Rockwell", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(130, 9);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(23, 26);
-            this.lblVersion.TabIndex = 9;
-            this.lblVersion.Text = "v";
             // 
             // btnNavSaveAs
             // 
@@ -239,9 +224,21 @@
             this.toolTipInfo.SetToolTip(this.btnBuildSharing, "Opens the Build Sharing panel for Loading or Sharing Builds");
             this.btnBuildSharing.UseVisualStyleBackColor = true;
             this.btnBuildSharing.Click += new System.EventHandler(this.btnBuildSharing_Click);
+			//
+            // pbLogo
+            // 
+            this.pbLogo.BackColor = System.Drawing.Color.Transparent;
+            this.pbLogo.BackgroundImage = global::ChroniCalc.ResourceImageUI.Logo;
+            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbLogo.Location = new System.Drawing.Point(3, 9);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(211, 63);
+            this.pbLogo.TabIndex = 10;
+            this.pbLogo.TabStop = false;
             // 
             // pnlClassData
             // 
+            this.pnlClassData.BackColor = System.Drawing.Color.Transparent;
             this.pnlClassData.BackgroundImage = global::ChroniCalc.Properties.Resources.background;
             this.pnlClassData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pnlClassData.Controls.Add(this.pnlBuilds);
@@ -581,14 +578,25 @@
             this.lblSkillPointsRemainingCaption.TabIndex = 8;
             this.lblSkillPointsRemainingCaption.Text = "Skill Points:";
             // 
+            // lblClass
+            // 
+            this.lblClass.AutoSize = true;
+            this.lblClass.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClass.ForeColor = System.Drawing.Color.White;
+            this.lblClass.Location = new System.Drawing.Point(0, 0);
+            this.lblClass.Name = "lblClass";
+            this.lblClass.Size = new System.Drawing.Size(52, 23);
+            this.lblClass.TabIndex = 2;
+            this.lblClass.Text = "Class:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BackgroundImage = global::ChroniCalc.ResourceImageUI.background_panel;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(784, 427);
-            this.Controls.Add(this.lblVersion);
-            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.pbLogo);
             this.Controls.Add(this.pnlClass);
             this.Controls.Add(this.pnlClassData);
             this.DoubleBuffered = true;
@@ -598,7 +606,9 @@
             this.Text = "ChroniCalc";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.pnlClass.ResumeLayout(false);
+            this.pnlClass.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.pnlClassData.ResumeLayout(false);
             this.pnlClassData.PerformLayout();
             this.pnlBuilds.ResumeLayout(false);
@@ -609,7 +619,6 @@
             this.pnlClassCaptions.ResumeLayout(false);
             this.pnlClassCaptions.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -628,12 +637,10 @@
         private System.Windows.Forms.Label lblTree;
         private System.Windows.Forms.Label lblSkillPointsRemainingCaption;
         private System.Windows.Forms.Label lblSkillPointsRemaining;
-        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.Label lblLevelCaption;
         private System.Windows.Forms.Label lblMastery;
         private System.Windows.Forms.Label lblMasteryCaption;
-        private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnResetTree;
         private System.Windows.Forms.Panel pnlBuilds;
         private System.Windows.Forms.Button btnNavBuilds;
@@ -652,6 +659,8 @@
         private System.Windows.Forms.Button btnBuildSharing;
         private PastebinPanel pbpBuildShare;
         private System.Windows.Forms.Panel pnlInventoryGear;
+        private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.Label lblClass;
     }
 }
 
