@@ -319,7 +319,7 @@ namespace ChroniCalc
                 {
                     ttlp.Show();
                     ttlp.BringToFront();
-                    lblTree.Text = ttlp.passiveSkillName;
+                    lblTreeCaption.Text = ttlp.passiveSkillName;
                 }
                 else
                 {

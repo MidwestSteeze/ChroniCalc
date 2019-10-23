@@ -47,14 +47,16 @@
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.pnlClassData = new System.Windows.Forms.Panel();
             this.pnlBuilds = new System.Windows.Forms.Panel();
+            this.lblBuildsCaption = new System.Windows.Forms.Label();
             this.pbpBuildShare = new ChroniCalc.PastebinPanel();
             this.btnBuildDelete = new System.Windows.Forms.Button();
             this.btnBuildOpen = new System.Windows.Forms.Button();
             this.dgvBuilds = new System.Windows.Forms.DataGridView();
             this.BuildName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTree = new System.Windows.Forms.Label();
+            this.lblTreeCaption = new System.Windows.Forms.Label();
             this.pnlInventory = new System.Windows.Forms.Panel();
+            this.lblInventoryCaption = new System.Windows.Forms.Label();
             this.pnlInventoryGear = new System.Windows.Forms.Panel();
             this.pnlTrees = new System.Windows.Forms.Panel();
             this.btnTree1 = new System.Windows.Forms.Button();
@@ -97,11 +99,11 @@
             // lblClass
             // 
             this.lblClass.AutoSize = true;
-            this.lblClass.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClass.Font = new System.Drawing.Font("Comic Sans MS", 11F);
             this.lblClass.ForeColor = System.Drawing.Color.White;
-            this.lblClass.Location = new System.Drawing.Point(0, 0);
+            this.lblClass.Location = new System.Drawing.Point(3, 3);
             this.lblClass.Name = "lblClass";
-            this.lblClass.Size = new System.Drawing.Size(52, 23);
+            this.lblClass.Size = new System.Drawing.Size(48, 20);
             this.lblClass.TabIndex = 2;
             this.lblClass.Text = "Class:";
             // 
@@ -261,7 +263,7 @@
             this.pnlClassData.Controls.Add(this.btnNavBuilds);
             this.pnlClassData.Controls.Add(this.btnNavTrees);
             this.pnlClassData.Controls.Add(this.btnNavInventory);
-            this.pnlClassData.Controls.Add(this.lblTree);
+            this.pnlClassData.Controls.Add(this.lblTreeCaption);
             this.pnlClassData.Controls.Add(this.pnlInventory);
             this.pnlClassData.Controls.Add(this.pnlTrees);
             this.pnlClassData.Controls.Add(this.pnlClassCaptions);
@@ -273,6 +275,7 @@
             // pnlBuilds
             // 
             this.pnlBuilds.BackColor = System.Drawing.Color.Transparent;
+            this.pnlBuilds.Controls.Add(this.lblBuildsCaption);
             this.pnlBuilds.Controls.Add(this.pbpBuildShare);
             this.pnlBuilds.Controls.Add(this.btnBuildSharing);
             this.pnlBuilds.Controls.Add(this.btnBuildDelete);
@@ -282,6 +285,17 @@
             this.pnlBuilds.Name = "pnlBuilds";
             this.pnlBuilds.Size = new System.Drawing.Size(540, 317);
             this.pnlBuilds.TabIndex = 14;
+            // 
+            // lblBuildsCaption
+            // 
+            this.lblBuildsCaption.AutoSize = true;
+            this.lblBuildsCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblBuildsCaption.ForeColor = System.Drawing.Color.White;
+            this.lblBuildsCaption.Location = new System.Drawing.Point(30, 10);
+            this.lblBuildsCaption.Name = "lblBuildsCaption";
+            this.lblBuildsCaption.Size = new System.Drawing.Size(50, 20);
+            this.lblBuildsCaption.TabIndex = 9;
+            this.lblBuildsCaption.Text = "Builds";
             // 
             // pbpBuildShare
             // 
@@ -293,7 +307,7 @@
             // 
             // btnBuildDelete
             // 
-            this.btnBuildDelete.Location = new System.Drawing.Point(115, 10);
+            this.btnBuildDelete.Location = new System.Drawing.Point(175, 10);
             this.btnBuildDelete.Name = "btnBuildDelete";
             this.btnBuildDelete.Size = new System.Drawing.Size(75, 23);
             this.btnBuildDelete.TabIndex = 2;
@@ -303,7 +317,7 @@
             // 
             // btnBuildOpen
             // 
-            this.btnBuildOpen.Location = new System.Drawing.Point(34, 10);
+            this.btnBuildOpen.Location = new System.Drawing.Point(95, 10);
             this.btnBuildOpen.Name = "btnBuildOpen";
             this.btnBuildOpen.Size = new System.Drawing.Size(75, 23);
             this.btnBuildOpen.TabIndex = 1;
@@ -368,25 +382,37 @@
             this.Stats.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Stats.Width = 135;
             // 
-            // lblTree
+            // lblTreeCaption
             // 
-            this.lblTree.AutoSize = true;
-            this.lblTree.BackColor = System.Drawing.Color.Transparent;
-            this.lblTree.Font = new System.Drawing.Font("Comic Sans MS", 11F);
-            this.lblTree.ForeColor = System.Drawing.Color.White;
-            this.lblTree.Location = new System.Drawing.Point(18, 60);
-            this.lblTree.Name = "lblTree";
-            this.lblTree.Size = new System.Drawing.Size(0, 20);
-            this.lblTree.TabIndex = 7;
+            this.lblTreeCaption.AutoSize = true;
+            this.lblTreeCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblTreeCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblTreeCaption.ForeColor = System.Drawing.Color.White;
+            this.lblTreeCaption.Location = new System.Drawing.Point(18, 60);
+            this.lblTreeCaption.Name = "lblTreeCaption";
+            this.lblTreeCaption.Size = new System.Drawing.Size(0, 20);
+            this.lblTreeCaption.TabIndex = 7;
             // 
             // pnlInventory
             // 
             this.pnlInventory.BackColor = System.Drawing.Color.Transparent;
+            this.pnlInventory.Controls.Add(this.lblInventoryCaption);
             this.pnlInventory.Controls.Add(this.pnlInventoryGear);
             this.pnlInventory.Location = new System.Drawing.Point(10, 83);
             this.pnlInventory.Name = "pnlInventory";
             this.pnlInventory.Size = new System.Drawing.Size(540, 317);
             this.pnlInventory.TabIndex = 20;
+            // 
+            // lblInventoryCaption
+            // 
+            this.lblInventoryCaption.AutoSize = true;
+            this.lblInventoryCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblInventoryCaption.ForeColor = System.Drawing.Color.White;
+            this.lblInventoryCaption.Location = new System.Drawing.Point(5, 10);
+            this.lblInventoryCaption.Name = "lblInventoryCaption";
+            this.lblInventoryCaption.Size = new System.Drawing.Size(78, 20);
+            this.lblInventoryCaption.TabIndex = 1;
+            this.lblInventoryCaption.Text = "Inventory";
             // 
             // pnlInventoryGear
             // 
@@ -616,8 +642,10 @@
             this.pnlClassData.ResumeLayout(false);
             this.pnlClassData.PerformLayout();
             this.pnlBuilds.ResumeLayout(false);
+            this.pnlBuilds.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).EndInit();
             this.pnlInventory.ResumeLayout(false);
+            this.pnlInventory.PerformLayout();
             this.pnlTrees.ResumeLayout(false);
             this.pnlTrees.PerformLayout();
             this.pnlClassCaptions.ResumeLayout(false);
@@ -638,7 +666,7 @@
         private System.Windows.Forms.Panel pnlClass;
         private System.Windows.Forms.ComboBox cboClass;
         private System.Windows.Forms.PictureBox pbClass;
-        private System.Windows.Forms.Label lblTree;
+        private System.Windows.Forms.Label lblTreeCaption;
         private System.Windows.Forms.Label lblSkillPointsRemainingCaption;
         private System.Windows.Forms.Label lblSkillPointsRemaining;
         private System.Windows.Forms.Label lblLevel;
@@ -665,6 +693,8 @@
         private System.Windows.Forms.Panel pnlInventoryGear;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label lblClass;
+        private System.Windows.Forms.Label lblBuildsCaption;
+        private System.Windows.Forms.Label lblInventoryCaption;
     }
 }
 
