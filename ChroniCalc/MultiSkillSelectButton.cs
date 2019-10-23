@@ -75,7 +75,7 @@ namespace ChroniCalc
             left = (xPos + 1) * Convert.ToInt32(btnSkill.Width) - (Convert.ToInt32(this.skillSelectPanel.Width) / 2);
 
             //Position the Skill Select Panel above the MultiSkillSelect (+) button
-            top = (yPos + 1) * Convert.ToInt32(btnSkill.Height) - Convert.ToInt32(this.skillSelectPanel.Height);
+            top = (yPos + 1) * Convert.ToInt32(btnSkill.Height) - Convert.ToInt32(this.skillSelectPanel.Height / 2);
 
             //Location to display the Skill Select Panel based on where the clicked MultiSkillSelect (+) button is
             location = new Point(left, top); 

@@ -222,7 +222,7 @@
             this.btnResetTree.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnResetTree.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnResetTree.ForeColor = System.Drawing.Color.White;
-            this.btnResetTree.Location = new System.Drawing.Point(507, 6);
+            this.btnResetTree.Location = new System.Drawing.Point(507, 26);
             this.btnResetTree.Name = "btnResetTree";
             this.btnResetTree.Size = new System.Drawing.Size(30, 27);
             this.btnResetTree.TabIndex = 6;
@@ -232,7 +232,7 @@
             // 
             // btnBuildSharing
             // 
-            this.btnBuildSharing.Location = new System.Drawing.Point(429, 10);
+            this.btnBuildSharing.Location = new System.Drawing.Point(429, 30);
             this.btnBuildSharing.Name = "btnBuildSharing";
             this.btnBuildSharing.Size = new System.Drawing.Size(88, 23);
             this.btnBuildSharing.TabIndex = 7;
@@ -263,7 +263,6 @@
             this.pnlClassData.Controls.Add(this.btnNavBuilds);
             this.pnlClassData.Controls.Add(this.btnNavTrees);
             this.pnlClassData.Controls.Add(this.btnNavInventory);
-            this.pnlClassData.Controls.Add(this.lblTreeCaption);
             this.pnlClassData.Controls.Add(this.pnlInventory);
             this.pnlClassData.Controls.Add(this.pnlTrees);
             this.pnlClassData.Controls.Add(this.pnlClassCaptions);
@@ -281,9 +280,9 @@
             this.pnlBuilds.Controls.Add(this.btnBuildDelete);
             this.pnlBuilds.Controls.Add(this.btnBuildOpen);
             this.pnlBuilds.Controls.Add(this.dgvBuilds);
-            this.pnlBuilds.Location = new System.Drawing.Point(0, 83);
+            this.pnlBuilds.Location = new System.Drawing.Point(0, 63);
             this.pnlBuilds.Name = "pnlBuilds";
-            this.pnlBuilds.Size = new System.Drawing.Size(540, 317);
+            this.pnlBuilds.Size = new System.Drawing.Size(540, 337);
             this.pnlBuilds.TabIndex = 14;
             // 
             // lblBuildsCaption
@@ -291,7 +290,7 @@
             this.lblBuildsCaption.AutoSize = true;
             this.lblBuildsCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
             this.lblBuildsCaption.ForeColor = System.Drawing.Color.White;
-            this.lblBuildsCaption.Location = new System.Drawing.Point(30, 10);
+            this.lblBuildsCaption.Location = new System.Drawing.Point(30, 0);
             this.lblBuildsCaption.Name = "lblBuildsCaption";
             this.lblBuildsCaption.Size = new System.Drawing.Size(50, 20);
             this.lblBuildsCaption.TabIndex = 9;
@@ -299,7 +298,7 @@
             // 
             // pbpBuildShare
             // 
-            this.pbpBuildShare.Location = new System.Drawing.Point(111, 53);
+            this.pbpBuildShare.Location = new System.Drawing.Point(111, 73);
             this.pbpBuildShare.Name = "pbpBuildShare";
             this.pbpBuildShare.Size = new System.Drawing.Size(325, 150);
             this.pbpBuildShare.TabIndex = 8;
@@ -307,7 +306,7 @@
             // 
             // btnBuildDelete
             // 
-            this.btnBuildDelete.Location = new System.Drawing.Point(175, 10);
+            this.btnBuildDelete.Location = new System.Drawing.Point(115, 30);
             this.btnBuildDelete.Name = "btnBuildDelete";
             this.btnBuildDelete.Size = new System.Drawing.Size(75, 23);
             this.btnBuildDelete.TabIndex = 2;
@@ -317,7 +316,7 @@
             // 
             // btnBuildOpen
             // 
-            this.btnBuildOpen.Location = new System.Drawing.Point(95, 10);
+            this.btnBuildOpen.Location = new System.Drawing.Point(34, 30);
             this.btnBuildOpen.Name = "btnBuildOpen";
             this.btnBuildOpen.Size = new System.Drawing.Size(75, 23);
             this.btnBuildOpen.TabIndex = 1;
@@ -344,7 +343,7 @@
             this.dgvBuilds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BuildName,
             this.Stats});
-            this.dgvBuilds.Location = new System.Drawing.Point(34, 42);
+            this.dgvBuilds.Location = new System.Drawing.Point(34, 62);
             this.dgvBuilds.MultiSelect = false;
             this.dgvBuilds.Name = "dgvBuilds";
             this.dgvBuilds.ReadOnly = true;
@@ -382,25 +381,14 @@
             this.Stats.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Stats.Width = 135;
             // 
-            // lblTreeCaption
-            // 
-            this.lblTreeCaption.AutoSize = true;
-            this.lblTreeCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblTreeCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
-            this.lblTreeCaption.ForeColor = System.Drawing.Color.White;
-            this.lblTreeCaption.Location = new System.Drawing.Point(18, 60);
-            this.lblTreeCaption.Name = "lblTreeCaption";
-            this.lblTreeCaption.Size = new System.Drawing.Size(0, 20);
-            this.lblTreeCaption.TabIndex = 7;
-            // 
             // pnlInventory
             // 
             this.pnlInventory.BackColor = System.Drawing.Color.Transparent;
             this.pnlInventory.Controls.Add(this.lblInventoryCaption);
             this.pnlInventory.Controls.Add(this.pnlInventoryGear);
-            this.pnlInventory.Location = new System.Drawing.Point(10, 83);
+            this.pnlInventory.Location = new System.Drawing.Point(10, 63);
             this.pnlInventory.Name = "pnlInventory";
-            this.pnlInventory.Size = new System.Drawing.Size(540, 317);
+            this.pnlInventory.Size = new System.Drawing.Size(540, 337);
             this.pnlInventory.TabIndex = 20;
             // 
             // lblInventoryCaption
@@ -408,7 +396,7 @@
             this.lblInventoryCaption.AutoSize = true;
             this.lblInventoryCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
             this.lblInventoryCaption.ForeColor = System.Drawing.Color.White;
-            this.lblInventoryCaption.Location = new System.Drawing.Point(5, 10);
+            this.lblInventoryCaption.Location = new System.Drawing.Point(5, 0);
             this.lblInventoryCaption.Name = "lblInventoryCaption";
             this.lblInventoryCaption.Size = new System.Drawing.Size(78, 20);
             this.lblInventoryCaption.TabIndex = 1;
@@ -418,7 +406,7 @@
             // 
             this.pnlInventoryGear.BackgroundImage = global::ChroniCalc.ResourceImageInventory.Inventory;
             this.pnlInventoryGear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlInventoryGear.Location = new System.Drawing.Point(10, 44);
+            this.pnlInventoryGear.Location = new System.Drawing.Point(10, 64);
             this.pnlInventoryGear.Name = "pnlInventoryGear";
             this.pnlInventoryGear.Size = new System.Drawing.Size(520, 222);
             this.pnlInventoryGear.TabIndex = 0;
@@ -432,9 +420,10 @@
             this.pnlTrees.Controls.Add(this.btnTree3);
             this.pnlTrees.Controls.Add(this.btnTree4);
             this.pnlTrees.Controls.Add(this.btnTreeMastery);
-            this.pnlTrees.Location = new System.Drawing.Point(0, 83);
+            this.pnlTrees.Controls.Add(this.lblTreeCaption);
+            this.pnlTrees.Location = new System.Drawing.Point(0, 63);
             this.pnlTrees.Name = "pnlTrees";
-            this.pnlTrees.Size = new System.Drawing.Size(540, 317);
+            this.pnlTrees.Size = new System.Drawing.Size(540, 337);
             this.pnlTrees.TabIndex = 6;
             // 
             // btnTree1
@@ -445,7 +434,7 @@
             this.btnTree1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree1.FlatAppearance.BorderSize = 0;
             this.btnTree1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTree1.Location = new System.Drawing.Point(24, 1);
+            this.btnTree1.Location = new System.Drawing.Point(24, 21);
             this.btnTree1.Name = "btnTree1";
             this.btnTree1.Size = new System.Drawing.Size(35, 35);
             this.btnTree1.TabIndex = 1;
@@ -460,7 +449,7 @@
             this.btnTree2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree2.FlatAppearance.BorderSize = 0;
             this.btnTree2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTree2.Location = new System.Drawing.Point(67, 1);
+            this.btnTree2.Location = new System.Drawing.Point(67, 21);
             this.btnTree2.Name = "btnTree2";
             this.btnTree2.Size = new System.Drawing.Size(35, 35);
             this.btnTree2.TabIndex = 2;
@@ -475,7 +464,7 @@
             this.btnTree3.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree3.FlatAppearance.BorderSize = 0;
             this.btnTree3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTree3.Location = new System.Drawing.Point(110, 1);
+            this.btnTree3.Location = new System.Drawing.Point(110, 21);
             this.btnTree3.Name = "btnTree3";
             this.btnTree3.Size = new System.Drawing.Size(35, 35);
             this.btnTree3.TabIndex = 3;
@@ -490,7 +479,7 @@
             this.btnTree4.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTree4.FlatAppearance.BorderSize = 0;
             this.btnTree4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTree4.Location = new System.Drawing.Point(153, 1);
+            this.btnTree4.Location = new System.Drawing.Point(153, 21);
             this.btnTree4.Name = "btnTree4";
             this.btnTree4.Size = new System.Drawing.Size(35, 35);
             this.btnTree4.TabIndex = 4;
@@ -505,12 +494,24 @@
             this.btnTreeMastery.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnTreeMastery.FlatAppearance.BorderSize = 0;
             this.btnTreeMastery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTreeMastery.Location = new System.Drawing.Point(196, 1);
+            this.btnTreeMastery.Location = new System.Drawing.Point(196, 21);
             this.btnTreeMastery.Name = "btnTreeMastery";
             this.btnTreeMastery.Size = new System.Drawing.Size(35, 35);
             this.btnTreeMastery.TabIndex = 5;
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);
+            // 
+            // lblTreeCaption
+            // 
+            this.lblTreeCaption.AutoSize = true;
+            this.lblTreeCaption.BackColor = System.Drawing.Color.Transparent;
+            this.lblTreeCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblTreeCaption.ForeColor = System.Drawing.Color.White;
+            this.lblTreeCaption.Location = new System.Drawing.Point(20, 0);
+            this.lblTreeCaption.Name = "lblTreeCaption";
+            this.lblTreeCaption.Size = new System.Drawing.Size(94, 20);
+            this.lblTreeCaption.TabIndex = 7;
+            this.lblTreeCaption.Text = "TreeCaption";
             // 
             // pnlClassCaptions
             // 
@@ -640,7 +641,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.pnlClassData.ResumeLayout(false);
-            this.pnlClassData.PerformLayout();
             this.pnlBuilds.ResumeLayout(false);
             this.pnlBuilds.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuilds)).EndInit();

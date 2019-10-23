@@ -1,9 +1,6 @@
 ﻿ ToDo
 
  RESUME AT:
-    - adjust location of Trees Caption as compared to Inventory/Builds Caption; Trees Caption shows when it's not the foreground panel
-	  - move Tree Caption (lblTree) to be a child of pnlTrees, then make the panel taller so you have the headroom to display the panel Captions in the same spot where the old Tree Caption was (ie. move Build/Inventory Captions up)
-	    - ensure this change doesn't messup location of trees and buttons and toolitps etc etc
     - add Family into the Tooltip and other locations it may be needed (ie. SkillButton, Skill, etc)
     - pretty it up
 	- fix fitment of Nav icons (less spacing between)
@@ -33,4 +30,6 @@
  MISC:
 	- MainForm: Mastery Point counter (no Maximum)
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
+	- restrict focus to PasteBinPanel when it's open
+	- shift-click multiselectskills and changing it when it already has levels on it doesn't reset the build.level, only resets the skill.level
 	- update post-req skills' tooltip which contain text "Previous Skill" to include the prereq skill name instead of "Previous Skill" after the prereq skill has been leveled; currently, it only changes the Post Reqs tooltip to include the PreReq skill name once you level the PostReq skill

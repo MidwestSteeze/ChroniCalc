@@ -43,7 +43,7 @@ namespace ChroniCalc
             parentControl.Controls.Add(this);
 
             //Location
-            this.Location = new System.Drawing.Point(24, 37);
+            this.Location = new System.Drawing.Point(24, 57);
 
             //Background
             this.BackColor = System.Drawing.Color.Transparent;
