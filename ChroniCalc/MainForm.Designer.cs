@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlClass = new System.Windows.Forms.Panel();
+            this.lblClass = new System.Windows.Forms.Label();
             this.pbClass = new System.Windows.Forms.PictureBox();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
@@ -69,7 +70,6 @@
             this.lblLevelCaption = new System.Windows.Forms.Label();
             this.lblSkillPointsRemaining = new System.Windows.Forms.Label();
             this.lblSkillPointsRemainingCaption = new System.Windows.Forms.Label();
-            this.lblClass = new System.Windows.Forms.Label();
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
@@ -94,10 +94,22 @@
             this.pnlClass.Size = new System.Drawing.Size(185, 342);
             this.pnlClass.TabIndex = 7;
             // 
+            // lblClass
+            // 
+            this.lblClass.AutoSize = true;
+            this.lblClass.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClass.ForeColor = System.Drawing.Color.White;
+            this.lblClass.Location = new System.Drawing.Point(0, 0);
+            this.lblClass.Name = "lblClass";
+            this.lblClass.Size = new System.Drawing.Size(52, 23);
+            this.lblClass.TabIndex = 2;
+            this.lblClass.Text = "Class:";
+            // 
             // pbClass
             // 
             this.pbClass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbClass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbClass.Image = global::ChroniCalc.ResourceImageUI.Instructions;
             this.pbClass.Location = new System.Drawing.Point(3, 28);
             this.pbClass.Name = "pbClass";
             this.pbClass.Size = new System.Drawing.Size(177, 309);
@@ -107,7 +119,9 @@
             // 
             // cboClass
             // 
+            this.cboClass.BackColor = System.Drawing.Color.Black;
             this.cboClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboClass.ForeColor = System.Drawing.Color.White;
             this.cboClass.FormattingEnabled = true;
             this.cboClass.Items.AddRange(new object[] {
             "Berserker",
@@ -224,7 +238,7 @@
             this.toolTipInfo.SetToolTip(this.btnBuildSharing, "Opens the Build Sharing panel for Loading or Sharing Builds");
             this.btnBuildSharing.UseVisualStyleBackColor = true;
             this.btnBuildSharing.Click += new System.EventHandler(this.btnBuildSharing_Click);
-			//
+            // 
             // pbLogo
             // 
             this.pbLogo.BackColor = System.Drawing.Color.Transparent;
@@ -304,14 +318,14 @@
             this.dgvBuilds.AllowUserToResizeColumns = false;
             this.dgvBuilds.AllowUserToResizeRows = false;
             this.dgvBuilds.BackgroundColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBuilds.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBuilds.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBuilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBuilds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BuildName,
@@ -330,11 +344,11 @@
             // BuildName
             // 
             this.BuildName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.BuildName.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.BuildName.DefaultCellStyle = dataGridViewCellStyle5;
             this.BuildName.HeaderText = "Name";
             this.BuildName.Name = "BuildName";
             this.BuildName.ReadOnly = true;
@@ -343,11 +357,11 @@
             // Stats
             // 
             this.Stats.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.Stats.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.Stats.DefaultCellStyle = dataGridViewCellStyle6;
             this.Stats.HeaderText = "Stats";
             this.Stats.Name = "Stats";
             this.Stats.ReadOnly = true;
@@ -497,8 +511,9 @@
             this.lblBuildName.Location = new System.Drawing.Point(0, 0);
             this.lblBuildName.Margin = new System.Windows.Forms.Padding(0);
             this.lblBuildName.Name = "lblBuildName";
-            this.lblBuildName.Size = new System.Drawing.Size(0, 15);
+            this.lblBuildName.Size = new System.Drawing.Size(53, 15);
             this.lblBuildName.TabIndex = 14;
+            this.lblBuildName.Text = "Unnamed";
             // 
             // lblMastery
             // 
@@ -577,17 +592,6 @@
             this.lblSkillPointsRemainingCaption.Size = new System.Drawing.Size(68, 15);
             this.lblSkillPointsRemainingCaption.TabIndex = 8;
             this.lblSkillPointsRemainingCaption.Text = "Skill Points:";
-            // 
-            // lblClass
-            // 
-            this.lblClass.AutoSize = true;
-            this.lblClass.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClass.ForeColor = System.Drawing.Color.White;
-            this.lblClass.Location = new System.Drawing.Point(0, 0);
-            this.lblClass.Name = "lblClass";
-            this.lblClass.Size = new System.Drawing.Size(52, 23);
-            this.lblClass.TabIndex = 2;
-            this.lblClass.Text = "Class:";
             // 
             // MainForm
             // 
