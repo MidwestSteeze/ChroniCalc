@@ -143,7 +143,7 @@
             this.btnNavSaveAs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNavSaveAs.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnNavSaveAs.FlatAppearance.BorderSize = 0;
-            this.btnNavSaveAs.Location = new System.Drawing.Point(511, 15);
+            this.btnNavSaveAs.Location = new System.Drawing.Point(506, 15);
             this.btnNavSaveAs.Name = "btnNavSaveAs";
             this.btnNavSaveAs.Size = new System.Drawing.Size(31, 31);
             this.btnNavSaveAs.TabIndex = 19;
@@ -158,7 +158,7 @@
             this.btnNavSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNavSave.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnNavSave.FlatAppearance.BorderSize = 0;
-            this.btnNavSave.Location = new System.Drawing.Point(474, 15);
+            this.btnNavSave.Location = new System.Drawing.Point(470, 15);
             this.btnNavSave.Name = "btnNavSave";
             this.btnNavSave.Size = new System.Drawing.Size(31, 31);
             this.btnNavSave.TabIndex = 18;
@@ -173,7 +173,7 @@
             this.btnNavBuilds.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNavBuilds.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnNavBuilds.FlatAppearance.BorderSize = 0;
-            this.btnNavBuilds.Location = new System.Drawing.Point(437, 15);
+            this.btnNavBuilds.Location = new System.Drawing.Point(434, 15);
             this.btnNavBuilds.Name = "btnNavBuilds";
             this.btnNavBuilds.Size = new System.Drawing.Size(31, 31);
             this.btnNavBuilds.TabIndex = 17;
@@ -188,7 +188,7 @@
             this.btnNavTrees.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNavTrees.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnNavTrees.FlatAppearance.BorderSize = 0;
-            this.btnNavTrees.Location = new System.Drawing.Point(400, 15);
+            this.btnNavTrees.Location = new System.Drawing.Point(398, 15);
             this.btnNavTrees.Name = "btnNavTrees";
             this.btnNavTrees.Size = new System.Drawing.Size(31, 31);
             this.btnNavTrees.TabIndex = 16;
@@ -203,7 +203,7 @@
             this.btnNavInventory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNavInventory.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnNavInventory.FlatAppearance.BorderSize = 0;
-            this.btnNavInventory.Location = new System.Drawing.Point(363, 15);
+            this.btnNavInventory.Location = new System.Drawing.Point(362, 15);
             this.btnNavInventory.Name = "btnNavInventory";
             this.btnNavInventory.Size = new System.Drawing.Size(31, 31);
             this.btnNavInventory.TabIndex = 15;

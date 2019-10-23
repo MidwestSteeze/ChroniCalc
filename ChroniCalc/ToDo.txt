@@ -2,7 +2,6 @@
 
  RESUME AT:
     - pretty it up
-	- fix fitment of Nav icons (less spacing between)
 	- Get an initial release available on Git for download/install
 
  MAJORS:
