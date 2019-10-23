@@ -51,7 +51,7 @@ namespace ChroniCalc
 
             this.lblName.Text = this.skill.name;
             UpdateRankText(skill.level);
-            this.lblType.Text = this.skill.type;
+            this.lblTypeAndFamily.Text = this.skill.type + (skill.family != "None" ? (", " + skill.family) : "");
 
             //Background Image
             ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());

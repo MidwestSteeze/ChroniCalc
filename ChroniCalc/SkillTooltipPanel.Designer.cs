@@ -32,7 +32,7 @@
             this.pbDivider = new System.Windows.Forms.PictureBox();
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblRank = new System.Windows.Forms.Label();
-            this.lblType = new System.Windows.Forms.Label();
+            this.lblTypeAndFamily = new System.Windows.Forms.Label();
             this.lblElement = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();
@@ -48,7 +48,7 @@
             this.pnlTooltip.Controls.Add(this.pbDivider);
             this.pnlTooltip.Controls.Add(this.lblDescription);
             this.pnlTooltip.Controls.Add(this.lblRank);
-            this.pnlTooltip.Controls.Add(this.lblType);
+            this.pnlTooltip.Controls.Add(this.lblTypeAndFamily);
             this.pnlTooltip.Controls.Add(this.lblElement);
             this.pnlTooltip.Controls.Add(this.lblName);
             this.pnlTooltip.Controls.Add(this.pbIcon);
@@ -89,16 +89,16 @@
             this.lblRank.TabIndex = 5;
             this.lblRank.Text = "rank";
             // 
-            // lblType
+            // lblTypeAndFamily
             // 
-            this.lblType.AutoSize = true;
-            this.lblType.BackColor = System.Drawing.Color.Black;
-            this.lblType.ForeColor = System.Drawing.Color.White;
-            this.lblType.Location = new System.Drawing.Point(5, 49);
-            this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(85, 13);
-            this.lblType.TabIndex = 4;
-            this.lblType.Text = "ActiveOrPassive";
+            this.lblTypeAndFamily.AutoSize = true;
+            this.lblTypeAndFamily.BackColor = System.Drawing.Color.Black;
+            this.lblTypeAndFamily.ForeColor = System.Drawing.Color.White;
+            this.lblTypeAndFamily.Location = new System.Drawing.Point(5, 49);
+            this.lblTypeAndFamily.Name = "lblTypeAndFamily";
+            this.lblTypeAndFamily.Size = new System.Drawing.Size(85, 13);
+            this.lblTypeAndFamily.TabIndex = 4;
+            this.lblTypeAndFamily.Text = "ActiveOrPassive";
             // 
             // lblElement
             // 
@@ -152,7 +152,7 @@
         private System.Windows.Forms.Panel pnlTooltip;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblRank;
-        private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.Label lblTypeAndFamily;
         private System.Windows.Forms.Label lblElement;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.PictureBox pbIcon;
