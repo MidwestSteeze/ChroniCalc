@@ -3,10 +3,9 @@
  RESUME AT:
     - add Family into the Tooltip and other locations it may be needed (ie. SkillButton, Skill, etc)
     - pretty it up
-	- add portal gif in pbClass for initial load
-	- Get an initial release available on Git for download/install
 	- fix fitment of Nav icons (less spacing between)
-	- change build.name being reset to "" to instead be "Unnamed"
+	- Builds panel needs a title beside/above the buttons
+	- Get an initial release available on Git for download/install
 
  MAJORS:
   - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
