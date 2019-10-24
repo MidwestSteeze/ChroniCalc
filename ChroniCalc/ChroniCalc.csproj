@@ -15,7 +15,7 @@
     <PublishUrl>C:\Users\grams_s\Documents\Visual Studio 2019\Projects\ChroniCalc\publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
@@ -23,6 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://raw.githubusercontent.com/MidwestSteeze/ChroniCalc/master/publish/</InstallUrl>
+    <UpdateUrl>https://raw.githubusercontent.com/MidwestSteeze/ChroniCalc/master/publish/</UpdateUrl>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>0.8.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
