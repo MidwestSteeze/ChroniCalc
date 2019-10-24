@@ -509,9 +509,9 @@
             this.lblTreeCaption.ForeColor = System.Drawing.Color.White;
             this.lblTreeCaption.Location = new System.Drawing.Point(20, 0);
             this.lblTreeCaption.Name = "lblTreeCaption";
-            this.lblTreeCaption.Size = new System.Drawing.Size(94, 20);
+            this.lblTreeCaption.Size = new System.Drawing.Size(49, 20);
             this.lblTreeCaption.TabIndex = 7;
-            this.lblTreeCaption.Text = "TreeCaption";
+            this.lblTreeCaption.Text = "Trees";
             // 
             // pnlClassCaptions
             // 
