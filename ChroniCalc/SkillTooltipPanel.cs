@@ -122,7 +122,7 @@ namespace ChroniCalc
 
         private string GetReplacementValue(string replaceWord)
         {
-            int index = level;
+            int index = level; //TODO change to just use skill.level?
             string replaceValue = string.Empty;
 
             //Adjust the lookup index depending on the current level of the skill
@@ -222,7 +222,7 @@ namespace ChroniCalc
         public void UpdateRankText(int inLevel)
         {
             //Set the current level of this skill
-            level = inLevel;
+            level = inLevel; //TODOSSG change to just use skill.level?
             lblRank.Text = "Rank " + level.ToString() + "/" + this.skill.max_rank.ToString();
         }
 

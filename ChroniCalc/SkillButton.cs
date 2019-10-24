@@ -186,6 +186,10 @@ namespace ChroniCalc
             passiveBonusBtn.skill.level = ttlpTree.skillPointsAllocated;
             passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
 
+            //Update the rank and then the description on the Passive bonus button's tooltip since we have it here
+            passiveBonusBtn.skillTooltipPanel.UpdateRankText(passiveBonusBtn.skill.level);
+            passiveBonusBtn.skillTooltipPanel.PopulateDescription();
+
             //Update the label that shows remaining points that can be spent
            (form.Controls.Find("lblSkillPointsRemaining", true).First() as Label).Text = (MainForm.SKILL_POINTS_MAX - form.build.Level).ToString();
 
