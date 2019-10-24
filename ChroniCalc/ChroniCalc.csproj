@@ -24,8 +24,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://raw.githubusercontent.com/MidwestSteeze/ChroniCalc/master/publish/</InstallUrl>
     <UpdateUrl>https://raw.githubusercontent.com/MidwestSteeze/ChroniCalc/master/publish/</UpdateUrl>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.8.0.0</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>0.8.0.2</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -59,9 +59,7 @@
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <ManifestCertificateThumbprint>5D1B3366C08154401D14827F55A7F338782F662D</ManifestCertificateThumbprint>
   </PropertyGroup>
