@@ -15,6 +15,7 @@ namespace ChroniCalc
 {
     public partial class SkillTooltipPanel : UserControl
     {
+        private const char YEN = '\u00A5';
         private const int MARGIN_VERTICAL = 3;
         private const int PADDING_VERTICAL = 3;
 
@@ -112,6 +113,9 @@ namespace ChroniCalc
                     description = description.Replace(replaceWord, replaceValue);
                 }
             }
+
+            // TODO Delete once data is corrected or better understood
+            description = TempFixDescription(description);
 
             //Update the description label text
             this.lblDescription.Text = description;
@@ -234,6 +238,19 @@ namespace ChroniCalc
             // NOTE: Need to set the SkillTooltipPanel control Height AND the pnlTooltip Height because the main control (SkillTooltipPanel) is not set to Autosize as pnlTooltip grows
             this.Height = lblDescription.Location.Y + lblDescription.Height + (MARGIN_VERTICAL * 2);
             this.pnlTooltip.Height = lblDescription.Location.Y + lblDescription.Height + (MARGIN_VERTICAL * 2);
+        }
+
+        private string TempFixDescription(string description)
+        {
+            string correctedDescription;
+
+            // Run Regex against the description to temporarily fix the damage type text (e.g. " _EHO_Holy(Yen)" to be "Holy") until the data is fixed by Sir Squarebit
+            correctedDescription = description.Replace("XDAM ", string.Empty);
+            correctedDescription = Regex.Replace(correctedDescription, "_(.*?)_", "");
+            correctedDescription = correctedDescription.Replace(YEN.ToString(), string.Empty);
+            correctedDescription = correctedDescription.Replace("|", string.Empty);
+
+            return correctedDescription;
         }
     }
 }
