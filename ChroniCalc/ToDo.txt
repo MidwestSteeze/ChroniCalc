@@ -1,8 +1,10 @@
 ﻿ ToDo
 
  RESUME AT:
-	- shift-click multiselectskills and changing it when it already has levels on it doesn't reset the build.level, only resets the skill.level
+	- shift-click multiseelctskills and selecting Unassign Skill btn doesn't clear the skill at that position
 	- Get an initial release available on Git for download/install
+	- add mana cost/cooldown info to skill tooltip
+	- a post-req skill with multiple pre-req skills may not be selecting the correct pre-req skill (should be selecting the Active skill, sometimes it selects the closest Passive e.g. Electric Air from Lightning Wyrms)
 
  MAJORS:
   - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)

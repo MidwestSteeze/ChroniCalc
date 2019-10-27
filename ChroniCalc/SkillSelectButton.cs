@@ -58,9 +58,24 @@ namespace ChroniCalc
             //Create a new button to hold the selected Skill
             SkillButton btnSkill = new SkillButton(this.skill, this.treeControl, this.skillTooltipPanel, form);
 
+            //Get the current control at the position where the new skill will be going
+            Control btnMultiSkillSelect = this.treeControl.GetControlFromPosition(this.skill.x, this.skill.y);
+
+            //Incase there's a skill at this position already, subtract the level of the skill from the build before we remove it to put the new one in place
+            if (btnMultiSkillSelect is SkillButton)
+            {
+                SkillButton btnPreviousSkill = (btnMultiSkillSelect as SkillButton);
+
+                //Only adjust the levels if the skill selected is different than the previous one
+                if (btnPreviousSkill.skill.name != this.skill.name)
+                {
+                    btnPreviousSkill.UpdateSkillPointAndLevelCounter(btnPreviousSkill.skill.level * -1);
+                    btnPreviousSkill.skill.level = 0;
+                }
+            }
+
             //Remove the current control at the currently-selected position
             // NOTE: Removing a control moves all controls after it "up" 1 cell by index, but adding a control in its place immediately after will put all skills back in their place
-            Control btnMultiSkillSelect = this.treeControl.GetControlFromPosition(this.skill.x, this.skill.y);
             this.treeControl.Controls.Remove(btnMultiSkillSelect);
 
             //Add the skill button to the Tree at the currently-selected position

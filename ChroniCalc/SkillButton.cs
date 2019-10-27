@@ -171,7 +171,7 @@ namespace ChroniCalc
             return result;
         }
 
-        private void UpdateSkillPointAndLevelCounter(int levelAdjust)
+        public void UpdateSkillPointAndLevelCounter(int levelAdjust)
         {
             TreeTableLayoutPanel ttlpTree = (TreeTableLayoutPanel)this.Parent;
 
