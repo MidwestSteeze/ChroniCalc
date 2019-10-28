@@ -166,6 +166,44 @@ namespace ChroniCalc
             UpdateHeightAndControlPositions();
         }
 
+        private string GetPreReqSkillNameFromMultiSelectSkill(int[] skillRequirement)
+        {
+            Control[] preReqControls;
+            int preReqId;
+            SkillButton preReqSkillButton;
+            string replaceValue = string.Empty;
+
+            //The skills prereq is a multiselect skill so find which one the user chose
+            foreach (int id in skillRequirement)
+            {
+                preReqControls = treeTableLayoutPanel.Controls.Find(id.ToString(), false);
+
+                // Check if this skill is found on the tree (since it may be buried in a MultiSkillSelect button and/or not selected by the user because they chose a different skill in that slot)
+                if (preReqControls.Length < 1)
+                {
+                    // This prereq was not found on the tree
+                    if (Array.IndexOf(skillRequirement, id) == skillRequirement.Length - 1)
+                    {
+                        //PreReq control not found and we've looked through all possible ids; this is because no Skill has yet been selected from the positions SkillSelect panel
+                        // so use some generic placeholder verbiage
+                        replaceValue = "Previous Skill";
+                        break;
+                    }
+
+                    //There are more PreReq IDs to search through, so move onto the next iteration
+                    continue;
+                }
+
+                //We found the preReqId that the user chose to use on the tree
+                preReqId = id;
+                preReqSkillButton = (SkillButton)preReqControls.First();
+                replaceValue = preReqSkillButton.skill.name;
+                break;
+            }
+
+            return replaceValue;
+        }
+
         private string GetReplacementValue(string replaceWord)
         {
             int index = level; //TODO change to just use skill.level?
@@ -214,33 +252,8 @@ namespace ChroniCalc
 
                     if (skill.skill_requirement.Length > 1)
                     {
-                        //The skills prereq is a multiselect skill so find which one the user chose
-                        foreach (int id in skill.skill_requirement)
-                        {
-                            preReqControls = treeTableLayoutPanel.Controls.Find(id.ToString(), false);
-
-                            if (preReqControls.Length < 1)
-                            {
-                                if (Array.IndexOf(skill.skill_requirement, id) == skill.skill_requirement.Length - 1)
-                                {
-                                    //PreReq control not found; this is because no Skill has yet been selected from the positions SkillSelect panel
-                                    // so use some generic placeholder verbiage
-                                    replaceValue = "Previous Skill";
-                                    break;
-                                }
-
-                                //There are more PreReq IDs to search through, so move onto the next iteration
-                                continue;
-                            }
-
-                            //We found the preReqId that the user chose to use on the tree
-                            preReqId = id;
-                            preReqSkillButton = (SkillButton)preReqControls.First();
-                            //Get the name of the prereq skill by finding the control with the skill id and pulling skill.name
-                            replaceValue = preReqSkillButton.skill.name;
-
-                            break;
-                        }
+                        //Get the name of the MultiSelect prereq skill by finding the control with the skill id and pulling skill.name
+                        replaceValue = GetPreReqSkillNameFromMultiSelectSkill(skill.skill_requirement);
                     }
                     else
                     {
@@ -250,8 +263,25 @@ namespace ChroniCalc
                         preReqControls = treeTableLayoutPanel.Controls.Find(preReqId.ToString(), false);
                         preReqSkillButton = (SkillButton)preReqControls.First();
 
-                        //Get the name of the prereq skill by finding the control with the skill id and pulling skill.name
-                        replaceValue = preReqSkillButton.skill.name;
+                        // Check if this preReqSkill has its own preReqSkill (ie. An active skill with two passive skills linked to it in succession)
+                        while (preReqSkillButton.skill.skill_requirement.Length == 1)
+                        {
+                            preReqId = preReqSkillButton.skill.skill_requirement[0];
+                            preReqControls = treeTableLayoutPanel.Controls.Find(preReqId.ToString(), false);
+                            preReqSkillButton = (SkillButton)preReqControls.First();
+                        }
+
+                        // Done chaining through all prereqs, but now need to check if we landed on a prereq skill that is a MultiSelect skill
+                        if (preReqSkillButton.skill.skill_requirement.Length > 1)
+                        {
+                            // This prereq skill is a MultiSelect skill, where skill_requirement contains ids for all skill options at this location on the tree, so we'll need to find the one selected by the user
+                            replaceValue = GetPreReqSkillNameFromMultiSelectSkill(preReqSkillButton.skill.skill_requirement);
+                        }
+                        else
+                        {
+                            // There are no more prereq skills to navigate back through and the skill at the head of the chain is not a MultiSelect skill with multiple skill options
+                            replaceValue = preReqSkillButton.skill.name;
+                        }
                     }
                     break;
                 case "VALUE":

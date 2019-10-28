@@ -3,9 +3,10 @@
  RESUME AT:
 	- shift-click multiseelctskills and selecting Unassign Skill btn doesn't clear the skill at that position
 	- Get an initial release available on Git for download/install
-	- a post-req skill with multiple pre-req skills may not be selecting the correct pre-req skill (should be selecting the Active skill, sometimes it selects the closest Passive e.g. Electric Air from Lightning Wyrms)
+	- update post-req skills' tooltip which contain text "Previous Skill" to include the prereq skill name instead of "Previous Skill" after the prereq skill has been leveled; currently, it only changes the Post Reqs tooltip to include the PreReq skill name once you level the PostReq skill
 
  MAJORS:
+  - Integrate the Mastery Tree (need data from sqrbit)
   - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
       - could also retain use of XML within program but output as JSON (ie. JsonConvert.SerializeXmlNodeDoc())
 	  - see project JsonImporter, has it working but requires adjustment to JSON
@@ -33,4 +34,3 @@
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
 	- restrict focus to PasteBinPanel when it's open (https://stackoverflow.com/questions/9569489/easiest-way-to-create-a-custom-dialog-box-which-returns-a-value)
     - shift-click multiselectskills doesn't work on opened/loaded builds
-	- update post-req skills' tooltip which contain text "Previous Skill" to include the prereq skill name instead of "Previous Skill" after the prereq skill has been leveled; currently, it only changes the Post Reqs tooltip to include the PreReq skill name once you level the PostReq skill
