@@ -67,10 +67,52 @@ namespace ChroniCalc
                 this.pbIcon.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("ImageNotFound");
             }
 
-            //Dynamically adjust the size of the tooltip based on the heght of its label controls now that they're populated
-            //UpdateHeightAndControlPositions();
+            //Adjust the size and child control positions of the tooltip based on if it has ManaAndCooldown information displayed
+            AdjustForManaAndCooldownLabelVisible();
 
             this.replaceWords = BuildReplaceWordsList();
+        }
+
+        private void AdjustForManaAndCooldownLabelVisible()
+        {
+            // The Mana and Cooldown label may not be applicable for every Skill, so populate and show it if the Skill has the corresponding data
+            //   and adjust the location of other controls in the Tooltip if it is/isn't displayed
+            this.lblManaAndCooldown.Text = string.Empty;
+
+            // See if this Skill has a Mana Cost
+            if (this.skill.cost100 > 0)
+            {
+                this.lblManaAndCooldown.Text = this.skill.cost100.ToString() + " mana";
+            }
+
+            // See if this Skill has a Cooldown
+            if (this.skill.cooldown > 0)
+            {
+                if (this.skill.cost100 > 0)
+                {
+                    // Add a comma separator if this label has Mana information to display as well
+                    this.lblManaAndCooldown.Text += ", ";
+                }
+
+                this.lblManaAndCooldown.Text += this.skill.cooldown.ToString() + " seconds cooldown";
+            }
+
+            // Adjust the child controls on the tooltip if there is no ManaAndCooldown label displayed for this Skill
+            //   (since the default control is setup to display it)
+            if (this.lblManaAndCooldown.Text == string.Empty)
+            {
+                // Hide the ManaAndCooldown label because it doesn't apply for this skill
+                this.lblManaAndCooldown.Visible = false;
+
+                // Move all child controls under the ManaAndCooldown label up because the ManaAndCooldown label is hidden
+                this.lblRank.Top -= this.lblManaAndCooldown.Height;
+                this.pbDivider.Top -= this.lblManaAndCooldown.Height;
+                this.lblDescription.Top -= this.lblManaAndCooldown.Height;
+
+                // Shrink the height of the tooltip because the ManaAndCooldown lable is hidden
+                this.pnlTooltip.Height -= this.lblManaAndCooldown.Height;
+                this.Height -= this.lblManaAndCooldown.Height;
+            }
         }
 
         private List<string> BuildReplaceWordsList()
@@ -83,8 +125,8 @@ namespace ChroniCalc
                 "DURATION",
                 "EFFECT",
                 "PROC",
-                "RANGE",
                 "RANGE2",
+                "RANGE",
                 "REQUIRED",
                 "VALUE"
             };
@@ -232,12 +274,15 @@ namespace ChroniCalc
 
         public void UpdateHeightAndControlPositions()
         {
-            //Adjust position and size of controls that may have been imapcted by dynamically-sized controls above it
+            int height;
+
+            //Adjust position and size of controls that may have been impacted by dynamically-sized controls above it
+            height = lblDescription.Location.Y + lblDescription.Height + (MARGIN_VERTICAL * 2);
 
             // Set the height of the tooltip now that all controls are sized and positioned within it based on their content
             // NOTE: Need to set the SkillTooltipPanel control Height AND the pnlTooltip Height because the main control (SkillTooltipPanel) is not set to Autosize as pnlTooltip grows
-            this.Height = lblDescription.Location.Y + lblDescription.Height + (MARGIN_VERTICAL * 2);
-            this.pnlTooltip.Height = lblDescription.Location.Y + lblDescription.Height + (MARGIN_VERTICAL * 2);
+            this.Height = height;
+            this.pnlTooltip.Height = height;
         }
 
         private string TempFixDescription(string description)
