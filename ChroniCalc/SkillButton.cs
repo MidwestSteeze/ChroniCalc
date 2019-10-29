@@ -97,23 +97,13 @@ namespace ChroniCalc
                 if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && (form.build.Level < MainForm.SKILL_POINTS_MAX))
                 {
                     //Increase the level
-                    this.skill.level++;
-
-                    UpdateSkillPointAndLevelCounter(1);
+                    UpdateSkillPointAndLevelCounter(this.skill.level, this.skill.level + 1);
                 }
                 else if (e.Button == MouseButtons.Right && this.skill.level > 0)
                 {
                     //Decrease the level
-                    this.skill.level--;
-
-                    UpdateSkillPointAndLevelCounter(-1);
+                    UpdateSkillPointAndLevelCounter(this.skill.level, this.skill.level - 1);
                 }
-
-                //Update the displayed level on the skill button
-                this.lblSkillLevel.Text = this.skill.level.ToString();
-
-                //Update the tooltip description based on the new level of the skill
-                this.skillTooltipPanel.PopulateDescription();
 
                  //TODO update stats (damage, health, mana, etc)
             }
@@ -171,13 +161,16 @@ namespace ChroniCalc
             return result;
         }
 
-        public void UpdateSkillPointAndLevelCounter(int levelAdjust)
+        public void UpdateSkillPointAndLevelCounter(int oldLevel, int newLevel)
         {
-            TreeTableLayoutPanel ttlpTree = (TreeTableLayoutPanel)this.Parent;
+            int levelAdjust;
+            TreeTableLayoutPanel ttlpTree;
 
-            //Adjust the total spent skill points counter
+            ttlpTree = (TreeTableLayoutPanel)this.Parent;
 
-            //Adjust the level of the Build
+            //Get the value the Skill should have its level adjusted by and adjust the Skill and Build levels
+            levelAdjust = newLevel - oldLevel;
+            this.skill.level += levelAdjust;
             form.build.Level += levelAdjust;
 
             //Update the total spent skill points on this particular Tree for the passive bonus stats
@@ -196,8 +189,14 @@ namespace ChroniCalc
             //Update the current level of the character based on how many skill points have been spent
             (form.Controls.Find("lblLevel", true).First() as Label).Text = form.build.Level.ToString();
 
+            //Update the displayed level on the skill button
+            this.lblSkillLevel.Text = this.skill.level.ToString();
+
             //Update the level as shown in the SkillTooltipPanel
             this.skillTooltipPanel.UpdateRankText(this.skill.level);
+
+            //Update the tooltip description based on the new level of the skill
+            this.skillTooltipPanel.PopulateDescription();
         }
 
         private void PbSkillIcon_MouseHover(object sender, EventArgs e)

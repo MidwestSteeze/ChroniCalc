@@ -3,7 +3,6 @@
  RESUME AT:
 	- shift-click multiseelctskills and selecting Unassign Skill btn doesn't clear the skill at that position
 	- Get an initial release available on Git for download/install
-	- update post-req skills' tooltip which contain text "Previous Skill" to include the prereq skill name instead of "Previous Skill" after the prereq skill has been leveled; currently, it only changes the Post Reqs tooltip to include the PreReq skill name once you level the PostReq skill
 
  MAJORS:
   - Integrate the Mastery Tree (need data from sqrbit)

@@ -43,6 +43,28 @@ namespace ChroniCalc
             base.OnPaint(pe);
         }
 
+        private void AddSelectedSkillToTree(Control btnMultiSkillSelect)
+        {
+            //Remove the current control at the currently-selected position
+            // NOTE: Removing a control moves all controls after it "up" 1 cell by index, but adding a control in its place immediately after will put all skills back in their place
+            this.treeControl.Controls.Remove(btnMultiSkillSelect);
+
+            //Create a new button to hold the selected Skill
+            SkillButton btnSkill = new SkillButton(this.skill, this.treeControl, this.skillTooltipPanel, form);
+
+            //Add the skill button to the Tree at the currently-selected position
+            this.treeControl.Controls.Add(btnSkill, this.skill.x, this.skill.y);
+
+            //Update any/all necessary data of all postreq Skills (e.g. level, description)
+            if (!(this.treeControl.tree.skills.Where(x => x.skill_requirement.Contains(btnSkill.skill.id)) is null))
+            {
+                UpdatePostReqSkills(btnSkill.skill.id);
+            }
+
+            //Move the SkillSelectPanel over to the newly-selected SkillButton so it can be re-displayed if wanted
+            btnSkill.skillSelectPanel = this.Parent as SkillSelectPanel;
+        }
+
         private void SkillSelectButton_Click(object sender, EventArgs e)
         {
             //START Debug Info
@@ -55,9 +77,6 @@ namespace ChroniCalc
             //MessageBox.Show(debugMessage);
             //END Debug Info            
 
-            //Create a new button to hold the selected Skill
-            SkillButton btnSkill = new SkillButton(this.skill, this.treeControl, this.skillTooltipPanel, form);
-
             //Get the current control at the position where the new skill will be going
             Control btnMultiSkillSelect = this.treeControl.GetControlFromPosition(this.skill.x, this.skill.y);
 
@@ -69,24 +88,21 @@ namespace ChroniCalc
                 //Only adjust the levels if the skill selected is different than the previous one
                 if (btnPreviousSkill.skill.name != this.skill.name)
                 {
-                    btnPreviousSkill.UpdateSkillPointAndLevelCounter(btnPreviousSkill.skill.level * -1);
-                    btnPreviousSkill.skill.level = 0;
+                    //A SkillButton exists at this location and it's different than the previously-selected Skill
+                    btnPreviousSkill.UpdateSkillPointAndLevelCounter(btnPreviousSkill.skill.level, 0);
+
+                    AddSelectedSkillToTree(btnMultiSkillSelect);
                 }
             }
-
-            //Remove the current control at the currently-selected position
-            // NOTE: Removing a control moves all controls after it "up" 1 cell by index, but adding a control in its place immediately after will put all skills back in their place
-            this.treeControl.Controls.Remove(btnMultiSkillSelect);
-
-            //Add the skill button to the Tree at the currently-selected position
-            this.treeControl.Controls.Add(btnSkill, this.skill.x, this.skill.y);
+            else
+            {
+                //A MultiSelectSkill exists at this location, there is no previously-selected SkillButton here yet
+                AddSelectedSkillToTree(btnMultiSkillSelect);
+            }
 
             //Hide the SkillSelectPanel now that the user chose a skill
             // (Not deleting it so the user can switch it out if they change their mind)
             this.Parent.Hide();
-
- 			//Move the SkillSelectPanel over to the newly-selected SkillButton so it can be re-displayed if wanted
-            btnSkill.skillSelectPanel = this.Parent as SkillSelectPanel;
         }
 
         private void SkillSelectButton_MouseHover(object sender, EventArgs e)  //TODOSSG duplicate code of SkillButton MouseHover/Leave events
@@ -162,6 +178,27 @@ namespace ChroniCalc
             }
 
             return location;
+        }
+
+        private void UpdatePostReqSkills(int skillId)
+        {
+            IEnumerable<Skill> postReqSkills;
+            SkillButton postReqSkillButton;
+
+            // Find the Skills that have the skillId as its prereq
+            postReqSkills = treeControl.tree.skills.Where(x => x.skill_requirement.Contains(skillId));
+
+            foreach (Skill skill in postReqSkills)
+            {
+                // Get the SkillButton for the Skill so we can access and update its tooltip description
+                postReqSkillButton = (SkillButton)treeControl.Controls.Find(skill.id.ToString(), false).First();
+
+                // Reset the Skill's description and level
+                postReqSkillButton.UpdateSkillPointAndLevelCounter(postReqSkillButton.skill.level, 0);
+
+                // Call recursively incase the current postReq skill has a postReq skill of its own that needs to be updated
+                UpdatePostReqSkills(postReqSkillButton.skill.id);
+            }
         }
     }
 }

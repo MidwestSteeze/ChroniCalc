@@ -548,6 +548,9 @@ namespace ChroniCalc
 
             List<Skill> MultiSelectionSkills = new List<Skill>();
 
+            //Give the current Tree object to the Tree control that will be showing it as it'll be needed for future reference
+            ttlpTree.tree = tree;
+
             //Load any skill slot that beings with a "+" for the user to pick between multiple skills
             LoadMultiSelectionSkills(tree, ttlpTree, ref MultiSelectionSkills);
 
