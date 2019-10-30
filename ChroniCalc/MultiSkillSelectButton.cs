@@ -17,8 +17,8 @@ namespace ChroniCalc
     {
         readonly ResourceManager ResourceManagerImageTree;
         public SkillSelectPanel skillSelectPanel;
-        int xPos;
-        int yPos;
+        public int xPos;
+        public int yPos;
 
         public MultiSkillSelectButton(int x, int y)
         {
@@ -51,12 +51,17 @@ namespace ChroniCalc
         {
             //Set the pixel location of the Skill Select Panel to popup for the user
             skillSelectPanel.Location = GetSkillSelectLocation();
-            skillSelectPanel.BringToFront();
 
             //Show the Skill Select Panel
             if (!skillSelectPanel.Visible)
             {
                 skillSelectPanel.Show();
+                skillSelectPanel.BringToFront();
+            }
+            else
+            {
+                // This is a safety incase the SkillSelectPanel was left visible but then a different Tree control was displayed on top of it; we need to ensure it's always in front when it's visible, so it can be seen
+                skillSelectPanel.BringToFront();
             }
         }
 

@@ -43,28 +43,6 @@ namespace ChroniCalc
             base.OnPaint(pe);
         }
 
-        private void AddSelectedSkillToTree(Control btnMultiSkillSelect)
-        {
-            //Remove the current control at the currently-selected position
-            // NOTE: Removing a control moves all controls after it "up" 1 cell by index, but adding a control in its place immediately after will put all skills back in their place
-            this.treeControl.Controls.Remove(btnMultiSkillSelect);
-
-            //Create a new button to hold the selected Skill
-            SkillButton btnSkill = new SkillButton(this.skill, this.treeControl, this.skillTooltipPanel, form);
-
-            //Add the skill button to the Tree at the currently-selected position
-            this.treeControl.Controls.Add(btnSkill, this.skill.x, this.skill.y);
-
-            //Update any/all necessary data of all postreq Skills (e.g. level, description)
-            if (!(this.treeControl.tree.skills.Where(x => x.skill_requirement.Contains(btnSkill.skill.id)) is null))
-            {
-                UpdatePostReqSkills(btnSkill.skill.id);
-            }
-
-            //Move the SkillSelectPanel over to the newly-selected SkillButton so it can be re-displayed if wanted
-            btnSkill.skillSelectPanel = this.Parent as SkillSelectPanel;
-        }
-
         private void SkillSelectButton_Click(object sender, EventArgs e)
         {
             //START Debug Info
@@ -77,32 +55,33 @@ namespace ChroniCalc
             //MessageBox.Show(debugMessage);
             //END Debug Info            
 
-            //Get the current control at the position where the new skill will be going
-            Control btnMultiSkillSelect = this.treeControl.GetControlFromPosition(this.skill.x, this.skill.y);
+			// Get the tree control that the clicked button exists in
+            TreeTableLayoutPanel treeControl = (this.Parent as SkillSelectPanel).treeControl;
 
-            //Incase there's a skill at this position already, subtract the level of the skill from the build before we remove it to put the new one in place
-            if (btnMultiSkillSelect is SkillButton)
+            // Get the current control that will be replaced with the newly-selected one
+            Control btnSkill = treeControl.GetControlFromPosition(this.skill.x, this.skill.y);
+
+            // Incase there's a skill at this position already, subtract the level of the skill from the build before we remove it
+            if (btnSkill is SkillButton)
             {
-                SkillButton btnPreviousSkill = (btnMultiSkillSelect as SkillButton);
+				// Get the skill that was previously selected at this location
+                SkillButton btnPreviousSkill = (btnSkill as SkillButton);
 
-                //Only adjust the levels if the skill selected is different than the previous one
-                if (btnPreviousSkill.skill.name != this.skill.name)
-                {
-                    //A SkillButton exists at this location and it's different than the previously-selected Skill
-                    btnPreviousSkill.UpdateSkillPointAndLevelCounter(btnPreviousSkill.skill.level, 0);
+                // Create a new button to hold the selected Skill and change it on the tree
+                (this.Parent as SkillSelectPanel).ChangeSelectedSkill(btnPreviousSkill, new SkillButton(this.skill, treeControl, this.skillTooltipPanel, form));
+            }
+            else if (btnSkill is MultiSkillSelectButton)
+            {
+                // No skill has yet been selected at this position
+                MultiSkillSelectButton btnMultiSkillSelect = (btnSkill as MultiSkillSelectButton);
 
-                    AddSelectedSkillToTree(btnMultiSkillSelect);
-                }
+				// Create a new button to hold the selected Skill and change it on the tree
+                (this.Parent as SkillSelectPanel).ChangeSelectedSkill(btnMultiSkillSelect, new SkillButton(this.skill, treeControl, this.skillTooltipPanel, form));
             }
             else
             {
-                //A MultiSelectSkill exists at this location, there is no previously-selected SkillButton here yet
-                AddSelectedSkillToTree(btnMultiSkillSelect);
+                //TODO throw exception for unknown control type found (ie. user clicked an unknown control type on the Tree to bring up the skill select panel and click a SkillSelectButton
             }
-
-            //Hide the SkillSelectPanel now that the user chose a skill
-            // (Not deleting it so the user can switch it out if they change their mind)
-            this.Parent.Hide();
         }
 
         private void SkillSelectButton_MouseHover(object sender, EventArgs e)  //TODOSSG duplicate code of SkillButton MouseHover/Leave events
@@ -178,27 +157,6 @@ namespace ChroniCalc
             }
 
             return location;
-        }
-
-        private void UpdatePostReqSkills(int skillId)
-        {
-            IEnumerable<Skill> postReqSkills;
-            SkillButton postReqSkillButton;
-
-            // Find the Skills that have the skillId as its prereq
-            postReqSkills = treeControl.tree.skills.Where(x => x.skill_requirement.Contains(skillId));
-
-            foreach (Skill skill in postReqSkills)
-            {
-                // Get the SkillButton for the Skill so we can access and update its tooltip description
-                postReqSkillButton = (SkillButton)treeControl.Controls.Find(skill.id.ToString(), false).First();
-
-                // Reset the Skill's description and level
-                postReqSkillButton.UpdateSkillPointAndLevelCounter(postReqSkillButton.skill.level, 0);
-
-                // Call recursively incase the current postReq skill has a postReq skill of its own that needs to be updated
-                UpdatePostReqSkills(postReqSkillButton.skill.id);
-            }
         }
     }
 }

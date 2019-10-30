@@ -651,7 +651,7 @@ namespace ChroniCalc
                     tlpTree.Controls.Add(btnMultiSkillSelect, xPos, yPos);
 
                     //Instantiate a new SkillSelect Panel to hold the multiple skills
-                    SkillSelectPanel pnlSkillSelect = new SkillSelectPanel();
+                    SkillSelectPanel pnlSkillSelect = new SkillSelectPanel(tlpTree);
 
                     //Set its Parent control to actually be the Panel that holds all Trees and not the TableLayoutPanel for the current Tree 
                     //  so it can display OVER the SkillSelectButton (without setting this, it's trying to display in the same cell in the tlpTree)
@@ -692,7 +692,7 @@ namespace ChroniCalc
                     }
 
                     //Add a default UnassignSkill button at the end incase the user chooses to not pick a skill at this time but wants to close the panel
-                    pnlSkillSelect.Controls.Add(new UnassignSkillButton(pnlSkillSelect.Controls.Count, SKILL_BUTTON_PADDING));
+                    pnlSkillSelect.Controls.Add(new UnassignSkillButton(pnlSkillSelect.Controls.Count, SKILL_BUTTON_PADDING, xPos, yPos));
                 }
             }
 

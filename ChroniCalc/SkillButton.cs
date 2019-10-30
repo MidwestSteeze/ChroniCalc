@@ -90,6 +90,12 @@ namespace ChroniCalc
                 if (!this.skillSelectPanel.Visible)
                 {
                     this.skillSelectPanel.Show();
+                    this.skillSelectPanel.BringToFront();
+                }
+                else
+                {
+                    // This is a safety incase the SkillSelectPanel was left visible but then a different Tree control was displayed on top of it; we need to ensure it's always in front when it's visible, so it can be seen
+                    this.skillSelectPanel.BringToFront();
                 }
             }
             else
