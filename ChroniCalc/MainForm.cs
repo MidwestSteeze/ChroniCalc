@@ -546,23 +546,33 @@ namespace ChroniCalc
         {
             int treeSkillPointsAllocated = 0;
 
-            List<Skill> MultiSelectionSkills = new List<Skill>();
+            List<Skill> MultiSelectionSkills = new List<Skill>();  //TODO could rename to LoadedMultiSelectionSkills/isLoadedMultiSelectionSkill for readability and consistency with isImportedMultiSelectionSkill
+            Dictionary<int, SkillSelectPanel> importedSkillsAndTheirSkillSelectPanels = new Dictionary<int, SkillSelectPanel>();
 
             //Give the current Tree object to the Tree control that will be showing it as it'll be needed for future reference
             ttlpTree.tree = tree;
 
-            //Load any skill slot that beings with a "+" for the user to pick between multiple skills
-            LoadMultiSelectionSkills(tree, ttlpTree, ref MultiSelectionSkills);
+            //Load any skill slot that begins with a "+" for the user to pick between multiple skills
+            LoadMultiSelectionSkills(tree, ttlpTree, ref MultiSelectionSkills, ref importedSkillsAndTheirSkillSelectPanels);
 
             //Loop through each Skill and place it into the correct slot in the TableLayoutPanel
             foreach (Skill skill in tree.skills)
             {
+                // Check if the current skill is derived from a MultiSkill selection and should have a SkillSelectPanel appended to it
+                bool isImportedMultiSelectionSkill = importedSkillsAndTheirSkillSelectPanels.ContainsKey(skill.id);
+                // Check if the current skill hasn't already been loaded by the LoadMultiSelectionSkills process
+                bool isMultiSelectionSkill = MultiSelectionSkills.Contains(skill);
+
                 //Load all remaining skill slots, ensuring it's not a Mutli-skill slot that was already loaded
-                if (!(IsMultiSelectionSkill(skill, MultiSelectionSkills)))
+                if (!(isMultiSelectionSkill) || isImportedMultiSelectionSkill)
                 {
-                    SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(skill, ttlpTree);
+                    SkillButton btnSkill;
+                    SkillSelectPanel importedSkillSelectPanel;
+                    SkillTooltipPanel pnlSkillTooltip;
+
+                    pnlSkillTooltip = CreateSkillTooltip(skill, ttlpTree);
                     //Create a new control to hold this skill at the skills X and Y location
-                    SkillButton btnSkill = new SkillButton(skill, ttlpTree, pnlSkillTooltip, this);
+                    btnSkill = new SkillButton(skill, ttlpTree, pnlSkillTooltip, this);
 
                     //Specify the passive bonus skill button as being such, we'll need this info for other situations
                     if (skill.name == ttlpTree.passiveSkillName)
@@ -572,6 +582,16 @@ namespace ChroniCalc
 
                     //Add the skill button to the tree
                     ttlpTree.Controls.Add(btnSkill, skill.x, skill.y);
+
+                    // Give the new SkillButton a SkillSelectPanel if it's a MultiSkill that has had a skill selected by the user
+                    if (importedSkillsAndTheirSkillSelectPanels.TryGetValue(skill.id, out importedSkillSelectPanel))
+                    {
+                        // Assign the SkillSelectPanel to the current Skill button
+                        btnSkill.skillSelectPanel = importedSkillSelectPanel;
+
+                        // Set the correct location for the SkillSelectPanel to appear if opened, now that the SkillButton has been added to the Tree
+                        btnSkill.skillSelectPanel.SetLocation(btnSkill, btnSkill.skill.x, btnSkill.skill.y);
+                    }                    
 
                     //Keep a running total of skill points spent on this tree (if we're loading a saved build)
                     // NOTE: Don't include the level of the passive bonus with the running total of points spent on the tree
@@ -594,7 +614,7 @@ namespace ChroniCalc
 
         //Look at all skills within the current Tree to see if there are multiples that share the same position (ie. Dive, Jump, Flame Dash)
         // where only 1 should be selected by the user
-        private void LoadMultiSelectionSkills(Tree tree, TreeTableLayoutPanel tlpTree, ref List<Skill> MultiSelectionSkills)
+        private void LoadMultiSelectionSkills(Tree tree, TreeTableLayoutPanel tlpTree, ref List<Skill> MultiSelectionSkills, ref Dictionary<int, SkillSelectPanel> importedSkillsAndTheirSkillSelectPanels)
         {
             bool alreadyChoseASkill;
             int xPos;
@@ -624,7 +644,7 @@ namespace ChroniCalc
                 MultipleSkills = tree.skills.FindAll(s => s.x == xPos && s.y == yPos);
 
                 //Check for if we're loading a saved build and the user actually already picked a skill
-                //  TODO I can check if they leveled it but if they picked 1 and didn't level it it'll go back to a "+" button. Do I care?
+                //  TODO I can check if they leveled it but if they picked 1 and didn't level it it'll go back to a "+" button. Do I care? Prob not.
                 if ((treeStatus == TreeStatus.Importing) && MultipleSkills.FindAll(ms => ms.level > 0).Count > 0)
                 {                
                     foreach (Skill multiSkill in MultipleSkills)
@@ -644,12 +664,8 @@ namespace ChroniCalc
                 }
 
                 //Check if more than 1 skill does infact exist at the current position
-                if (MultipleSkills.Count > 1 && !alreadyChoseASkill)
+                if (MultipleSkills.Count > 1)
                 {
-                    //Add a SkillSelect Button ("+" button) to the shared X,Y position on the tree
-                    MultiSkillSelectButton btnMultiSkillSelect = new MultiSkillSelectButton(xPos, yPos);
-                    tlpTree.Controls.Add(btnMultiSkillSelect, xPos, yPos);
-
                     //Instantiate a new SkillSelect Panel to hold the multiple skills
                     SkillSelectPanel pnlSkillSelect = new SkillSelectPanel(tlpTree);
 
@@ -657,13 +673,11 @@ namespace ChroniCalc
                     //  so it can display OVER the SkillSelectButton (without setting this, it's trying to display in the same cell in the tlpTree)
                     pnlSkillSelect.Parent = pnlTrees;
 
-                    //Tie the panel to the SkillSelect Button that holds the position for which this panel and its skills apply to
-                    btnMultiSkillSelect.skillSelectPanel = pnlSkillSelect;
-
                     //Set the width of the SkillSelect Panel to the number of skill buttons it will contain (30 = width of SkillSelectButton)
                     pnlSkillSelect.Width = ((MultipleSkills.Count + 1) * 30) + ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING - ((MultipleSkills.Count + 1) * SKILL_BUTTON_PADDING / 2)); //last # is accounting for 3px margin on each side of each button
 
-                    //Create a button for each skill and place it in the SkillSelect Panel
+                    //Fill up the SkillSelectPanel with all available skill options
+                    // Create a button for each skill and place it in the SkillSelect Panel
                     foreach (Skill multiSkill in MultipleSkills)
                     {
                         SkillTooltipPanel pnlSkillTooltip = CreateSkillTooltip(multiSkill, tlpTree);
@@ -693,15 +707,24 @@ namespace ChroniCalc
 
                     //Add a default UnassignSkill button at the end incase the user chooses to not pick a skill at this time but wants to close the panel
                     pnlSkillSelect.Controls.Add(new UnassignSkillButton(pnlSkillSelect.Controls.Count, SKILL_BUTTON_PADDING, xPos, yPos));
+
+                    if (!alreadyChoseASkill)  //TODO should flip these to make it more readable
+                    {
+                        //Add a SkillSelect Button ("+" button) to the shared X,Y position on the tree
+                        MultiSkillSelectButton btnMultiSkillSelect = new MultiSkillSelectButton(xPos, yPos);
+                        tlpTree.Controls.Add(btnMultiSkillSelect, xPos, yPos);
+
+                        //Tie the panel to the SkillSelect Button that holds the position for which this panel and its skills apply to
+                        btnMultiSkillSelect.skillSelectPanel = pnlSkillSelect;
+                    }
+                    else
+                    {
+                        // Add the selected Skill and its SkillSelectPanel to a list for use after we've loaded all skills into the Tree so we can then assign the remaining SkillSelectPanels
+                        //   (the SkillSelectPanel cannot be added to the selected Skill because the Skill hasn't been created as a SkillButton and loaded onto the tree yet
+                        importedSkillsAndTheirSkillSelectPanels.Add(skill.id, pnlSkillSelect);
+                    }
                 }
             }
-
-        }
-
-        private bool IsMultiSelectionSkill(Skill skill, List<Skill> MultiSelectionSkills)
-        {
-            //Verify the current skill hasn't already been loaded by the LoadMultiSelectionSkills process
-            return MultiSelectionSkills.Contains(skill);
         }
 
         public SkillTooltipPanel CreateSkillTooltip(Skill skill, TreeTableLayoutPanel tlpTree)
@@ -718,22 +741,35 @@ namespace ChroniCalc
             //For each skill in the tree, populate its description by loading values in place of the placeholders
             foreach (Control skill in treeTableLayoutPanel.Controls)
             {
-                if (skill is MultiSkillSelectButton)
+                SkillSelectPanel skillSelectPanel = null;
+
+                //There may be a SkillSelectPanel assigned to this current skill on the tree so grab it
+                switch (skill)
                 {
-                    //Populate description for each skill
-                    foreach (SkillSelectButton singleSkill in (skill as MultiSkillSelectButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
+                    case MultiSkillSelectButton m:
+                        skillSelectPanel = m.skillSelectPanel;
+                        break;
+                    case SkillButton s:
+                        skillSelectPanel = s.skillSelectPanel;
+                        break;
+                    default:
+                        break;
+                }
+
+                //Populate descriptions of all skills in the SkillSelectPanel if one was found at this tree location
+                if (!(skillSelectPanel is null))
+                {
+                    //Populate description for each skill option
+                    foreach (SkillSelectButton singleSkill in skillSelectPanel.Controls.OfType<SkillSelectButton>())
                     {
                         singleSkill.skillTooltipPanel.PopulateDescription();
                     }
                 }
-                else if (skill is SkillButton)
+
+                //Populate description of the skill if this skill is directly on the tree (ie. not a MultiSkillSelect button)
+                if (skill is SkillButton)
                 {
-                    //Populate description of the skill
                     (skill as SkillButton).skillTooltipPanel.PopulateDescription();
-                }
-                else
-                {
-                    //A non-skill button control has been found within the TreeTableLayoutPanel, should I be concerned?
                 }
             }
         }

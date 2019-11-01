@@ -99,6 +99,41 @@ namespace ChroniCalc
             this.Hide();
         }
 
+        public void SetLocation(Control buttonClicked, int parentX, int parentY)
+        {
+            int availableWidth;
+            int left;
+            int top;
+            Point location;
+
+            // Position the Skill Select Panel centered in relation to the MultiSkill button that was clicked
+            left = (parentX + 1) * Convert.ToInt32(buttonClicked.Width) - (Convert.ToInt32(this.Width) / 2);
+
+            // Position the Skill Select Panel above the MultiSkill button that was clicked
+            top = (parentY + 1) * Convert.ToInt32(buttonClicked.Height) - Convert.ToInt32(this.Height / 2);
+
+            // Location to display the Skill Select Panel based on where the clicked MultiSkill button is
+            location = new Point(left, top);
+
+            // Check if the Skill Select Panel is going off one of the edges of the screen and adjust as necessary
+            //   Width of the panel the Skill Select Panel is contained within
+            availableWidth = this.Parent.Width;
+
+            if (location.X + this.Width > availableWidth)
+            {
+                // The Skill Select Panel went off the right edge of the available area, so position it left of the MultiSkill button that was clicked, instead of the right
+                location.X = availableWidth - this.Width;
+            }
+
+            if (location.Y < Convert.ToInt32(this.Height))
+            {
+                // The Skill Select Panel went off the top edge of the available area, so position it below the MultiSkill button that was clicked, instead of above
+                location.Y = Convert.ToInt32(this.Height * 2);
+            }
+
+            this.Location = location;
+        }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
