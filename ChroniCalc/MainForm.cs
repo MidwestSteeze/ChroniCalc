@@ -716,6 +716,8 @@ namespace ChroniCalc
 
                         //Tie the panel to the SkillSelect Button that holds the position for which this panel and its skills apply to
                         btnMultiSkillSelect.skillSelectPanel = pnlSkillSelect;
+                        // Set the correct location for the SkillSelectPanel to appear if opened, now that the MultiSkill button has been added to the Tree
+                        btnMultiSkillSelect.skillSelectPanel.SetLocation(btnMultiSkillSelect, btnMultiSkillSelect.xPos, btnMultiSkillSelect.yPos);
                     }
                     else
                     {

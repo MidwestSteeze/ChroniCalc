@@ -49,9 +49,6 @@ namespace ChroniCalc
 
         private void MultiSkillSelectButton_Click(object sender, EventArgs e)
         {
-            //Set the pixel location of the Skill Select Panel to popup for the user
-            skillSelectPanel.SetLocation(this, this.xPos, this.yPos);
-
             //Show the Skill Select Panel
             if (!skillSelectPanel.Visible)
             {

@@ -1,8 +1,6 @@
 ﻿ ToDo
 
  RESUME AT:
-	- SetLocation() of skill select panel tied to a MultiSkillSelect button just once when it's first loaded and added to the tree, not every time it's clicked
-      - move from MutliSkillSelect_Click to MainForms.LoadMultiSelectSkills right after the button is added to the tree
 	- how to handle build converts to new releases?
 	  - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)
     - test installer on a different machine
