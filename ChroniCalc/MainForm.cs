@@ -43,6 +43,7 @@ namespace ChroniCalc
 
         //Lists and Objects
         public Build build;
+        public BuildShareForm buildShareForm;
         List<CharacterClass> characterClasses;
         List<Tree> trees;
         List<Skill> skills;
@@ -54,8 +55,9 @@ namespace ChroniCalc
         {
             InitializeComponent();
 
-            //Assign ParentForm to UserControls dropped on the Form that need it
-            this.pbpBuildShare.ParentForm = this;
+            // Create a new BuildShare form that will display when the Build Sharing button is clicked
+            buildShareForm = new BuildShareForm();
+            buildShareForm.ParentForm = this;
 
             //Set the directory where Builds are stored
             BuildsDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\Builds";
@@ -1251,10 +1253,9 @@ namespace ChroniCalc
 
         private void btnBuildSharing_Click(object sender, EventArgs e)
         {
-            if (!pbpBuildShare.Visible)
-            {
-                pbpBuildShare.Show();
-            }
+            // Show the PasteBin form as a child of the Main Form so the Main Form cannot be interacted with while this is open
+            buildShareForm.StartPosition = FormStartPosition.CenterParent;
+            buildShareForm.ShowDialog(this);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

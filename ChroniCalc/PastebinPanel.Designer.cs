@@ -30,7 +30,6 @@
         {
             this.pnlPastebin = new System.Windows.Forms.Panel();
             this.lblHorizontalDivider = new System.Windows.Forms.Label();
-            this.btnPastebinClose = new System.Windows.Forms.Button();
             this.txtPastebinLoad = new System.Windows.Forms.TextBox();
             this.txtPastebinShare = new System.Windows.Forms.TextBox();
             this.lblPastebinHeader = new System.Windows.Forms.Label();
@@ -46,7 +45,6 @@
             this.pnlPastebin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.pnlPastebin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlPastebin.Controls.Add(this.lblHorizontalDivider);
-            this.pnlPastebin.Controls.Add(this.btnPastebinClose);
             this.pnlPastebin.Controls.Add(this.txtPastebinLoad);
             this.pnlPastebin.Controls.Add(this.txtPastebinShare);
             this.pnlPastebin.Controls.Add(this.lblPastebinHeader);
@@ -67,22 +65,6 @@
             this.lblHorizontalDivider.Size = new System.Drawing.Size(325, 2);
             this.lblHorizontalDivider.TabIndex = 8;
             this.lblHorizontalDivider.Text = "label1";
-            // 
-            // btnPastebinClose
-            // 
-            this.btnPastebinClose.AutoSize = true;
-            this.btnPastebinClose.BackColor = System.Drawing.Color.Transparent;
-            this.btnPastebinClose.BackgroundImage = global::ChroniCalc.ResourceImageUI.IconClose;
-            this.btnPastebinClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPastebinClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPastebinClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPastebinClose.ForeColor = System.Drawing.Color.Black;
-            this.btnPastebinClose.Location = new System.Drawing.Point(296, 1);
-            this.btnPastebinClose.Name = "btnPastebinClose";
-            this.btnPastebinClose.Size = new System.Drawing.Size(22, 21);
-            this.btnPastebinClose.TabIndex = 7;
-            this.btnPastebinClose.UseVisualStyleBackColor = false;
-            this.btnPastebinClose.Click += new System.EventHandler(this.BtnPastebinClose_Click);
             // 
             // txtPastebinLoad
             // 
@@ -177,7 +159,6 @@
         private System.Windows.Forms.Label lblPastebinShare;
         private System.Windows.Forms.Label lblPastebinLoad;
         private System.Windows.Forms.TextBox txtPastebinLoad;
-        private System.Windows.Forms.Button btnPastebinClose;
         private System.Windows.Forms.Label lblHorizontalDivider;
     }
 }

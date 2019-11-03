@@ -48,7 +48,6 @@
             this.pnlClassData = new System.Windows.Forms.Panel();
             this.pnlBuilds = new System.Windows.Forms.Panel();
             this.lblBuildsCaption = new System.Windows.Forms.Label();
-            this.pbpBuildShare = new ChroniCalc.PastebinPanel();
             this.btnBuildDelete = new System.Windows.Forms.Button();
             this.btnBuildOpen = new System.Windows.Forms.Button();
             this.dgvBuilds = new System.Windows.Forms.DataGridView();
@@ -275,7 +274,6 @@
             // 
             this.pnlBuilds.BackColor = System.Drawing.Color.Transparent;
             this.pnlBuilds.Controls.Add(this.lblBuildsCaption);
-            this.pnlBuilds.Controls.Add(this.pbpBuildShare);
             this.pnlBuilds.Controls.Add(this.btnBuildSharing);
             this.pnlBuilds.Controls.Add(this.btnBuildDelete);
             this.pnlBuilds.Controls.Add(this.btnBuildOpen);
@@ -295,14 +293,6 @@
             this.lblBuildsCaption.Size = new System.Drawing.Size(50, 20);
             this.lblBuildsCaption.TabIndex = 9;
             this.lblBuildsCaption.Text = "Builds";
-            // 
-            // pbpBuildShare
-            // 
-            this.pbpBuildShare.Location = new System.Drawing.Point(111, 73);
-            this.pbpBuildShare.Name = "pbpBuildShare";
-            this.pbpBuildShare.Size = new System.Drawing.Size(325, 150);
-            this.pbpBuildShare.TabIndex = 8;
-            this.pbpBuildShare.Visible = false;
             // 
             // btnBuildDelete
             // 
@@ -689,7 +679,6 @@
         private System.Windows.Forms.Panel pnlClassCaptions;
         private System.Windows.Forms.Label lblBuildName;
         private System.Windows.Forms.Button btnBuildSharing;
-        private PastebinPanel pbpBuildShare;
         private System.Windows.Forms.Panel pnlInventoryGear;
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label lblClass;

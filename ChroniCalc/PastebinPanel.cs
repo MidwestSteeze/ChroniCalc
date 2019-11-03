@@ -14,16 +14,9 @@ namespace ChroniCalc
 {
     public partial class PastebinPanel : UserControl
     {
-        public new MainForm ParentForm;
-
         public PastebinPanel()
         {
             InitializeComponent();
-        }
-
-        private void BtnPastebinClose_Click(object sender, EventArgs e)
-        {
-            this.Hide();
         }
 
         private void BtnPastebinShare_Click(object sender, EventArgs e)
@@ -40,12 +33,12 @@ namespace ChroniCalc
             //   this exposes username/password since it's on Github (CCalcShare//CCalcSharer)
             //client.Login(userName, password); //this'll set User Key
 
-            serializer = new XmlSerializer(ParentForm.build.GetType());
+            serializer = new XmlSerializer((this.ParentForm as BuildShareForm).ParentForm.build.GetType());
 
             // Save the build to a string format
             using (StringWriter writer = new StringWriter())
             {
-                serializer.Serialize(writer, ParentForm.build);  //TODO add try/catch around this incase serialization fails
+                serializer.Serialize(writer, (this.ParentForm as BuildShareForm).ParentForm.build);  //TODO add try/catch around this incase serialization fails
                 buildAsText = writer.ToString();
             }
 
@@ -73,7 +66,7 @@ namespace ChroniCalc
             string pastebinExtract;
 
             //Prompt for save/if user really wants to load, overwriting current build
-            if (!ParentForm.SaveBuildShouldContinue())
+            if (!(this.ParentForm as BuildShareForm).ParentForm.SaveBuildShouldContinue())
             {
                 return;
             }
@@ -81,7 +74,12 @@ namespace ChroniCalc
             pasteBinClient = new PasteBinClient();
             pastebinExtract = pasteBinClient.Extract(txtPastebinLoad.Text);
 
-            ParentForm.OpenBuild(pastebinExtract, true);
+            (this.ParentForm as BuildShareForm).ParentForm.OpenBuild(pastebinExtract, true);
+
+            // TODO wrap the Extract and OpenBuild in a try/catch incase the PasteBin retrieval fails, can send back this.ParentForm.DialogResult=Yes/No
+
+            // Close the Form now that the build has been loaded and opened
+            this.ParentForm.Close();
         }
     }
 }

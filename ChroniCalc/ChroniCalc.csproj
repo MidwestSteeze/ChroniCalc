@@ -88,6 +88,12 @@
     <Compile Include="Build.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="PasteBinClient.cs" />
+    <Compile Include="BuildShareForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildShareForm.Designer.cs">
+      <DependentUpon>BuildShareForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PastebinPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildShareForm.resx">
+      <DependentUpon>BuildShareForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PastebinPanel.resx">
       <DependentUpon>PastebinPanel.cs</DependentUpon>
