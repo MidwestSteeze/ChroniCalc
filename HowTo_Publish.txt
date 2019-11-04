@@ -1,4 +1,5 @@
 Set Enviroment to Release
+Increment Version Number in Project Properties --> Publish
 Clean Release
 Build Release
 Publish Release
@@ -11,5 +12,5 @@ Copy/paste publish\Application Files\(newVersion\
  - .zip it
 
 On GitHub, draft a new release
- - drag and drop in setup.exe from publish folder
+ - (not until file location issue is resolved) drag and drop in setup.exe from publish folder
  - drop and drop in ChroniCalc (newVersion).zip from publish folder
