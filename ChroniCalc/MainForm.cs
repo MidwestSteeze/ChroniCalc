@@ -28,7 +28,6 @@ namespace ChroniCalc
         }
 
         //Skill Tree
-        public const string IMAGE_FILENAME_PREFIX = "spr_spellicons_";
         const int SKILL_BUTTON_PADDING = 6;
         public const int SKILL_POINTS_MAX = 100;
         const string XML_EXT = ".xml";
@@ -86,12 +85,28 @@ namespace ChroniCalc
             treeButtons.Add(btnTree2);
             treeButtons.Add(btnTree3);
             treeButtons.Add(btnTree4);
+            treeButtons.Add(btnTreeMastery);
 
-            //Add 4 trees to the list of available Trees for a Class
+            //Add 5 trees to the list of available Trees for a Class (4 Class Skill Trees and 1 Mastery Tree)
             treePanels = new List<TreeTableLayoutPanel>();
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; i <= 4; i++)
             {
-                TreeTableLayoutPanel ttlp = new TreeTableLayoutPanel(pnlTrees);
+                TreeTableLayoutPanel ttlp;
+
+                if (i == 4)
+                {
+                    //The last tree added is the Mastery tree and has some different properties
+                    ttlp = new TreeTableLayoutPanel(pnlTrees, 11, 7);
+                    ttlp.Name = "Mastery";
+                    //TODO Delete before deploying
+                    ttlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+                }
+                else
+                {
+                    //Create a new Class Skill tree
+                    ttlp = new TreeTableLayoutPanel(pnlTrees, 10, 7);
+                }
+
                 treePanels.Add(ttlp);
             }
 
@@ -250,7 +265,7 @@ namespace ChroniCalc
                         skill.type = !(skillNode.SelectSingleNode("type") is null) ? skillNode.SelectSingleNode("type").InnerXml : "N/A";
                         skill.description_next = !(skillNode.SelectSingleNode("description_next") is null) ? skillNode.SelectSingleNode("description_next").InnerXml : "";
                         skill.description = !(skillNode.SelectSingleNode("description") is null) ? skillNode.SelectSingleNode("description").InnerXml : "";
-                        skill.max_rank = !(skillNode.SelectSingleNode("max_rank") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("max_rank").InnerXml) : -1;
+                        skill.max_rank = (!(skillNode.SelectSingleNode("max_rank") is null) && (skillNode.SelectSingleNode("max_rank").InnerXml.All(Char.IsDigit))) ? Convert.ToInt32(skillNode.SelectSingleNode("max_rank").InnerXml) : -1;
                         skill.y = !(skillNode.SelectSingleNode("y") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("y").InnerXml) : -1;
                         skill.cost1 = !(skillNode.SelectSingleNode("cost1") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("cost1").InnerXml) : -1;
                         skill.name = !(skillNode.SelectSingleNode("name") is null) ? skillNode.SelectSingleNode("name").InnerXml : "ERROR: Missing Name";
@@ -487,8 +502,15 @@ namespace ChroniCalc
                     // NOTE: Only if this is a build we're importing, not one we're resetting //TODOSSG test this, this may not be conditioned on anymore but is working
                     if (!skillButton.isPassiveBonusButton) // && build.level > 0) //TODOSSG this is a hack for the NOTE above //TODOSSG this note is maybe no longer applicable
                     {
+                        if (ttlpTree.Name == "Mastery")
+                        {
+                            build.MasteryLevel -= skillButton.skill.level;
+                        }
+                        else
+                        {
                             build.Level -= skillButton.skill.level;
-                    }                    
+                        }
+                    }
 
                     //Lastly, reset the level of the skill
                     skillButton.skill.level = 0;
@@ -563,6 +585,29 @@ namespace ChroniCalc
                         DisposeControl(child);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Determine the correct prefix to use for the button image's filename, depending on if this is for the Mastery tree or a Class tree
+        ///   as they're named slightly different
+        /// </summary>
+        public static string GetSkillButtonIconFilename(string treeName, int skillId)
+        {
+            const string IMAGE_FILENAME_PREFIX_MASTERY = "spr_masteryicons_";
+            const string IMAGE_FILENAME_PREFIX_SKILL = "spr_spellicons_";
+
+            //NOTE: if the following is too process-intensive, an alternate to this shared method would be to either adjust all "100"-padded skill ids in the skill data OR rename the mastery image files to contain the "100" padding
+            if (treeName == "Mastery")
+            {
+                // Combine the mastery filenames prefix with the id of the skill excluding the padding in the skill.id that's used to make Mastery skill ids unique from Class skill ids
+                //   This needs to be done because the filenames are named with the padding, because instead what makes Mastery Skill files unique from Class Skill files is the text "mastery" vs. "spell"
+                //  (it's an inconsistency in the data that we just have to account for, so work around it)
+                return IMAGE_FILENAME_PREFIX_MASTERY + (skillId - 100000).ToString();
+            }
+            else
+            {
+                return IMAGE_FILENAME_PREFIX_SKILL + skillId.ToString();
             }
         }
 
@@ -751,9 +796,9 @@ namespace ChroniCalc
                         btnSkillSelect.skill = multiSkill;
                         btnSkillSelect.treeControl = tlpTree;
 
-                        if (!((Image)ResourceManagerImageSkill.GetObject(IMAGE_FILENAME_PREFIX + multiSkill.id.ToString()) is null))
+                        if (!((Image)ResourceManagerImageSkill.GetObject(GetSkillButtonIconFilename(tree.name, multiSkill.id)) is null))
                         {
-                            btnSkillSelect.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(IMAGE_FILENAME_PREFIX + multiSkill.id.ToString());
+                            btnSkillSelect.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(GetSkillButtonIconFilename(tree.name, multiSkill.id));
                         }
                         else
                         {
@@ -870,19 +915,16 @@ namespace ChroniCalc
         {
             DialogResult dialogResult;
             Tree tree;
-            TreeTableLayoutPanel ttlpTree;
+            TreeTableLayoutPanel ttlpTree = null;
 
             // Ensure the user wants to reset this tree
             dialogResult = MessageBox.Show("Are you sure you want to reset this Tree?", "Reset Tree", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
-
                 treeStatus = TreeStatus.Resetting;
 
                 // Find the currently-shown tree
-                ttlpTree = new TreeTableLayoutPanel(pnlTrees);
-
                 foreach (TreeTableLayoutPanel ttlp in treePanels)
                 {
                     if (ttlp.Visible)
@@ -894,7 +936,7 @@ namespace ChroniCalc
 
                 // Only reset the tree if a TreeTableLayoutPanel is visible and is loaded with controls (ie. skills)
                 //   (this rules out if the application has done an initial load and no character was selected/loaded)
-                if (ttlpTree.HasChildren)
+                if (!(ttlpTree is null) && ttlpTree.HasChildren)
                 {
                     // Find the corresponding Tree to the current TreeTableLayoutPanel shown
                     tree = new Tree();
@@ -1294,22 +1336,17 @@ namespace ChroniCalc
                     //break;
             }
 
-            //Update each Tree thumbnail
-            foreach (Button treeButton in treeButtons)
-            {
-                //Look at the the button's Tag to determine which image to load into it
-                LoadTreeIconButtonImage(ResourceManagerImageTree, treeButton, treeButton.Tag.ToString());
-            }
+            // Load the mastery tree regardless of Class
+            treeName = "Mastery";
+            LoadTreeIconButtonImage(ResourceManagerImageTree, btnTreeMastery, treeName);
+            btnTreeMastery.Tag = treeName;
+            treePanels[4].Name = treeName;
+            //treePanels[4].passiveSkillId = 93; //TODO test that it's OK we're not setting a passiveSkillId/Name on the Mastery tree (or is there 1 we can/should set that's used in game but isn't in the skill data?)
+            //treePanels[4].passiveSkillName = treeName;
+            treePanels[4].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
             //Load all trees for the selected class into their corresponding tree table layout panels
             LoadTrees(build.characterClass);
-
-            //Set the Mastery tree button's Tag to the currently-selected Class
-            btnTreeMastery.Tag = build.characterClass.name;
-
-            //TODOSSG
-            //Update the rows in the Mastery tree to be specific to the newly-selected Class
-            //ResetMasteryTree(build.characterClass.name);
 
             //Default focus to the first Tree
             ShowTree(treeButtons.First(), new EventArgs());

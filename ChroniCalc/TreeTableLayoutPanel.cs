@@ -17,15 +17,15 @@ namespace ChroniCalc
         public string passiveSkillName; //Need this to differentiate between the spelling differences of the xml node name and the skill's name property (spaces and underscores)
         public Tree tree;
 
-        public TreeTableLayoutPanel(Panel parentControl)
+        public TreeTableLayoutPanel(Panel parentControl, int columnCount, int rowCount)
         {
             InitializeComponent();
 
             //Specify defaults for this custom control
 
-            //Column/Row Counts and Size
-            this.ColumnCount = 10;
-            this.RowCount = 7;
+            //Column/Row Counts and Sizing of them
+            this.ColumnCount = columnCount;
+            this.RowCount = rowCount;
 
             for (int i = 0; i < this.ColumnCount; i++)
             {

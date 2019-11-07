@@ -1101,6 +1101,1520 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_484.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_485.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_486.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_487.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_488.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_489.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_490.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_491.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_492.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_493.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_494.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_495.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_496.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_497.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_498.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_499.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_500.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_502.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_503.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_504.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_457.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_458.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_459.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_460.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_461.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_462.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_463.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_464.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_465.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_466.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_467.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_468.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_469.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_470.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_471.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_472.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_473.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_474.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_475.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_476.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_477.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_478.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_479.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_480.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_481.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_482.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_483.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_426.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_427.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_428.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_429.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_430.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_431.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_432.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_433.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_434.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_435.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_436.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_437.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_438.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_439.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_440.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_441.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_442.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_443.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_444.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_445.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_446.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_447.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_448.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_449.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_450.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_451.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_452.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_453.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_454.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_455.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_456.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_399.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_400.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_401.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_402.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_403.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_404.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_405.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_406.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_407.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_408.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_409.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_410.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_411.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_412.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_413.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_414.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_415.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_416.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_417.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_418.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_419.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_420.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_421.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_422.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_423.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_424.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_425.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_377.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_378.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_379.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_380.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_381.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_382.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_383.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_384.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_385.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_386.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_387.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_388.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_389.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_390.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_391.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_392.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_393.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_394.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_395.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_396.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_397.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_398.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_346.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_347.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_348.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_349.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_350.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_351.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_352.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_353.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_354.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_355.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_356.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_357.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_358.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_359.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_360.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_361.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_362.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_363.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_364.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_365.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_366.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_367.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_368.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_369.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_370.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_371.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_372.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_373.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_374.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_375.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_376.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_323.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_324.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_325.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_326.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_327.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_328.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_329.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_330.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_331.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_332.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_333.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_334.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_335.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_336.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_337.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_338.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_339.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_340.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_341.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_342.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_343.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_344.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_345.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_292.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_293.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_294.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_295.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_296.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_297.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_298.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_299.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_300.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_301.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_302.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_303.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_304.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_305.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_306.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_307.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_308.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_309.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_310.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_311.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_312.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_313.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_314.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_315.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_316.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_317.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_318.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_319.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_320.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_267.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_268.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_269.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_270.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_271.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_272.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_273.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_274.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_275.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_276.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_277.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_278.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_279.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_280.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_281.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_282.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_283.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_284.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_285.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_286.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_287.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_288.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_289.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_290.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_258.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_259.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_260.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_261.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_262.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_263.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_264.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_265.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_266.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_244.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_245.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_246.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_247.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_248.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_249.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_250.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_251.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_252.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_253.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_254.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_255.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_257.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_234.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_235.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_236.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_237.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_238.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_239.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_240.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_243.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_222.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_223.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_224.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_225.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_226.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_227.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_228.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_229.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_230.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_231.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_232.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_233.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_208.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_209.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_210.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_211.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_212.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_213.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_214.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_215.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_216.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_217.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_218.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_219.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_220.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_221.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_198.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_199.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_201.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_202.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_203.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_204.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_205.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_206.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_207.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_183.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_184.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_185.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_186.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_187.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_188.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_189.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_190.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_191.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_192.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_193.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_194.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_195.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_197.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_170.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_171.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_172.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_173.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_174.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_175.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_176.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_177.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_178.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_179.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_180.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_181.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_182.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_163.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_164.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_165.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_166.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_167.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_168.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_169.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_153.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_154.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_155.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_156.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_157.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_158.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_159.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_160.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_133.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_134.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_135.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_136.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_137.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_138.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_139.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_140.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_141.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_142.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_143.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_144.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_145.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_146.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_147.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_148.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_149.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_151.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_152.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_104.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_105.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_106.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_107.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_108.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_109.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_110.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_111.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_112.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_113.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_114.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_115.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_116.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_117.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_118.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_119.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_120.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_121.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_122.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_123.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_124.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_125.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_126.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_127.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_129.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_130.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_131.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_132.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_76.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_77.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_78.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_79.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_81.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_82.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_83.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_84.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_85.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_86.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_87.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_88.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_89.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_91.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_92.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_93.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_94.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_95.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_97.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_98.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_99.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_101.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_102.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_103.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_54.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_55.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_56.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_57.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_58.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_59.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_61.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_62.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_63.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_65.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_66.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_67.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_68.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_69.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_71.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_73.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_74.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_75.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_33.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_34.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_37.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_38.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_39.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_41.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_43.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_44.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_46.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_47.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_49.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_52.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_53.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Skill\spr_masteryicons_0.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

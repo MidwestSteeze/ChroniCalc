@@ -57,9 +57,9 @@ namespace ChroniCalc
             //Background Image
             ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
 
-            if (!((Image)ResourceManagerImageSkill.GetObject(MainForm.IMAGE_FILENAME_PREFIX + skill.id.ToString()) is null))
+            if (!((Image)ResourceManagerImageSkill.GetObject(MainForm.GetSkillButtonIconFilename(tlpTree.tree.name, inSkill.id)) is null))
             {
-                this.pbIcon.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(MainForm.IMAGE_FILENAME_PREFIX + skill.id.ToString());
+                this.pbIcon.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(MainForm.GetSkillButtonIconFilename(tlpTree.tree.name, inSkill.id));
             }
             else
             {
@@ -210,14 +210,14 @@ namespace ChroniCalc
             string replaceValue = string.Empty;
 
             //Adjust the lookup index depending on the current level of the skill
-            if (level > 0)
+            if (level > 0 && skill.max_rank != -1)  //TODO fix -1 condition by adjusting it for proper infinite maxrank for some Mastery skills
             {
                 //Adjust index beacuse it's a 0-based lookup
                 index -= 1;
             }
             else
             {
-                //No level is yet assigned so show the level 1 value
+                //No level is yet assigned, or it's an infinite-level skill, so use the level 1 value
                 index = 0;
             }
 
@@ -288,7 +288,7 @@ namespace ChroniCalc
                     replaceValue = skill.value[index].ToString();
                     break;
                 default:
-                    MessageBox.Show("SkillTooltipPanel.GetReplacementValue(): No mapping found for " + replaceWord + ".");
+                    MessageBox.Show("SkillTooltipPanel.GetReplacementValue(): No mapping found for " + replaceWord + " on Skill " + skill.name + ".");
                     break;
             }
 

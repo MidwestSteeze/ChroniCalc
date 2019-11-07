@@ -45,9 +45,9 @@ namespace ChroniCalc
             //Background Image
             ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
 
-            if (!((Image)ResourceManagerImageSkill.GetObject(MainForm.IMAGE_FILENAME_PREFIX + skill.id.ToString()) is null))
+            if (!((Image)ResourceManagerImageSkill.GetObject(MainForm.GetSkillButtonIconFilename(parentControl.tree.name, inSkill.id)) is null))
             {                
-                this.pbSkillIcon.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(MainForm.IMAGE_FILENAME_PREFIX + skill.id.ToString());
+                this.pbSkillIcon.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject(MainForm.GetSkillButtonIconFilename(parentControl.tree.name, inSkill.id));
             }
             else
             {
@@ -177,23 +177,34 @@ namespace ChroniCalc
             //Get the value the Skill should have its level adjusted by and adjust the Skill and Build levels
             levelAdjust = newLevel - oldLevel;
             this.skill.level += levelAdjust;
-            form.build.Level += levelAdjust;
-
             //Update the total spent skill points on this particular Tree for the passive bonus stats
             ttlpTree.skillPointsAllocated = ttlpTree.skillPointsAllocated + levelAdjust;
-            SkillButton passiveBonusBtn = (SkillButton)ttlpTree.Controls.Find(ttlpTree.passiveSkillId.ToString(), true).First();
-            passiveBonusBtn.skill.level = ttlpTree.skillPointsAllocated;
-            passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
 
-            //Update the rank and then the description on the Passive bonus button's tooltip since we have it here
-            passiveBonusBtn.skillTooltipPanel.UpdateRankText(passiveBonusBtn.skill.level);
-            passiveBonusBtn.skillTooltipPanel.PopulateDescription();
+            if (ttlpTree.Name == "Mastery")
+            {
+                form.build.MasteryLevel += levelAdjust;
 
-            //Update the label that shows remaining points that can be spent
-           (form.Controls.Find("lblSkillPointsRemaining", true).First() as Label).Text = (MainForm.SKILL_POINTS_MAX - form.build.Level).ToString();
+                //Update the current Mastery Level of the character based on how many Mastery points have been spent
+                (form.Controls.Find("lblMastery", true).First() as Label).Text = form.build.MasteryLevel.ToString();
+            }
+            else
+            {
+                form.build.Level += levelAdjust;
 
-            //Update the current level of the character based on how many skill points have been spent
-            (form.Controls.Find("lblLevel", true).First() as Label).Text = form.build.Level.ToString();
+                SkillButton passiveBonusBtn = (SkillButton)ttlpTree.Controls.Find(ttlpTree.passiveSkillId.ToString(), true).First();
+                passiveBonusBtn.skill.level = ttlpTree.skillPointsAllocated;
+                passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
+
+                //Update the rank and then the description on the Passive bonus button's tooltip since we have it here
+                passiveBonusBtn.skillTooltipPanel.UpdateRankText(passiveBonusBtn.skill.level);
+                passiveBonusBtn.skillTooltipPanel.PopulateDescription();
+
+                //Update the label that shows remaining points that can be spent
+               (form.Controls.Find("lblSkillPointsRemaining", true).First() as Label).Text = (MainForm.SKILL_POINTS_MAX - form.build.Level).ToString();
+
+                //Update the current Level of the character based on how many skill points have been spent
+                (form.Controls.Find("lblLevel", true).First() as Label).Text = form.build.Level.ToString();
+            }
 
             //Update the displayed level on the skill button
             this.lblSkillLevel.Text = this.skill.level.ToString();

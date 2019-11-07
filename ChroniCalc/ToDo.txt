@@ -1,6 +1,11 @@
 ﻿ ToDo
 
  RESUME AT:
+	- Mastery Trees:
+		- Rows 3-5: load row 3 an additional 2 times, into row 4 and 5 (the data exists once but that row exists 3 times on the Mastery tree)
+			- IDEA: when loading the Mastery tree data into the Tree object, duplicate the data of all skills with <y>2</y> to be <y>3</y> and <y>4</y>
+		- Get screenshot of mastery tree in-game to use as background image (with links enabled) and to confirm sizing/positioning of the entire tree as well as its individual skill buttons
+		- Implement PreReq functionality so end skills cannot be chosen prior to starting ones
     - issue with install/run location of program in relation to where Build files are saved/reloaded. utilize user folder instead? (PoB uses a stand-alone feature with a Builds folder, where the PoB.exe is run from the same root folder; but how does the .exe installer work then?)
 	- how to handle build converts to new releases?
 	  - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)
@@ -8,7 +13,6 @@
 	- Get an initial release available on Git for download/install
 
  MAJORS:
-  - Integrate the Mastery Tree (need data from sqrbit)
   - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
       - could also retain use of XML within program but output as JSON (ie. JsonConvert.SerializeXmlNodeDoc())
 	  - see project JsonImporter, has it working but requires adjustment to JSON
@@ -32,5 +36,4 @@
 
 
  MISC:
-	- MainForm: Mastery Point counter (no Maximum)
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat

@@ -488,6 +488,7 @@
             this.btnTreeMastery.Name = "btnTreeMastery";
             this.btnTreeMastery.Size = new System.Drawing.Size(35, 35);
             this.btnTreeMastery.TabIndex = 5;
+            this.btnTreeMastery.Tag = "Mastery";
             this.btnTreeMastery.UseVisualStyleBackColor = false;
             this.btnTreeMastery.Click += new System.EventHandler(this.ShowTree);
             // 
