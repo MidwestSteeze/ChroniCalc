@@ -1,0 +1,83 @@
+Use Process Explorer to monitor the number of USER Objects as functions are performed.  Max allowed is 10,000 and leaks should be resolved by Disposing() of objects that are no longer in use
+
+//START GARBAGE COLLECTION //TODO any UserControl that isn't added as a Control of another User Control is what needs to be manually Disposed()
+// (NOTE: Canot add SkilSelectPanel as a child to its parent control because it's actually a parent of pnlTrees for display purposes; GetControlsOfType maybe?) (could just do a UserControls.Add(ChildUserControl) so there's that link for cleanup instead ofhaving to remember what to manually cleanup
+//RESUME HERE look at what LoadTree is creating new that ClearTree isn't disposing (user controls)
+
+//410 TOTAL (1780 --> 2190 after ResetTree) UserControls to be Disposed(): 
+// MultiSkillSelectButton
+//  - SkillSelectPanel via Controls.Add (0)
+//     - SkillSelectButton (0)
+//        - SkillTooltipPanel (-60)
+// PastebinPanel - OK  (it's a child of BuildShareForm with 1 instantiation)
+// SkillButton (makes it worse it seems)
+//  - ref MainForm form, could reset to ParentForm and cast as needed
+//  - SkillSelectPanel (works but only when a skill was selected from a MultiSelect button)
+//  - SkillTooltipPanel (-230)
+// SkillTooltipPanel
+//   - ref MainForm form
+//   - ref TreeTableLayoutPanel (all Tooltips are on pnlTrees via STP.Parent=pnlTrees and should be Disposed())
+
+//Custom Controls which may have Children to be Disposed():
+// BuildShareForm - OK, but Test to verify: 1 instance created on FormLoad and it's never re-laoded
+// SkillSelectButton
+//   - ref MainForm form
+//   - ref TreeTableLayoutPanel
+//   - SkillTooltipPanel
+// SkillSelectPanel
+//   - SkillSelectButtons via Controls.Add
+// TreeTableLayoutPanel
+//   - SkillButtons via Controls.Add (-120 utilizing DisposeChildControlsOf(ttlpTree) method)
+// UnassignSkillButton
+
+//END GARBAGE COLLECTION
+
+MainForm.ClearTree()
+			
+			//Reset the skill points allocated on the Tree control's skills
+            foreach (Control control in ttlpTree.Controls)
+            {
+                if (control is SkillButton)
+                {
+                    skillButton = (control as SkillButton);
+
+                    //Update the level of the build since we're removing skill points spent in this Tree
+                    // NOTE: Only if this is a build we're importing, not one we're resetting //TODOSSG test this, this may not be conditioned on anymore but is working
+                    if (!skillButton.isPassiveBonusButton) // && build.level > 0) //TODOSSG this is a hack for the NOTE above //TODOSSG this note is maybe no longer applicable
+                    {
+                            build.Level -= skillButton.skill.level;
+                    }                    
+
+                    //Lastly, reset the level of the skill
+                    skillButton.skill.level = 0;
+
+                    //GARBAGE COLLECTION
+                    skillButton.skillTooltipPanel.Dispose(); //-230 UserObjects
+                    if (!(skillButton.skillSelectPanel is null))
+                    {
+                        skillButton.skillSelectPanel.Dispose();  //Works but only if Skill was selected from MultiSelect, so it's needed
+                    }
+
+                    //skillButton.Dispose(); //This actually made it worse
+                }
+                else if (control is MultiSkillSelectButton)
+                {
+                    multiSkillSelectButton = (control as MultiSkillSelectButton);
+
+                    //GARBAGE COLLECTION
+                    while (multiSkillSelectButton.skillSelectPanel.Controls.Count > 0)
+                    {
+                        skillSelectButton = (multiSkillSelectButton.skillSelectPanel.Controls[0] as SkillSelectButton);
+                        if (!(skillSelectButton is null) && !(skillSelectButton.skillTooltipPanel is null))
+                        {
+                            skillSelectButton.skillTooltipPanel.Dispose(); //-60 USER OBJECTS
+                        }
+
+                        multiSkillSelectButton.skillSelectPanel.Controls[0].Dispose(); // no change
+                    }
+
+                    multiSkillSelectButton.skillSelectPanel.Dispose(); // no change
+                }
+            }
+			
+			DisposeChildControlsOf(ttlpTree); //(-120 and fixes all memory leaks of LoadTree it seems)
