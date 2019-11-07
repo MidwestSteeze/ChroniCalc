@@ -473,6 +473,8 @@ namespace ChroniCalc
         private void ClearTree(Tree tree, TreeTableLayoutPanel ttlpTree)
         {
             SkillButton skillButton;
+            MultiSkillSelectButton multiSkillSelectButton;
+            SkillSelectButton skillSelectButton;
 
             //Reset the skill points allocated on the Tree control's skills
             foreach (Control control in ttlpTree.Controls)
@@ -485,21 +487,83 @@ namespace ChroniCalc
                     // NOTE: Only if this is a build we're importing, not one we're resetting //TODOSSG test this, this may not be conditioned on anymore but is working
                     if (!skillButton.isPassiveBonusButton) // && build.level > 0) //TODOSSG this is a hack for the NOTE above //TODOSSG this note is maybe no longer applicable
                     {
-                        build.Level -= skillButton.skill.level;
+                            build.Level -= skillButton.skill.level;
                     }                    
 
                     //Lastly, reset the level of the skill
                     skillButton.skill.level = 0;
+
+                    //GARBAGE COLLECTION
+                    // The Tooltip panel is not added as a child of the Skill button, so it needs to be manually cleaned up
+                    skillButton.skillTooltipPanel.Dispose();
+					// The SkillSelect panel needs to be manually removed if one was imposed on a SkillButton (ie. a Skill was selected from a MultiSkillSelect button)
+                    if (!(skillButton.skillSelectPanel is null))
+                    {
+                        skillButton.skillSelectPanel.Dispose();
+                    }
+					//END GARBAGE COLLECTION
+                }
+                else if (control is MultiSkillSelectButton)
+                {
+                    multiSkillSelectButton = (control as MultiSkillSelectButton);
+
+                    //GARBAGE COLLECTION
+					//  Loop through each SkillSelect button contained within the SkillSelect panel to remove its controls
+                    while (multiSkillSelectButton.skillSelectPanel.Controls.Count > 0)
+                    {
+                        skillSelectButton = (multiSkillSelectButton.skillSelectPanel.Controls[0] as SkillSelectButton);
+                        if (!(skillSelectButton is null) && !(skillSelectButton.skillTooltipPanel is null))
+                        {
+                            // The Tooltip panel is not added as a child to the MultiSkill button, so it needs to be manually cleaned up
+                            skillSelectButton.skillTooltipPanel.Dispose();
+                        }
+                        // This doesn't actually free USER_OBJECTS but is necessary for the sake of the While loop
+                        multiSkillSelectButton.skillSelectPanel.Controls[0].Dispose();
+                    }
+
+                    multiSkillSelectButton.skillSelectPanel.Dispose();
+					//END GARBAGE COLLECTION
                 }
             }
 
-            ttlpTree.Controls.Clear();
+			//GARBAGE COLLECTION
+			// Instead of calling ttlpTree.Controls.Clear(), loop through all controls (ie. Skill buttons) to dispose of them individually
+            DisposeChildControlsOf(ttlpTree);
 
             //Reset the total number of skill points allocated on the Tree control
             ttlpTree.skillPointsAllocated = 0;
 
             //Update Stats here because we may have cleared a bunch of active/passive skills
             UpdateStats(build);
+        }
+
+        /// <summary>
+        /// Dispose a control and all its children
+        /// </summary>
+        public void DisposeControl(Control c)
+        {
+            if (null != c)
+                using (c)
+                    DisposeChildControlsOf(c);
+        }
+
+        /// <summary>
+        /// Dispose (and remove) all the children of a control
+        /// </summary>
+        public void DisposeChildControlsOf(Control c)
+        {
+            if (null != c)
+            {
+                if (null != c.Controls)
+                {
+                    while (c.Controls.Count > 0)
+                    {
+                        Control child = c.Controls[0];
+                        c.Controls.RemoveAt(0);
+                        DisposeControl(child);
+                    }
+                }
+            }
         }
 
         private void LoadTreeIconButtonImage(ResourceManager resourceManager, Button button, string name)

@@ -70,6 +70,7 @@ namespace ChroniCalc
                     // The same skill was chosen, so the PreviousSkill will remain; BUT if we don't remove the SelectedSkill, it will remain on the TreeTableLayoutPanel
                     //   (this is because when the selected SkillButton was created, its Parent is automatically assigned as the TreeTableLayoutPanel which puts it in the first available cell)
                     this.treeControl.Controls.Remove(selectedSkill);
+                    selectedSkill.Dispose();  //GARBAGE COLLECTION
                 }
             }
             else if (previousSkill is SkillButton && selectedSkill is MultiSkillSelectButton)
@@ -146,6 +147,7 @@ namespace ChroniCalc
             // Remove the existing control at the currently-selected position
             //   NOTE: Removing a control moves all controls after it "up" 1 cell by index, but adding a control in its place immediately after will put all skills back in their place
             this.treeControl.Controls.Remove(previousSkill);
+            previousSkill.Dispose(); //GARBAGE COLLECTION
 
             // Add the selected button to the Tree at the currently-selected position and
             //   move the SkillSelectPanel over to the newly-selected button so it can be re-displayed if wanted
