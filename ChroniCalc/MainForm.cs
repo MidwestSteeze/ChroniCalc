@@ -243,7 +243,7 @@ namespace ChroniCalc
                         //Create a new Skill
                         skill = new Skill();
 
-                        //TODOSSG document manual changes made to skilldata.json when converted into XML as these will need to be applied for each new skilldata.json release
+                        // Read the data from the Skill xml into a Skill object
                         //TODOSSG convert the rest (all?) to utilize NodeHasValue with additional conditions as necessary
                         //Map all Skill values into the Object's properties, handling situations of multiple Ranks and when the Node doesn't exist
                         // (using NodeHasValue to handle situations where the node exists but has no value ie. <duration></duration> and if there are additinoal values I need to exclude such as "none")
@@ -251,7 +251,7 @@ namespace ChroniCalc
                         skill.cooldown = !(skillNode.SelectSingleNode("cooldown") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("cooldown").InnerXml) : -1;
                         skill.duration = NodeHasValue(skillNode.SelectSingleNode("duration")) ? Array.ConvertAll(skillNode.SelectSingleNode("duration").InnerXml.Split(','), double.Parse) : new double[] { };
                         skill.cost100 = !(skillNode.SelectSingleNode("cost100") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("cost100").InnerXml) : -1;
-                        skill.skill_requirement = NodeHasValue(skillNode.SelectSingleNode("skill_requirement"), new string[] { "none"}) ? Array.ConvertAll(skillNode.SelectSingleNode("skill_requirement").InnerXml.Trim('[', ']').Split(','), int.Parse) : new int[] { };
+                        skill.skill_requirement = NodeHasValue(skillNode.SelectSingleNode("skill_requirement"), new string[] { "none" }) ? Array.ConvertAll(skillNode.SelectSingleNode("skill_requirement").InnerXml.Trim('[', ']').Split(','), int.Parse) : new int[] { };
                         skill.x = !(skillNode.SelectSingleNode("x") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("x").InnerXml) : -1;
                         skill.damage = !(skillNode.SelectSingleNode("damage") is null) ? skillNode.SelectSingleNode("damage").InnerXml.Split(',') : new string[] { }; //TODOSSG convert this to hold just the value and remove the "%"?
                         skill.range2 = NodeHasValue(skillNode.SelectSingleNode("range2")) ? Array.ConvertAll(skillNode.SelectSingleNode("range2").InnerXml.Split(','), double.Parse) : new double[] { };
@@ -271,6 +271,28 @@ namespace ChroniCalc
                         skill.name = !(skillNode.SelectSingleNode("name") is null) ? skillNode.SelectSingleNode("name").InnerXml : "ERROR: Missing Name";
 
                         skills.Add(skill);
+                    }
+
+                    // For the Mastery Tree, copy Row 3 Skills to also exist in Row 4 and 5
+                    if (tree.name == "Mastery")
+                    {
+                        Skill duplicateSkill;
+
+                        // Get all skills in Row 3 on the Mastery Tree (ie. skill.y=2)
+                        List<Skill> skillsToDuplicate = skills.FindAll(s => s.y == 2);
+
+                        // With indices 3 and 4 (for Row 4 and 5), duplicate each skill in Row 3 and change its y value to the new row
+                        for (int i = 3; i <= 4; i++)
+                        {
+                            foreach (Skill skillToDuplicate in skillsToDuplicate)
+                            {
+                                duplicateSkill = skillToDuplicate.Duplicate();
+                                duplicateSkill.y = i;
+
+                                // Add the duplicated Skill to the available Skills list
+                                skills.Add(duplicateSkill);
+                            }
+                        }
                     }
 
                     //Add all available Skills to the Tree

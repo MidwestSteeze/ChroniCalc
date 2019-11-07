@@ -92,5 +92,10 @@ namespace ChroniCalc
 
         [JsonProperty("level")]
         public int level;
+
+        public Skill Duplicate()
+        {
+            return (Skill)this.MemberwiseClone();
+        }
     }
 }
