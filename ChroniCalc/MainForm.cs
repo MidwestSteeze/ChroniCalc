@@ -117,6 +117,73 @@ namespace ChroniCalc
             pnlBuilds.BringToFront();
         }
 
+        private void AddMasteryPassiveRowCounters(string className, ref List<Skill> skills)
+        {
+            const string PLACEHOLDER_TREE = "PLACEHOLDER_TREE";
+            const string PLACEHOLDER_VALUE = "PLACEHOLDER_VAL";
+            const string DESCRIPTION_CLASS_ROW = "Increases the damage of all " + PLACEHOLDER_TREE + " skills for each point spent in this line.  Current bonus is " + PLACEHOLDER_VALUE + "%.";
+            const string DESCRIPTION_GENERIC_ROW = "Increases Health, Damage, and Mana for each point spent in this line.  Current bonus is " + PLACEHOLDER_VALUE + "%.";
+
+            // Add Class-specific Mastery row countrers
+            switch (className)
+            {
+                case "Berserker":
+                    AddMasteryPassiveRowCounter("Guardian Mastery", 100011, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Guardian"), ref skills);
+                    AddMasteryPassiveRowCounter("Sky Lord Mastery", 100013, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Sky Lord"), ref skills);
+                    AddMasteryPassiveRowCounter("Dragonkin Mastery", 100012, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Dragonkin"), ref skills);
+                    AddMasteryPassiveRowCounter("Frostborn Mastery", 100014, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Frostborn"), ref skills);
+                    break;
+
+                case "Templar":
+                    AddMasteryPassiveRowCounter("Vengeance Mastery", 100007, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Vengeance"), ref skills);
+                    AddMasteryPassiveRowCounter("Wrath Mastery", 100009, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Wrath"), ref skills);
+                    AddMasteryPassiveRowCounter("Conviction Mastery", 100008, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Conviction"), ref skills);
+                    AddMasteryPassiveRowCounter("Redemption Mastery", 100010, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Redemption"), ref skills);
+                    break;
+
+                case "Warden":
+                    AddMasteryPassiveRowCounter("Wind Ranger Mastery", 100003, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Wind Ranger"), ref skills);
+                    AddMasteryPassiveRowCounter("Druid Mastery", 100004, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Druid"), ref skills);
+                    AddMasteryPassiveRowCounter("Storm Caller Mastery", 100005, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Storm Caller"), ref skills);
+                    AddMasteryPassiveRowCounter("Winter Herald Mastery", 100006, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Winter Herald"), ref skills);
+                    break;
+
+                case "Warlock":
+                    AddMasteryPassiveRowCounter("Corruptor Mastery", 100015, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Corruptor"), ref skills);
+                    AddMasteryPassiveRowCounter("Lich Mastery", 100017, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Lich"), ref skills);
+                    AddMasteryPassiveRowCounter("Demonologist Mastery", 100016, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Demonologist"), ref skills);
+                    AddMasteryPassiveRowCounter("Reaper Mastery", 100018, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Reaper"), ref skills);
+                    break;
+
+                default:
+                    break;  //TODO throw error that class not found (ie. if a new class is added
+            }
+
+            // Add the 3 generic Mastery row counters
+            for (int i = 0; i <= 2; i++)
+            {
+                AddMasteryPassiveRowCounter("Class Mastery " + (i + 1).ToString(), 100000 + i, i + 2, DESCRIPTION_GENERIC_ROW, ref skills);
+            }
+        }
+
+        private void AddMasteryPassiveRowCounter(string passiveName, int masteryId, int rowIndex, string description, ref List<Skill> skills)
+        {
+            //Add a new Skill to hold this mastery
+            Skill passiveMasterySkill = new Skill();
+            passiveMasterySkill.description = description;
+            passiveMasterySkill.id = masteryId;
+            passiveMasterySkill.name = passiveName;
+            passiveMasterySkill.max_rank = -1; //TODO fix for being infinite //TODO find all other properties i need to set as well
+            passiveMasterySkill.min_level = -1;
+            passiveMasterySkill.type = "Ethereal";
+            passiveMasterySkill.value = new double[] { 0.3 };  //TODO find the right value for this, it may differ between each row so perhaps change it to a param and define it in the call
+            passiveMasterySkill.x = 0;
+            passiveMasterySkill.y = rowIndex;
+
+            // Add the passive skill counter specifically to the Mastery tree
+            skills.Add(passiveMasterySkill);
+        }
+
         private void LoadBuildsIntoBuildsList()
         {
             string[] buildFiles;
@@ -256,7 +323,7 @@ namespace ChroniCalc
                         skill.damage = !(skillNode.SelectSingleNode("damage") is null) ? skillNode.SelectSingleNode("damage").InnerXml.Split(',') : new string[] { }; //TODOSSG convert this to hold just the value and remove the "%"?
                         skill.range2 = NodeHasValue(skillNode.SelectSingleNode("range2")) ? Array.ConvertAll(skillNode.SelectSingleNode("range2").InnerXml.Split(','), double.Parse) : new double[] { };
                         skill.family = !(skillNode.SelectSingleNode("family") is null) ? skillNode.SelectSingleNode("family").InnerXml : "None";
-                        skill.min_level = !(skillNode.SelectSingleNode("min_level") is null) ? skillNode.SelectSingleNode("min_level").InnerXml : "N/A";
+                        skill.min_level = !(skillNode.SelectSingleNode("min_level") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("min_level").InnerXml) : -1;
                         skill.id = !(skillNode.SelectSingleNode("id") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("id").InnerXml) : -1;
                         skill.range = NodeHasValue(skillNode.SelectSingleNode("range")) ? Array.ConvertAll(skillNode.SelectSingleNode("range").InnerXml.Split(','), double.Parse) : new double[] { };
                         skill.element = !(skillNode.SelectSingleNode("element") is null) ? skillNode.SelectSingleNode("element").InnerXml : "N/A";
@@ -293,6 +360,11 @@ namespace ChroniCalc
                                 skills.Add(duplicateSkill);
                             }
                         }
+                    }
+
+                    if (tree.name == "Mastery")
+                    {
+                        AddMasteryPassiveRowCounters(classNode.Name, ref skills);
                     }
 
                     //Add all available Skills to the Tree
@@ -707,8 +779,8 @@ namespace ChroniCalc
                     //Create a new control to hold this skill at the skills X and Y location
                     btnSkill = new SkillButton(skill, ttlpTree, pnlSkillTooltip, this);
 
-                    //Specify the passive bonus skill button as being such, we'll need this info for other situations
-                    if (skill.name == ttlpTree.passiveSkillName)
+                    //Specify the passive bonus skill button as being such (when it's found to be the Tree name as the Skill name OR it's one of the Tree names in the Mastery Tree), we'll need this info for other situations
+                    if ((skill.name == ttlpTree.passiveSkillName) || (tree.name == "Mastery" && skill.name.Contains(tree.name))) //TODO This'll fail if the Mastery Tree ever gets a selectable skill with the name "Mastery" in it; a fooler-proof solution may be to hard-code the skillId's into a list and check if skill.id IN MasteryPassiveSkillIds
                     {
                         btnSkill.isPassiveBonusButton = true;
                     }

@@ -188,8 +188,8 @@ namespace ChroniCalc
                 skillIdForClearingPostReqs = -1;
             }
 
-            // Update any/all necessary data of all linked (read: postreq) Skills (e.g. level, description)
-            if ((skillIdForClearingPostReqs != -1) &&
+            // For Class Skills Only: Update any/all necessary data of all linked (read: postreq) Skills (e.g. level, description)
+            if ((treeControl.tree.name != "Mastery") && (skillIdForClearingPostReqs != -1) &&
                 (!(this.treeControl.tree.skills.Where(x => x.skill_requirement.Contains(skillIdForClearingPostReqs)) is null)))
             {
                 UpdatePostReqSkills(skillIdForClearingPostReqs);

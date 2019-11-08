@@ -43,7 +43,7 @@ namespace ChroniCalc
         public string family; //TODOSSG change to Enum?
 
         [JsonProperty("min_level")]
-        public string min_level;
+        public int min_level;
 
         //The id used for determining pre-req skills
         [JsonProperty("id")]

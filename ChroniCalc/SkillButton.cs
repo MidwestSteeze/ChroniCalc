@@ -79,7 +79,7 @@ namespace ChroniCalc
 
             //Don't process this MouseUp event on the button if it's the Class skill counter (the one that provides the passive damage bonus based on # of points spent)
             //  NOTE: doing this instead of disabling the button entirely because we still want hover capabilities AND disabling actually hides the control
-            if (this.skill.name == (this.Parent as TreeTableLayoutPanel).passiveSkillName)
+            if (this.isPassiveBonusButton)
             {
                 return;
             }
@@ -100,7 +100,7 @@ namespace ChroniCalc
             }
             else
             { 
-                if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && (form.build.Level < MainForm.SKILL_POINTS_MAX))
+                if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && (form.build.Level < MainForm.SKILL_POINTS_MAX)) //TODO modify this to account for Mastery tree as it doesn't care about build.level < SKILL_POINTS_MAX
                 {
                     //Increase the level
                     UpdateSkillPointAndLevelCounter(this.skill.level, this.skill.level + 1);
@@ -164,6 +164,22 @@ namespace ChroniCalc
                 }
             }
 
+            //TODO check if we meet the min_level requirement
+            if (this.skill.min_level > 0)
+            {
+                if (ttlp.tree.name == "Mastery")
+                {
+                    // On the Mastery Tree, check # of skill points spent on this row
+                    //TODO (will i be developing a row counter? most likely, so i can leverage off that)
+                }
+                else
+                {
+                    // On a Class Skill Tree, check # of skill points spent on the tree is greater than the # of points required to allocate this skill (//TODO this'll fire when it doesn't need to, when a skill is already level 1 and is being leveled further)
+                    // NOTE: There are no min_level requirements on Class Skill trees so this is partially uselss right now (TODO but there are skill points allocated implied, like Column2 cannot be leveled until you have 8 points in the tree so you could do some math of treePointsAllocated >= skill.x * 8)
+                    result = (ttlp.skillPointsAllocated >= this.skill.min_level);
+                }
+            }
+
             return result;
         }
 
@@ -178,13 +194,23 @@ namespace ChroniCalc
             levelAdjust = newLevel - oldLevel;
             this.skill.level += levelAdjust;
             //Update the total spent skill points on this particular Tree for the passive bonus stats
-            ttlpTree.skillPointsAllocated = ttlpTree.skillPointsAllocated + levelAdjust;
+            ttlpTree.skillPointsAllocated += levelAdjust;
 
             if (ttlpTree.Name == "Mastery")
             {
                 form.build.MasteryLevel += levelAdjust;
 
-                //Update the current Mastery Level of the character based on how many Mastery points have been spent
+                // Update the Mastery passive row counter located in the first cell (x=0) in the same row (via y-coordinate) as this Skill
+                SkillButton passiveBonusBtn = (SkillButton)ttlpTree.GetControlFromPosition(0, this.skill.y);
+                passiveBonusBtn.skill.level += levelAdjust;
+                passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
+
+                // Update the rank and then the description on the Passive bonus button's tooltip since we have it here
+                passiveBonusBtn.skillTooltipPanel.UpdateRankText(passiveBonusBtn.skill.level);
+                passiveBonusBtn.skillTooltipPanel.PopulateDescription();
+
+
+                // Update the current Mastery Level of the character based on how many Mastery points have been spent
                 (form.Controls.Find("lblMastery", true).First() as Label).Text = form.build.MasteryLevel.ToString();
             }
             else

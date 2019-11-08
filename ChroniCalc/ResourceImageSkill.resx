@@ -3868,4 +3868,61 @@
   <data name="spr_masteryicons_99" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Skill\spr_masteryicons_99.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="spr_masteryicons_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_15.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_17.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spr_masteryicons_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Skill\spr_masteryicons_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

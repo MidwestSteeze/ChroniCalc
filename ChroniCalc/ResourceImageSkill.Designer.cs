@@ -83,6 +83,36 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_0 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_1 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_10 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_masteryicons_100 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_100", resourceCulture);
@@ -176,6 +206,16 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap spr_masteryicons_109 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_109", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_11 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_11", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,6 +323,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_12 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_12", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_masteryicons_120 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_120", resourceCulture);
@@ -376,6 +426,16 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap spr_masteryicons_129 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_129", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_13 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_13", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -483,6 +543,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_14 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_14", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_masteryicons_140 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_140", resourceCulture);
@@ -576,6 +646,16 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap spr_masteryicons_149 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_149", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_15 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_15", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -683,6 +763,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_16 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_masteryicons_160 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_160", resourceCulture);
@@ -783,6 +873,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_17 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_17", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_masteryicons_170 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_170", resourceCulture);
@@ -876,6 +976,16 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap spr_masteryicons_179 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_179", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_18 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_18", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1076,6 +1186,16 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap spr_masteryicons_199 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_199", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_2 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2183,6 +2303,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_3 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_masteryicons_30 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_30", resourceCulture);
@@ -3276,6 +3406,16 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap spr_masteryicons_399 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_399", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_4 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4383,6 +4523,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_5 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_masteryicons_50 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_50", resourceCulture);
@@ -4533,6 +4683,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_6 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_masteryicons_60 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_60", resourceCulture);
@@ -4626,6 +4786,16 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap spr_masteryicons_69 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_69", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_7 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_7", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4733,6 +4903,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_8 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spr_masteryicons_80 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_80", resourceCulture);
@@ -4826,6 +5006,16 @@ namespace ChroniCalc {
         internal static System.Drawing.Bitmap spr_masteryicons_89 {
             get {
                 object obj = ResourceManager.GetObject("spr_masteryicons_89", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spr_masteryicons_9 {
+            get {
+                object obj = ResourceManager.GetObject("spr_masteryicons_9", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
