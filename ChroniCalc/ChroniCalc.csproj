@@ -2616,5 +2616,11 @@
   <ItemGroup>
     <None Include="Assets\Images\Skill\spr_masteryicons_0.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Tree\spr_empty_skill_slot_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Images\Tree\spr_empty_skill_slot_3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,7 +20,7 @@ namespace ChroniCalc
         public int xPos;
         public int yPos;
 
-        public MultiSkillSelectButton(int x, int y)
+        public MultiSkillSelectButton(int x, int y, string treeName, int maxRank)
         {
             InitializeComponent();
 
@@ -34,9 +34,27 @@ namespace ChroniCalc
             this.pnlMultiSkillSelectButton.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom);
             this.pnlMultiSkillSelectButton.Dock = DockStyle.Fill;
 
-            //Background Image
+            //Background Image based on the Tree this button will exist in and the max rank of the Skills it will be holding
             ResourceManagerImageTree = new ResourceManager("ChroniCalc.ResourceImageTree", Assembly.GetExecutingAssembly());
-            pbMultiSkillSelectIcon.BackgroundImage = (Image)ResourceManagerImageTree.GetObject("spr_empty_skill_slot_0");
+            if (treeName == "Mastery")
+            {
+                if (maxRank == 1)
+                {
+                    // The Mastery Skill is a Perk, so show it as a Triangle
+                    pbMultiSkillSelectIcon.BackgroundImage = (Image)ResourceManagerImageTree.GetObject("spr_empty_skill_slot_3");
+                }
+                else
+                {
+                    // THe Mastery Skill is a Passive Skill, so show it as a Circle
+                    pbMultiSkillSelectIcon.BackgroundImage = (Image)ResourceManagerImageTree.GetObject("spr_empty_skill_slot_1");
+                }
+            }
+            else
+            {
+                // The Skill is on a Class Tree, so show it as a Square
+                pbMultiSkillSelectIcon.BackgroundImage = (Image)ResourceManagerImageTree.GetObject("spr_empty_skill_slot_0");
+            }
+            
 
             //Image Layout
             pbMultiSkillSelectIcon.BackgroundImageLayout = ImageLayout.Stretch;

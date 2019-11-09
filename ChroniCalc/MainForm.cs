@@ -936,7 +936,7 @@ namespace ChroniCalc
                     if (!alreadyChoseASkill)  //TODO should flip these to make it more readable
                     {
                         //Add a SkillSelect Button ("+" button) to the shared X,Y position on the tree
-                        MultiSkillSelectButton btnMultiSkillSelect = new MultiSkillSelectButton(xPos, yPos);
+                        MultiSkillSelectButton btnMultiSkillSelect = new MultiSkillSelectButton(xPos, yPos, tree.name, MultipleSkills[0].max_rank);
                         tlpTree.Controls.Add(btnMultiSkillSelect, xPos, yPos);
 
                         //Tie the panel to the SkillSelect Button that holds the position for which this panel and its skills apply to

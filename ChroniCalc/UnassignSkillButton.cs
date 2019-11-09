@@ -60,7 +60,7 @@ namespace ChroniCalc
             if (btnSkill is SkillButton)
             {
                 //Create a new MultiSkillSelect button to hold the selectable skills and change it on the tree
-                (this.Parent as SkillSelectPanel).ChangeSelectedSkill(btnSkill, new MultiSkillSelectButton(this.tlpXPos, this.tlpYPos));
+                (this.Parent as SkillSelectPanel).ChangeSelectedSkill(btnSkill, new MultiSkillSelectButton(this.tlpXPos, this.tlpYPos, treeControl.tree.name, (btnSkill as SkillButton).skill.max_rank));
             }
             else
             {

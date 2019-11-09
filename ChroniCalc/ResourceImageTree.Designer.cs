@@ -373,6 +373,26 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap spr_empty_skill_slot_1 {
+            get {
+                object obj = ResourceManager.GetObject("spr_empty_skill_slot_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap spr_empty_skill_slot_3 {
+            get {
+                object obj = ResourceManager.GetObject("spr_empty_skill_slot_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap StormCaller {
             get {
                 object obj = ResourceManager.GetObject("StormCaller", resourceCulture);
