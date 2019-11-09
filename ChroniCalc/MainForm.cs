@@ -175,7 +175,7 @@ namespace ChroniCalc
             passiveMasterySkill.id = masteryId;
             passiveMasterySkill.level = 0;
             passiveMasterySkill.name = passiveName;
-            passiveMasterySkill.max_rank = -1; //TODO fix for being infinite //TODO find all other properties i need to set as well
+            passiveMasterySkill.max_rank = int.MaxValue;
             passiveMasterySkill.min_level = -1;
             passiveMasterySkill.type = "Ethereal";
             passiveMasterySkill.value = new double[] { 0.3 };  //TODO find the right value for this, it may differ between each row so perhaps change it to a param and define it in the call
@@ -334,7 +334,7 @@ namespace ChroniCalc
                         skill.type = !(skillNode.SelectSingleNode("type") is null) ? skillNode.SelectSingleNode("type").InnerXml : "N/A";
                         skill.description_next = !(skillNode.SelectSingleNode("description_next") is null) ? skillNode.SelectSingleNode("description_next").InnerXml : "";
                         skill.description = !(skillNode.SelectSingleNode("description") is null) ? skillNode.SelectSingleNode("description").InnerXml : "";
-                        skill.max_rank = (!(skillNode.SelectSingleNode("max_rank") is null) && (skillNode.SelectSingleNode("max_rank").InnerXml.All(Char.IsDigit))) ? Convert.ToInt32(skillNode.SelectSingleNode("max_rank").InnerXml) : -1;
+                        skill.max_rank = (!(skillNode.SelectSingleNode("max_rank") is null) && (skillNode.SelectSingleNode("max_rank").InnerXml.All(Char.IsDigit))) ? Convert.ToInt32(skillNode.SelectSingleNode("max_rank").InnerXml) : int.MaxValue;  // The data contains "infinite" for skills that don't have a max value, so represent that via int.MaxValue
                         skill.y = !(skillNode.SelectSingleNode("y") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("y").InnerXml) : -1;
                         skill.cost1 = !(skillNode.SelectSingleNode("cost1") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("cost1").InnerXml) : -1;
                         skill.name = !(skillNode.SelectSingleNode("name") is null) ? skillNode.SelectSingleNode("name").InnerXml : "ERROR: Missing Name";

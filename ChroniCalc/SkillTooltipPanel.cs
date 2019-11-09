@@ -52,7 +52,7 @@ namespace ChroniCalc
 
             this.lblName.Text = this.skill.name;
             UpdateRankText(skill.level);
-            this.lblTypeAndFamily.Text = this.skill.type + (skill.family != "None" ? (", " + skill.family) : "");
+            this.lblTypeAndFamily.Text = this.skill.type + ((skill.family != "None" && !string.IsNullOrEmpty(skill.family)) ? (", " + skill.family) : "");
 
             //Background Image
             ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
@@ -211,7 +211,7 @@ namespace ChroniCalc
             string replaceValue = string.Empty;
 
             //Adjust the lookup index depending on the current level of the skill
-            if (level > 0 && skill.max_rank != -1)  //TODO fix -1 condition by adjusting it for proper infinite maxrank for some Mastery skills
+            if (level > 0 && skill.max_rank != int.MaxValue)
             {
                 //Adjust index beacuse it's a 0-based lookup
                 index -= 1;
@@ -303,7 +303,15 @@ namespace ChroniCalc
         {
             //Set the current level of this skill
             level = inLevel; //TODOSSG change to just use skill.level?
-            lblRank.Text = "Rank " + level.ToString() + "/" + this.skill.max_rank.ToString();
+
+            if (this.skill.max_rank != int.MaxValue)
+            {
+                lblRank.Text = "Rank " + level.ToString() + "/" + this.skill.max_rank.ToString();
+            }
+            else
+            {
+                lblRank.Text = "Rank " + level.ToString();
+            }
         }
 
         public void UpdateHeightAndControlPositions()
