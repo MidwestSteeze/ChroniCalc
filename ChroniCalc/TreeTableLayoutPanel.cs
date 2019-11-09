@@ -17,7 +17,7 @@ namespace ChroniCalc
         public string passiveSkillName; //Need this to differentiate between the spelling differences of the xml node name and the skill's name property (spaces and underscores)
         public Tree tree;
 
-        public TreeTableLayoutPanel(Panel parentControl, int columnCount, int rowCount)
+        public TreeTableLayoutPanel(Panel parentControl, int columnCount, int rowCount, int width, int height)
         {
             InitializeComponent();
 
@@ -29,16 +29,16 @@ namespace ChroniCalc
 
             for (int i = 0; i < this.ColumnCount; i++)
             {
-                this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, (10F)));
+                this.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, (float)(100 / columnCount)));
             }
 
             for (int i = 0; i < this.RowCount; i++)
             {
-                this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, (14.28571F)));
+                this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, (float)(100 / rowCount)));
             }
 
             //Size
-            this.Size = new System.Drawing.Size(475, 279);
+            this.Size = new System.Drawing.Size(width, height);
 
             //Assign the Parent Control
             parentControl.Controls.Add(this);

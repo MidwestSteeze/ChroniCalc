@@ -333,6 +333,16 @@ namespace ChroniCalc {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Mastery {
+            get {
+                object obj = ResourceManager.GetObject("Mastery", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Reaper {
             get {
                 object obj = ResourceManager.GetObject("Reaper", resourceCulture);
