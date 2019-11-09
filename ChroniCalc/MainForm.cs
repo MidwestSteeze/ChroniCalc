@@ -172,18 +172,36 @@ namespace ChroniCalc
             //Add a new Skill to hold this mastery
             Skill passiveMasterySkill = new Skill();
             passiveMasterySkill.description = description;
+            passiveMasterySkill.element = "Ethereal";
             passiveMasterySkill.id = masteryId;
             passiveMasterySkill.level = 0;
             passiveMasterySkill.name = passiveName;
             passiveMasterySkill.max_rank = int.MaxValue;
             passiveMasterySkill.min_level = -1;
-            passiveMasterySkill.type = "Ethereal";
+            passiveMasterySkill.type = "Passive Skill";
             passiveMasterySkill.value = new double[] { 0.3 };  //TODO find the right value for this, it may differ between each row so perhaps change it to a param and define it in the call
             passiveMasterySkill.x = 0;
             passiveMasterySkill.y = rowIndex;
 
             // Add the passive skill counter specifically to the Mastery tree
             skills.Add(passiveMasterySkill);
+        }
+
+        private string GetSkillType(XmlNode skillTypeNode, string treeName, ref Skill skill)
+        {
+            string skillType = "N/A";
+
+            if (!(skillTypeNode is null))
+            {
+                skillType = skillTypeNode.InnerXml;
+            }
+            else if (treeName == "Mastery")
+            {
+                //The Skill's Type node is null but if we're on the Mastery tree we know how to set Type
+                skillType = (skill.max_rank == 1 ? "Perk" : "Passive Skill");
+            }
+
+            return skillType;
         }
 
         private void LoadBuildsIntoBuildsList()
@@ -331,10 +349,10 @@ namespace ChroniCalc
                         skill.element = !(skillNode.SelectSingleNode("element") is null) ? skillNode.SelectSingleNode("element").InnerXml : "N/A";
                         skill.value = NodeHasValue(skillNode.SelectSingleNode("value")) ? Array.ConvertAll(skillNode.SelectSingleNode("value").InnerXml.Split(','), double.Parse) : new double[] { };
                         skill.proc = NodeHasValue(skillNode.SelectSingleNode("proc")) ? Array.ConvertAll(skillNode.SelectSingleNode("proc").InnerXml.Split(','), int.Parse) : new int[] { };
-                        skill.type = !(skillNode.SelectSingleNode("type") is null) ? skillNode.SelectSingleNode("type").InnerXml : "N/A";
                         skill.description_next = !(skillNode.SelectSingleNode("description_next") is null) ? skillNode.SelectSingleNode("description_next").InnerXml : "";
                         skill.description = !(skillNode.SelectSingleNode("description") is null) ? skillNode.SelectSingleNode("description").InnerXml : "";
                         skill.max_rank = (!(skillNode.SelectSingleNode("max_rank") is null) && (skillNode.SelectSingleNode("max_rank").InnerXml.All(Char.IsDigit))) ? Convert.ToInt32(skillNode.SelectSingleNode("max_rank").InnerXml) : int.MaxValue;  // The data contains "infinite" for skills that don't have a max value, so represent that via int.MaxValue
+                        skill.type = GetSkillType(skillNode.SelectSingleNode("type"), tree.name, ref skill); // Type is dependant on max rank for Mastery skills, so need to call a method and do it after we set max rank
                         skill.y = !(skillNode.SelectSingleNode("y") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("y").InnerXml) : -1;
                         skill.cost1 = !(skillNode.SelectSingleNode("cost1") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("cost1").InnerXml) : -1;
                         skill.name = !(skillNode.SelectSingleNode("name") is null) ? skillNode.SelectSingleNode("name").InnerXml : "ERROR: Missing Name";
