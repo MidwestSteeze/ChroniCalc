@@ -124,6 +124,7 @@ namespace ChroniCalc
                 "DAMAGE",
                 "DURATION",
                 "EFFECT",
+                "MASTERY_BONUS_PLACEHOLDER",
                 "PROC",
                 "RANGE2",
                 "RANGE",
@@ -234,6 +235,9 @@ namespace ChroniCalc
                 case "EFFECT":
                     //EFFECT is stored with a percent sign, trim it off the end
                     replaceValue = skill.effect[index].Substring(0, skill.effect[index].IndexOf("%"));
+                    break;
+                case "MASTERY_BONUS_PLACEHOLDER":
+                    replaceValue = Math.Round((skill.value[0] * skill.level), MidpointRounding.AwayFromZero).ToString();
                     break;
                 case "PROC":
                     //PROC chance is stored in hundreds; divide by 100 to get the percentage to display

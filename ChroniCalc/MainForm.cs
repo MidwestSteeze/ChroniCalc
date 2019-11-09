@@ -120,7 +120,7 @@ namespace ChroniCalc
         private void AddMasteryPassiveRowCounters(string className, ref List<Skill> skills)
         {
             const string PLACEHOLDER_TREE = "PLACEHOLDER_TREE";
-            const string PLACEHOLDER_VALUE = "PLACEHOLDER_VAL";
+            const string PLACEHOLDER_VALUE = "MASTERY_BONUS_PLACEHOLDER";
             const string DESCRIPTION_CLASS_ROW = "Increases the damage of all " + PLACEHOLDER_TREE + " skills for each point spent in this line.  Current bonus is " + PLACEHOLDER_VALUE + "%.";
             const string DESCRIPTION_GENERIC_ROW = "Increases Health, Damage, and Mana for each point spent in this line.  Current bonus is " + PLACEHOLDER_VALUE + "%.";
 
@@ -156,7 +156,8 @@ namespace ChroniCalc
                     break;
 
                 default:
-                    break;  //TODO throw error that class not found (ie. if a new class is added
+                    // Throw error that class not found (ie. if a new class is added)
+                    throw new Exception("AddMasteryPassiveRowCounters(): className of " + className + " not found.");
             }
 
             // Add the 3 generic Mastery row counters
@@ -172,6 +173,7 @@ namespace ChroniCalc
             Skill passiveMasterySkill = new Skill();
             passiveMasterySkill.description = description;
             passiveMasterySkill.id = masteryId;
+            passiveMasterySkill.level = 0;
             passiveMasterySkill.name = passiveName;
             passiveMasterySkill.max_rank = -1; //TODO fix for being infinite //TODO find all other properties i need to set as well
             passiveMasterySkill.min_level = -1;

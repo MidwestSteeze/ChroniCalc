@@ -77,7 +77,9 @@ namespace ChroniCalc
             //MessageBox.Show(debugMessage);
             //END Debug Info
 
-            //Don't process this MouseUp event on the button if it's the Class skill counter (the one that provides the passive damage bonus based on # of points spent)
+            string treeName = (this.Parent as TreeTableLayoutPanel).tree.name;
+
+            //Don't process this MouseUp event on the button if it's the Class or Mastery skill counter (the one that provides the passive damage bonus based on # of points spent)
             //  NOTE: doing this instead of disabling the button entirely because we still want hover capabilities AND disabling actually hides the control
             if (this.isPassiveBonusButton)
             {
@@ -100,7 +102,8 @@ namespace ChroniCalc
             }
             else
             { 
-                if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && (form.build.Level < MainForm.SKILL_POINTS_MAX)) //TODO modify this to account for Mastery tree as it doesn't care about build.level < SKILL_POINTS_MAX
+                if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && 
+                    ((treeName != "Mastery" && form.build.Level < MainForm.SKILL_POINTS_MAX) || treeName == "Mastery"))
                 {
                     //Increase the level
                     UpdateSkillPointAndLevelCounter(this.skill.level, this.skill.level + 1);
@@ -121,61 +124,90 @@ namespace ChroniCalc
             Control[] preReqControls;
             SkillButton preReqSkillButton;
 
-            //Get the Tree this Skill belong to
+            //Get the Tree this Skill belongs to
             TreeTableLayoutPanel ttlp = (TreeTableLayoutPanel)this.Parent;
 
-            //Compile list of prereq skill ids from the current skill's skill_requirement property
-            // NOTE: There's always only 1 prereq skill but we need this as a list to handle when a MultiSelectSkill is a prereq (ie. one OR another)
-            int[] prereqs = this.skill.skill_requirement;
-
-            //Analyze each prereq skill id to see if it's leveled (we loop through multiple for cases where a skill is prereq'd by a MultiSelectSkill)
-            foreach (int prereqSkillId in prereqs)
+            if (ttlp.tree.name == "Mastery")
             {
-                //Get the Skill button from the Tree by SkillID
-                preReqControls = ttlp.Controls.Find(prereqSkillId.ToString(), false);
-
-                //See if there is no prereq control found
-                if (preReqControls.Length < 1)
+                // MASTERY TREE PREREQ LOGIC
+                // Ensure that all prior controls linked to this one are at least level 1
+                //   NOTE: Only going from the current skill.x position down to position 2 (read: columm 3) because the first two cells in a row are not selectable Skills and should not be considered
+                for (int x = this.skill.x - 1; x >= 2; x--)
                 {
-                    if (Array.IndexOf(prereqs, prereqSkillId) == prereqs.Length - 1)
+                    if (ttlp.GetControlFromPosition(x, this.skill.y) is SkillButton)
                     {
-                        //PreReq control not found; this is because no Skill has yet been selected from the positions SkillSelect panel
+                        preReqSkillButton = (ttlp.GetControlFromPosition(x,this.skill.y) as SkillButton);
+                        if (preReqSkillButton.skill.level < 1)
+                        {
+                            // The current control is a selected Skill but has not yet been leveled, so the PreReq check has failed
+                            result = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        // The current control is not a selected Skill and therefore isn't leveled, so the PreReq check has failed
                         result = false;
                         break;
                     }
-
-                    //There are more PreReq IDs to search through, so move onto the next iteration
-                    continue;
                 }
+            }
+            else
+            {
+                // CLASS TREE PREREQ LOGIC
+                //Compile list of prereq skill ids from the current skill's skill_requirement property
+                // NOTE: There's always only 1 prereq skill but we need this as a list to handle when a MultiSelectSkill is a prereq (ie. one OR another)
+                int[] prereqs = this.skill.skill_requirement;
 
-                preReqSkillButton = (SkillButton)preReqControls.First();
+                //Analyze each prereq skill id to see if it's leveled (we loop through multiple for cases where a skill is prereq'd by a MultiSelectSkill)
+                foreach (int prereqSkillId in prereqs)
+                {
+                    //Get the Skill button from the Tree by SkillID
+                    preReqControls = ttlp.Controls.Find(prereqSkillId.ToString(), false);
 
-                //Verify the PreReq skill is leveled
-                if (preReqSkillButton.skill.level < 1)
-                {
-                    result = false;
-                    break;
-                }
-                else
-                {
-                    //We found a leveled PreReq, there is no need to search the others so break out of the loop
-                    result = true;
-                    break;
+                    //See if there is no prereq control found
+                    if (preReqControls.Length < 1)
+                    {
+                        if (Array.IndexOf(prereqs, prereqSkillId) == prereqs.Length - 1)
+                        {
+                            //PreReq control not found; this is because no Skill has yet been selected from the positions SkillSelect panel
+                            result = false;
+                            break;
+                        }
+
+                        //There are more PreReq IDs to search through, so move onto the next iteration
+                        continue;
+                    }
+
+                    preReqSkillButton = (SkillButton)preReqControls.First();
+
+                    //Verify the PreReq skill is leveled
+                    if (preReqSkillButton.skill.level < 1)
+                    {
+                        result = false;
+                        break;
+                    }
+                    else
+                    {
+                        //We found a leveled PreReq, there is no need to search the others so break out of the loop
+                        result = true;
+                        break;
+                    }
                 }
             }
 
-            //TODO check if we meet the min_level requirement
-            if (this.skill.min_level > 0)
+            // Check if we meet the minimum level requirement on a new Skill that was clicked to level up
+            if ((result) && (this.skill.min_level > 0) && (this.skill.level < 1))
             {
                 if (ttlp.tree.name == "Mastery")
                 {
-                    // On the Mastery Tree, check # of skill points spent on this row
-                    //TODO (will i be developing a row counter? most likely, so i can leverage off that)
+                    // On the Mastery Tree, check # of skill points spent on this row meets the minimum required to level this new Skill
+                    result = ((ttlp.GetControlFromPosition(0, this.skill.y) as SkillButton).skill.level >= this.skill.min_level);
                 }
                 else
                 {
-                    // On a Class Skill Tree, check # of skill points spent on the tree is greater than the # of points required to allocate this skill (//TODO this'll fire when it doesn't need to, when a skill is already level 1 and is being leveled further)
-                    // NOTE: There are no min_level requirements on Class Skill trees so this is partially uselss right now (TODO but there are skill points allocated implied, like Column2 cannot be leveled until you have 8 points in the tree so you could do some math of treePointsAllocated >= skill.x * 8)
+                    // On a Class Skill Tree, check # of skill points spent on the tree is greater than the # of points required to allocate this skill
+                    // NOTE: There are no min_level requirements on Class Skill trees so this is partially uselss right now (TODO but there are skill points allocated implied, like Column2 cannot be leveled until you have 8 points in the tree so you could do some math of treePointsAllocated >= skill.x * 8?)
                     result = (ttlp.skillPointsAllocated >= this.skill.min_level);
                 }
             }
@@ -208,7 +240,6 @@ namespace ChroniCalc
                 // Update the rank and then the description on the Passive bonus button's tooltip since we have it here
                 passiveBonusBtn.skillTooltipPanel.UpdateRankText(passiveBonusBtn.skill.level);
                 passiveBonusBtn.skillTooltipPanel.PopulateDescription();
-
 
                 // Update the current Mastery Level of the character based on how many Mastery points have been spent
                 (form.Controls.Find("lblMastery", true).First() as Label).Text = form.build.MasteryLevel.ToString();
