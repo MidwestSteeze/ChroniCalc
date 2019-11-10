@@ -1,10 +1,6 @@
 ﻿ ToDo
 
  RESUME AT:
-	- Class Trees: conditionally display min_level on tooltip until the requirement is met
-	- Mastery Trees:
-		- de-leveling a skill may invalidate postreq skills (this may be a bug in class-specific skill trees as well)
-		- in the 3 Generic rows, the same skill at the same x position can be selected in a different column (ie. Health in all 3 of the Generic rows' first column)
     - issue with install/run location of program in relation to where Build files are saved/reloaded. utilize user folder instead? (PoB uses a stand-alone feature with a Builds folder, where the PoB.exe is run from the same root folder; but how does the .exe installer work then?)
 	- how to handle build converts to new releases?
 	  - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)
@@ -17,7 +13,7 @@
 	  - see project JsonImporter, has it working but requires adjustment to JSON
   - Stat calculation and screen (damage, health, etc)
      - Phase 1: just the totals (modifiers, mulitpliers, conversions, etc)
-	 - PHase 2: actual damage numbers and dps
+	 - Phase 2: actual damage numbers and dps
  
  CLASSES:
 
@@ -34,6 +30,12 @@
  TREES:
 
 
- MISC:
+ POST BETA MISC:
+	- Mastery Trees:
+		- de-leveling a skill may invalidate postreq skills (this may be a bug in class-specific skill trees as well) (ie. can't have a skill level 0 if a later-linked skill is still leveled; and you can't de-level a skill that causes later-linked skills to no longer meet the min_level req)
+		- in the 3 Generic rows, the same skill at the same x position can be selected in a different column (ie. Health in all 3 of the Generic rows' first column)
+	- Class/Mastery Trees: conditionally display Points Requirement label on tooltip until the requirement is met (in stash as "Points Requiremenet label in Tooltip")
     - cleanup tree background images in relation to how the controls sit on top of them with some parts still showing and the last column being stretched (especially Mastery tree stretching)
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
+
+ POST RELEASE MISC:
