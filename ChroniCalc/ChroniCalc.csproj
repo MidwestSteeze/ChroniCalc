@@ -24,8 +24,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://raw.githubusercontent.com/MidwestSteeze/ChroniCalc/master/publish/</InstallUrl>
     <UpdateUrl>https://raw.githubusercontent.com/MidwestSteeze/ChroniCalc/master/publish/</UpdateUrl>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>0.8.0.7</ApplicationVersion>
+    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationVersion>0.8.0.8</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -99,6 +99,11 @@
     </Compile>
     <Compile Include="PastebinPanel.Designer.cs">
       <DependentUpon>PastebinPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceData.resx</DependentUpon>
     </Compile>
     <Compile Include="ResourceImageClass.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -197,6 +202,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ResourceData.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceData.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResourceImageClass.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceImageClass.Designer.cs</LastGenOutput>

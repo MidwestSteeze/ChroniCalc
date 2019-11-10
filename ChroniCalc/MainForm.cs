@@ -36,6 +36,7 @@ namespace ChroniCalc
         private TreeStatus treeStatus;
 
         //Resource Managers for pulling assets (ie. data, images, etc.) which is a reflection of the Assets directory
+        ResourceManager ResourceManagerData;
         ResourceManager ResourceManagerImageClass;
         ResourceManager ResourceManagerImageSkill;
         ResourceManager ResourceManagerImageTree;
@@ -73,6 +74,7 @@ namespace ChroniCalc
                 lblSkillPointsRemaining.Text = SKILL_POINTS_MAX.ToString();
 
                 //Init resource managers for pulling assets (ie. data, images, etc.)
+                ResourceManagerData = new ResourceManager("ChroniCalc.ResourceData", Assembly.GetExecutingAssembly());
                 ResourceManagerImageClass = new ResourceManager("ChroniCalc.ResourceImageClass", Assembly.GetExecutingAssembly());
                 ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
                 ResourceManagerImageTree = new ResourceManager("ChroniCalc.ResourceImageTree", Assembly.GetExecutingAssembly());
@@ -299,7 +301,7 @@ namespace ChroniCalc
             string jsonSample = (ConfigurationManager.AppSettings["SkillDataSample"]);
             string jsonBerserker = (ConfigurationManager.AppSettings["SkillDataBerserker"]);
             string jsonAll = (ConfigurationManager.AppSettings["SkillDataAll"]);
-            string jsonAsXml = (ConfigurationManager.AppSettings["SkillDataAsXml"]);
+            string jsonAsXml = (string)ResourceManagerData.GetObject("convertjson");
 
             Tree tree;
             Skill skill;
@@ -329,7 +331,7 @@ namespace ChroniCalc
             //Load the skill data in as XML format because the Json isn't an ideal format for 
             // iterating over and squarebit is a busy bro and doesn't need to be bothered to change it
             XmlDocument skillData = new XmlDocument();
-            skillData.Load(jsonAsXml);
+            skillData.LoadXml(jsonAsXml);
 
             //Loop through each Class under the root (ie. Berserker, Templar, Warlock, etc)
             foreach (XmlNode classNode in skillData.SelectSingleNode("root"))
