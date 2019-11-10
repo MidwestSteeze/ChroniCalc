@@ -4,13 +4,18 @@ Clean Release
 Build Release
 Publish Release
 Commit and Push files generated in publish\Application Files\(newVersion)\
-Run setup.exe
+ - Commit Message: Publish: vA.B.C.D artifacts
+Add tag on that commit as "vA.B.C.D" -alpha-beta if needed
+(optional to update/install it for a global use location) Run publish\setup.exe
   - it should now be updated since it references the Publish URL on github and is expecting the publish\Application Files\(newVersion)\ files to be there
 
 Copy/paste publish\Application Files\(newVersion\
+ - rename to append "-standalone"
  - remove *.deploy filename suffixes
  - .zip it
 
 On GitHub, draft a new release
- - (not until file location issue is resolved) drag and drop in setup.exe from publish folder
- - drop and drop in ChroniCalc (newVersion).zip from publish folder
+ - Title: ChroniCalc
+ - Version: vA.B.C.D -alpha-beta
+ - drag and drop in setup.exe from publish folder
+ - drag and drop in ChroniCalc (newVersion)-standalone.zip from publish folder
