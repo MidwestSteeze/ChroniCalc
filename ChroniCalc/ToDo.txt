@@ -1,8 +1,10 @@
 ﻿ ToDo
 
  RESUME AT:
+	- Class Trees: conditionally display min_level on tooltip until the requirement is met
 	- Mastery Trees:
 		- de-leveling a skill may invalidate postreq skills (this may be a bug in class-specific skill trees as well)
+		- in the 3 Generic rows, the same skill at the same x position can be selected in a different column (ie. Health in all 3 of the Generic rows' first column)
     - issue with install/run location of program in relation to where Build files are saved/reloaded. utilize user folder instead? (PoB uses a stand-alone feature with a Builds folder, where the PoB.exe is run from the same root folder; but how does the .exe installer work then?)
 	- how to handle build converts to new releases?
 	  - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)

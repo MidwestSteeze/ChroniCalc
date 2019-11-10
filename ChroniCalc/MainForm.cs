@@ -185,6 +185,26 @@ namespace ChroniCalc
             skills.Add(passiveMasterySkill);
         }
 
+        private int GetSkillMinLevel(XmlNode skillMinLevelNode, int xPos)
+        {
+            int minLevel = -1;
+
+            if (!(skillMinLevelNode is null))
+            {
+				// A min level value exists in the data so use it
+                minLevel = Convert.ToInt32(skillMinLevelNode.InnerXml);
+            }
+            else
+            {
+                // No min level requirement is assigned, which is the case for Skills on the Class Trees, so calculate it based on its X position
+                //   Rule: Column 1 min level req is 0, Column 2 min level req is 4, then it's increments of 5 from there on over
+                // NOTE: Have to offset xPos by 2 because in the TreeTableLayoutPanel the first selectable skill is actually in column index 2
+                minLevel = Convert.ToInt32(minLevel + ((xPos - 2) * 5));
+            }
+
+            return minLevel;
+        }
+
         private string GetSkillType(XmlNode skillTypeNode, string treeName, ref Skill skill)
         {
             string skillType = "N/A";
@@ -341,7 +361,7 @@ namespace ChroniCalc
                         skill.damage = !(skillNode.SelectSingleNode("damage") is null) ? skillNode.SelectSingleNode("damage").InnerXml.Split(',') : new string[] { }; //TODOSSG convert this to hold just the value and remove the "%"?
                         skill.range2 = NodeHasValue(skillNode.SelectSingleNode("range2")) ? Array.ConvertAll(skillNode.SelectSingleNode("range2").InnerXml.Split(','), double.Parse) : new double[] { };
                         skill.family = !(skillNode.SelectSingleNode("family") is null) ? skillNode.SelectSingleNode("family").InnerXml : "None";
-                        skill.min_level = !(skillNode.SelectSingleNode("min_level") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("min_level").InnerXml) : -1;
+                        skill.min_level = GetSkillMinLevel(skillNode.SelectSingleNode("min_level"), skill.x);
                         skill.id = !(skillNode.SelectSingleNode("id") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("id").InnerXml) : -1;
                         skill.range = NodeHasValue(skillNode.SelectSingleNode("range")) ? Array.ConvertAll(skillNode.SelectSingleNode("range").InnerXml.Split(','), double.Parse) : new double[] { };
                         skill.element = !(skillNode.SelectSingleNode("element") is null) ? skillNode.SelectSingleNode("element").InnerXml : "N/A";
