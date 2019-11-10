@@ -59,7 +59,7 @@ namespace ChroniCalc
             buildShareForm.ParentForm = this;
 
             //Set the directory where Builds are stored
-            BuildsDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\Builds";
+            BuildsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ChroniCalc\\Builds";
 
             //Create the directory where saved builds are to be stored, if it doesn't yet exist
             if (!Directory.Exists(BuildsDirectory))
