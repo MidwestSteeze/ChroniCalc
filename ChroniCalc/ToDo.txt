@@ -1,10 +1,11 @@
 ﻿ ToDo
 
  RESUME AT:
-    - issue with install/run location of program in relation to where Build files are saved/reloaded. utilize user folder instead? (PoB uses a stand-alone feature with a Builds folder, where the PoB.exe is run from the same root folder; but how does the .exe installer work then?)
+    - LOad Build: Mastery skill buttons do not have their levels showing on the control
 	- how to handle build converts to new releases?
 	  - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)
     - test installer on a different machine
+	- write install/usage instructions
 	- Get an initial release available on Git for download/install
 
  MAJORS:

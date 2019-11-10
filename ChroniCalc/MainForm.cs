@@ -52,67 +52,74 @@ namespace ChroniCalc
 
         public MainForm()
         {
-            InitializeComponent();
-
-            // Create a new BuildShare form that will display when the Build Sharing button is clicked
-            buildShareForm = new BuildShareForm();
-            buildShareForm.ParentForm = this;
-
-            //Set the directory where Builds are stored
-            BuildsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ChroniCalc\\Builds";
-
-            //Create the directory where saved builds are to be stored, if it doesn't yet exist
-            if (!Directory.Exists(BuildsDirectory))
+            try
             {
-                Directory.CreateDirectory(BuildsDirectory);
-            }
+                InitializeComponent();
 
-            //Set the # of available skill points that can be spent to build the character
-            lblSkillPointsRemaining.Text = SKILL_POINTS_MAX.ToString();
+                // Create a new BuildShare form that will display when the Build Sharing button is clicked
+                buildShareForm = new BuildShareForm();
+                buildShareForm.ParentForm = this;
 
-            //Init resource managers for pulling assets (ie. data, images, etc.)
-            ResourceManagerImageClass = new ResourceManager("ChroniCalc.ResourceImageClass", Assembly.GetExecutingAssembly());
-            ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
-            ResourceManagerImageTree = new ResourceManager("ChroniCalc.ResourceImageTree", Assembly.GetExecutingAssembly());
+                //Set the directory where Builds are stored
+                BuildsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ChroniCalc\\Builds";
 
-            //Init global variables
-            build = new Build("", null, 0, 0);
-            characterClasses = new List<CharacterClass>();
-
-            //Add all tree buttons to a list for looping over and finding within later as needed
-            treeButtons = new List<Button>();
-            treeButtons.Add(btnTree1);
-            treeButtons.Add(btnTree2);
-            treeButtons.Add(btnTree3);
-            treeButtons.Add(btnTree4);
-            treeButtons.Add(btnTreeMastery);
-
-            //Add 5 trees to the list of available Trees for a Class (4 Class Skill Trees and 1 Mastery Tree)
-            treePanels = new List<TreeTableLayoutPanel>();
-            for (int i = 0; i <= 4; i++)
-            {
-                TreeTableLayoutPanel ttlp;
-
-                if (i == 4)
+                //Create the directory where saved builds are to be stored, if it doesn't yet exist
+                if (!Directory.Exists(BuildsDirectory))
                 {
-                    //The last tree added is the Mastery tree and has some different properties
-                    ttlp = new TreeTableLayoutPanel(pnlTrees, 11, 7, 516, 274);
-                    ttlp.Name = "Mastery";
-                }
-                else
-                {
-                    //Create a new Class Skill tree
-                    ttlp = new TreeTableLayoutPanel(pnlTrees, 10, 7, 475, 279);
+                    Directory.CreateDirectory(BuildsDirectory);
                 }
 
-                treePanels.Add(ttlp);
+                //Set the # of available skill points that can be spent to build the character
+                lblSkillPointsRemaining.Text = SKILL_POINTS_MAX.ToString();
+
+                //Init resource managers for pulling assets (ie. data, images, etc.)
+                ResourceManagerImageClass = new ResourceManager("ChroniCalc.ResourceImageClass", Assembly.GetExecutingAssembly());
+                ResourceManagerImageSkill = new ResourceManager("ChroniCalc.ResourceImageSkill", Assembly.GetExecutingAssembly());
+                ResourceManagerImageTree = new ResourceManager("ChroniCalc.ResourceImageTree", Assembly.GetExecutingAssembly());
+
+                //Init global variables
+                build = new Build("", null, 0, 0);
+                characterClasses = new List<CharacterClass>();
+
+                //Add all tree buttons to a list for looping over and finding within later as needed
+                treeButtons = new List<Button>();
+                treeButtons.Add(btnTree1);
+                treeButtons.Add(btnTree2);
+                treeButtons.Add(btnTree3);
+                treeButtons.Add(btnTree4);
+                treeButtons.Add(btnTreeMastery);
+
+                //Add 5 trees to the list of available Trees for a Class (4 Class Skill Trees and 1 Mastery Tree)
+                treePanels = new List<TreeTableLayoutPanel>();
+                for (int i = 0; i <= 4; i++)
+                {
+                    TreeTableLayoutPanel ttlp;
+
+                    if (i == 4)
+                    {
+                        //The last tree added is the Mastery tree and has some different properties
+                        ttlp = new TreeTableLayoutPanel(pnlTrees, 11, 7, 516, 274);
+                        ttlp.Name = "Mastery";
+                    }
+                    else
+                    {
+                        //Create a new Class Skill tree
+                        ttlp = new TreeTableLayoutPanel(pnlTrees, 10, 7, 475, 279);
+                    }
+
+                    treePanels.Add(ttlp);
+                }
+
+                PopulateSkillTrees();
+                LoadBuildsIntoBuildsList();
+
+                //Show the Builds list at start
+                pnlBuilds.BringToFront();
             }
-
-            PopulateSkillTrees();
-            LoadBuildsIntoBuildsList();
-
-            //Show the Builds list at start
-            pnlBuilds.BringToFront();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error on load of application: " + ex.ToString());
+            }
         }
 
         private void AddMasteryPassiveRowCounters(string className, ref List<Skill> skills)
