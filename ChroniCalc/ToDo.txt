@@ -1,9 +1,6 @@
 ﻿ ToDo
 
  RESUME AT:
-	- standardize your fonts so they work on other computers
-	- see if you can re-exclude all content files and the app still runs on other machines
-    - LOad Build: Mastery skill buttons do not have their levels showing on the control
 	- how to handle build converts to new releases?
 	  - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)
     - test installer on a different machine

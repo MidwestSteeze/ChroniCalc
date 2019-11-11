@@ -815,6 +815,11 @@ namespace ChroniCalc
                 // Check if the current skill hasn't already been loaded by the LoadMultiSelectionSkills process
                 bool isMultiSelectionSkill = MultiSelectionSkills.Contains(skill);
 
+                if (tree.name == "Mastery" && skill.name == "Wide Reach")
+                {
+                    string asdf = "asdf";
+                }
+
                 //Load all remaining skill slots, ensuring it's not a Mutli-skill slot that was already loaded
                 if (!(isMultiSelectionSkill) || isImportedMultiSelectionSkill)
                 {
@@ -910,7 +915,7 @@ namespace ChroniCalc
                         else
                         {
                             //Add the not-selected skill to the MultiSelectionSkills list so we don't load it
-                            MultiSelectionSkills.Add(multiSkill);  //TODO is this being doubly-added with the MultiSelectionSkills.Add in the below-for each loop as well?
+                            MultiSelectionSkills.Add(multiSkill);  //TODO is this being doubly-added with the MultiSelectionSkills.Add in the below-for each loop as well? Don't think I need this
                         }
                     }
                 }
@@ -954,7 +959,10 @@ namespace ChroniCalc
                         btnSkillSelect.Location = new Point(((pnlSkillSelect.Controls.Count - 1) * btnSkillSelect.Width) + SKILL_BUTTON_PADDING, 3);
 
                         //Add these skills to a list for future reference so we know which are multi-selection skills
-                        MultiSelectionSkills.Add(multiSkill);
+                        if (!MultiSelectionSkills.Contains(multiSkill))
+                        { 
+                            MultiSelectionSkills.Add(multiSkill);
+                        }
                     }
 
                     //Add a default UnassignSkill button at the end incase the user chooses to not pick a skill at this time but wants to close the panel
@@ -973,9 +981,9 @@ namespace ChroniCalc
                     }
                     else
                     {
-                        // Add the selected Skill and its SkillSelectPanel to a list for use after we've loaded all skills into the Tree so we can then assign the remaining SkillSelectPanels
+                        // Add the leveled Skill and its SkillSelectPanel to a list for use after we've loaded all skills into the Tree so we can then assign the remaining SkillSelectPanels
                         //   (the SkillSelectPanel cannot be added to the selected Skill because the Skill hasn't been created as a SkillButton and loaded onto the tree yet
-                        importedSkillsAndTheirSkillSelectPanels.Add(skill.id, pnlSkillSelect);
+                        importedSkillsAndTheirSkillSelectPanels.Add(MultipleSkills.Find(s => s.level > 0).id, pnlSkillSelect);
                     }
                 }
             }
