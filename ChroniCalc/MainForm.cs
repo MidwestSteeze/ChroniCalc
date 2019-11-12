@@ -120,7 +120,7 @@ namespace ChroniCalc
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error on load of application: " + ex.ToString());
+                throw new EChroniCalcException("Error on initial load of application" + Environment.NewLine + ex.ToString());
             }
         }
 
@@ -252,10 +252,10 @@ namespace ChroniCalc
 
                     UpdateBuildsList(loadedBuild);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //The file loaded was xml but did not serialize cleanly into the Build object; explain this to the user and continue on to loading the next file
-                    MessageBox.Show("Unable to load Build file '" + Path.GetFileName(buildFile) + "' into the saved Builds list in the Builds tab.  If this is not an actual Build file, please remove it from the Builds folder on disk to stop seeing this message.");
+                    throw new EChroniCalcException("Unable to load Build file '" + Path.GetFileName(buildFile) + "' into the saved Builds list in the Builds tab.  If this is not an actual Build file, please remove it from the Builds folder on disk to stop seeing this message." + Environment.NewLine + ex.ToString());
                 }
 
             }
@@ -546,7 +546,8 @@ namespace ChroniCalc
 
                 if (selectedClass is null)
                 {
-                    //TODOSSG throw error that the selected class was not found in the current list of character classes
+                    // Throw error that the selected class was not found in the current list of character classes
+                    throw new EChroniCalcException("SelectClass:  Class '" + characterClass + "' was not found in the list of Class options.  It's possible a new class was added to the program, but the Skill data being used is outdated.");
                 }
 
                 //Update data on the build (everything not listed here was handled in the ResetCharacter() code (e.g. level, masteryLevel, trees, skills, etc)
@@ -788,8 +789,8 @@ namespace ChroniCalc
                 }
                 else
                 {
-                    //TODOSSG throw error that tlpTree.Name is not found in the currently-loaded Trees object for the selected Class
-                    MessageBox.Show("LoadTrees(): Tree not found: " + ttlpTree.Name);  //TODO replace this with an exception so it gets logged?
+                    // Throw error that tlpTree.Name is not found in the currently-loaded Trees object for the selected Class
+                    throw new EChroniCalcException("LoadTrees(): Tree not found: " + ttlpTree.Name);
                 }
             }
         }
@@ -1199,13 +1200,20 @@ namespace ChroniCalc
             build.lastSaved = DateTime.Now;
             build.buildStatus = Build.BuildStatus.Saved;
 
-            // Save the build to the specified file
-            using (var writer = new StreamWriter(fileNameAndPath))
+            try
             {
-                // Serialize the build object into xml (this should make saving/loading builds easy)
-                serializer = new XmlSerializer(build.GetType());
-                serializer.Serialize(writer, build);  //TODO add try/catch around this incase serialization fails
-                writer.Flush();
+                // Save the build to the specified file
+                using (var writer = new StreamWriter(fileNameAndPath))
+                {
+                    // Serialize the build object into xml (this should make saving/loading builds easy)
+                    serializer = new XmlSerializer(build.GetType());
+                    serializer.Serialize(writer, build);
+                    writer.Flush();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new EChroniCalcException("SaveBuild: Unable to serialze the build." + Environment.NewLine + ex.ToString());
             }
         }
 
@@ -1262,7 +1270,8 @@ namespace ChroniCalc
             }
             else
             {
-                //TODO display message that build not found for some reason
+                // Throw exception that the build was not found for some reason
+                throw new EChroniCalcException("OpenBuildClick: The following Build file was not found.  It's possible the file cannot be accessed.  Please try saving your Build files in your My Documents folder." + Environment.NewLine + "File: " + fileNameAndPath);
             }
             
             //TODO clear treeStatus?
@@ -1281,20 +1290,35 @@ namespace ChroniCalc
             // Deserialize the content the appropriate way depending on what was passed in (ie. pastebin Raw Text extract or a filepath to an XML file on disk)
             if (pasteBinImport)
             {
-                using (var stringReader = new StringReader(buildContent))
+                try
                 {
-                    serializer = new XmlSerializer(typeof(Build));
-                    build = serializer.Deserialize(stringReader) as Build;  //TODO add try/catch around this incase Deserialization fails
+                    using (var stringReader = new StringReader(buildContent))
+                    {
+                        serializer = new XmlSerializer(typeof(Build));
+                        build = serializer.Deserialize(stringReader) as Build;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new EChroniCalcException("OpenBuild: Unable to deserialize the build fetched from Pastebin." + Environment.NewLine + ex.ToString());
                 }
             }
             else
             {
-                // Load the saved build content from the file into a Build object
-                using (var stream = new StreamReader(buildContent))
+                try
                 {
-                    serializer = new XmlSerializer(typeof(Build));
-                    build = serializer.Deserialize(stream) as Build;  //TODO add try/catch around this incase Deserialization fails
+                    // Load the saved build content from the file into a Build object
+                    using (var stream = new StreamReader(buildContent))
+                    {
+                        serializer = new XmlSerializer(typeof(Build));
+                        build = serializer.Deserialize(stream) as Build;
+                    }
                 }
+                catch (Exception ex)
+                {
+                    throw new EChroniCalcException("OpenBuild: Unable to deserialize the build loaded from the save file." + Environment.NewLine + ex.ToString());
+                }
+
             }
 
             // Using the newly assigned Build object, create and populate all controls for this build
@@ -1336,8 +1360,7 @@ namespace ChroniCalc
                     pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Warlock");
                     break;
                 default:
-                    //TODOSSG what's the best way to handle exceptions? error message to user? debug log? email call stack?
-                    throw new Exception("ChangeClass: characterClass of " + build.characterClass.name + " was not added to Switch for setting the Class iamge.");
+                    throw new EChroniCalcException("ChangeClass: characterClass of '" + build.characterClass.name + "' was not added to Switch for setting the Class image.");
             }
 
             //Depending on Class, load up Image and Tag on Tree tabs and update the Mastery tree
@@ -1480,9 +1503,7 @@ namespace ChroniCalc
                     break;
 
                 default:
-                    //TODOSSG what's the best way to handle exceptions? error message to user? debug log? email call stack?
-                    throw new Exception("InitializeBuild(): characterClass of " + build.characterClass.name + " not found.");
-                    //break;
+                    throw new EChroniCalcException("InitializeBuild: characterClass of '" + build.characterClass.name + "' not found.  It's possible a new Class was added to the Skill data but not yet configured in ChroniCalc.");
             }
 
             // Load the mastery tree regardless of Class

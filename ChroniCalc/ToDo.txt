@@ -4,8 +4,11 @@
 	- how to handle build converts to new releases?
 	  - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)
     - test installer on a different machine
+	- see if it works without .net 4.5.2 installed
 	- write install/usage instructions
-	- Get an initial release available on Git for download/install
+	- see if you can fix the setup.exe unsafe warning from github
+	- assign the application a StartMenu icon
+	- post beta to reddit
 
  MAJORS:
   - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
@@ -37,5 +40,6 @@
 	- Class/Mastery Trees: conditionally display Points Requirement label on tooltip until the requirement is met (in stash as "Points Requiremenet label in Tooltip")
     - cleanup tree background images in relation to how the controls sit on top of them with some parts still showing and the last column being stretched (especially Mastery tree stretching)
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
+	- Pastebin.Load will error and crash if no URL in Load text box and Load button is clicked
 
  POST RELEASE MISC:

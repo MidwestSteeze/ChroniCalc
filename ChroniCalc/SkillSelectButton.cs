@@ -80,7 +80,8 @@ namespace ChroniCalc
             }
             else
             {
-                //TODO throw exception for unknown control type found (ie. user clicked an unknown control type on the Tree to bring up the skill select panel and click a SkillSelectButton
+                // Throw exception for unknown control type found (ie. user clicked an unknown control type on the Tree to bring up the skill select panel and click a SkillSelectButton
+                throw new EChroniCalcException("SkillSelectButton_Click: Unknown control type found.  The control type of " + btnSkill.GetType().ToString() + " is not being accounted for or has a click event on it that needs to be removed.");
             }
         }
 

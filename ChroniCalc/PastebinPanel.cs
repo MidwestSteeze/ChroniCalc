@@ -35,12 +35,20 @@ namespace ChroniCalc
 
             serializer = new XmlSerializer((this.ParentForm as BuildShareForm).ParentForm.build.GetType());
 
-            // Save the build to a string format
-            using (StringWriter writer = new StringWriter())
+            try
             {
-                serializer.Serialize(writer, (this.ParentForm as BuildShareForm).ParentForm.build);  //TODO add try/catch around this incase serialization fails
-                buildAsText = writer.ToString();
+                // Save the build to a string format
+                using (StringWriter writer = new StringWriter())
+                {
+                    serializer.Serialize(writer, (this.ParentForm as BuildShareForm).ParentForm.build);
+                    buildAsText = writer.ToString();
+                }
             }
+            catch (Exception ex)
+            {
+                throw new EChroniCalcException("PastebinShare:  Unable to serialize the build to be shared with Pastebin." + Environment.NewLine + ex.ToString());
+            }
+
 
             // Setup the data for the Pastebin
             var entry = new PasteBinEntry
@@ -72,11 +80,18 @@ namespace ChroniCalc
             }
 
             pasteBinClient = new PasteBinClient();
-            pastebinExtract = pasteBinClient.Extract(txtPastebinLoad.Text);
+            try
+            {
+                pastebinExtract = pasteBinClient.Extract(txtPastebinLoad.Text);
 
-            (this.ParentForm as BuildShareForm).ParentForm.OpenBuild(pastebinExtract, true);
+                (this.ParentForm as BuildShareForm).ParentForm.OpenBuild(pastebinExtract, true);
+            }
+            catch (Exception ex)
+            {
+                throw new EChroniCalcException("PastebinLoad:  Unable to retrieve the build from Pastebin" + Environment.NewLine + ex.ToString());
+            }
 
-            // TODO wrap the Extract and OpenBuild in a try/catch incase the PasteBin retrieval fails, can send back this.ParentForm.DialogResult=Yes/No
+            // TODO If the PasteBin retrieval fails, can send back this.ParentForm.DialogResult=Yes/No
 
             // Close the Form now that the build has been loaded and opened
             this.ParentForm.Close();

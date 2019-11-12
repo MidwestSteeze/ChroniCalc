@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Build.cs" />
+    <Compile Include="EChroniCalcException.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="PasteBinClient.cs" />
     <Compile Include="BuildShareForm.cs">
