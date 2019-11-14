@@ -61,16 +61,16 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5D1B3366C08154401D14827F55A7F338782F662D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>5539AC8E626E4D2F8BE2A97990FA72776C0C3BD9</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ChroniCalc_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>ChroniCalcCert.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>ChroniCalc_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>ChroniCalcCert.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>iconstartmenu.ico</ApplicationIcon>
@@ -258,6 +258,7 @@
       <DependentUpon>UnassignSkillButton.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Assets\Data\skilldata_0.94.2.json" />
+    <None Include="ChroniCalcCert.pfx" />
     <None Include="ChroniCalc_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

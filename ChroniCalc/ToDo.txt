@@ -1,13 +1,11 @@
 ﻿ ToDo
 
  RESUME AT:
-	- how to handle build converts to new releases?
-	  - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)
-    - test installer on a different machine
 	- see if it works without .net 4.5.2 installed
 	- write install/usage instructions
+		- note the manifest and assembly is signed, so if a new release is made that you can look at the sign to ensure it's from me
+		- note in the readme about the unknown publisher warning on install
 	- see if you can fix the setup.exe unsafe warning from github
-	- assign the application a StartMenu icon
 	- post beta to reddit
 
  MAJORS:
@@ -17,6 +15,8 @@
   - Stat calculation and screen (damage, health, etc)
      - Phase 1: just the totals (modifiers, mulitpliers, conversions, etc)
 	 - Phase 2: actual damage numbers and dps
+  - how to handle build converts to new releases?
+	 - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)
  
  CLASSES:
 
