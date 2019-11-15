@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Deployment.Application;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -56,6 +57,13 @@ namespace ChroniCalc
             try
             {
                 InitializeComponent();
+
+                // Add the version to the form's Title
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    this.Text = string.Format(this.Text + " - v{0}",
+                        ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(3));
+                }
 
                 // Create a new BuildShare form that will display when the Build Sharing button is clicked
                 buildShareForm = new BuildShareForm();

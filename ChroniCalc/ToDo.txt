@@ -1,7 +1,6 @@
 ﻿ ToDo
 
  RESUME AT:
-    - add version # to the display
 	- memory leak: load MaxedOut then selected a new Berserker from the drop-down
 	- see if it works without .net 4.5.2 installed
 	- see if you can fix the setup.exe unsafe warning from github
