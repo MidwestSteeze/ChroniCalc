@@ -800,7 +800,7 @@ namespace ChroniCalc
             int treeSkillPointsAllocated = 0;
 
             List<Skill> MultiSelectionSkills = new List<Skill>();  //TODO could rename to LoadedMultiSelectionSkills/isLoadedMultiSelectionSkill for readability and consistency with isImportedMultiSelectionSkill
-            Dictionary<int, SkillSelectPanel> importedSkillsAndTheirSkillSelectPanels = new Dictionary<int, SkillSelectPanel>();
+            List<ImportedSkillandPanel> importedSkillsAndTheirSkillSelectPanels = new List<ImportedSkillandPanel>();
 
             //Give the current Tree object to the Tree control that will be showing it as it'll be needed for future reference
             ttlpTree.tree = tree;
@@ -812,14 +812,9 @@ namespace ChroniCalc
             foreach (Skill skill in tree.skills)
             {
                 // Check if the current skill is derived from a MultiSkill selection and should have a SkillSelectPanel appended to it
-                bool isImportedMultiSelectionSkill = importedSkillsAndTheirSkillSelectPanels.ContainsKey(skill.id);
+                bool isImportedMultiSelectionSkill = !(importedSkillsAndTheirSkillSelectPanels.Find(s=>s.id == skill.id && s.x == skill.x && s.y == skill.y) is null);
                 // Check if the current skill hasn't already been loaded by the LoadMultiSelectionSkills process
                 bool isMultiSelectionSkill = MultiSelectionSkills.Contains(skill);
-
-                if (tree.name == "Mastery" && skill.name == "Wide Reach")
-                {
-                    string asdf = "asdf";
-                }
 
                 //Load all remaining skill slots, ensuring it's not a Mutli-skill slot that was already loaded
                 if (!(isMultiSelectionSkill) || isImportedMultiSelectionSkill)
@@ -842,8 +837,10 @@ namespace ChroniCalc
                     ttlpTree.Controls.Add(btnSkill, skill.x, skill.y);
 
                     // Give the new SkillButton a SkillSelectPanel if it's a MultiSkill that has had a skill selected by the user
-                    if (importedSkillsAndTheirSkillSelectPanels.TryGetValue(skill.id, out importedSkillSelectPanel))
+                    if (!(importedSkillsAndTheirSkillSelectPanels.Find(s => s.id == skill.id && s.x == skill.x && s.y == skill.y) is null))
                     {
+                        importedSkillSelectPanel = importedSkillsAndTheirSkillSelectPanels.Find(s => s.id == skill.id && s.x == skill.x && s.y == skill.y).skillSelectPanel;
+
                         // Assign the SkillSelectPanel to the current Skill button
                         btnSkill.skillSelectPanel = importedSkillSelectPanel;
 
@@ -872,7 +869,7 @@ namespace ChroniCalc
 
         //Look at all skills within the current Tree to see if there are multiples that share the same position (ie. Dive, Jump, Flame Dash)
         // where only 1 should be selected by the user
-        private void LoadMultiSelectionSkills(Tree tree, TreeTableLayoutPanel tlpTree, ref List<Skill> MultiSelectionSkills, ref Dictionary<int, SkillSelectPanel> importedSkillsAndTheirSkillSelectPanels)
+        private void LoadMultiSelectionSkills(Tree tree, TreeTableLayoutPanel tlpTree, ref List<Skill> MultiSelectionSkills, ref List<ImportedSkillandPanel> importedSkillsAndTheirSkillSelectPanels)
         {
             bool alreadyChoseASkill;
             int xPos;
@@ -912,11 +909,6 @@ namespace ChroniCalc
                             //Mark this section as already having been picked and don't add it to the MultiSelectionSkills list;
                             //  this'll ensure it gets loaded as an individual skill back in LoadTree()
                             alreadyChoseASkill = true;
-                        }
-                        else
-                        {
-                            //Add the not-selected skill to the MultiSelectionSkills list so we don't load it
-                            MultiSelectionSkills.Add(multiSkill);  //TODO is this being doubly-added with the MultiSelectionSkills.Add in the below-for each loop as well? Don't think I need this
                         }
                     }
                 }
@@ -984,7 +976,8 @@ namespace ChroniCalc
                     {
                         // Add the leveled Skill and its SkillSelectPanel to a list for use after we've loaded all skills into the Tree so we can then assign the remaining SkillSelectPanels
                         //   (the SkillSelectPanel cannot be added to the selected Skill because the Skill hasn't been created as a SkillButton and loaded onto the tree yet
-                        importedSkillsAndTheirSkillSelectPanels.Add(MultipleSkills.Find(s => s.level > 0).id, pnlSkillSelect);
+                        Skill importedSkill = MultipleSkills.Find(s => s.level > 0);
+                        importedSkillsAndTheirSkillSelectPanels.Add(new ImportedSkillandPanel(importedSkill.id, importedSkill.x, importedSkill.y, pnlSkillSelect));
                     }
                 }
             }
