@@ -671,6 +671,19 @@ namespace ChroniCalc
 					// The SkillSelect panel needs to be manually removed if one was imposed on a SkillButton (ie. a Skill was selected from a MultiSkillSelect button)
                     if (!(skillButton.skillSelectPanel is null))
                     {
+						//  Loop through each SkillSelect button contained within the SkillSelect panel to remove its controls
+                        while (skillButton.skillSelectPanel.Controls.Count > 0)
+                        {
+                            skillSelectButton = (skillButton.skillSelectPanel.Controls[0] as SkillSelectButton);
+                            if (!(skillSelectButton is null) && !(skillSelectButton.skillTooltipPanel is null))
+                            {
+                                // The Tooltip panel is not added as a child to the SkillSelect button, so it needs to be manually cleaned up
+                                skillSelectButton.skillTooltipPanel.Dispose();
+                            }
+                            // This doesn't actually free USER_OBJECTS but is necessary for the sake of the While loop
+                            skillButton.skillSelectPanel.Controls[0].Dispose();
+                        }
+
                         skillButton.skillSelectPanel.Dispose();
                     }
 					//END GARBAGE COLLECTION
@@ -694,7 +707,11 @@ namespace ChroniCalc
                     }
 
                     multiSkillSelectButton.skillSelectPanel.Dispose();
-					//END GARBAGE COLLECTION
+                    //END GARBAGE COLLECTION
+                }
+                else
+                {
+                    throw new EChroniCalcException("ClearTree: Unknown Control type found.  It may need to be handled and disposed of.");
                 }
             }
 
