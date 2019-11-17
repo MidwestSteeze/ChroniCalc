@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="ChroniCalc.exe" version="0.9.0.0" publicKeyToken="ea2646810ba28a1f" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="iconstartmenu.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="ChroniCalc" version="1.0.0.0" publicKeyToken="EA2646810BA28A1F" language="neutral" processorArchitecture="msil" />
+    <commandLine file="ChroniCalc.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+             If you want to change the Windows User Account Control level replace the 
+             requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel element will disable file and registry virtualization. 
+            Remove this element if your application requires this virtualization for backwards
+            compatibility.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ChroniCalc.exe" size="11903560">
+      <assemblyIdentity name="ChroniCalc" version="1.0.0.0" publicKeyToken="EA2646810BA28A1F" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Nc+P8RVb1xPXqQooQ9988PwH4Nieeofq/hz12QlNsMU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="675752">
+      <assemblyIdentity name="Newtonsoft.Json" version="12.0.0.0" publicKeyToken="30AD4FE6B2A6AEED" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>NZjMytW1Nf6m+TZiEHpBg7/WFnvx0PgCYENgk+3C468=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="ChroniCalc.exe.config" size="1663">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>3YUmir6msOIOCZL4IAv86/w6JjWVoiXOLEJ5iJUnYks=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="iconstartmenu.ico" size="4286">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Bc7M8mwGBzy/7tYmTYZ6Lsjb2yrAola5KPzP2z1uQSE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of the Windows versions that this application has been tested on
+           and is designed to work with. Uncomment the appropriate elements
+           and Windows will automatically select the most compatible environment. -->
+      <!-- Windows Vista -->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+      <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=MidwestSteeze" issuerKeyHash="4b275071c893f11c125c992f479fc2f49b92b783" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>7hL4z5nNUhULzhoGbQmSBKeC1D0=</DigestValue></Reference></SignedInfo><SignatureValue>il6WxusItcq+OrQ6XUPXryJaTT6Y+etx1FVPoioZrtdxfTvfHJ9oYykORrSXlpBjrhNQ6IMVD2EIZvkcpAwW3qMvWH2QNJOQe8NL/phV4Ufqg0wkYmoIOSys1dotegCHMcRiQrI2rOIiQNnzL4d9J1GqNY/j5M9WWd35V3lg127y2siSgcYc1DdzDWdGR8JDSHvwOQNjGUtPD0iu8ipjgM9gIV2vflhfkrdJNs3++e29rkJDYqsibA+NttAx1rFuR7ziCpLodsfgumGIzUVMUksgIDC18k+LfTkQkKJw0gE7Xwoqg/FPov2NK7vCgk/WugpeDjE6l0ffwytIuzsY4hypEwZauVn885S2jCA3Ba575jNkblepjUOOsqfxmFPHCVZRIHRWl/G4p36r943NOz0i7U71zTggtVGANlXtJG7Wp4wqBodoCpe3sRMJ0YS5VNlOm0FkkHvXj+o7POLMqzf3mSMm9OUE/FcoJG9nT3qq/yHL881VJKlxi+iKDwHQbkn2sWTnI46nP3w/ZSBO92pd7nXEemZvDKrVwKr8gJneFLdD/f8Nqxi4Bpx0/UktGOUE+nZ9bufqk6Uvc9v6C5lBB9zhrjCledVlwSS27hV315eZWNR0U3t3+zwxMgBNR6uq/OlYdEmXkKupy6chLl/qq8EQVU98S7Zc6J7E7o4=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>p5FUsciNbIDDhYKqT5DOUAt1Mi7StYVIqp+/Vl1rhNg2qn/+G0wqzayPdWadDVOL4jDa590unP7zY1Ci8hq2yLt5E2ks1NKZFYEdumINrH9V02d+g/onhSoLrJ9hj6PjH9f4bp5Owxe3yAD8VkmqhDOXA70VKOnnwrF+vUh8dT+RUaMGdXojxhMjghx6a0d8on5U6W4C5IiFDMHJ+dxB6MFmrg/EcFkDezw9cwN1gXrCQuzVJX5sFDjmoVmBUHwmXdmV3C6IiNg9Tm3Zrivh6yw83nPGEuZNZUxI/ChlnVZNLeceUq8JRFZk5dGTSVnoP09WzzIbXhuaoTNR55qL4WyZP9GWPsgHQi7+acG++AmacWvrp44frVZPd2bzfg9QvyAb+hfM2fwgV6Ejx3y2cHumnbF7v1teKPGG46L60lOnTgD/3cl2yQapjNpUfr4XFhJ9o1GC3SDLfIkckdm/3Lwq2gL8g4NHYG9iy6U8+pF/6JliCLANofCOR83h3FpCvW5jXKrHkCr1Bxxg/9whgqfpgdLNerztlY0lpesJtTLFguLW831ojQ27iehRdwbGzXXISccR9y+L1vmJDELZcoPc0YeMeNVMX+SjqxQVDsUPwSoLkuhFOv2BaQCxYwDbKpvR/3Np+5cLf0blWzvepcxPv8sf2KgRIP5ygmQvXgE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="3dd482a70492096d061ace0b1552cd99cff812ee" Description="" Url=""><as:assemblyIdentity name="ChroniCalc.exe" version="0.9.0.0" publicKeyToken="ea2646810ba28a1f" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=MidwestSteeze</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>Ho3oMT4/ZS2r52GF4UNLaDyy14M=</DigestValue></Reference></SignedInfo><SignatureValue>kugc4xX5lxNEy3z33HIazsbtA0/7P6WFmanW+mDDwMGIsP3XKCRQuwjnyWqnGB6vLeYMSwPdguWFzZA5LoEW3ZS2imw2fR+a/INLboBP+UlD0Hl2QaG8aa7y90dDRmxv67lP78zVo1XvViKGRf6iWwiEIUZeM8coxi3D62PXsLCsh9oAyjxU+NDxxDxtpCjnrLgD/Za7PvMUrHnWdX0RCWXvvD5cTo3sGLfpEnuZ3zVt3geUdMzi1I4C8jC4MXbQQs9YXt+m9Tn8R0L5pTehYlowGx3Ptgk4ceD71YqulnbK6lPABCTXD9BdKg4gXJZV7a5QPgSt8XS6vpiJjChC5gia0i77Hs0tH1jsTb3YiZpN98XHe1I4Fwc1M5XDKF2bUTcUCoygb4Ehvu+4XGXdCGhjDQyMKlCK7d+EYuvEjq+345SvRDXtWzY76+JPMMBkjr6f5SXqkc7BJmgM8alPDWekfMNvHAwqih7F1MMFouwaqhlDqUGNJPun08bYuMO8rJHCWan67Em+kvfUgqP+QQc/KZ+mLMHk+SUQIqXzwAb7moAEgaYy5LCxxTWX1ld41KezpXEfooyApNPj5GHiZQAFGIktPc7Kt1eK7uaPHi8ZzA8VaRfGCg/ZuVvSut3NRZ0qtmS6acpMBHYWOkAq080mQwmvAkRHWBRng+BZ9ms=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>p5FUsciNbIDDhYKqT5DOUAt1Mi7StYVIqp+/Vl1rhNg2qn/+G0wqzayPdWadDVOL4jDa590unP7zY1Ci8hq2yLt5E2ks1NKZFYEdumINrH9V02d+g/onhSoLrJ9hj6PjH9f4bp5Owxe3yAD8VkmqhDOXA70VKOnnwrF+vUh8dT+RUaMGdXojxhMjghx6a0d8on5U6W4C5IiFDMHJ+dxB6MFmrg/EcFkDezw9cwN1gXrCQuzVJX5sFDjmoVmBUHwmXdmV3C6IiNg9Tm3Zrivh6yw83nPGEuZNZUxI/ChlnVZNLeceUq8JRFZk5dGTSVnoP09WzzIbXhuaoTNR55qL4WyZP9GWPsgHQi7+acG++AmacWvrp44frVZPd2bzfg9QvyAb+hfM2fwgV6Ejx3y2cHumnbF7v1teKPGG46L60lOnTgD/3cl2yQapjNpUfr4XFhJ9o1GC3SDLfIkckdm/3Lwq2gL8g4NHYG9iy6U8+pF/6JliCLANofCOR83h3FpCvW5jXKrHkCr1Bxxg/9whgqfpgdLNerztlY0lpesJtTLFguLW831ojQ27iehRdwbGzXXISccR9y+L1vmJDELZcoPc0YeMeNVMX+SjqxQVDsUPwSoLkuhFOv2BaQCxYwDbKpvR/3Np+5cLf0blWzvepcxPv8sf2KgRIP5ygmQvXgE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIFGDCCAwCgAwIBAgIQItz7cZMNrbVPBfbUczALWTANBgkqhkiG9w0BAQ0FADAYMRYwFAYDVQQDEw1NaWR3ZXN0U3RlZXplMB4XDTE5MTExNDEyMjAxOFoXDTM5MTIzMTIzNTk1OVowGDEWMBQGA1UEAxMNTWlkd2VzdFN0ZWV6ZTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBAKeRVLHIjWyAw4WCqk+QzlALdTIu0rWFSKqfv1Zda4TYNqp//htMKs2sj3VmnQ1Ti+Iw2ufdLpz+82NQovIatsi7eRNpLNTSmRWBHbpiDax/VdNnfoP6J4UqC6yfYY+j4x/X+G6eTsMXt8gA/FZJqoQzlwO9FSjp58Kxfr1IfHU/kVGjBnV6I8YTI4IcemtHfKJ+VOluAuSIhQzByfncQejBZq4PxHBZA3s8PXMDdYF6wkLs1SV+bBQ45qFZgVB8Jl3ZldwuiIjYPU5t2a4r4essPN5zxhLmTWVMSPwoZZ1WTS3nHlKvCURWZOXRk0lZ6D9PVs8yG14bmqEzUeeai+FsmT/Rlj7IB0Iu/mnBvvgJmnFr66eOH61WT3dm834PUL8gG/oXzNn8IFehI8d8tnB7pp2xe79bXijxhuOi+tJTp04A/93JdskGqYzaVH6+FxYSfaNRgt0gy3yJHJHZv9y8KtoC/IODR2BvYsulPPqRf+iZYgiwDaHwjkfN4dxaQr1uY1yqx5Aq9QccYP/cIYKn6YHSzXq87ZWNJaXrCbUyxYLi1vN9aI0Nu4noUXcGxs11yEnHEfcvi9b5iQxC2XKD3NGHjHjVTF/ko6sUFQ7FD8EqC5LoRTr9gWkAsWMA2yqb0f9zafuXC39G5Vs73qXMT7/LH9ioESD+coJkL14BAgMBAAGjXjBcMA8GA1UdEwEB/wQFMAMBAf8wSQYDVR0BBEIwQIAQxR9fOoHyJD2Fm3cgAMAlSqEaMBgxFjAUBgNVBAMTDU1pZHdlc3RTdGVlemWCECLc+3GTDa21TwX21HMwC1kwDQYJKoZIhvcNAQENBQADggIBABfVEOHNkxzHiZuAyjc9+hWw2ftqsArbDhFcOnuVydWHtH7BzGum5lExH+eAKHtX2us6bkRX+7HPCIDDjK7tS0l5uKgdkM0kzQtgVy8foEryZO40r1HVxDPZCk6h13JlL0Wn3trL3NZYyNW7Fxr2aSV9jlr8834qtH4WOUf9eOBN7fzGM5WHaquBllPUdPrAaZQG1RZLxx+Sl++0us7jl/TprXzU16bkKw3kaS8Lpe7RbeqLF5+q8ycEOQDxrRalpuDxJk1sbVw4N7s7Fm0IXpIG/I6JzzD1hAB+czm/4bP1JWbWvmGFLfKn4DJ4c4Ex9yua3o4rHA6QZgIaRyDnkoUwJKU9FmvKq4JErC95A1Zm3sSfvdPOuP9YsWL7WHMsUFcngP294OHGUaBkTv/6UpaunichCNhAisJn2tdT1/Er5zLWD4Q5aUYX18S/VJMICpX0nfvsfuPHWsUmsL3Q+dBupXb1roH78AodFfmVE5NZwVP1EzilJepporf7Vxcx5PazVzWQT/pgHX3T3aA3nK5UQ5+1wGTkqFVmIJEwCsvRBZOvdXzxxhcP0qXoh8jI33FSfAGmFrJhAKE+Ykf60eiMzpY51pALdZjEaNrmljI4QeaeKTiwa5vQIXXMNPKLNdxL/VZcqt53j25geRqoPl0cfddVD4jXeIIUthovdfYL</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
