@@ -1,5 +1,9 @@
 Set Enviroment to Release
 Increment Version Number in Project Properties --> Publish
+  - Major: increment when major functionality add/change or initial release
+  - Minor: increment when significant functionality add/change
+  - Build: increment by 1
+  - Revision: Count # of commits since last publish
 Clean Release
 Build Release
 Publish Release
@@ -13,4 +17,6 @@ On GitHub, draft a new release
  - Title: ChroniCalc
  - Version: vA.B.C.D -alpha-beta
  - drag and drop in setup.exe from publish folder
+ - drag and drop in ReadMe.txt from the ChroniCalc folder
   - Note any major changes in the Description field
+  - Or, copy/paste the ReadMe.txt into the Description field
