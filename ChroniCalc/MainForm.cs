@@ -7,12 +7,14 @@ using System.Configuration;
 using System.Data;
 using System.Deployment.Application;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -45,10 +47,12 @@ namespace ChroniCalc
         //Lists and Objects
         public Build build;
         public BuildShareForm buildShareForm;
+        public CultureInfo CultureSystem;
+        public CultureInfo CultureEnglish;
+
         List<CharacterClass> characterClasses;
         List<Tree> trees;
         List<Skill> skills;
-
         List<Button> treeButtons;
         List<TreeTableLayoutPanel> treePanels;
 
@@ -57,6 +61,10 @@ namespace ChroniCalc
             try
             {
                 InitializeComponent();
+
+				// Create variables to hold the original System Locale setting and also one specifically defined as English
+                CultureSystem = Thread.CurrentThread.CurrentCulture;
+                CultureEnglish = new CultureInfo("en-US", false);
 
                 // Add the version to the form's Title
                 if (ApplicationDeployment.IsNetworkDeployed)
@@ -202,6 +210,19 @@ namespace ChroniCalc
             skills.Add(passiveMasterySkill);
         }
 
+        private void ChangeLocale(bool setAsEnglish)
+        {
+            // Change the Locale as requested
+            if (setAsEnglish)
+            {
+                Thread.CurrentThread.CurrentCulture = CultureEnglish;
+            }
+            else
+            {
+                Thread.CurrentThread.CurrentCulture = CultureSystem;
+            }
+        }
+
         private int GetSkillMinLevel(XmlNode skillMinLevelNode, int xPos)
         {
             int minLevel = -1;
@@ -305,6 +326,9 @@ namespace ChroniCalc
 
         public void PopulateSkillTrees()
         {
+            // Set the Locale to English to avoid any manipulation by the system settings to the Skill Data Export data (e.g. Decimals and comma-separator discrepancies)
+            ChangeLocale(true);
+
             //Set the filepaths of the json to local variables for referencing easier
             string jsonSample = (ConfigurationManager.AppSettings["SkillDataSample"]);
             string jsonBerserker = (ConfigurationManager.AppSettings["SkillDataBerserker"]);
@@ -432,6 +456,9 @@ namespace ChroniCalc
                 //Add the populated Class to the list of all available Classes
                 characterClasses.Add(new CharacterClass(classNode.Name, trees));
             }
+
+            // Set the Locale back to the System setting so values are displayed that the user is familiar with
+            ChangeLocale(false);
         }
 
         private bool NodeHasValue(XmlNode node, params string[] additionalConditions)
