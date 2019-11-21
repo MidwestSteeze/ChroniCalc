@@ -50,6 +50,5 @@ Below is a list of all internal (local) and external (network) access this progr
 ## Reporting Bugs
 
 Error messages and/or screenshots can be reported in the following ways:  
-  * **Reddit**: New posts can be made with the "[BUG]" tag in the [ChroniCalc subreddit](https://www.reddit.com/r/ChroniCalc)  
-  * **Email**:  Messages and/or Pictures can be sent to [ChroniCalcBuildPlanner@gmail.com](mailto:ChroniCalcBuildPlanner@gmail.com)
+  * **Reddit**: New posts can be made with the "[BUG]" tag in the [ChroniCalc subreddit](https://www.reddit.com/r/ChroniCalc)
 
