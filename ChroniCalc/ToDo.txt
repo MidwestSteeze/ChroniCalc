@@ -1,17 +1,14 @@
 ﻿ ToDo
  
  REPORTED BUGS:
-	- changing options in a slot resets the # of points in the slot (how does the game handle this? may be resolved with the above getting fixed)
 	- no display of points required in the trees for each node or when that requirement is met
-	- if you decrease nodes earlier in the tree or change the choice you can end up with invalid trees with you can still invest to progress further
+	- if you decrease level of skills earlier in the tree you can end up with invalid trees where you can still invest to progress further
 	- can't change the last node (element vs buffs vs ultimate cd) on the 2nd, 3rd, and 4th mastery line of each class; they're locked into the elements shown off the bat.
 	- Entity: no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better
 
  RESUME AT:
-	- change pastebin duration to last forever?
  	- test other languages for display
 	- see if you can fix the setup.exe unsafe warning from github
-	- post beta to reddit
 
  MAJORS:
   - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
