@@ -1556,8 +1556,8 @@ namespace ChroniCalc
             LoadTreeIconButtonImage(ResourceManagerImageTree, btnTreeMastery, treeName);
             btnTreeMastery.Tag = treeName;
             treePanels[4].Name = treeName;
-            //treePanels[4].passiveSkillId = 93; //TODO test that it's OK we're not setting a passiveSkillId/Name on the Mastery tree (or is there 1 we can/should set that's used in game but isn't in the skill data?)
-            //treePanels[4].passiveSkillName = treeName;
+            //treePanels[4].passiveSkillId = 93; //TODO test that it's OK we're not setting a passiveSkillId on the Mastery tree (or is there 1 we can/should set that's used in game but isn't in the skill data?)
+            treePanels[4].passiveSkillName = treeName;
             treePanels[4].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
             //Load all trees for the selected class into their corresponding tree table layout panels
