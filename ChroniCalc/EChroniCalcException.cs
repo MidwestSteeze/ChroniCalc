@@ -9,7 +9,7 @@ namespace ChroniCalc
 {
     public class EChroniCalcException : Exception
     {
-        const string ERROR_HEADER = "An error has occurred.  Please send the following to an administrator:\r\n";
+        const string ERROR_HEADER = "An error has occurred.  Please post the following information to www.reddit.com/r/ChroniCalc:\r\n";
 
         public EChroniCalcException(string message)
         {

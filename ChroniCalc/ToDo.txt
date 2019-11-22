@@ -56,7 +56,6 @@
 		   - online with prior exception
 		   - offline no prior exception
 		   - offline with prior exception
-	- MessageBox.Show should be centered on application, not on the entire screen (requires custom messagebox class, so not a high priority)
 	- Locale issue: skill.effect is stored as string but actually contains decimals. in tooltip it always uses a "." for the decimal even though the system locale may be using "," for actual numbers, like skill.duration
 		- change Locale to Sweden and look at Berserker Frostborn passive tooltip
 
