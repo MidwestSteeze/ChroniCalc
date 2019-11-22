@@ -73,6 +73,13 @@ namespace ChroniCalc
             PasteBinClient pasteBinClient;
             string pastebinExtract;
 
+            // Ensure there was an attempt to put a Build URL into the Load textbox before trying to load a build
+            if (txtPastebinLoad.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter a Build URL.", "Load Build");
+                return;
+            }
+
             //Prompt for save/if user really wants to load, overwriting current build
             if (!(this.ParentForm as BuildShareForm).ParentForm.SaveBuildShouldContinue())
             {
