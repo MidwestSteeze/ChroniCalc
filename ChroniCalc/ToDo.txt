@@ -1,12 +1,11 @@
 ﻿ ToDo
  
  REPORTED BUGS:
-	- Rahlence: mirror click and modifier functionality of that in-game
-		- changing options in a slot resets the # of points in the slot (how does the game handle this? may be resolved with the above getting fixed)
-		- no display of points required in the trees for each node or when that requirement is met
-		- if you decrease nodes earlier in the tree or change the choice you can end up with invalid trees with you can still invest to progress further
-		- can't change the last node (element vs buffs vs ultimate cd) on the 2nd, 3rd, and 4th mastery line of each class; they're locked into the elements shown off the bat.
-	- Entity: no Comic Sans please, different font? has a bad rep, other fonts (helvetica or arial) potentially handle display better
+	- changing options in a slot resets the # of points in the slot (how does the game handle this? may be resolved with the above getting fixed)
+	- no display of points required in the trees for each node or when that requirement is met
+	- if you decrease nodes earlier in the tree or change the choice you can end up with invalid trees with you can still invest to progress further
+	- can't change the last node (element vs buffs vs ultimate cd) on the 2nd, 3rd, and 4th mastery line of each class; they're locked into the elements shown off the bat.
+	- Entity: no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better
 
  RESUME AT:
 	- change pastebin duration to last forever?
@@ -23,6 +22,8 @@
 	 - Phase 2: actual damage numbers and dps
   - how to handle build converts to new releases?
 	 - manually diff skilldata between old&new version, write xslt to convert builds for known differences (unless can find xslt equivalent for json)
+  - implement export to Chronicon .build file which is a Skill ID/Level pair in JSON format (see discord for sample file)
+   - Class ID required: Templar=1, Berserker=2, Warden=3, Warlock=4
  
  CLASSES:
 

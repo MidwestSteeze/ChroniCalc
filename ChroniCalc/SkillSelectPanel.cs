@@ -57,7 +57,8 @@ namespace ChroniCalc
                 if (btnPreviousSkill.skill.name != btnSelectedSkill.skill.name)
                 {
                     // A SkillButton exists at this location and it's different than the previously-selected Skill;
-					//   Subtract the level of the skill from the build before we remove it to put the new one in place
+                    //   Retain the level of the skill before we remove it to put the new one in place; also update the displayed level of the skill in various locations on the new Skill
+                    btnSelectedSkill.UpdateSkillPointAndLevelCounter(btnSelectedSkill.skill.level, btnPreviousSkill.skill.level);
                     btnPreviousSkill.UpdateSkillPointAndLevelCounter(btnPreviousSkill.skill.level, 0);
 
                     previousSkillId = btnPreviousSkill.skill.id;

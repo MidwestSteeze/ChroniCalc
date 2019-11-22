@@ -86,7 +86,8 @@ namespace ChroniCalc
                 return;
             }
 
-            if (e.Button == MouseButtons.Left && Control.ModifierKeys == Keys.Shift && this.skillSelectPanel != null)
+            //Re-display the SkillSelectPanel
+            if (e.Button == MouseButtons.Right && this.skillSelectPanel != null)
             {
                 //Redisplay the Skill Select Panel if the skill was shift-clicked
                 if (!this.skillSelectPanel.Visible)
@@ -101,17 +102,36 @@ namespace ChroniCalc
                 }
             }
             else
-            { 
-                if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && 
-                    ((treeName != "Mastery" && form.build.Level < MainForm.SKILL_POINTS_MAX) || treeName == "Mastery"))
+            {
+                //De-level the Skill
+                if (e.Button == MouseButtons.Left && Control.ModifierKeys == (Keys.Control | Keys.Shift) && this.skill.level > 0)
                 {
-                    //Increase the level
-                    UpdateSkillPointAndLevelCounter(this.skill.level, this.skill.level + 1);
-                }
-                else if (e.Button == MouseButtons.Right && this.skill.level > 0)
-                {
-                    //Decrease the level
+                    //Decrease the level by 1
                     UpdateSkillPointAndLevelCounter(this.skill.level, this.skill.level - 1);
+                }
+                //Level-up the Skill
+                else if (e.Button == MouseButtons.Left && this.skill.level < this.skill.max_rank && HavePrereqs() && 
+                        ((treeName != "Mastery" && form.build.Level < MainForm.SKILL_POINTS_MAX) || treeName == "Mastery"))
+                {
+                    if (Control.ModifierKeys == Keys.Shift)
+                    {
+                        int levelsAvailable = (this.skill.max_rank - this.skill.level >= 20) ? 20 : this.skill.max_rank - this.skill.level;
+                        
+                        //Increase the level by 20
+                        UpdateSkillPointAndLevelCounter(this.skill.level, this.skill.level + levelsAvailable);
+                    }
+                    else if (Control.ModifierKeys == Keys.Control)
+                    {
+                        int levelsAvailable = (this.skill.max_rank - this.skill.level >= 5) ? 5 : this.skill.max_rank - this.skill.level;
+
+                        //Increase the level by 5
+                        UpdateSkillPointAndLevelCounter(this.skill.level, this.skill.level + levelsAvailable);
+                    }
+                    else
+                    {
+                        //Increase the level by 1
+                        UpdateSkillPointAndLevelCounter(this.skill.level, this.skill.level + 1);
+                    }
                 }
 
                  //TODO update stats (damage, health, mana, etc)
