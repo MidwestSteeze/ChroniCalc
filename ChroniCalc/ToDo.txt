@@ -1,10 +1,7 @@
 ﻿ ToDo
  
- REPORTED BUGS:
-	- no display of points required in the trees for each node or when that requirement is met
-	- if you decrease level of skills earlier in the tree you can end up with invalid trees where you can still invest to progress further
-	- can't change the last node (element vs buffs vs ultimate cd) on the 2nd, 3rd, and 4th mastery line of each class; they're locked into the elements shown off the bat.
-	- Entity: no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better
+ REPORTED BUGS NOT YET CATEGORIZED:
+ 
 
  RESUME AT:
  	- test other languages for display
@@ -38,10 +35,11 @@
 
 
  POST BETA MISC:
+	- Class/Mastery Trees: conditionally display Points Requirement label on tooltip until the requirement is met (in stash as "Points Requiremenet label in Tooltip")	
 	- Mastery Trees:
 		- de-leveling a skill may invalidate postreq skills (this may be a bug in class-specific skill trees as well) (ie. can't have a skill level 0 if a later-linked skill is still leveled; and you can't de-level a skill that causes later-linked skills to no longer meet the min_level req)
 		- in the 3 Generic rows, the same skill at the same x position can be selected in a different column (ie. Health in all 3 of the Generic rows' first column)
-	- Class/Mastery Trees: conditionally display Points Requirement label on tooltip until the requirement is met (in stash as "Points Requiremenet label in Tooltip")
+	- can't change the last node (element vs buffs vs ultimate cd) on the 2nd, 3rd, and 4th mastery line of each class; they're locked into the elements shown off the bat.
     - cleanup tree background images in relation to how the controls sit on top of them with some parts still showing and the last column being stretched (especially Mastery tree stretching)
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
 	- (It's eating up paste counts, make its own account? IN STASH RDY FOR TESTING) change EChroniCalc exception handling to paste the callstack and error to pastebin and provide a link to the user to send to the admin
@@ -58,5 +56,6 @@
 		   - offline with prior exception
 	- Locale issue: skill.effect is stored as string but actually contains decimals. in tooltip it always uses a "." for the decimal even though the system locale may be using "," for actual numbers, like skill.duration
 		- change Locale to Sweden and look at Berserker Frostborn passive tooltip
+	- no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better		
 
  POST RELEASE MISC:
