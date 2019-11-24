@@ -15,6 +15,7 @@ namespace ChroniCalc
 {
     public partial class SkillTooltipPanel : UserControl
     {
+        private const int DEFAULT_WIDTH = 215;
         private const char YEN = '\u00A5';
         private const int MARGIN_VERTICAL = 3;
         private const int PADDING_VERTICAL = 3;
@@ -38,7 +39,14 @@ namespace ChroniCalc
             this.element = new Element(this.skill.element);
 
             //Specify defaults for this custom control
-            //Max width and height of labels (to enable word-wrapping)
+            this.lblPointsRequired.Text = GetPointsRequiredText();
+            this.lblPointsRequired.Visible = GetPointsRequiredVisibility();
+            
+			//Adjust the width of the Tooltip based on if the lblPointsRequired text is running off the right edge, otherwise use the min width defined
+            this.Width = ((this.lblPointsRequired.Width + this.lblPointsRequired.Left) > DEFAULT_WIDTH) ? (this.lblPointsRequired.Width + this.lblPointsRequired.Left) : DEFAULT_WIDTH;
+            pnlTooltip.Width = this.Width;
+            
+			//Max width and height of labels (to enable word-wrapping)
             lblDescription.MaximumSize = new Size(lblDescription.Parent.Width - (lblDescription.Left * 2), this.lblDescription.Font.Height * 7);
 
             this.Parent = form.Controls.Find("pnlTrees", true).First();
@@ -48,7 +56,6 @@ namespace ChroniCalc
 
             this.lblElement.Text = this.skill.element;
             this.lblElement.ForeColor = this.element.color;
-
 
             this.lblName.Text = this.skill.name;
             UpdateRankText(skill.level);
@@ -133,6 +140,41 @@ namespace ChroniCalc
             };
 
             return capitalWords;
+        }
+
+        private string GetPointsRequiredText()
+        {
+            string pointsRequired = string.Empty;
+
+            if (treeTableLayoutPanel.tree.name == "Mastery")
+            {
+                // Get the name of the row for the current Skill by looking at the Mastery Passive Bonus Skill in column 0
+                string rowName = treeTableLayoutPanel.tree.skills.Find(s => s.y == this.skill.y && s.x == 0).name;
+
+                //Mastery Tree uses min_level ("Requires rank min_level in RowName" ie. Guardian Mastery, Class Mastery 3, etc)
+                pointsRequired = "Requires rank " + this.skill.min_level + " in " + rowName;
+            }
+            else
+            {
+                //Class Trees also have min_level set ("Requires min_level points spent to unlock")
+                pointsRequired = "Requires " + this.skill.min_level + " points spent to unlock";
+            }
+
+            return pointsRequired;
+        }
+
+        private bool GetPointsRequiredVisibility()
+        {
+            bool visible = false;
+
+            //TODO temp only showing this on the Mastery tree; the controls are obeying min_level rules in Class trees
+            //  so i'll bother with toggling the PointsReq label in there at a later time since Mastery tree is the one that's a bit less intuitive and could use it
+            if (this.skill.min_level > 0 && this.treeTableLayoutPanel.tree.name == "Mastery")
+            {
+                visible = true;
+            }
+
+            return visible;
         }
 
         public void PopulateDescription()

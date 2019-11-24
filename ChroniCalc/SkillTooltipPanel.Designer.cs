@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlTooltip = new System.Windows.Forms.Panel();
+            this.lblManaAndCooldown = new System.Windows.Forms.Label();
             this.pbDivider = new System.Windows.Forms.PictureBox();
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblRank = new System.Windows.Forms.Label();
@@ -36,7 +37,7 @@
             this.lblElement = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();
-            this.lblManaAndCooldown = new System.Windows.Forms.Label();
+            this.lblPointsRequired = new System.Windows.Forms.Label();
             this.pnlTooltip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDivider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
@@ -46,6 +47,7 @@
             // 
             this.pnlTooltip.BackColor = System.Drawing.Color.Black;
             this.pnlTooltip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTooltip.Controls.Add(this.lblPointsRequired);
             this.pnlTooltip.Controls.Add(this.lblManaAndCooldown);
             this.pnlTooltip.Controls.Add(this.pbDivider);
             this.pnlTooltip.Controls.Add(this.lblDescription);
@@ -58,6 +60,17 @@
             this.pnlTooltip.Name = "pnlTooltip";
             this.pnlTooltip.Size = new System.Drawing.Size(215, 188);
             this.pnlTooltip.TabIndex = 0;
+            // 
+            // lblManaAndCooldown
+            // 
+            this.lblManaAndCooldown.AutoSize = true;
+            this.lblManaAndCooldown.BackColor = System.Drawing.Color.Black;
+            this.lblManaAndCooldown.ForeColor = System.Drawing.Color.White;
+            this.lblManaAndCooldown.Location = new System.Drawing.Point(5, 62);
+            this.lblManaAndCooldown.Name = "lblManaAndCooldown";
+            this.lblManaAndCooldown.Size = new System.Drawing.Size(100, 13);
+            this.lblManaAndCooldown.TabIndex = 11;
+            this.lblManaAndCooldown.Text = "ManaAndCooldown";
             // 
             // pbDivider
             // 
@@ -133,16 +146,16 @@
             this.pbIcon.TabIndex = 0;
             this.pbIcon.TabStop = false;
             // 
-            // lblManaAndCooldown
+            // lblPointsRequired
             // 
-            this.lblManaAndCooldown.AutoSize = true;
-            this.lblManaAndCooldown.BackColor = System.Drawing.Color.Black;
-            this.lblManaAndCooldown.ForeColor = System.Drawing.Color.White;
-            this.lblManaAndCooldown.Location = new System.Drawing.Point(5, 62);
-            this.lblManaAndCooldown.Name = "lblManaAndCooldown";
-            this.lblManaAndCooldown.Size = new System.Drawing.Size(100, 13);
-            this.lblManaAndCooldown.TabIndex = 11;
-            this.lblManaAndCooldown.Text = "ManaAndCooldown";
+            this.lblPointsRequired.AutoSize = true;
+            this.lblPointsRequired.BackColor = System.Drawing.Color.Black;
+            this.lblPointsRequired.ForeColor = System.Drawing.Color.Red;
+            this.lblPointsRequired.Location = new System.Drawing.Point(46, 36);
+            this.lblPointsRequired.Name = "lblPointsRequired";
+            this.lblPointsRequired.Size = new System.Drawing.Size(78, 13);
+            this.lblPointsRequired.TabIndex = 12;
+            this.lblPointsRequired.Text = "pointsRequired";
             // 
             // SkillTooltipPanel
             // 
@@ -171,5 +184,6 @@
         private System.Windows.Forms.PictureBox pbIcon;
         private System.Windows.Forms.PictureBox pbDivider;
         private System.Windows.Forms.Label lblManaAndCooldown;
+        private System.Windows.Forms.Label lblPointsRequired;
     }
 }

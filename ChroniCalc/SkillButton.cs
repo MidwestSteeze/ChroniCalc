@@ -263,6 +263,8 @@ namespace ChroniCalc
 
                 // Update the current Mastery Level of the character based on how many Mastery points have been spent
                 (form.Controls.Find("lblMastery", true).First() as Label).Text = form.build.MasteryLevel.ToString();
+                // Set visibility of the Points Required text on this Skill Button and all Skills after it
+                SetPointsRequiredVisibilities(ttlpTree, this.skill, passiveBonusBtn.skill.level);
             }
             else
             {
@@ -281,6 +283,7 @@ namespace ChroniCalc
 
                 //Update the current Level of the character based on how many skill points have been spent
                 (form.Controls.Find("lblLevel", true).First() as Label).Text = form.build.Level.ToString();
+                // TODO Enable PointsReq label for Class Trees: SetPointsRequiredVisibilities(ttlpTree, this.skill, passiveBonusBtn.skill.level);
             }
 
             //Update the displayed level on the skill button
@@ -308,6 +311,33 @@ namespace ChroniCalc
             if (this.skillTooltipPanel.Visible)
             {
                 this.skillTooltipPanel.Visible = false;
+            }
+        }
+
+        private void SetPointsRequiredVisibilities(TreeTableLayoutPanel ttlpTree, Skill skill, int totalPointsAllocated)
+        {
+            bool visible = false;
+            Control control;
+
+            // Adjust all Skills in the row not just the one we're on (NOTE: the hard-coded 2 is the first column where a Skill Button can be found)
+            for (int x = 2; x <= ttlpTree.ColumnCount - 1; x++)
+            {
+                control = ttlpTree.GetControlFromPosition(x, this.skill.y);
+
+                if (control is MultiSkillSelectButton)
+                {
+                    //Adjust visibility on each of the SkillSelectButtons contained within
+                    foreach (SkillSelectButton skillSelectButton in (control as MultiSkillSelectButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
+                    {
+                        visible = (!(skillSelectButton.skill.min_level <= ttlpTree.skillPointsAllocated) && (skillSelectButton.skill.min_level > 0));
+                        skillSelectButton.skillTooltipPanel.Controls.Find("lblPointsRequired", true).First().Visible = visible;
+                    }
+                }
+                else if (control is SkillButton)
+                {
+                    visible = (!((control as SkillButton).skill.min_level <= ttlpTree.skillPointsAllocated) && ((control as SkillButton).skill.min_level > 0));
+                    (control as SkillButton).skillTooltipPanel.Controls.Find("lblPointsRequired", true).First().Visible = visible;
+                }
             }
         }
 
