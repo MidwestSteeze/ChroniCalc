@@ -290,6 +290,99 @@ namespace ChroniCalc
             }
         }
 
+        /// <summary>
+        /// This is an incredibly in-depth way of making sure the 3 Rows in the Mastery Tree show the
+		/// 	Points Required label, and the correct Text, if points spent in each of the 3 Rows do not meet the minimum
+		/// 	required to assign points into the last Skill that is linked to the end of each of these 3 Rows
+		/// 	(It's not super necessary but is very helpful for those not familiar enough with the game, I guess)
+        /// </summary>
+        public void SetMasteryGeneralRowsPointsRequiredVisibility(TreeTableLayoutPanel ttlpTree)
+        {
+            const int MIN_LEVEL = 65;
+
+            bool visible = false;
+            int width;
+            string pointsRequiredLabelText = "Requires Rank " + MIN_LEVEL.ToString() + " in ";
+
+            Label pointsRequiredLabel;
+            List<string> rowNamesNeedingMorePoints = new List<string>();
+            Control control;
+            SkillButton passiveBonusButton;
+
+            for (int row = 2; row <= 4; row++)
+            {
+                passiveBonusButton = (SkillButton)ttlpTree.GetControlFromPosition(0, row);
+
+                if (passiveBonusButton.skill.level < MIN_LEVEL)
+                {
+                    // Set visibility of the PointsRequired label
+                    visible = true;
+
+                    rowNamesNeedingMorePoints.Add(passiveBonusButton.skill.name);
+                }
+            }
+
+            // Build up the text that we'll be placing on the PointsRequired label, incase many Rows don't meet the min_level
+            for (int i=0; i <= rowNamesNeedingMorePoints.Count - 1; i++)
+            {
+                pointsRequiredLabelText += rowNamesNeedingMorePoints[i];
+
+                // Add a comma seperator if there are more Row Names to add to this label text, but it's not the last one in the list
+                if (i < (rowNamesNeedingMorePoints.Count - 1))
+                {
+                    pointsRequiredLabelText += ", ";
+                }
+            }
+
+            // Get the control that Rows 2-4 are linked to at the end that we'll be adjusting
+            control = ttlpTree.GetControlFromPosition(ttlpTree.ColumnCount - 1, 3);
+
+            // Set the visibility and text of the PointsRequired label based on the control type
+            if (control is MultiSkillSelectButton)
+            {
+                // Adjust visibility and the Points Required text on each of the SkillSelectButtons contained within
+                foreach (SkillSelectButton skillSelectButton in (control as MultiSkillSelectButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
+                {
+                    pointsRequiredLabel = (Label)skillSelectButton.skillTooltipPanel.Controls.Find("lblPointsRequired", true).First();
+                    pointsRequiredLabel.Visible = visible;
+                    pointsRequiredLabel.Text = pointsRequiredLabelText;
+
+                    //Adjust the width of the Tooltip based on if the lblPointsRequired text is running off the right edge, otherwise use the min width defined
+                    width = ((pointsRequiredLabel.Width + pointsRequiredLabel.Left) > skillSelectButton.skillTooltipPanel.DEFAULT_WIDTH) ? (pointsRequiredLabel.Width + pointsRequiredLabel.Left) : skillSelectButton.skillTooltipPanel.DEFAULT_WIDTH;
+                    skillSelectButton.skillTooltipPanel.Controls.Find("pnlTooltip", true).First().Width = width;
+                    skillSelectButton.skillTooltipPanel.Width = width;
+                }
+            }
+            else if (control is SkillButton)
+            {
+                // Adjust visibility and the Points Required text on the SkillButton
+                pointsRequiredLabel = (Label)(control as SkillButton).skillTooltipPanel.Controls.Find("lblPointsRequired", true).First();
+                pointsRequiredLabel.Visible = visible;
+                pointsRequiredLabel.Text = pointsRequiredLabelText;
+
+                //Adjust the width of the Tooltip based on if the lblPointsRequired text is running off the right edge, otherwise use the min width defined
+                width = ((pointsRequiredLabel.Width + pointsRequiredLabel.Left) > (control as SkillButton).skillTooltipPanel.DEFAULT_WIDTH) ? (pointsRequiredLabel.Width + pointsRequiredLabel.Left) : (control as SkillButton).skillTooltipPanel.DEFAULT_WIDTH;
+                (control as SkillButton).skillTooltipPanel.Controls.Find("pnlTooltip", true).First().Width = width;
+                (control as SkillButton).skillTooltipPanel.Width = width;
+
+                // See if the Skill Button has a SkillSelectPanel
+                if (!((control as SkillButton).skillSelectPanel is null))
+                {
+                    // Adjust visibility and the Points Required text on each of the SkillSelectButtons contained within
+                    foreach (SkillSelectButton skillSelectButton in (control as SkillButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
+                    {
+                        pointsRequiredLabel = (Label)skillSelectButton.skillTooltipPanel.Controls.Find("lblPointsRequired", true).First();
+                        pointsRequiredLabel.Visible = visible;
+                        pointsRequiredLabel.Text = pointsRequiredLabelText;
+
+                        //Adjust the width of the Tooltip based on if the lblPointsRequired text is running off the right edge, otherwise use the min width defined
+                        skillSelectButton.skillTooltipPanel.Controls.Find("pnlTooltip", true).First().Width = width;
+                        skillSelectButton.skillTooltipPanel.Width = width;
+                    }
+                }
+            }
+        }
+
         public void SetPointsRequiredVisibilities(TreeTableLayoutPanel ttlpTree, Skill skill, int totalPointsAllocated)
         {
             if (ttlpTree.Name == "Mastery")
@@ -299,10 +392,22 @@ namespace ChroniCalc
                 // Adjust all Skills in the Mastery Tree's Row, not just the one we're on (NOTE: the hard-coded 2 is the first column where a Skill Button can be found)
                 for (int x = 2; x <= ttlpTree.ColumnCount - 1; x++)
                 {
+                    // Don't perform this functionality if we're on the last Skill that's linked to General Rows 3, 4, and 5; it's being done outside of this loop
+                    if (skill.y == 3 && x == (ttlpTree.ColumnCount - 1))
+                    {
+                        continue;
+                    }
+
                     // Get the control at this X position, but within the same Row (ie. this.skill.y)
                     control = ttlpTree.GetControlFromPosition(x, skill.y);
 
                     SetPointsRequiredVisibility(control, totalPointsAllocated);
+                }
+
+                // Adjust the Class Mastery final Skill that's linked to General Rows 3, 4 and 5 and requires they all meet the min_level requirement of that Skill
+                if (skill.y == 2 || skill.y == 3 || skill.y == 4)
+                {
+                    SetMasteryGeneralRowsPointsRequiredVisibility(ttlpTree);
                 }
             }
             else

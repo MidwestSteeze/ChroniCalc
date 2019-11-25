@@ -15,7 +15,7 @@ namespace ChroniCalc
 {
     public partial class SkillTooltipPanel : UserControl
     {
-        private const int DEFAULT_WIDTH = 215;
+        public readonly int DEFAULT_WIDTH = 215;
         private const char YEN = '\u00A5';
         private const int MARGIN_VERTICAL = 3;
         private const int PADDING_VERTICAL = 3;
