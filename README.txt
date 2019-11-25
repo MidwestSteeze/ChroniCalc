@@ -29,9 +29,11 @@ ChroniCalc - An offline build planning tool for the Action RPG ChroniCalc
 	* **Share**: Share your Build with other players by uploading it to Pastebin.  A perfect way to provide additional information in your Build Guides.
 
 ## Additional Usage Tips
- * **Left-click**: Increase level of the selected Skill
- * **Right-click**: Decrease level of the selected Skill
- * **Shift + Left-click**: (on Active Skills or Mastery Skills) Shows the Skill selection menu
+ * **Left-click**: Increase level of the selected Skill by 1
+ * **Control + Left-click**: Increase level of the selected Skill by 5
+ * **Shift + Left-click**: Increase level of the selected Skill by 20
+ * **Control + Shift + Left-click**: Decrease level of the selected Skill by 1
+ * **Right-click**: Open the Skill selection menu, if available
  
  ---
  
