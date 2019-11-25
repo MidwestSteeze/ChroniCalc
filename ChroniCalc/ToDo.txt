@@ -4,6 +4,7 @@
  
 
  RESUME AT:
+    - fix bug with Mastery Tree PointsReq label with regard to Class Mastery I, II, III rows and the last skill that requires all 3 rows to be lvl65
  	- test other languages for display
 	- see if you can fix the setup.exe unsafe warning from github
 
@@ -35,7 +36,6 @@
 
 
  POST BETA MISC:
-	- Class Trees: conditionally display Points Requirement label on tooltip until the requirement is met (in stash as "Points Requiremenet label in Tooltip")	
 	- Mastery Trees:
 		- de-leveling a skill may invalidate postreq skills (this may be a bug in class-specific skill trees as well) (ie. can't have a skill level 0 if a later-linked skill is still leveled; and you can't de-level a skill that causes later-linked skills to no longer meet the min_level req)
 		- in the 3 Generic rows, the same skill at the same x position can be selected in a different column (ie. Health in all 3 of the Generic rows' first column)

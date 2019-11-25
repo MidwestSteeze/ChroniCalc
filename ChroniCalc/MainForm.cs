@@ -290,6 +290,78 @@ namespace ChroniCalc
             }
         }
 
+        public void SetPointsRequiredVisibilities(TreeTableLayoutPanel ttlpTree, Skill skill, int totalPointsAllocated)
+        {
+            if (ttlpTree.Name == "Mastery")
+            {
+                Control control;
+
+                // Adjust all Skills in the Mastery Tree's Row, not just the one we're on (NOTE: the hard-coded 2 is the first column where a Skill Button can be found)
+                for (int x = 2; x <= ttlpTree.ColumnCount - 1; x++)
+                {
+                    // Get the control at this X position, but within the same Row (ie. this.skill.y)
+                    control = ttlpTree.GetControlFromPosition(x, skill.y);
+
+                    SetPointsRequiredVisibility(control, totalPointsAllocated);
+                }
+            }
+            else
+            {
+                List<Control> controls = new List<Control>();
+
+                // Adjust all Skills in the Class Tree, not just the one we're on (NOTE: the hard-coded 2 is the first column where a Skill Button can be found)
+                for (int x = 2; x <= ttlpTree.ColumnCount - 1; x++)
+                {
+                    // Get all controls at the current X position (there may be multiple across different Y positions)
+                    for (int y = 0; y <= ttlpTree.RowCount - 1; y++)
+                    {
+                        if (!(ttlpTree.GetControlFromPosition(x, y) is null))
+                        {
+                            controls.Add(ttlpTree.GetControlFromPosition(x, y));
+                        }
+                    }
+
+                    // Loop through each of the controls found and adjust PointsReq visibility
+                    foreach (Control control in controls)
+                    {
+                        SetPointsRequiredVisibility(control, totalPointsAllocated);
+                    }
+                }
+            }
+        }
+
+        public void SetPointsRequiredVisibility(Control control, int totalPointsAllocated)
+        {
+            bool visible = false;
+
+            if (control is MultiSkillSelectButton)
+            {
+                //Adjust visibility on each of the SkillSelectButtons contained within
+                foreach (SkillSelectButton skillSelectButton in (control as MultiSkillSelectButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
+                {
+                    visible = (!(skillSelectButton.skill.min_level <= totalPointsAllocated) && (skillSelectButton.skill.min_level > 0));
+                    skillSelectButton.skillTooltipPanel.Controls.Find("lblPointsRequired", true).First().Visible = visible;
+                }
+            }
+            else if (control is SkillButton)
+            {
+                // Adjust visibility on the SkillButton
+                visible = (!((control as SkillButton).skill.min_level <= totalPointsAllocated) && ((control as SkillButton).skill.min_level > 0));
+                (control as SkillButton).skillTooltipPanel.Controls.Find("lblPointsRequired", true).First().Visible = visible;
+
+                // See if the Skill Button has a SkillSelectPanel
+                if (!((control as SkillButton).skillSelectPanel is null))
+                {
+                    // Adjust visibility on each of the SkillSelectButtons contained within
+                    foreach (SkillSelectButton skillSelectButton in (control as SkillButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
+                    {
+                        visible = (!(skillSelectButton.skill.min_level <= totalPointsAllocated) && (skillSelectButton.skill.min_level > 0));
+                        skillSelectButton.skillTooltipPanel.Controls.Find("lblPointsRequired", true).First().Visible = visible;
+                    }
+                }
+            }
+        }
+
         private void UpdateBuildsList(Build buildToList)
         {
             DataGridViewRow existingRow;
@@ -849,6 +921,7 @@ namespace ChroniCalc
 
         private void LoadTree(Tree tree, TreeTableLayoutPanel ttlpTree)
         {
+            SkillButton passiveBonusButton;
             int treeSkillPointsAllocated = 0;
 
             List<Skill> MultiSelectionSkills = new List<Skill>();  //TODO could rename to LoadedMultiSelectionSkills/isLoadedMultiSelectionSkill for readability and consistency with isImportedMultiSelectionSkill
@@ -911,6 +984,23 @@ namespace ChroniCalc
 
             //Update the Tree's level
             ttlpTree.skillPointsAllocated = treeSkillPointsAllocated;
+
+            // Set the visibility of the Points Required labels on each of the Skills //TODO don't bother doing this if it's not a build being loaded to save on processing?
+            if (tree.name == "Mastery")
+            {
+                // Set visibility of all Skill Buttons within each individual row in the Mastery tree
+                for (int row = 0; row <= ttlpTree.RowCount - 1; row++)
+                {
+                    passiveBonusButton = (ttlpTree.GetControlFromPosition(0, row) as SkillButton);
+                    SetPointsRequiredVisibilities(ttlpTree, passiveBonusButton.skill, passiveBonusButton.skill.level);
+                }
+            }
+            else
+            {
+                // Set visibility for all controls in the Class Tree
+                passiveBonusButton = (ttlpTree.GetControlFromPosition(0, 3) as SkillButton);
+                SetPointsRequiredVisibilities(ttlpTree, passiveBonusButton.skill, ttlpTree.skillPointsAllocated);
+            }            
 
             //Update Stats here because we may have loaded a build with invested skill points
             UpdateStats(build);

@@ -167,9 +167,7 @@ namespace ChroniCalc
         {
             bool visible = false;
 
-            //TODO temp only showing this on the Mastery tree; the controls are obeying min_level rules in Class trees
-            //  so i'll bother with toggling the PointsReq label in there at a later time since Mastery tree is the one that's a bit less intuitive and could use it
-            if (this.skill.min_level > 0 && this.treeTableLayoutPanel.tree.name == "Mastery")
+            if (this.skill.min_level > 0)
             {
                 visible = true;
             }
