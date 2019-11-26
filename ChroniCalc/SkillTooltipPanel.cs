@@ -266,15 +266,13 @@ namespace ChroniCalc
             switch (replaceWord)
             {
                 case "DAMAGE":
-                    //DAMAGE is stored with a percent sign, trim it off the end
-                    replaceValue = skill.damage[index].Substring(0, skill.damage[index].IndexOf("%"));
+                    replaceValue = skill.damage[index].ToString();
                     break;
                 case "DURATION":
                     replaceValue = skill.duration[index].ToString();
                     break;
                 case "EFFECT":
-                    //EFFECT is stored with a percent sign, trim it off the end
-                    replaceValue = skill.effect[index].Substring(0, skill.effect[index].IndexOf("%"));
+                    replaceValue = skill.effect[index].ToString();
                     break;
                 case "MASTERY_BONUS_PLACEHOLDER":
                     replaceValue = Math.Round((skill.value[0] * skill.level), MidpointRounding.AwayFromZero).ToString();

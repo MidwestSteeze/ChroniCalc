@@ -570,13 +570,13 @@ namespace ChroniCalc
                         //TODOSSG convert the rest (all?) to utilize NodeHasValue with additional conditions as necessary
                         //Map all Skill values into the Object's properties, handling situations of multiple Ranks and when the Node doesn't exist
                         // (using NodeHasValue to handle situations where the node exists but has no value ie. <duration></duration> and if there are additinoal values I need to exclude such as "none")
-                        skill.effect = NodeHasValue(skillNode.SelectSingleNode("effect")) ? skillNode.SelectSingleNode("effect").InnerXml.Split(',') : new string[] { }; //TODOSSG convert this to hold just the value and remove the "%"?
+                        skill.effect = NodeHasValue(skillNode.SelectSingleNode("effect")) ? Array.ConvertAll(skillNode.SelectSingleNode("effect").InnerXml.Replace("%", "").Split(','), double.Parse) : new double[] { };
                         skill.cooldown = !(skillNode.SelectSingleNode("cooldown") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("cooldown").InnerXml) : -1;
                         skill.duration = NodeHasValue(skillNode.SelectSingleNode("duration")) ? Array.ConvertAll(skillNode.SelectSingleNode("duration").InnerXml.Split(','), double.Parse) : new double[] { };
                         skill.cost100 = !(skillNode.SelectSingleNode("cost100") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("cost100").InnerXml) : -1;
                         skill.skill_requirement = NodeHasValue(skillNode.SelectSingleNode("skill_requirement"), new string[] { "none" }) ? Array.ConvertAll(skillNode.SelectSingleNode("skill_requirement").InnerXml.Trim('[', ']').Split(','), int.Parse) : new int[] { };
                         skill.x = !(skillNode.SelectSingleNode("x") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("x").InnerXml) : -1;
-                        skill.damage = !(skillNode.SelectSingleNode("damage") is null) ? skillNode.SelectSingleNode("damage").InnerXml.Split(',') : new string[] { }; //TODOSSG convert this to hold just the value and remove the "%"?
+                        skill.damage = NodeHasValue(skillNode.SelectSingleNode("damage")) ? Array.ConvertAll(skillNode.SelectSingleNode("damage").InnerXml.Replace("%", "").Split(','), double.Parse) : new double[] { };
                         skill.range2 = NodeHasValue(skillNode.SelectSingleNode("range2")) ? Array.ConvertAll(skillNode.SelectSingleNode("range2").InnerXml.Split(','), double.Parse) : new double[] { };
                         skill.family = !(skillNode.SelectSingleNode("family") is null) ? skillNode.SelectSingleNode("family").InnerXml : "None";
                         skill.min_level = GetSkillMinLevel(skillNode.SelectSingleNode("min_level"), skill.x);

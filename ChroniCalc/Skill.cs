@@ -12,7 +12,7 @@ namespace ChroniCalc
         // START Skill Json Properties
 
         [JsonProperty("effect")]
-        public string[] effect;
+        public double[] effect;
 
         [JsonProperty("cooldown")]
         public int cooldown;
@@ -33,7 +33,7 @@ namespace ChroniCalc
 
         //The multiplier increase/decrease
         [JsonProperty("damage")]
-        public string[] damage;
+        public double[] damage;
 
         [JsonProperty("range2")]
         public double[] range2;
