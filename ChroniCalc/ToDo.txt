@@ -1,13 +1,25 @@
 ﻿ ToDo
  
  REPORTED BUGS NOT YET CATEGORIZED:
+	- Mastery Tree 65lvlreq in Row3-5 can bypass that if you put 65 in Class Mastery 1 and 2 and don't have 65 in 3; you can still pick the Ultimate
+	- SaveAs doesn't update Build Name based on filename chosen, it also then doesn't overwrite the Build in the Builds List beacuse it saved over the original build name but with a diff file name
  
 
  RESUME AT:
 	- how to handle build converts to new releases? (add ApplicationVersion into the Build xml)
+		- DECISION: force an auto-update of a Build when it's opened by calling BuildConvert.ConvertBuild() on Open; requires changing OpenBuild() logic to read the Skill.Level and then find and set the actual values from the Skill Data
 		- TRIGGERS of a build convert:
+			- NOTE: I am reading the entire skill's data from the saved Build; so, value differences in like a Skill.Damage property in a new version are NOT realized when an old build is loaded
+				- THEREFORE, you have to make a decision of what's more important: letting them keep "old" versions of builds or always updating them
+					- if you let them keep old versions, you need to write converts for skill data changes
+					- if you don't let them keep old versions, you need to change the OpenBuild logic to read the Skill.Level and then find and set the actaul values (ie. Damage, Cooldown, etc) from the Skill Data Export
 			- skilldata export changing (realized by manually diffing skilldata between version of Chronicon)
+				- Skill Removed/Added/Name Changed
+				- Skill Data Change (ie. Damage, Duration, Element, etc): you'll need to diff Skill Data and convert any property values that were changed (this is fairly maintenance heavy)
+				- Skill Property Add: the build will deserialize and you can write your convert to set a value for the new property
+				- Skill Property Remove:  the build will serialize and the property won't be loaded with the value in the saved build file
 			- me changing the structure or datatype of a build/class/tree/skill (realized by being cognizant of my code changes)
+				- this cannot be handled via c# convert, it would have to be external to the Build object (ie. XSLT) so it can be changed before attempting to serialize into a Build
 		- SOLUTIONS:
 			- OPTION 1: XSLT-based or JSON equivalent of XSLT if i change the build data storage back to JSON
 			- OPTION 2: Directly in code, writing a new method for each new version of ChroniCalc/Chronicon that requires a convert (store trigger versions in a list to iterate through them in order)

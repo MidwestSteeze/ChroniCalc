@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace ChroniCalc
@@ -28,6 +29,7 @@ namespace ChroniCalc
         public DateTime lastSaved;
         public int Level { get { return _level; } set { _level = value; SetAsModified(); } }
         public int MasteryLevel { get { return _masteryLevel; } set { _masteryLevel = value; SetAsModified(); } }
+        public string ApplicationVersion;
         //[JsonProperty("name")]
         public string name;
 
@@ -39,6 +41,7 @@ namespace ChroniCalc
 
         public Build(string aName, CharacterClass aCharacterClass, int aLevel, int aMasteryLevel)
         {
+            ApplicationVersion = Application.ProductVersion;
             Level = aLevel;
             MasteryLevel = aMasteryLevel;
             name = aName;

@@ -1561,6 +1561,10 @@ namespace ChroniCalc
 
             }
 
+            // Convert the Build to the newest version
+            BuildConvert buildConvert = new BuildConvert();  //TODO minor detail: is there anyway to call ConvertBuild without having to create a BuildConvert object?
+            buildConvert.ConvertBuild(build);
+
             // Using the newly assigned Build object, create and populate all controls for this build
             InitializeBuild(build);
 
