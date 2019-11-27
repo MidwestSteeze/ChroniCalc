@@ -290,6 +290,35 @@ namespace ChroniCalc
             }
         }
 
+        private void MergeImportedBuildIntoBuild(Build importedBuild)
+        {
+            Tree currentTree;
+
+            // Set the imported Build data onto the global Build object
+            build.characterClass = characterClasses.Find(c => c.name == importedBuild.characterClass.name);
+            build.lastModified = importedBuild.lastModified;
+            build.lastSaved = importedBuild.lastSaved;
+            build.Level = importedBuild.Level;
+            build.MasteryLevel = importedBuild.MasteryLevel;
+            build.name = importedBuild.name;
+
+            // Loop through each imported Tree
+            foreach (Tree importedTree in importedBuild.characterClass.trees)
+            {
+                // Hold onto the current Tree being merged from the imported Build for easier reference when we're iterating through all Skills within it, below
+                currentTree = build.characterClass.trees.Find(t => t.name == importedTree.name);
+				// Set the imported Tree data onto the global build object's Tree
+                currentTree.level = importedTree.level;
+
+                // Loop through each imported Skill within each imported Tree
+                foreach (Skill importedSkill in importedTree.skills)
+                {
+                    // Set the level of the Skill that was imported onto the global build object that contains all data generated from the game's Skill Data
+                    currentTree.skills.Find(s => s.id == importedSkill.id).level = importedSkill.level; //TODO wrap this in a try/catch, if it fails because a Skill ID was not found then it needs to be handled in BuildConvert.ConvertBuild()
+                }
+            }
+        }
+
         /// <summary>
         /// This is an incredibly in-depth way of making sure the 3 Rows in the Mastery Tree show the
 		/// 	Points Required label, and the correct Text, if points spent in each of the 3 Rows do not meet the minimum
@@ -1519,6 +1548,7 @@ namespace ChroniCalc
 
         public void OpenBuild(string buildContent, bool pasteBinImport = false)
         {
+            Build importedBuild;
             XmlSerializer serializer;
 
 			// Set the Build Status so we don't trigger certain events (e.g. Build.SetAsModified())
@@ -1535,7 +1565,7 @@ namespace ChroniCalc
                     using (var stringReader = new StringReader(buildContent))
                     {
                         serializer = new XmlSerializer(typeof(Build));
-                        build = serializer.Deserialize(stringReader) as Build;
+                        importedBuild = serializer.Deserialize(stringReader) as Build;
                     }
                 }
                 catch (Exception ex)
@@ -1551,7 +1581,7 @@ namespace ChroniCalc
                     using (var stream = new StreamReader(buildContent))
                     {
                         serializer = new XmlSerializer(typeof(Build));
-                        build = serializer.Deserialize(stream) as Build;
+                        importedBuild = serializer.Deserialize(stream) as Build;
                     }
                 }
                 catch (Exception ex)
@@ -1563,7 +1593,10 @@ namespace ChroniCalc
 
             // Convert the Build to the newest version
             BuildConvert buildConvert = new BuildConvert();  //TODO minor detail: is there anyway to call ConvertBuild without having to create a BuildConvert object?
-            buildConvert.ConvertBuild(build);
+            buildConvert.ConvertBuild(importedBuild);
+
+            // Set the importedBuild stats into the global build object
+            MergeImportedBuildIntoBuild(importedBuild);
 
             // Using the newly assigned Build object, create and populate all controls for this build
             InitializeBuild(build);
