@@ -290,33 +290,43 @@ namespace ChroniCalc
             }
         }
 
-        private void MergeImportedBuildIntoBuild(Build importedBuild)
+        /// <summary>
+        /// Opening a saved build requires the saved Level of the Build be merged into the global Build object used by this application
+        ///     NOTE: The reason for this is to allow/force Builds to ALWAYS use the most recent SKill Data extracted from the game, which is loaded on open of ChroniCalc
+        /// </summary>
+        private Build MergeImportedBuildIntoBuild(Build importedBuild)
         {
+            Build mergedBuild = new Build();
             Tree currentTree;
+            Skill currentSkill;
 
-            // Set the imported Build data onto the global Build object
-            build.characterClass = characterClasses.Find(c => c.name == importedBuild.characterClass.name);
-            build.lastModified = importedBuild.lastModified;
-            build.lastSaved = importedBuild.lastSaved;
-            build.Level = importedBuild.Level;
-            build.MasteryLevel = importedBuild.MasteryLevel;
-            build.name = importedBuild.name;
+            // Set the imported Build data onto a Build object that will be sent back
+            mergedBuild.characterClass = characterClasses.Find(c => c.name == importedBuild.characterClass.name);
+            mergedBuild.lastModified = importedBuild.lastModified;
+            mergedBuild.lastSaved = importedBuild.lastSaved;
+            mergedBuild.Level = importedBuild.Level;
+            mergedBuild.MasteryLevel = importedBuild.MasteryLevel;
+            mergedBuild.name = importedBuild.name;
 
             // Loop through each imported Tree
             foreach (Tree importedTree in importedBuild.characterClass.trees)
             {
                 // Hold onto the current Tree being merged from the imported Build for easier reference when we're iterating through all Skills within it, below
-                currentTree = build.characterClass.trees.Find(t => t.name == importedTree.name);
-				// Set the imported Tree data onto the global build object's Tree
+                currentTree = mergedBuild.characterClass.trees.Find(t => t.name == importedTree.name);
+                // Set the necessary imported Tree data
                 currentTree.level = importedTree.level;
 
                 // Loop through each imported Skill within each imported Tree
                 foreach (Skill importedSkill in importedTree.skills)
                 {
-                    // Set the level of the Skill that was imported onto the global build object that contains all data generated from the game's Skill Data
-                    currentTree.skills.Find(s => s.id == importedSkill.id).level = importedSkill.level; //TODO wrap this in a try/catch, if it fails because a Skill ID was not found then it needs to be handled in BuildConvert.ConvertBuild()
+                    currentSkill = mergedBuild.characterClass.trees.Find(t => t.name == importedTree.name).skills.Find(s => s.id == importedSkill.id && s.x == importedSkill.x && s.y == importedSkill.y);
+
+                    // Set the necessary imported Skill data
+                    currentSkill.level = importedSkill.level; //TODO wrap this in a try/catch, if it fails because a Skill ID was not found then it needs to be handled in BuildConvert.ConvertBuild()
                 }
             }
+
+            return mergedBuild;
         }
 
         /// <summary>
@@ -1595,8 +1605,8 @@ namespace ChroniCalc
             BuildConvert buildConvert = new BuildConvert();  //TODO minor detail: is there anyway to call ConvertBuild without having to create a BuildConvert object?
             buildConvert.ConvertBuild(importedBuild);
 
-            // Set the importedBuild stats into the global build object
-            MergeImportedBuildIntoBuild(importedBuild);
+            // Merge the imported Build's data into the global build object
+            build = MergeImportedBuildIntoBuild(importedBuild);
 
             // Using the newly assigned Build object, create and populate all controls for this build
             InitializeBuild(build);

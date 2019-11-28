@@ -35,7 +35,6 @@ namespace ChroniCalc
         public int[] skill_requirement;
 
         //The horizontal position on the tree
-        [XmlIgnoreAttribute]
         [JsonProperty("x")]
         public int x;
 
@@ -98,7 +97,6 @@ namespace ChroniCalc
         public int max_rank;
 
         //The vertical position on the tree
-        [XmlIgnoreAttribute]
         [JsonProperty("y")]
         public int y;
 
