@@ -221,8 +221,30 @@ namespace ChroniCalc
             {
                 if (ttlp.tree.name == "Mastery")
                 {
-                    // On the Mastery Tree, check # of skill points spent on this row meets the minimum required to level this new Skill
-                    result = ((ttlp.GetControlFromPosition(0, this.skill.y) as SkillButton).skill.level >= this.skill.min_level);
+                    // If User selected the final skill in the Mastery Tree's 3 linked General Rows, ensure all 3 rows meet the min_level requirement of that Skill
+                    if ((skill.y == 3) && (skill.x == ttlp.ColumnCount - 1))
+                    {
+                        const int MIN_LEVEL = 65;
+                        SkillButton passiveBonusButton;
+
+                        for (int row = 2; row <= 4; row++)
+                        {
+                            // Get the control at the beginning of the row which holds the total # of points spent in the row
+                            passiveBonusButton = (SkillButton)ttlp.GetControlFromPosition(0, row);
+
+                            if (passiveBonusButton.skill.level < MIN_LEVEL)
+                            {
+                                // The current row does not meet the level requirement of the selected Skill
+                                result = false;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // On the Mastery Tree, check # of skill points spent on this row meets the minimum required to level this new Skill
+                        result = ((ttlp.GetControlFromPosition(0, this.skill.y) as SkillButton).skill.level >= this.skill.min_level);
+                    }
                 }
                 else
                 {
@@ -253,7 +275,7 @@ namespace ChroniCalc
                 form.build.MasteryLevel += levelAdjust;
 
                 // Update the Mastery passive row counter located in the first cell (x=0) in the same row (via y-coordinate) as this Skill
-                SkillButton passiveBonusBtn = (SkillButton)ttlpTree.GetControlFromPosition(0, this.skill.y);
+                SkillButton passiveBonusBtn = (SkillButton)ttlpTree.GetControlFromPosition(0, this.skill.y);  //TODOSSG if Mastery Tree and Final Skill in the 3 General Rows, do all 3 Rows level up 1 or not at all?
                 passiveBonusBtn.skill.level += levelAdjust;
                 passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
 

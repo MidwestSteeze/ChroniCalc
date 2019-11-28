@@ -1,15 +1,15 @@
 ﻿ ToDo
  
  REPORTED BUGS NOT YET CATEGORIZED:
-	- SaveAs doesn't update Build Name based on filename chosen, it also then doesn't overwrite the Build in the Builds List beacuse it saved over the original build name but with a diff file name
-	- tree.level in the saved build xml isn't saving, but is it even needed?
+	- if Mastery Tree and Final Skill in the 3 General Rows, do all 3 Rows level up 1 or not at all?
  
 
  RESUME AT:
-	- Mastery Tree 65lvlreq in Row3-5 can bypass that if you put 65 in Class Mastery 1 and 2 and don't have 65 in 3; you can still pick the Ultimate
 	- Mastery Trees:
 		- de-leveling a skill may invalidate postreq skills (this may be a bug in class-specific skill trees as well) (ie. can't have a skill level 0 if a later-linked skill is still leveled; and you can't de-level a skill that causes later-linked skills to no longer meet the min_level req)
-		- in the 3 Generic rows, the same skill at the same x position can be selected in a different column (ie. Health in all 3 of the Generic rows' first column)	
+		- in the 3 Generic rows, the same skill at the same x position can be selected in a different column (ie. Health in all 3 of the Generic rows' first column)
+	- SaveAs doesn't update Build Name based on filename chosen, it also then doesn't overwrite the Build in the Builds List beacuse it saved over the original build name but with a diff file name
+	- tree.level in the saved build xml isn't saving, but is it even needed?
 	- implement export to Chronicon .build file which is a Skill ID/Level pair in JSON format (see discord for sample file)
 		- Class ID required: Templar=1, Berserker=2, Warden=3, Warlock=4	
 
