@@ -1457,12 +1457,9 @@ namespace ChroniCalc
             // Save the build as a new build
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (!(File.Exists(saveFileDialog.FileName)))
-                {
-                    // Update the Build name if this is a new Build being saved (ie. not a file being overwritten)
-                    build.name = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
-                    lblBuildName.Text = build.name;
-                }
+                // Update the Build name regardless if this is a new Build being saved or an old build being overwritten
+                build.name = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
+                lblBuildName.Text = build.name;
 
                 SaveBuild(saveFileDialog.FileName);
                 UpdateBuildsList(build);
