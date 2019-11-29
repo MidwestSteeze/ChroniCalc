@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ChroniCalc
 {
@@ -36,6 +37,11 @@ namespace ChroniCalc
                 // Call the conversion by passing the index
                 buildConverts[i]();
             }
+
+            // Update the Build's ApplicationVersion now that convert is complete
+            build.ApplicationVersion = Application.ProductVersion;
+            // Update LastModified to force a Save
+            build.lastModified = DateTime.Now;
         }
 
         private int GetStartingIndexOfConversionsToRun(int buildVersion)
