@@ -804,6 +804,7 @@ namespace ChroniCalc
                 //Update data on the build (everything not listed here was handled in the ResetCharacter() code (e.g. level, masteryLevel, trees, skills, etc)
                 build.characterClass = selectedClass;
                 build.name = "<Unnamed>";
+                build.ApplicationVersion = Application.ProductVersion;
 
                 InitializeBuild(build);
 
