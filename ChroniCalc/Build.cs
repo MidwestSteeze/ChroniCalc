@@ -37,6 +37,7 @@ namespace ChroniCalc
         {
             // Blank constructors are for deserialization into objects; so default buildStatus to Opening since that's what we'll be doing when using this constructor
             buildStatus = BuildStatus.Opening;
+            ApplicationVersion = Application.ProductVersion;
         }
 
         public Build(string aName, CharacterClass aCharacterClass, int aLevel, int aMasteryLevel)
