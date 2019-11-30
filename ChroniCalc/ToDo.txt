@@ -4,9 +4,10 @@
 
  
  BEFORE NEXT RELEASE:
-	- confirm in game: if Mastery Tree and Final Skill in the 3 General Rows, do all 3 Rows level up 1 or not at all?
+	- Mastery Tree: last column in each class-specific row should have SkillSelectPanel of Ultimate, Heritage, or Elemental skill (it's currently only showing up on the first Row)
 	- implement export to Chronicon .build file which is a Skill ID/Level pair in JSON format (see discord for sample file)
 		- Class ID required: Templar=1, Berserker=2, Warden=3, Warlock=4	
+	- cleanup tree background images in relation to how the controls sit on top of them with some parts still showing and the last column being stretched (especially Mastery tree stretching)
 
  MAJORS:
   - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
@@ -37,7 +38,6 @@
 	- Pastebin: create more accounts to acquire more API keys since youll probably hit the 25 posts per 24h limit once this gets in the hands of more people. math.rand on the array of keys to pull a random, or oldest, key and use it
 		- and another, separate, subset of keys for Error Reporting
 	- can't change the last node (element vs buffs vs ultimate cd) on the 2nd, 3rd, and 4th mastery line of each class; they're locked into the elements shown off the bat.
-    - cleanup tree background images in relation to how the controls sit on top of them with some parts still showing and the last column being stretched (especially Mastery tree stretching)
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
 	- (It's eating up paste counts, make its own account? IN STASH RDY FOR TESTING) change EChroniCalc exception handling to paste the callstack and error to pastebin and provide a link to the user to send to the admin
 	  - tests to complete:

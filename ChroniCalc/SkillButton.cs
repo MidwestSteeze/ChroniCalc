@@ -354,15 +354,20 @@ namespace ChroniCalc
             if (ttlpTree.Name == "Mastery")
             {
                 form.build.MasteryLevel += levelAdjust;
-
+         
                 // Update the Mastery passive row counter located in the first cell (x=0) in the same row (via y-coordinate) as this Skill
-                SkillButton passiveBonusBtn = (SkillButton)ttlpTree.GetControlFromPosition(0, this.skill.y);  //TODOSSG if Mastery Tree and Final Skill in the 3 General Rows, do all 3 Rows level up 1 or not at all?
-                passiveBonusBtn.skill.level += levelAdjust;
-                passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
+                SkillButton passiveBonusBtn = (SkillButton)ttlpTree.GetControlFromPosition(0, this.skill.y);
 
-                // Update the rank and then the description on the Passive bonus button's tooltip since we have it here
-                passiveBonusBtn.skillTooltipPanel.UpdateRankText(passiveBonusBtn.skill.level);
-                passiveBonusBtn.skillTooltipPanel.PopulateDescription();
+                // Only update the passive row counter if we're not leveling/de-leveling the final Skill in the 3 General Rows
+                if (!(this.skill.x == ttlpTree.ColumnCount - 1 && this.skill.y == 3))
+                {
+                    passiveBonusBtn.skill.level += levelAdjust;
+                    passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
+
+                    // Update the rank and then the description on the Passive bonus button's tooltip since we have it here
+                    passiveBonusBtn.skillTooltipPanel.UpdateRankText(passiveBonusBtn.skill.level);
+                    passiveBonusBtn.skillTooltipPanel.PopulateDescription();
+                }
 
                 // Update the current Mastery Level of the character based on how many Mastery points have been spent
                 (form.Controls.Find("lblMastery", true).First() as Label).Text = form.build.MasteryLevel.ToString();
