@@ -172,57 +172,53 @@ namespace ChroniCalc
                     if (linkedSkill.skill.level > 0)
                     {
                         // The linked skill is leveled and, therefore, we cannot de-level the selected skill down to 0 because it would invalidate the tree
-                        result = false;
-                        break;
+                        return false;
                     }
                 }
             }
 
             // Ensure de-leveling this skill will allow us to still meet the min_level of the furthest-assigned skill
             //  ie. Find a leveled skill in the furthest-right column and check its min_level <= tree.skillpointsallocated - 1
-            if (result)
+            IOrderedEnumerable<SkillButton> otherSkills;
+
+            if (ttlp.tree.name == "Mastery")
             {
-                IOrderedEnumerable<SkillButton> otherSkills;
+                // Only look at Skills in the same Row (ie. same y position)
+                otherSkills = ttlp.Controls.OfType<SkillButton>().Where(s => s.skill.y == this.skill.y && s.skill.level > 0).OrderBy(s => s.skill.x);
 
-                if (ttlp.tree.name == "Mastery")
+                // Get the number of points spent on all Skills up to but not including the row directly after the currently-selected Skill
+                int totalPoints = otherSkills.Where(s => s.skill.x >= 2 && s.skill.x < otherSkills.Last<SkillButton>().skill.x).Sum(s => s.skill.level);
+
+                // Ensure we will still meet the min_level of the furthest-leveled Skill if we would delevel the selected Skill (ie. otherSkills.Last.min_level vs otherSkills[0}.level, where [0] is the RowCounter with the total points spent in the selected Skill's Row)
+                //  NOTE: If we're trying to de-level the furthest-leveled Skill, let them
+                if ((otherSkills.Last<SkillButton>().skill.x != this.skill.x) &&
+                    ((totalPoints - 1) < otherSkills.Last<SkillButton>().skill.min_level))
                 {
-                    // Only look at Skills in the same Row (ie. same y position)
-                    otherSkills = ttlp.Controls.OfType<SkillButton>().Where(s => s.skill.y == this.skill.y && s.skill.level > 0).OrderBy(s => s.skill.x);
-
-                    // Get the number of points spent on all Skills up to but not including the row directly after the currently-selected Skill
-                    int totalPoints = otherSkills.Where(s => s.skill.x >= 2 && s.skill.x < otherSkills.Last<SkillButton>().skill.x).Sum(s => s.skill.level);
-
-                    // Ensure we will still meet the min_level of the furthest-leveled Skill if we would delevel the selected Skill (ie. otherSkills.Last.min_level vs otherSkills[0}.level, where [0] is the RowCounter with the total points spent in the selected Skill's Row)
-                    //  NOTE: If we're trying to de-level the furthest-leveled Skill, let them
-                    if ((otherSkills.Last<SkillButton>().skill.x != this.skill.x) &&
-                        ((totalPoints - 1) < otherSkills.Last<SkillButton>().skill.min_level))
-                    {
-                        result = false;
-                    }
+                    return false;
                 }
-                else
-                {
-                    // Look at all Skills, in all Rows, in the current Column for a leveled Skill
-                    otherSkills = ttlp.Controls.OfType<SkillButton>().Where(s => s.skill.level > 0).OrderBy(s => s.skill.x);
+            }
+            else
+            {
+                // Look at all Skills, in all Rows, in the current Column for a leveled Skill
+                otherSkills = ttlp.Controls.OfType<SkillButton>().Where(s => s.skill.level > 0).OrderBy(s => s.skill.x);
 
-                    // Ensure we will still meet the min_level of the furthest-leveled Skill if we would delevel the selected Skill
-                    if (ttlp.skillPointsAllocated - 1 < otherSkills.Last<SkillButton>().skill.min_level)
-                    {
-                        result = false;
-                    }
+                // Ensure we will still meet the min_level of the furthest-leveled Skill if we would delevel the selected Skill
+                if (ttlp.skillPointsAllocated - 1 < otherSkills.Last<SkillButton>().skill.min_level)
+                {
+                    return false;
                 }
+            }
 
-                // Ensure we will still meet the min_level of the Skill directly after the selected Skill if we would delevel the selected Skill
-                if (result && (otherSkills.Where(s => s.skill.x == this.skill.x + 1).Count() > 0))
+            // Ensure we will still meet the min_level of the Skill directly after the selected Skill if we would delevel the selected Skill
+            if (otherSkills.Where(s => s.skill.x == this.skill.x + 1).Count() > 0)
+            {
+                // Get the number of points spent on all Skills up to but not including the row directly after the currently-selected Skill
+                int totalPoints = otherSkills.Where(s => s.skill.x >= 2 && s.skill.x <= this.skill.x).Sum(s => s.skill.level);
+
+                // Check if the total points spent, after de-leveling the Skill, is less than the min_level required of the Skill directly after the selected Skill
+                if (totalPoints - 1 < otherSkills.Where(s => s.skill.x == this.skill.x + 1).First().skill.min_level)
                 {
-                    // Get the number of points spent on all Skills up to but not including the row directly after the currently-selected Skill
-                    int totalPoints = otherSkills.Where(s => s.skill.x >= 2 && s.skill.x <= this.skill.x).Sum(s => s.skill.level);
-
-                    // Check if the total points spent, after de-leveling the Skill, is less than the min_level required of the Skill directly after the selected Skill
-                    if (totalPoints - 1 < otherSkills.Where(s => s.skill.x == this.skill.x + 1).First().skill.min_level)
-                    {
-                        result = false;
-                    }
+                    return false;
                 }
             }
 
@@ -251,15 +247,13 @@ namespace ChroniCalc
                         if (preReqSkillButton.skill.level < 1)
                         {
                             // The current control is a selected Skill but has not yet been leveled, so the PreReq check has failed
-                            result = false;
-                            break;
+                            return false;
                         }
                     }
                     else
                     {
                         // The current control is not a selected Skill and therefore isn't leveled, so the PreReq check has failed
-                        result = false;
-                        break;
+                        return false;
                     }
                 }
             }
@@ -282,8 +276,7 @@ namespace ChroniCalc
                         if (Array.IndexOf(prereqs, prereqSkillId) == prereqs.Length - 1)
                         {
                             //PreReq control not found; this is because no Skill has yet been selected from the positions SkillSelect panel
-                            result = false;
-                            break;
+                            return false;
                         }
 
                         //There are more PreReq IDs to search through, so move onto the next iteration
@@ -295,20 +288,18 @@ namespace ChroniCalc
                     //Verify the PreReq skill is leveled
                     if (preReqSkillButton.skill.level < 1)
                     {
-                        result = false;
-                        break;
+                        return false;
                     }
                     else
                     {
                         //We found a leveled PreReq, there is no need to search the others so break out of the loop
-                        result = true;
                         break;
                     }
                 }
             }
 
             // Check if we meet the minimum level requirement on a new Skill that was clicked to level up
-            if ((result) && (this.skill.min_level > 0) && (this.skill.level < 1))
+            if ((this.skill.min_level > 0) && (this.skill.level < 1))
             {
                 if (ttlp.tree.name == "Mastery")
                 {
@@ -326,8 +317,7 @@ namespace ChroniCalc
                             if (passiveBonusButton.skill.level < MIN_LEVEL)
                             {
                                 // The current row does not meet the level requirement of the selected Skill
-                                result = false;
-                                break;
+                                return false;
                             }
                         }
                     }

@@ -35,6 +35,7 @@
 
 
  POST BETA MISC:
+	- job convert: prompt user if they want to save a backup copy? (any reason for this?)
 	- Pastebin: create more accounts to acquire more API keys since youll probably hit the 25 posts per 24h limit once this gets in the hands of more people. math.rand on the array of keys to pull a random, or oldest, key and use it
 		- and another, separate, subset of keys for Error Reporting
 	- can't change the last node (element vs buffs vs ultimate cd) on the 2nd, 3rd, and 4th mastery line of each class; they're locked into the elements shown off the bat.
@@ -54,5 +55,6 @@
 		   - offline with prior exception
 	- Remove tree.level entirely? it's not serialized into the Build XML and i don't think it's actually used anywhere in code
 	- no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better		
+	- on close of program, prompt to save build if currently modified
 
  POST RELEASE MISC:
