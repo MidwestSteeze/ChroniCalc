@@ -4,8 +4,6 @@
 
  
  BEFORE NEXT RELEASE:
-	- Mastery Trees:
-		- in the 3 Generic rows, the same skill at the same x position can be selected in a different column (ie. Health in all 3 of the Generic rows' first column)
 	- confirm in game: if Mastery Tree and Final Skill in the 3 General Rows, do all 3 Rows level up 1 or not at all?
 	- implement export to Chronicon .build file which is a Skill ID/Level pair in JSON format (see discord for sample file)
 		- Class ID required: Templar=1, Berserker=2, Warden=3, Warlock=4	

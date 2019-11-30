@@ -45,6 +45,8 @@ namespace ChroniCalc
 
         private void SkillSelectButton_Click(object sender, EventArgs e)
         {
+            bool canSelectSkill = true;
+
             //START Debug Info
             //string debugMessage;
 
@@ -55,30 +57,49 @@ namespace ChroniCalc
             //MessageBox.Show(debugMessage);
             //END Debug Info            
 
-			// Get the tree control that the clicked button exists in
+            // Get the tree control that the clicked button exists in
             TreeTableLayoutPanel treeControl = (this.Parent as SkillSelectPanel).treeControl;
 
             // Get the current control that will be replaced with the newly-selected one
             Control btnSkill = treeControl.GetControlFromPosition(this.skill.x, this.skill.y);
 
-            // Incase there's a skill at this position already, subtract the level of the skill from the build before we remove it
-            if (btnSkill is SkillButton)
+            // Since the Mastery Tree has 3 shared General Rows with the same Skills, check that the chosen skill isn't already assigned in a different General Row
+            if (treeControl.tree.name == "Mastery")
             {
-				// Get the skill that was previously selected at this location
+                canSelectSkill = CanSelectSkill(treeControl, this.skill);
+            }
+
+            // See if we've discovered that we cannot select this Skill
+            if (!canSelectSkill)
+            {
+                // Explain to the user that they cannot select this Skill because it's already been selected in a different General Row
+                MessageBox.Show("Skill '" + this.skill.name + "' has already been selected.", "Skill Selection Error");
+                
+                // Hide the SkillSelectPanel
+                this.Parent.Hide();
+                
+                // Get out of this method, we don't need to do anything else here
+                return;
+            }
+
+            // Incase there's a skill at this position already, subtract the level of the skill from the build before we remove it
+            if (canSelectSkill && btnSkill is SkillButton)
+            {
+                // Get the skill that was previously selected at this location
                 SkillButton btnPreviousSkill = (btnSkill as SkillButton);
 
                 // Create a new button to hold the selected Skill and change it on the tree
                 (this.Parent as SkillSelectPanel).ChangeSelectedSkill(btnPreviousSkill, new SkillButton(this.skill, treeControl, this.skillTooltipPanel, form));
             }
-            else if (btnSkill is MultiSkillSelectButton)
+            else if (canSelectSkill && btnSkill is MultiSkillSelectButton)
             {
                 // No skill has yet been selected at this position
                 MultiSkillSelectButton btnMultiSkillSelect = (btnSkill as MultiSkillSelectButton);
 
-				// Create a new button to hold the selected Skill and change it on the tree
+                // Create a new button to hold the selected Skill and change it on the tree
                 (this.Parent as SkillSelectPanel).ChangeSelectedSkill(btnMultiSkillSelect, new SkillButton(this.skill, treeControl, this.skillTooltipPanel, form));
             }
-            else
+            else if (!(btnSkill is SkillButton) && !(btnSkill is MultiSkillSelectButton))
             {
                 // Throw exception for unknown control type found (ie. user clicked an unknown control type on the Tree to bring up the skill select panel and click a SkillSelectButton
                 throw new EChroniCalcException("SkillSelectButton_Click: Unknown control type found.  The control type of " + btnSkill.GetType().ToString() + " is not being accounted for or has a click event on it that needs to be removed.");
@@ -104,6 +125,19 @@ namespace ChroniCalc
 
             // Mark the control as no longer being in focus by the mouse, so it can be automatically hidden when the mouse leaves its parent panel
             (this.Parent as SkillSelectPanel).mouseFocused = false;
+        }
+
+        private bool CanSelectSkill(TreeTableLayoutPanel treeControl, Skill selectedSkill)
+        {
+            bool result = true;
+
+            // Check the selected Skill has not already been selected in any of the other 3 General Rows at the same X position
+            if (treeControl.Controls.OfType<SkillButton>().Where(s => s.skill.id == selectedSkill.id && s.skill.x == selectedSkill.x && s.skill.y >= 2 && s.skill.y <= 4).Count() > 0)
+            {
+                return false;
+            }
+
+            return result;
         }
 
         private Point GetTooltipLocation() //TODOSSG duplicate code of SkillButton.GetTooltipLocation
