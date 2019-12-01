@@ -210,6 +210,54 @@ namespace ChroniCalc
             skills.Add(passiveMasterySkill);
         }
 
+        private void AddMasterySharedAffinities(ref List<Skill> skills)
+        {
+            Skill duplicateSkill;
+            int[] rowIndices = { 1, 5, 6 };
+            int insertionIndex;
+
+            // Get the shared Affinity Skills (e.g. Ultimate, Heritage, Aura, etc.) in the final column of Row 1 on the Mastery Tree (ie. skill.y=0 && skill.x=10)
+            List<Skill> skillsToDuplicate = skills.FindAll(s => s.y == 0 && s.x == 10 && s.element == "Ethereal");
+
+            // With indices 1, 5, and 6 (for Rows 2, 6, and 7), duplicate each of the shared Affinity Skills in Row 1 and change its y value to the new Row
+            for (int i = 0; i <= rowIndices.Length - 1; i++)
+            {
+                // Set the index to insert the duplicated Skill for the new Row so that the Skills have the same order as the first Row
+                insertionIndex = 0;
+
+                foreach (Skill skillToDuplicate in skillsToDuplicate)
+                {
+                    duplicateSkill = skillToDuplicate.Duplicate();
+                    duplicateSkill.y = rowIndices[i];
+
+                    // Add the duplicated Skill into the available Skills list
+                    skills.Insert(insertionIndex, duplicateSkill);
+                    insertionIndex++;
+                }
+            }
+        }
+
+        private void AddMasterySharedRows(ref List<Skill> skills)
+        {
+            Skill duplicateSkill;
+
+            // Get all skills in Row 3 on the Mastery Tree (ie. skill.y=2)
+            List<Skill> skillsToDuplicate = skills.FindAll(s => s.y == 2);
+
+            // With indices 3 and 4 (for Row 4 and 5), duplicate each skill in Row 3 and change its y value to the new row
+            for (int i = 3; i <= 4; i++)
+            {
+                foreach (Skill skillToDuplicate in skillsToDuplicate)
+                {
+                    duplicateSkill = skillToDuplicate.Duplicate();
+                    duplicateSkill.y = i;
+
+                    // Add the duplicated Skill to the available Skills list
+                    skills.Add(duplicateSkill);
+                }
+            }
+        }
+
         private void ChangeLocale(bool setAsEnglish)
         {
             // Change the Locale as requested
@@ -635,30 +683,17 @@ namespace ChroniCalc
                         skills.Add(skill);
                     }
 
-                    // For the Mastery Tree, copy Row 3 Skills to also exist in Row 4 and 5
+                    // In the Mastery Tree, duplicate some Skills where necessary to fill it out completely;
+					// 	(this is because Skills shared between Rows are only in the Skill Data at their first row)
                     if (tree.name == "Mastery")
                     {
-                        Skill duplicateSkill;
+                        // Copy Row 3 Skills to also exist in Rows 4 and 5
+                        AddMasterySharedRows(ref skills);
 
-                        // Get all skills in Row 3 on the Mastery Tree (ie. skill.y=2)
-                        List<Skill> skillsToDuplicate = skills.FindAll(s => s.y == 2);
+                        // Copy shared Affinity Skills from Row 1 to exist in the SkillSelectPanel for all Class-specific Rows (e.g. Rows 1, 2, 6, and 7)
+                        AddMasterySharedAffinities(ref skills);
 
-                        // With indices 3 and 4 (for Row 4 and 5), duplicate each skill in Row 3 and change its y value to the new row
-                        for (int i = 3; i <= 4; i++)
-                        {
-                            foreach (Skill skillToDuplicate in skillsToDuplicate)
-                            {
-                                duplicateSkill = skillToDuplicate.Duplicate();
-                                duplicateSkill.y = i;
-
-                                // Add the duplicated Skill to the available Skills list
-                                skills.Add(duplicateSkill);
-                            }
-                        }
-                    }
-
-                    if (tree.name == "Mastery")
-                    {
+                        // Create all of the passive row counter buttons
                         AddMasteryPassiveRowCounters(classNode.Name, ref skills);
                     }
 

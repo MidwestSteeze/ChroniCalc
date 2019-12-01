@@ -4,7 +4,6 @@
 
  
  BEFORE NEXT RELEASE:
-	- Mastery Tree: last column in each class-specific row should have SkillSelectPanel of Ultimate, Heritage, or Elemental skill (it's currently only showing up on the first Row)
 	- implement export to Chronicon .build file which is a Skill ID/Level pair in JSON format (see discord for sample file)
 		- Class ID required: Templar=1, Berserker=2, Warden=3, Warlock=4	
 	- cleanup tree background images in relation to how the controls sit on top of them with some parts still showing and the last column being stretched (especially Mastery tree stretching)
