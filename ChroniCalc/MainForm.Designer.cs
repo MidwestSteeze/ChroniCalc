@@ -44,6 +44,8 @@
             this.btnNavInventory = new System.Windows.Forms.Button();
             this.btnResetTree = new System.Windows.Forms.Button();
             this.btnBuildSharing = new System.Windows.Forms.Button();
+            this.btnNavExportToGame = new System.Windows.Forms.Button();
+            this.btnNavImportFromGame = new System.Windows.Forms.Button();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.pnlClassData = new System.Windows.Forms.Panel();
             this.pnlBuilds = new System.Windows.Forms.Panel();
@@ -53,7 +55,6 @@
             this.dgvBuilds = new System.Windows.Forms.DataGridView();
             this.BuildName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stats = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTreeCaption = new System.Windows.Forms.Label();
             this.pnlInventory = new System.Windows.Forms.Panel();
             this.lblInventoryCaption = new System.Windows.Forms.Label();
             this.pnlInventoryGear = new System.Windows.Forms.Panel();
@@ -63,6 +64,7 @@
             this.btnTree3 = new System.Windows.Forms.Button();
             this.btnTree4 = new System.Windows.Forms.Button();
             this.btnTreeMastery = new System.Windows.Forms.Button();
+            this.lblTreeCaption = new System.Windows.Forms.Label();
             this.pnlClassCaptions = new System.Windows.Forms.Panel();
             this.lblBuildName = new System.Windows.Forms.Label();
             this.lblMastery = new System.Windows.Forms.Label();
@@ -240,6 +242,36 @@
             this.btnBuildSharing.UseVisualStyleBackColor = true;
             this.btnBuildSharing.Click += new System.EventHandler(this.btnBuildSharing_Click);
             // 
+            // btnNavExportToGame
+            // 
+            this.btnNavExportToGame.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavExportToGame.BackgroundImage = global::ChroniCalc.ResourceImageUI.IconExportToGame;
+            this.btnNavExportToGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNavExportToGame.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNavExportToGame.FlatAppearance.BorderSize = 0;
+            this.btnNavExportToGame.Location = new System.Drawing.Point(326, 15);
+            this.btnNavExportToGame.Name = "btnNavExportToGame";
+            this.btnNavExportToGame.Size = new System.Drawing.Size(31, 31);
+            this.btnNavExportToGame.TabIndex = 21;
+            this.toolTipInfo.SetToolTip(this.btnNavExportToGame, "Export to Game");
+            this.btnNavExportToGame.UseVisualStyleBackColor = false;
+            this.btnNavExportToGame.Click += new System.EventHandler(this.BtnNavExportToGame_Click);
+            // 
+            // btnNavImportFromGame
+            // 
+            this.btnNavImportFromGame.BackColor = System.Drawing.Color.Transparent;
+            this.btnNavImportFromGame.BackgroundImage = global::ChroniCalc.ResourceImageUI.IconImportFromGame;
+            this.btnNavImportFromGame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNavImportFromGame.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNavImportFromGame.FlatAppearance.BorderSize = 0;
+            this.btnNavImportFromGame.Location = new System.Drawing.Point(291, 15);
+            this.btnNavImportFromGame.Name = "btnNavImportFromGame";
+            this.btnNavImportFromGame.Size = new System.Drawing.Size(31, 31);
+            this.btnNavImportFromGame.TabIndex = 22;
+            this.toolTipInfo.SetToolTip(this.btnNavImportFromGame, "Import From Game");
+            this.btnNavImportFromGame.UseVisualStyleBackColor = false;
+            this.btnNavImportFromGame.Click += new System.EventHandler(this.BtnNavImportFromGame_Click);
+            // 
             // pbLogo
             // 
             this.pbLogo.BackColor = System.Drawing.Color.Transparent;
@@ -256,6 +288,8 @@
             this.pnlClassData.BackColor = System.Drawing.Color.Transparent;
             this.pnlClassData.BackgroundImage = global::ChroniCalc.Properties.Resources.background;
             this.pnlClassData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnlClassData.Controls.Add(this.btnNavImportFromGame);
+            this.pnlClassData.Controls.Add(this.btnNavExportToGame);
             this.pnlClassData.Controls.Add(this.pnlBuilds);
             this.pnlClassData.Controls.Add(this.btnNavSaveAs);
             this.pnlClassData.Controls.Add(this.btnNavSave);
@@ -517,7 +551,7 @@
             this.pnlClassCaptions.Location = new System.Drawing.Point(39, 15);
             this.pnlClassCaptions.Margin = new System.Windows.Forms.Padding(0);
             this.pnlClassCaptions.Name = "pnlClassCaptions";
-            this.pnlClassCaptions.Size = new System.Drawing.Size(300, 45);
+            this.pnlClassCaptions.Size = new System.Drawing.Size(235, 45);
             this.pnlClassCaptions.TabIndex = 20;
             // 
             // lblBuildName
@@ -685,6 +719,8 @@
         private System.Windows.Forms.Label lblClass;
         private System.Windows.Forms.Label lblBuildsCaption;
         private System.Windows.Forms.Label lblInventoryCaption;
+        private System.Windows.Forms.Button btnNavExportToGame;
+        private System.Windows.Forms.Button btnNavImportFromGame;
     }
 }
 

@@ -154,4 +154,10 @@
   <data name="Instructions" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\UI\Instructions.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="IconExportToGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\UI\IconExportToGame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconImportFromGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\UI\IconImportFromGame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
