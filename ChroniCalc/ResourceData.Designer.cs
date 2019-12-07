@@ -85,5 +85,41 @@ namespace ChroniCalc {
                 return ResourceManager.GetString("convertjson", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;nodes&gt;
+        ///  &lt;node&gt;
+        ///    &lt;position&gt;1,1&lt;/position&gt;
+        ///    &lt;ID&gt;20001&lt;/ID&gt;
+        ///  &lt;/node&gt;
+        ///  &lt;node&gt;
+        ///    &lt;position&gt;2,1&lt;/position&gt;
+        ///    &lt;ID&gt;20002&lt;/ID&gt;
+        ///  &lt;/node&gt;
+        ///  &lt;node&gt;
+        ///    &lt;position&gt;3,1&lt;/position&gt;
+        ///    &lt;ID&gt;20003&lt;/ID&gt;
+        ///  &lt;/node&gt;
+        ///  &lt;node&gt;
+        ///    &lt;position&gt;4,1&lt;/position&gt;
+        ///    &lt;ID&gt;20004&lt;/ID&gt;
+        ///  &lt;/node&gt;
+        ///  &lt;node&gt;
+        ///    &lt;position&gt;5,1&lt;/position&gt;
+        ///    &lt;ID&gt;20005&lt;/ID&gt;
+        ///  &lt;/node&gt;
+        ///  &lt;node&gt;
+        ///    &lt;position&gt;6,1&lt;/position&gt;
+        ///    &lt;ID&gt;20006&lt;/ID&gt;
+        ///  &lt;/node&gt;
+        ///  &lt;node&gt;
+        ///    &lt;position&gt;7,1&lt;/position [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string slot_ids {
+            get {
+                return ResourceManager.GetString("slot_ids", resourceCulture);
+            }
+        }
     }
 }

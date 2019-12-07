@@ -36,6 +36,7 @@ namespace ChroniCalc
         const string XML_EXT = ".xml";
 
         private string BuildsDirectory;
+        private string ExportsDirectory;
         private TreeStatus treeStatus;
 
         //Resource Managers for pulling assets (ie. data, images, etc.) which is a reflection of the Assets directory
@@ -50,6 +51,7 @@ namespace ChroniCalc
         public CultureInfo CultureSystem;
         public CultureInfo CultureEnglish;
 
+        Dictionary<int, string> masterySlotIDs;
         List<CharacterClass> characterClasses;
         List<Tree> trees;
         List<Skill> skills;
@@ -79,11 +81,18 @@ namespace ChroniCalc
 
                 //Set the directory where Builds are stored
                 BuildsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ChroniCalc\\Builds";
+                ExportsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ChroniCalc\\Builds\\Exports";
 
                 //Create the directory where saved builds are to be stored, if it doesn't yet exist
                 if (!Directory.Exists(BuildsDirectory))
                 {
                     Directory.CreateDirectory(BuildsDirectory);
+                }
+
+                //Create the directory where exported builds are to be stored, if it doesn't yet exist
+                if (!Directory.Exists(ExportsDirectory))
+                {
+                    Directory.CreateDirectory(ExportsDirectory);
                 }
 
                 //Set the # of available skill points that can be spent to build the character
@@ -98,6 +107,7 @@ namespace ChroniCalc
                 //Init global variables
                 build = new Build("", null, 0, 0);
                 characterClasses = new List<CharacterClass>();
+                masterySlotIDs = new Dictionary<int, string>();
 
                 //Add all tree buttons to a list for looping over and finding within later as needed
                 treeButtons = new List<Button>();
@@ -128,10 +138,14 @@ namespace ChroniCalc
                     treePanels.Add(ttlp);
                 }
 
+                // Build a list of Mastery Tree X,Y Positions and their corresponding Slot IDs for future reference throughout the application
+                PopulateMasterySlotIDs();
+                // Load the Tree and Skill data from the game into their corresponding objects
                 PopulateSkillTrees();
+                // Populate the list of available Builds that have been created in ChroniCalc
                 LoadBuildsIntoBuildsList();
 
-                //Show the Builds list at start
+                // Show the Builds list at start
                 pnlBuilds.BringToFront();
             }
             catch (Exception ex)
@@ -258,6 +272,44 @@ namespace ChroniCalc
             }
         }
 
+        private void AddMasterySlotIDs(ref List<Skill> skills)
+        {
+            string position;
+            int slotID;
+            int x;
+            int y;
+            List<Skill> skillsInPosition;
+
+            //Loop through each node within all the nodes
+            foreach (var entry in masterySlotIDs)
+            {
+                // Seperate the data in the current node to get the x,y position and the Skill ID
+                position = entry.Value;
+                slotID = entry.Key;
+
+                // Extract the x,y from the position
+                x = Convert.ToInt32(position.Substring(0, position.IndexOf(',')));
+                y = Convert.ToInt32(position.Substring(position.IndexOf(',') + 1));
+
+                // Find the corresponding Skill in the Mastery tree based on the current x,y positions being iterated over
+                skillsInPosition = skills.FindAll(s => s.x == x && s.y == y);
+
+                foreach (Skill skill in skillsInPosition)
+                {
+                    // Assign the Slot ID
+                    skill.slotID = slotID;
+                }
+            }
+
+            // Now that we've assigned SlotIDs to all the Skills, double-check if there are any leftover that didn't get a Slot ID
+            //  (but exclude Skills in the first Row as they are passive row counters)
+            if (skills.FindAll(s => s.slotID == 0 && s.x != 0).Count > 0)
+            {
+                // TODO throw exception that the skill wasn't found in the tree
+                // NOTE 1: (this would mean you have outdated slot_id.xml and the udpate process is pretty crappy since this data isn't embedded directly into the Skill Data export; perhaps run this by squarebit)
+            }
+        }
+
         private void ChangeLocale(bool setAsEnglish)
         {
             // Change the Locale as requested
@@ -375,6 +427,25 @@ namespace ChroniCalc
             }
 
             return mergedBuild;
+        }
+
+        private DialogResult PromptForBuildReset()
+        {
+            DialogResult dialogResult;
+
+            // See if we have a Build loaded or not (it's possible this was executed on initial load of the aplication and there is no Build loaded yet
+            if (!(build.characterClass is null))
+            {
+                //Prompt user ensuring they want to reset their character
+                dialogResult = MessageBox.Show("Changing Class will reset this character.  Continue?", "Change Class", MessageBoxButtons.YesNo);
+            }
+            else
+            {
+                // No Build is loaded, so set the dialogResult to Yes to allow the new Build to be created
+                dialogResult = DialogResult.Yes;
+            }
+
+            return dialogResult;
         }
 
         /// <summary>
@@ -588,6 +659,53 @@ namespace ChroniCalc
             }
         }
 
+        // TO CONVERT SLOT_IDS.TXT to .XML FOR USE IN CHRONICALC:
+		// slot_ids.txt was provided from Chronicon dev
+        // i've converted it to xml by performing the following:
+        // copy/paste in Excel
+        // remove the header row and blank row in rows 1-2
+        // export to CSV
+        // goto http://www.convertcsv.com/csv-to-xml.htm
+        // paste the csv information
+        // copy/paste the following, without quotes, as the top line in the data:  "position	ID"
+        // Top-Level Root Name = nodes
+        // Each Record XML Name = node
+        // click Convert CSV to XML
+        // save the generated XML file to it's existing location and it should auto-update in the ResourceData resource manager
+        private void PopulateMasterySlotIDs()
+        {
+            int slotID;
+            string position;
+            string slotIDsXml = (string)ResourceManagerData.GetObject("slot_ids");
+            int x;
+            int y;
+
+            // Read the slot_ids.xml file which contains the x,y --> Slot ID mapping to populate a stored Dictionary of this data
+            XmlDocument slotData = new XmlDocument();
+            slotData.LoadXml(slotIDsXml);
+
+            // Loop through each x,y --> SlotID mapping node within all the nodes
+            foreach (XmlNode node in slotData.SelectSingleNode("nodes"))
+            {
+                // Seperate the data in the current node to get the x,y position and its corresponding Slot ID
+                position = node.SelectSingleNode("position").InnerXml;
+                slotID = Convert.ToInt32(node.SelectSingleNode("ID").InnerXml);
+
+                // Extract the individual x,y positions from the position string
+                x = Convert.ToInt32(position.Substring(0, position.IndexOf(',')));
+                y = Convert.ToInt32(position.Substring(position.IndexOf(',') + 1));
+
+                // Adjust the indicies to match ChroniCalc's Mastery Tree control (as it's not identical with the Chronicon Tree Control because CCalc was built prior to having this information)
+                //  Ie. X-positions in slot_ids.xml are stored as 1-based indicies but we need to offset it by 2, from 0, because our Mastery Tree control includes the first two columns containing
+                //      the passive row counters and the blank column between them and the selectable Skills (e.g the first Skill x-position in ChroniCalc is actually 2, not 1)
+                //  Ie. Y-positions in slot_ids.xml are stored as 1-based indicies; we need to convert the position over to 0-based indicies by subtracting 1 (e.g. the first Skill y-position in ChroniCalc is actually 0, not 1)
+                position = string.Concat((x + 1).ToString(), ",", (y - 1).ToString());
+
+                // Add this data to a Dictionary since we'll need this information in other areas of the application (e.g. Import/Export to Game)
+                masterySlotIDs.Add(slotID, position);
+            }
+        }
+
         public void PopulateSkillTrees()
         {
             // Set the Locale to English to avoid any manipulation by the system settings to the Skill Data Export data (e.g. Decimals and comma-separator discrepancies)
@@ -695,6 +813,9 @@ namespace ChroniCalc
 
                         // Create all of the passive row counter buttons
                         AddMasteryPassiveRowCounters(classNode.Name, ref skills);
+
+                        // Add custom slot IDs defined by squarebit that help define each cells position in the TreeTableLayoutPanel (ie. it's just a different way than using x,y)
+                        AddMasterySlotIDs(ref skills);
                     }
 
                     //Add all available Skills to the Tree
@@ -795,17 +916,7 @@ namespace ChroniCalc
 
             string characterClass = (sender as ComboBox).SelectedItem.ToString();
 
-            // See if we have a Build loaded or not (it's possible this was executed on initial load of the aplication and there is no Build loaded yet
-            if (!(build.characterClass is null))
-            {
-                //Prompt user ensuring they want to reset their character
-                dialogResult = MessageBox.Show("Changing Class will reset this character.  Continue?", "Change Class", MessageBoxButtons.YesNo);
-            }
-            else
-            {
-                // No Build is loaded, so set the dialogResult to Yes to allow the new Build to be created
-                dialogResult = DialogResult.Yes;
-            }
+            dialogResult = PromptForBuildReset();
 
             if (dialogResult == DialogResult.Yes)
             {
@@ -1896,6 +2007,274 @@ namespace ChroniCalc
             }
 
             return shouldContinue;
+        }
+
+        // Generate a .build file that can be imported directly into Chronicon
+        private void BtnNavExportToGame_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, int> leveledSkills;
+            IEnumerable<SkillButton> skillButtons;
+            IEnumerable<Skill> skillsInTree;
+            SaveFileDialog saveFileDialog;
+            SkillButton skillButton;
+            string json;
+
+            // Ensure we have a Build started before attempting to export
+            if (build.characterClass is null)
+            {
+                MessageBox.Show("No Build has been created or loaded.  Please open a Build before attempting to export it.");
+                return;
+            }
+
+            // Create a dictionary that will hold the key/value pair of Skill ID/Level for converting to JSON
+            leveledSkills = new Dictionary<string, int>();
+
+            // Generate the Class Key/ID pair (hard-coded values provided by Chronicon Developer: Templar = 1, Berserker = 2, Warden = 3, Warlock = 4)
+            switch (build.characterClass.name)
+            {
+                case "Berserker":
+                    leveledSkills.Add("class", 2);
+                    break;
+                case "Templar":
+                    leveledSkills.Add("class", 1);
+                    break;
+                case "Warden":
+                    leveledSkills.Add("class", 3);
+                    break;
+                case "Warlock":
+                    leveledSkills.Add("class", 4);
+                    break;
+                default:
+                    break;
+            }
+
+            // For the current Build, loop through all Trees to gather all leveled Skills
+            foreach (Tree tree in build.characterClass.trees)
+            {
+                // Get all the Skills currently leveled in this Tree
+                skillsInTree = tree.skills.Where(s => s.level > 0);
+
+                // Loop through each Skill and add it to the Dictionary as an "ÏD": Level pair
+                foreach (Skill skill in skillsInTree)
+                {
+                    // Get the Skill's corresponding SkillButton control in order to check that it's not the PassiveBonusButton that we shouldn't be saving to the JSON
+                    skillButtons = treePanels.Find(t => t.Name == tree.name).Controls.OfType<SkillButton>();
+                    skillButton = skillButtons.Where(s => s.skill.id == skill.id).First();
+                    if (!skillButton.isPassiveBonusButton)
+                    {
+                        leveledSkills.Add(skill.id.ToString(), skill.level);
+
+                        if (tree.name == "Mastery")
+                        {
+                            // Per squarebit, need to add a slight variation of the Skill ID (appending an "s") and its corresponding Slot ID to help decipher the position this Skill was leveled at
+                            leveledSkills.Add(skill.id.ToString() + "s", skill.slotID);
+                        }
+                    }
+                }
+            }
+
+            // Generate the JSON based on the data that was setup into the Leveled Skills dictionary
+            json = Newtonsoft.Json.JsonConvert.SerializeObject(leveledSkills);
+
+            // Setup the Save File Dialog and prompt the User to save the file
+            saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "BUILD files (*.build)|*.build|All files (*.*)|*.*";
+            saveFileDialog.FilterIndex = 0;
+            saveFileDialog.InitialDirectory = ExportsDirectory;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Save the build string to the file specified by the user
+                using (var writer = new StreamWriter(saveFileDialog.FileName))
+                {
+                    writer.Write(json);
+                    writer.Flush();
+                }
+            }
+        }
+
+        // Let the user pick a .build file and import it into ChroniCalc
+        private void BtnNavImportFromGame_Click(object sender, EventArgs e)
+        {
+            CharacterClass selectedClass;
+            DialogResult dialogResult;
+            Dictionary<string, int> leveledSkills;
+            IEnumerable<Skill> skillsInTree;
+            int classID;
+            int newLevel;
+            OpenFileDialog openFileDialog;
+            string className;
+            string json;
+
+            dialogResult = PromptForBuildReset();
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                //Prompt for save/if user really wants to import a build from the game, overwriting current build
+                if (!SaveBuildShouldContinue())
+                {
+                    // The User chose not to continue with Importing a build, so exit
+                    return;
+                }
+
+                // Setup the Open File Dialog and allow the user to pick a .build file
+                openFileDialog = new OpenFileDialog();
+
+                openFileDialog.Filter = "BUILD files (*.build)|*.build|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 0;
+                openFileDialog.InitialDirectory = ExportsDirectory;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Open the build string from the file specified by the user
+                    using (var reader = new StreamReader(openFileDialog.FileName))
+                    {
+                        json = reader.ReadToEnd();
+                    }
+
+                    // Deserialize the .build content into a string/int Dictionary of Skill ID/Level pairs
+                    leveledSkills = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
+
+                    if (leveledSkills.TryGetValue("class", out classID))
+                    {
+                        // Set the selected Class which will initialize a new build
+                        switch (classID)
+                        {
+                            case 1:
+                                className = "Templar";
+                                break;
+                            case 2:
+                                className = "Berserker";
+                                break;
+                            case 3:
+                                className = "Warden";
+                                break;
+                            case 4:
+                                className = "Warlock";
+                                break;
+                            default:
+                                className = "";
+                                break;
+                        }
+
+                        // Suppress change events
+                        cboClass.SelectedIndexChanged -= CboClass_SelectedIndexChanged;
+
+                        cboClass.SelectedIndex = cboClass.Items.IndexOf(className);
+
+                        // Unsuppress change events
+                        cboClass.SelectedIndexChanged += CboClass_SelectedIndexChanged;
+
+                        //Clear everything related to the previous build
+                        ClearCharacter(build);
+
+                        //Get the newly-selected class
+                        selectedClass = characterClasses.Find(x => x.name == className);
+
+                        if (selectedClass is null)
+                        {
+                            // Throw error that the selected class was not found in the current list of character classes
+                            throw new EChroniCalcException("Import Fromt Game:  Class '" + className + "' was not found in the list of Class options.  It's possible a new class was added to the program, but the Skill data being used is outdated.");
+                        }
+
+                        //Update data on the build (everything not listed here was handled in the ResetCharacter() code (e.g. level, masteryLevel, trees, skills, etc)
+                        build.characterClass = selectedClass;
+                        build.name = "<Unnamed>";
+                        build.ApplicationVersion = Application.ProductVersion;                    
+
+                        // With the imported Build initialized, set all the of the assigned Skill levels
+                        //  by looping through all the Trees and their Skills to set the level
+                        foreach (Tree tree in build.characterClass.trees)
+                        {
+                            // Get all the Skills imported from the .build file that were leveled by the user
+                            skillsInTree = tree.skills.Where(s => leveledSkills.ContainsKey(s.id.ToString()));
+
+                            // Loop through each Skill in the tree that was leveled by the user in-game
+                            foreach (Skill skill in skillsInTree)
+                            {
+                                // If we're importing a Mastery skill, make sure it's the Skill in the correct position selected and leveled by the user, as there is some overlapping of Skills occurring
+                                //  due to the existence of 3 shared Mastery Rows with the same Skills using the same IDs (this is where SlotIDs will help us identify the right one)
+                                if (tree.name == "Mastery")
+                                {
+                                    int slotID;
+                                    int slotIdX;
+                                    int slotIdY;
+                                    string position;
+
+                                    // Get the SlotID of the current Skill by searching for it in the list of the user's leveled skills using a key of "skill.id + 's'" (eg. 100400s)
+                                    if (!(leveledSkills.TryGetValue(skill.id.ToString() + "s", out slotID)))
+                                    {
+                                        // If the above resulted as false, then SlotID is empty because we didn't have an entry and it was an error in BtnNavExportToGame code
+                                        //  we can't continue on because we won't know what x,y position to level the Skill at
+                                        throw new EChroniCalcException("Import From Game: No corresponding SlotID was found for Skill " + skill.name + " (ID: " + skill.id + ").  Unable to Import this Build.  Please include the content of your .build file in your Bug post.");
+                                    }
+
+                                    // Cross-check the retreived SlotID with the dictionary of Mastery SlotIDs and their respective x,y position to get this SlotIDs actual x,y position
+                                    if (!(masterySlotIDs.TryGetValue(slotID, out position)))
+                                    {
+                                        // If the above resulted as false, then there is no corresponding position for the given SlotID in the reference Dictionary of all MasterySlotIDs;
+                                        //   we can't continue on because we won't know what x,y position to level the Skill at
+                                        //   NOTE: It's possible the slot_ids.txt/xml is outdated from what squarebit has defined
+                                        throw new EChroniCalcException("Import From Game: No corresponding Position was found in the Mastery Tree Slot IDs dictionary for Slot ID: " + slotID + ".  Unable to Import this Build.  Please include the content of your .build file in your Bug post.");
+                                    }
+
+                                    // Extract the x and y positions from the retrieved position
+                                    slotIdX = Convert.ToInt32(position.Substring(0, position.IndexOf(',')));
+                                    slotIdY = Convert.ToInt32(position.Substring(position.IndexOf(',') + 1));
+
+                                    // Ensure that the current Skill's x,y position matches the SlotID of the Skill we're attempting to import
+                                    //  (this will make sure the Skill gets assigned to the correct location in the Mastery Tree)
+                                    if (!((slotIdX == skill.x) && (slotIdY == skill.y)))
+                                    {
+                                        // The x and y positions don't match the leveled slot, so we know we're not actually on the correct Skill; skip this and continue on to the next Skill
+                                        continue;
+                                    }
+                                }
+
+                                // Retrieve and Assign the level of the Skill
+                                if (!(leveledSkills.TryGetValue(skill.id.ToString(), out newLevel)))
+                                {
+                                    // If the above resulted as false, then there was no level value found for the Skill being imported;
+                                    //  NOTE: This is likely an error in the BtnNavExportToGame code, or the file was modified manually
+                                    throw new EChroniCalcException("Import From Game: No Level value was found for Skill " + skill.name + " (ID: " + skill.id + ").  Unable to Import this Build.  Please include the content of your .build file in your Bug post.");
+                                }
+
+                                skill.level = newLevel;
+
+                                // Update the level of the Build and the passive bonus counter
+                                if (tree.name == "Mastery")
+                                {
+                                    build.MasteryLevel += newLevel;
+                                    // Update the level of the Row Counter for the passive bonus
+                                    tree.skills.Where(s => s.x == 0 && s.y == skill.y).First().level += newLevel;
+                                }
+                                else
+                                {
+                                    build.Level += newLevel;
+                                    // Update the level of the Passive Bonus Button
+                                    tree.skills.Where(s => s.x == 0).First().level += newLevel;  //TODO this will break if Chronicon ever adds more skills at x=0, besides just the single passive bonus counter
+                                }
+                            }
+                        }
+
+                        InitializeBuild(build);
+
+                        // Update controls displaying Build/Mastery Level and other Class-wide things since they aren't stored in the import file
+                        UpdateStats(build);
+
+                        // Show the Trees, incase a different view (e.g. Inventory, Builds, etc) was being shown
+                        pnlTrees.BringToFront();
+                    }
+                    else
+                    {
+                        // No Class ID was found in the json
+                        //throw EChroniCalcException()
+                    }
+                }
+            }
         }
     }
 }

@@ -203,7 +203,7 @@ namespace ChroniCalc
                 otherSkills = ttlp.Controls.OfType<SkillButton>().Where(s => s.skill.level > 0).OrderBy(s => s.skill.x);
 
                 // Ensure we will still meet the min_level of the furthest-leveled Skill if we would delevel the selected Skill
-                if (ttlp.skillPointsAllocated - 1 < otherSkills.Last<SkillButton>().skill.min_level)
+                if ((otherSkills.Count() > 0) && (ttlp.skillPointsAllocated - 1 < otherSkills.Last<SkillButton>().skill.min_level))
                 {
                     return false;
                 }
