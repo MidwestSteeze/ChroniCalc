@@ -114,6 +114,10 @@ namespace ChroniCalc
         [JsonProperty("level")]
         public int level;
 
+        // Used to identify the location in the Mastery Tree since x,y isn't being used by squarebit
+        [JsonProperty("slotID")]
+        public int slotID;
+
         public Skill Duplicate()
         {
             return (Skill)this.MemberwiseClone();

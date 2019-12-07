@@ -2648,6 +2648,10 @@
     <None Include="Assets\Images\Tree\Mastery.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Images\UI\IconExportToGame.png" />
+    <None Include="Assets\Images\UI\IconImportFromGame.png" />
+    <None Include="Assets\Data\slot_ids.txt" />
+    <None Include="Assets\Data\slot_ids.xml" />
     <Content Include="iconstartmenu.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
