@@ -2079,6 +2079,7 @@ namespace ChroniCalc
             // Setup the Save File Dialog and prompt the User to save the file
             saveFileDialog = new SaveFileDialog();
 
+            saveFileDialog.FileName = build.name;
             saveFileDialog.Filter = "BUILD files (*.build)|*.build|All files (*.*)|*.*";
             saveFileDialog.FilterIndex = 0;
             saveFileDialog.InitialDirectory = ExportsDirectory;
