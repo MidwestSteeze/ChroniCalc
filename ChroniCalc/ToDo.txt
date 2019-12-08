@@ -53,6 +53,6 @@
 	- Remove tree.level entirely? it's not serialized into the Build XML and i don't think it's actually used anywhere in code
 	- no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better		
 	- ExportBuild: autopopulate FileName with build.name if it exists
-	- Bug with importing MaxedOut.build, resetting Mastery Tree, then re-importing MaxedOut.build (the skills are assigned but it shows all MultiSkillSelect buttons)
+	- look into clearing the treeStatus flag when you're done executing the logic they're being set for
 
  POST RELEASE MISC:

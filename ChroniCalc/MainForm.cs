@@ -2129,6 +2129,8 @@ namespace ChroniCalc
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    treeStatus = TreeStatus.Importing;
+
                     // Open the build string from the file specified by the user
                     using (var reader = new StreamReader(openFileDialog.FileName))
                     {
