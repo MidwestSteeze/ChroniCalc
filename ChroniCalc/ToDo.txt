@@ -4,7 +4,6 @@
 
  
  BEFORE NEXT RELEASE:
-	- cleanup tree background images in relation to how the controls sit on top of them with some parts still showing and the last column being stretched (especially Mastery tree stretching)
 	- (It's eating up paste counts, make its own account? IN STASH RDY FOR TESTING) change EChroniCalc exception handling to paste the callstack and error to pastebin and provide a link to the user to send to the admin
 		- Pastebin: create more accounts to acquire more API keys since youll probably hit the 25 posts per 24h limit once this gets in the hands of more people. math.rand on the array of keys to pull a random, or oldest, key and use it				   	
 			- and another, separate, subset of keys for Error Reporting			  
@@ -21,6 +20,7 @@
 			   - offline with prior exception
 	- you shouldn't hard-crash the application on some exceptions (ie. Import From Game when the .build file isn't valid)
 		- instead, display the message and exit out of the current method to keep the application active, since the exception isn't an application-breaking issue, only a process-breaking one
+			- create new Classes (ECCalcInfo, ECCalcWarning, ECCalcError which aren't raised exceptions they're just class types and after their MessageBox.Show, you call continue/return/break/etc)
 
 
  MAJORS:

@@ -38,6 +38,17 @@ namespace ChroniCalc
             }
 
             //Size
+            /*FOR FUTURE REFERENCE: Determining TLP Width/Height based on Control Count and ControlWidth/ControlHeight
+             * (see: https://stackoverflow.com/questions/37415113/creating-same-size-cells-with-tablelayoutpanel)
+
+             * (columns * cellWidth + paddingLeft + paddingRight, rows * cellHeight + paddingTop + paddingBottom)
+             * width = this.ColumnCount * cellWidth + 0 + 0
+             * height = this.RowCount + cellHeight + 0 + 0
+
+             * you either have to:
+             *  set the cellWidth/cellHeight to meet the needs of the TTLP width/height OR
+             *  set the width/height after all cells are populated in LoadTree() to meet the needs of the cellWidth/cellHeight
+			 */
             this.Size = new System.Drawing.Size(width, height);
 
             //Assign the Parent Control

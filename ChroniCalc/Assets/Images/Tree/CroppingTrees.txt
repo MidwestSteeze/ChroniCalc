@@ -1,0 +1,11 @@
+Starting X: 35
+Starting Y: 650
+
+Width: 678
+Height: 392
+
+(padding means edge of control to edge of screen, grey to grey)
+Top padding: 0 (start at the white line edge)
+Left padding: 3
+Right padding: 5
+Bottom padding: 0

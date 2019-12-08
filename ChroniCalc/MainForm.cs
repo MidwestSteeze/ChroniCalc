@@ -126,13 +126,13 @@ namespace ChroniCalc
                     if (i == 4)
                     {
                         //The last tree added is the Mastery tree and has some different properties
-                        ttlp = new TreeTableLayoutPanel(pnlTrees, 11, 7, 516, 274);
+                        ttlp = new TreeTableLayoutPanel(pnlTrees, 11, 7, 506, 273);
                         ttlp.Name = "Mastery";
                     }
                     else
                     {
                         //Create a new Class Skill tree
-                        ttlp = new TreeTableLayoutPanel(pnlTrees, 10, 7, 475, 279);
+                        ttlp = new TreeTableLayoutPanel(pnlTrees, 10, 7, 470, 273);
                     }
 
                     treePanels.Add(ttlp);
