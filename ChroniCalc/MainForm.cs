@@ -150,7 +150,8 @@ namespace ChroniCalc
             }
             catch (Exception ex)
             {
-                throw new EChroniCalcException("Error on initial load of application" + Environment.NewLine + ex.ToString());
+                // An exception occurred on load of the application that was not handled immediately; display exception details and terminate the application
+                throw new EChroniCalcException("Error on initial load of application.  Unable to continue." + Environment.NewLine + ex.ToString());
             }
         }
 
@@ -384,7 +385,7 @@ namespace ChroniCalc
                 catch (Exception ex)
                 {
                     //The file loaded was xml but did not serialize cleanly into the Build object; explain this to the user and continue on to loading the next file
-                    throw new EChroniCalcException("Unable to load Build file '" + Path.GetFileName(buildFile) + "' into the saved Builds list in the Builds tab.  If this is not an actual Build file, please remove it from the Builds folder on disk to stop seeing this message." + Environment.NewLine + ex.ToString());
+                    Alerts.DisplayWarning("Unable to load Build file '" + Path.GetFileName(buildFile) + "' into the saved Builds list in the Builds tab.  If this is not an actual Build file, please remove it from the Builds folder on disk to stop seeing this message.");
                 }
 
             }
@@ -935,17 +936,32 @@ namespace ChroniCalc
                     return;
 	            }
 
-                //Clear everything related to the previous build
-                ClearCharacter(build);
-
                 //Get the newly-selected class
                 selectedClass = characterClasses.Find(x => x.name == characterClass);
 
                 if (selectedClass is null)
                 {
                     // Throw error that the selected class was not found in the current list of character classes
-                    throw new EChroniCalcException("SelectClass:  Class '" + characterClass + "' was not found in the list of Class options.  It's possible a new class was added to the program, but the Skill data being used is outdated.");
+                    Alerts.DisplayError("SelectClass:  Class '" + characterClass + "' was not found in the Class options extracted from the Game Data.");
+
+                    // Set the Class drop-down back to the previously selected characterClass
+                    // Suppress change events
+                    cboClass.SelectedIndexChanged -= CboClass_SelectedIndexChanged;
+
+                    // Avoid a fringe case where the first Class selected from the drop-down was the invalid one, since we can't reset to a null class
+                    if (!(build.characterClass is null))
+                    {
+                        cboClass.SelectedIndex = cboClass.Items.IndexOf(build.characterClass.name);
+                    }
+
+                    // Unsuppress change events
+                    cboClass.SelectedIndexChanged += CboClass_SelectedIndexChanged;
+
+                    return;
                 }
+
+                //Clear everything related to the previous build
+                ClearCharacter(build);
 
                 //Update data on the build (everything not listed here was handled in the ResetCharacter() code (e.g. level, masteryLevel, trees, skills, etc)
                 build.characterClass = selectedClass;
@@ -959,14 +975,18 @@ namespace ChroniCalc
             }
             else
             {
-                //TODO set cboClass back to the previously selected characterClass
+                // Set the Class drop-down back to the previously selected characterClass
                 // Suppress change events
-                //cboClass.SelectedIndexChanged -= CboClass_SelectedIndexChanged;
+                cboClass.SelectedIndexChanged -= CboClass_SelectedIndexChanged;
 
-                //cboClass.SelectedIndex = cboClass.Items.IndexOf(build.characterClass.name);
+                // TODO // Avoid a fringe case where the first Class selected from the drop-down was the invalid one, since we can't reset to a null class
+                //if (!(build.characterClass is null))
+                //{
+                cboClass.SelectedIndex = cboClass.Items.IndexOf(build.characterClass.name);
+				//}
 
-                //// Unsuppress change events
-                //cboClass.SelectedIndexChanged += CboClass_SelectedIndexChanged;
+                // Unsuppress change events
+                cboClass.SelectedIndexChanged += CboClass_SelectedIndexChanged;
             }
         }
 
@@ -1101,7 +1121,10 @@ namespace ChroniCalc
                 }
                 else
                 {
-                    throw new EChroniCalcException("ClearTree: Unknown Control type found.  It may need to be handled and disposed of.");
+                    // An unhandled control type was found and could lead to a memory leak if it's not included in the above or below Garbage Collection
+                    //  (NOTE: This will occur if you ever place controls in the TreeTableLayoutPanel that aren't Skill-related types and perhaps could be shutoff 
+                    //         but we'll determine that if/when this Error starts showing up)
+                    Alerts.DisplayError("ClearTree: Unhandled Control type of " + control.GetType().ToString() + " found.  It may need to be handled and disposed of.");
                 }
             }
 
@@ -1205,7 +1228,7 @@ namespace ChroniCalc
                 else
                 {
                     // Throw error that tlpTree.Name is not found in the currently-loaded Trees object for the selected Class
-                    throw new EChroniCalcException("LoadTrees(): Tree not found: " + ttlpTree.Name);
+                    throw new EChroniCalcException("LoadTrees(): Tree '" + ttlpTree.Name + "' was not found in the Game Data but is implemented into a Control that requires it.  Unable to continue.");
                 }
             }
         }
@@ -1619,9 +1642,8 @@ namespace ChroniCalc
         {
             XmlSerializer serializer;
 
-            // Set a few last-minute properties
+            // Set the Last Saved timestamp to Now
             build.lastSaved = DateTime.Now;
-            build.buildStatus = Build.BuildStatus.Saved;
 
             try
             {
@@ -1636,8 +1658,13 @@ namespace ChroniCalc
             }
             catch (Exception ex)
             {
-                throw new EChroniCalcException("SaveBuild: Unable to serialze the build." + Environment.NewLine + ex.ToString());
+                // Display message that something failed when attempting to Serialize and Write the Build to a file
+                Alerts.DisplayError("SaveBuild: Unable to serialze the Build.  Your Build has not been saved." + Environment.NewLine + ex.ToString());
+                return;
             }
+
+            // Update the Build Status to be Saved, since the save logic has completed
+            build.buildStatus = Build.BuildStatus.Saved;
         }
 
         private void BtnBuildDelete_Click(object sender, EventArgs e)
@@ -1693,8 +1720,9 @@ namespace ChroniCalc
             }
             else
             {
-                // Throw exception that the build was not found for some reason
-                throw new EChroniCalcException("OpenBuildClick: The following Build file was not found.  It's possible the file cannot be accessed.  Please try saving your Build files in your My Documents folder." + Environment.NewLine + "File: " + fileNameAndPath);
+                // Display message that the build was not found for some reason
+                Alerts.DisplayWarning("OpenBuildClick: The following Build file was not found.  It's possible the file cannot be accessed.  Please try saving your Build files in your My Documents folder." + Environment.NewLine + "File: " + fileNameAndPath);
+                return;
             }
             
             //TODO clear treeStatus?
@@ -1707,9 +1735,6 @@ namespace ChroniCalc
 
 			// Set the Build Status so we don't trigger certain events (e.g. Build.SetAsModified())
             build.buildStatus = Build.BuildStatus.Opening;
-
-            // Clear everything related to the previous build
-            ClearCharacter(build);
 
             // Deserialize the content the appropriate way depending on what was passed in (ie. pastebin Raw Text extract or a filepath to an XML file on disk)
             if (pasteBinImport)
@@ -1724,7 +1749,13 @@ namespace ChroniCalc
                 }
                 catch (Exception ex)
                 {
-                    throw new EChroniCalcException("OpenBuild: Unable to deserialize the build fetched from Pastebin." + Environment.NewLine + ex.ToString());
+                    // Display a message that the Build fetched from pastebin could not be opened
+                    Alerts.DisplayError("OpenBuild: Unable to deserialize the build fetched from Pastebin." + Environment.NewLine + ex.ToString());
+
+                    // Clear the Build Status
+                    build.buildStatus = Build.BuildStatus.None;
+
+                    return;
                 }
             }
             else
@@ -1740,10 +1771,18 @@ namespace ChroniCalc
                 }
                 catch (Exception ex)
                 {
-                    throw new EChroniCalcException("OpenBuild: Unable to deserialize the build loaded from the save file." + Environment.NewLine + ex.ToString());
-                }
+                    // Display a message that the Build file could not be opened
+                    Alerts.DisplayError("OpenBuild: Unable to deserialize the build loaded from the save file." + Environment.NewLine + ex.ToString());
 
+                    // Clear the Build Status
+                    build.buildStatus = Build.BuildStatus.None;
+
+                    return;
+                }
             }
+
+            // Clear everything related to the previous build
+            ClearCharacter(build);
 
             // Convert the Build to the newest version
             BuildConvert buildConvert = new BuildConvert();  //TODO minor detail: is there anyway to call ConvertBuild without having to create a BuildConvert object?
@@ -1791,7 +1830,9 @@ namespace ChroniCalc
                     pbClass.Image = (Image)ResourceManagerImageClass.GetObject("Warlock");
                     break;
                 default:
-                    throw new EChroniCalcException("ChangeClass: characterClass of '" + build.characterClass.name + "' was not added to Switch for setting the Class image.");
+                    // The selected Class was not accounted for in the above Switch statement
+                    Alerts.DisplayError("ChangeClass: Class '" + build.characterClass.name + "' was not considered when setting the Class image.");
+                    return;
             }
 
             //Depending on Class, load up Image and Tag on Tree tabs and update the Mastery tree
@@ -1934,7 +1975,9 @@ namespace ChroniCalc
                     break;
 
                 default:
-                    throw new EChroniCalcException("InitializeBuild: characterClass of '" + build.characterClass.name + "' not found.  It's possible a new Class was added to the Skill data but not yet configured in ChroniCalc.");
+                    // The selected Class was not accounted for in the above Switch statement //TODO should this instead be an exception? need to see what calls InitializeBuild and what the fallout may be of "return"ing
+                    Alerts.DisplayError("InitializeBuild: Class '" + build.characterClass.name + "' not found.  It's possible a new Class was added to the Game Data but not yet configured in ChroniCalc.");
+                    return;
             }
 
             // Load the mastery tree regardless of Class
@@ -2163,6 +2206,17 @@ namespace ChroniCalc
                                 break;
                         }
 
+                        //Get the newly-selected class
+                        selectedClass = characterClasses.Find(x => x.name == className);
+
+                        if (selectedClass is null)
+                        {
+                            // Display error that the selected class was not found in the current list of character classes
+                            Alerts.DisplayError("Import From Game:  Class '" + className + "' was not found in the list of Class options.  It's possible a new class was added to the program, but the Game Data being used is outdated.");
+                            return;
+                        }
+
+                        // Change the selected Class drop-down
                         // Suppress change events
                         cboClass.SelectedIndexChanged -= CboClass_SelectedIndexChanged;
 
@@ -2173,15 +2227,6 @@ namespace ChroniCalc
 
                         //Clear everything related to the previous build
                         ClearCharacter(build);
-
-                        //Get the newly-selected class
-                        selectedClass = characterClasses.Find(x => x.name == className);
-
-                        if (selectedClass is null)
-                        {
-                            // Throw error that the selected class was not found in the current list of character classes
-                            throw new EChroniCalcException("Import Fromt Game:  Class '" + className + "' was not found in the list of Class options.  It's possible a new class was added to the program, but the Skill data being used is outdated.");
-                        }
 
                         //Update data on the build (everything not listed here was handled in the ResetCharacter() code (e.g. level, masteryLevel, trees, skills, etc)
                         build.characterClass = selectedClass;
@@ -2212,7 +2257,7 @@ namespace ChroniCalc
                                     {
                                         // If the above resulted as false, then SlotID is empty because we didn't have an entry and it was an error in BtnNavExportToGame code
                                         //  we can't continue on because we won't know what x,y position to level the Skill at
-                                        throw new EChroniCalcException("Import From Game: No corresponding SlotID was found for Skill " + skill.name + " (ID: " + skill.id + ").  Unable to Import this Build.  Please include the content of your .build file in your Bug post.");
+                                        throw new EChroniCalcException("Import From Game: No corresponding SlotID was found for Skill " + skill.name + " (ID: " + skill.id + ").  Unable to Import this Build.  Please include the content of your .build file in your Bug post.  Unable to continue.");
                                     }
 
                                     // Cross-check the retreived SlotID with the dictionary of Mastery SlotIDs and their respective x,y position to get this SlotIDs actual x,y position
@@ -2221,7 +2266,7 @@ namespace ChroniCalc
                                         // If the above resulted as false, then there is no corresponding position for the given SlotID in the reference Dictionary of all MasterySlotIDs;
                                         //   we can't continue on because we won't know what x,y position to level the Skill at
                                         //   NOTE: It's possible the slot_ids.txt/xml is outdated from what squarebit has defined
-                                        throw new EChroniCalcException("Import From Game: No corresponding Position was found in the Mastery Tree Slot IDs dictionary for Slot ID: " + slotID + ".  Unable to Import this Build.  Please include the content of your .build file in your Bug post.");
+                                        throw new EChroniCalcException("Import From Game: No corresponding Position was found in the Mastery Tree Slot IDs dictionary for Slot ID: " + slotID + ".  Unable to Import this Build.  Please include the content of your .build file in your Bug post.  Unable to continue.");
                                     }
 
                                     // Extract the x and y positions from the retrieved position
@@ -2242,7 +2287,7 @@ namespace ChroniCalc
                                 {
                                     // If the above resulted as false, then there was no level value found for the Skill being imported;
                                     //  NOTE: This is likely an error in the BtnNavExportToGame code, or the file was modified manually
-                                    throw new EChroniCalcException("Import From Game: No Level value was found for Skill " + skill.name + " (ID: " + skill.id + ").  Unable to Import this Build.  Please include the content of your .build file in your Bug post.");
+                                    throw new EChroniCalcException("Import From Game: No Level value was found for Skill " + skill.name + " (ID: " + skill.id + ").  Unable to Import this Build.  Please include the content of your .build file in your Bug post.  Unable to continue.");
                                 }
 
                                 skill.level = newLevel;

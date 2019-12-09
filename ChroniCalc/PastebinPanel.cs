@@ -46,7 +46,9 @@ namespace ChroniCalc
             }
             catch (Exception ex)
             {
-                throw new EChroniCalcException("PastebinShare:  Unable to serialize the build to be shared with Pastebin." + Environment.NewLine + ex.ToString());
+                // Display error that the build could not be serialized to be shared via Pastebin
+                Alerts.DisplayError("PastebinShare:  Unable to serialize the build to be shared with Pastebin." + Environment.NewLine + ex.ToString());
+                return;
             }
 
 
@@ -95,7 +97,9 @@ namespace ChroniCalc
             }
             catch (Exception ex)
             {
-                throw new EChroniCalcException("PastebinLoad:  Unable to retrieve the build from Pastebin" + Environment.NewLine + ex.ToString());
+                // Throw an exception that the pastebin build either failed to be retrieved or failed to open; as such, we have to throw an exception because it's possible 
+                //  a true exception stemmed from the above OpenBuild() call and we don't want to lose that information by instead just showing a generic Alerts.DisplayError message and allowing the program to continue
+                throw new EChroniCalcException("PastebinLoad:  Unable to retrieve and open the build from Pastebin" + Environment.NewLine + ex.ToString());
             }
 
             // TODO If the PasteBin retrieval fails, can send back this.ParentForm.DialogResult=Yes/No

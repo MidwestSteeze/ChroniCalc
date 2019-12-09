@@ -18,9 +18,6 @@
 			   - online with prior exception
 			   - offline no prior exception
 			   - offline with prior exception
-	- you shouldn't hard-crash the application on some exceptions (ie. Import From Game when the .build file isn't valid)
-		- instead, display the message and exit out of the current method to keep the application active, since the exception isn't an application-breaking issue, only a process-breaking one
-			- create new Classes (ECCalcInfo, ECCalcWarning, ECCalcError which aren't raised exceptions they're just class types and after their MessageBox.Show, you call continue/return/break/etc)
 
 
  MAJORS:
@@ -52,6 +49,7 @@
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
 	- Remove tree.level entirely? it's not serialized into the Build XML and i don't think it's actually used anywhere in code
 	- no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better		
-	- look into clearing the treeStatus flag when you're done executing the logic they're being set for
+	- look into clearing the treeStatus flag when you're done executing the logic they're being set for or return-ing out of an error handler
+	- enchance Alerts.Info/Warning/Error to include MessageBoxIcon
 
  POST RELEASE MISC:

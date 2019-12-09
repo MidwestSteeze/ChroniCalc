@@ -93,8 +93,8 @@ namespace ChroniCalc
             }
             else
             {
-                // They're both MultiSkillSelect Buttons or unknown control types, this shouldn't ever happen but throw an exception incase a 3rd control type is added to the SkillSelectPanel and not handled
-                throw new EChroniCalcException("ChangeSelectedSkill: Unknown control type found.  The control types of PreviousSKill=" + previousSkill.GetType().ToString() + " and SelectedSkill=" + selectedSkill.GetType().ToString() + " are not being accounted for.");
+                // They're both MultiSkillSelect Buttons or unknown control types, this shouldn't ever happen but throw an exception incase a 3rd control type is added to the SkillSelectPanel and not handled.
+                throw new EChroniCalcException("ChangeSelectedSkill: Unknown control type found.  The control types of PreviousSKill=" + previousSkill.GetType().ToString() + " and SelectedSkill=" + selectedSkill.GetType().ToString() + " are not being accounted for.  Unable to continue.");
             }
 
             // Hide the SkillSelectPanel now that the user chose a skill
@@ -164,8 +164,8 @@ namespace ChroniCalc
                     s.skillSelectPanel = this;
                     break;
                 default:
-                    // Throw exception that control type not specified
-                    throw new EChroniCalcException("RemoveAddAndUpdate: Control type of " + selectedSkill.GetType().ToString() + " is not handled.");
+                    // Throw exception that control type not specified and we cannot continue because we don't know what's been done up to this point in order to revert it.
+                    throw new EChroniCalcException("RemoveAddAndUpdate: Control type of " + selectedSkill.GetType().ToString() + " is not handled.  Unable to continue.");
             }
 
             // Determine which skill id to use for clearing any skills linked to the one that is being swapped out

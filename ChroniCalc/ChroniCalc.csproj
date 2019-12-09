@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alerts.cs" />
     <Compile Include="Build.cs" />
     <Compile Include="BuildConvert.cs" />
     <Compile Include="EChroniCalcException.cs" />
