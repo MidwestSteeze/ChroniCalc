@@ -25,12 +25,10 @@ namespace ChroniCalc
             string buildAsText;
             string pasteUrl;
             XmlSerializer serializer;
-
-            string apiKey = "9074d08a3c19871f793663a0361c6976";
-            var client = new PasteBinClient(apiKey);
+            var client = new PasteBinClient(PasteBinClient.PBType.BuildShare);
 
             // Optional; will publish as a guest if not logged in; could enable this to see how many pastes people are using but
-            //   this exposes username/password since it's on Github (CCalcShare//CCalcSharer)
+            //   this exposes username/password since it's on Github
             //client.Login(userName, password); //this'll set User Key
 
             serializer = new XmlSerializer((this.ParentForm as BuildShareForm).ParentForm.build.GetType());
@@ -51,7 +49,6 @@ namespace ChroniCalc
                 return;
             }
 
-
             // Setup the data for the Pastebin
             var entry = new PasteBinEntry
             {
@@ -62,11 +59,27 @@ namespace ChroniCalc
                 Format = "xml"
             };
 
-            // Call through the Pastebin API to get the URL
-            pasteUrl = client.Paste(entry);
+            try
+            {
+                // Call through the Pastebin API to get the URL
+                pasteUrl = client.Paste(entry);
 
-            // Show the Pastebin URL in the textbox
-            txtPastebinShare.Text = pasteUrl;
+                // Show the Pastebin URL in the textbox
+                txtPastebinShare.Text = pasteUrl;
+            }
+            catch (System.Net.WebException)
+            {
+                MessageBox.Show("Unable to reach Pastebin.  This function is not currently available.");
+            }
+            catch (PasteBinApiException ex)
+            {
+                MessageBox.Show("Unable to retrieve Build URL from Pastebin.  This function is not currently available." + Environment.NewLine + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Something else happened and we're not sure what, so provide error details to the user to pass along to me
+                throw new EChroniCalcException("PasteBinShare: Unable to reach Pastebin." + Environment.NewLine + ex.Message);
+            }
         }
 
         private void BtnPastebinLoad_Click(object sender, EventArgs e)
@@ -88,12 +101,16 @@ namespace ChroniCalc
                 return;
             }
 
-            pasteBinClient = new PasteBinClient();
+            pasteBinClient = new PasteBinClient(PasteBinClient.PBType.BuildShare);
             try
             {
                 pastebinExtract = pasteBinClient.Extract(txtPastebinLoad.Text);
 
                 (this.ParentForm as BuildShareForm).ParentForm.OpenBuild(pastebinExtract, true);
+            }
+            catch (System.Net.WebException)
+            {
+                MessageBox.Show("Unable to reach Pastebin.  Invalid URL or this function is not currently available.");
             }
             catch (Exception ex)
             {
@@ -101,8 +118,6 @@ namespace ChroniCalc
                 //  a true exception stemmed from the above OpenBuild() call and we don't want to lose that information by instead just showing a generic Alerts.DisplayError message and allowing the program to continue
                 throw new EChroniCalcException("PastebinLoad:  Unable to retrieve and open the build from Pastebin" + Environment.NewLine + ex.ToString());
             }
-
-            // TODO If the PasteBin retrieval fails, can send back this.ParentForm.DialogResult=Yes/No
 
             // Close the Form now that the build has been loaded and opened
             this.ParentForm.Close();

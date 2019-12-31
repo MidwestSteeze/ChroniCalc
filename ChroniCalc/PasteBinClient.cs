@@ -24,16 +24,53 @@ namespace ChroniCalc
 
         static string key { get; set; } = "A!9HHhi%XjjYY4YP2@Nob009X";
 
-        public PasteBinClient()
+        private readonly string[] DevKeysBuildShare =
         {
+            "9074d08a3c19871f793663a0361c6976",
+            "ae626aa58df38f743f69d73ae20055a6",
+            "066efa650ae5d795cb698c5dbeb69a01",
+            "5effc482dd5a3518e4bba2c7619f4c4b",
+            "34e63562a182235bc302665f28508ba9"
+        };
 
+        private readonly string[] DevKeysError =
+        {
+            "b927c689c6948e55594cd751f1e22a33",
+            "e2fbe4e244169b76bfb4e4945a692544",
+            "13cac883e311b4d9cad23a8f595a4460",
+            "3332417fd39373a79e15794d4de0aaf0",
+            "2b0643b10902af85ba9e004ddf9ae0ea"
+        };
+
+        public enum PBType
+        {
+            BuildShare,
+            Error
         }
 
-        public PasteBinClient(string apiDevKey)
+        public PasteBinClient(PBType pBType)
         {
-            if (string.IsNullOrEmpty(apiDevKey))
-                throw new ArgumentNullException("apiDevKey");
-            _apiDevKey = apiDevKey;
+            _apiDevKey = GetDevKey(pBType);
+        }
+
+        private string GetDevKey(PBType pBType)
+        {
+            string devKey = string.Empty;
+            Random random = new Random();
+
+            switch (pBType)
+            {
+                case PBType.BuildShare:
+                    devKey = DevKeysBuildShare[random.Next(DevKeysBuildShare.Length)];
+                    break;
+                case PBType.Error:
+                    devKey = DevKeysError[random.Next(DevKeysError.Length)];
+                    break;
+                default:
+                    break;
+            }
+
+            return devKey;
         }
 
         public string UserName
@@ -68,10 +105,10 @@ namespace ChroniCalc
             _apiUserKey = null;
         }
 
-        public string Paste(PasteBinEntry entry)
+        public string Paste(PasteBinEntry entry, bool encodeData = true)
         {
             byte[] pastebinRawBytes;
-            string encodedData = string.Empty;
+            string data = string.Empty;
 
             if (entry == null)
                 throw new ArgumentNullException("entry");
@@ -80,14 +117,22 @@ namespace ChroniCalc
             if (string.IsNullOrEmpty(_apiDevKey))
                 throw new ArgumentNullException("apiDevKey");
 
-            // Compress and Encode the Build data so it meets Pastebin's file limit
-            pastebinRawBytes = Zip(entry.Text);
-            encodedData = Convert.ToBase64String(pastebinRawBytes);
+            if (encodeData)
+            {
+                // Compress and Encode the Build data so it meets Pastebin's file limit
+                pastebinRawBytes = Zip(entry.Text);
+                data = Convert.ToBase64String(pastebinRawBytes);
+            }
+            else
+            {
+                // Don't Compress and Encode the data (ie. it may be an error message and not Build data)
+                data = entry.Text;
+            }
 
             // Setup all parameters for the Pastebin call to create the Paste
             var parameters = GetBaseParameters();
             parameters[ApiParameters.Option] = "paste";
-            parameters[ApiParameters.PasteCode] = encodedData;
+            parameters[ApiParameters.PasteCode] = data;
             SetIfNotEmpty(parameters, ApiParameters.PasteName, entry.Title);
             SetIfNotEmpty(parameters, ApiParameters.PasteFormat, entry.Format);
             SetIfNotEmpty(parameters, ApiParameters.PastePrivate, entry.Private ? "1" : "0");

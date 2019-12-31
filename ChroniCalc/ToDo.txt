@@ -51,5 +51,6 @@
 	- no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better		
 	- look into clearing the treeStatus flag when you're done executing the logic they're being set for or return-ing out of an error handler
 	- enchance Alerts.Info/Warning/Error to include MessageBoxIcon
+	- modify the processes of loading external data (ie. Skill Data Export and Slot_IDs) to be a bit more automated so you can just place the new version in a folder and re-run the application (for when i stop supporting this app)
 
  POST RELEASE MISC:
