@@ -22,6 +22,7 @@ namespace ChroniCalc
         public SkillSelectPanel skillSelectPanel;
         public SkillTooltipPanel skillTooltipPanel;
         //TODO public Tree tree <-- would it be helpful to have?
+        public List<SkillToStatModifierMapping> skillToStatModifierMappings;
 
         public SkillButton(Skill inSkill, TreeTableLayoutPanel parentControl, SkillTooltipPanel skillTooltip, MainForm inForm)
         {
@@ -55,11 +56,24 @@ namespace ChroniCalc
                 this.pbSkillIcon.BackgroundImage = (Image)ResourceManagerImageSkill.GetObject("ImageNotFound");
             }
 
+            PopulateSkillToStatModifierMappings();
         }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
+        }
+
+        private void PopulateSkillToStatModifierMappings() //TODO REsume here just trying to get Claw to work as proof of concept
+        {
+            //Populate the Skill To Stat Modifier mappings that pertain to this particular skill being created
+            //  Lookup all defined ModifierMappings in the static AllSkillToStatModifierMappings list and add them onto the Skill button
+            if (this.skill.name == "Claw")
+            {
+                string asdf = "asdf";
+            }
+
+            this.skillToStatModifierMappings = SkillToStatModifierMappings.AllSkillToStatModifierMappings.FindAll(m => m.CharacterClass == form.build.characterClass.name && m.Tree == (this.Parent as TreeTableLayoutPanel).tree.name && m.Skill == this.skill.name);
         }
 
         public void SkillButton_MouseUp(object sender, MouseEventArgs e)
@@ -378,6 +392,8 @@ namespace ChroniCalc
             {
                 form.build.Level += levelAdjust;
 
+            // Update the stat modifiers (ie. multipliers) used for stat calculations (//TODO what about the passive skill counter too?)
+            UpdateStatModifiers(oldLevel, newLevel);
                 SkillButton passiveBonusBtn = (SkillButton)ttlpTree.Controls.Find(ttlpTree.passiveSkillId.ToString(), true).First();
                 passiveBonusBtn.skill.level = ttlpTree.skillPointsAllocated;
                 passiveBonusBtn.lblSkillLevel.Text = passiveBonusBtn.skill.level.ToString();
@@ -403,6 +419,53 @@ namespace ChroniCalc
 
             //Update the tooltip description based on the new level of the skill
             this.skillTooltipPanel.PopulateDescription();
+        }
+
+        private void UpdateStatModifiers(int oldLevel, int newLevel)
+        {
+            double newValue;
+            double oldValue;
+            double valueAdjust;
+            int newValueIndex = newLevel - 1;
+            int oldValueIndex = oldLevel - 1;
+
+            if (this.skill.name == "Claw") //TODO Resume Here
+            {
+                string asdf = "asdf";
+            }
+
+            //TODO resume here
+            foreach (SkillToStatModifierMapping mapping in this.skillToStatModifierMappings)
+            {
+                newValue = 0;
+                oldValue = 0;
+                valueAdjust = 0;
+
+                switch (mapping.SkillPropertyToPullValueFrom)
+                {
+                    case SkillToStatModifierMapping.SkillProperties.COOLDOWN:
+                        break;
+                    case SkillToStatModifierMapping.SkillProperties.DAMAGE:
+                        newValue = this.skill.value[newValueIndex];
+                        oldValue = this.skill.value[oldValueIndex];
+                        break;
+                    case SkillToStatModifierMapping.SkillProperties.DURATION:
+                        break;
+                    case SkillToStatModifierMapping.SkillProperties.EFFECT:
+                        break;
+                    case SkillToStatModifierMapping.SkillProperties.PROC:
+                        break;
+                    case SkillToStatModifierMapping.SkillProperties.VALUE:
+                        break;
+                    default:
+                        break;
+                }
+
+                //Adjust the value of the stat modifier based on the change that was made (e.g. skill leveled up imposing an increase, leveled down imposing a decrease, etc)
+                valueAdjust = newValue - oldValue;
+
+                this.form.statModifiers[mapping.Name] += valueAdjust;
+            }
         }
 
         private void PbSkillIcon_MouseHover(object sender, EventArgs e)

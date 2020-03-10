@@ -18,6 +18,27 @@
 			   - online with prior exception
 			   - offline no prior exception
 			   - offline with prior exception
+	- Stat calculation and screen (damage, health, etc)
+      - Phase 1: just the totals (modifiers, mulitpliers, conversions, etc)
+	    - currently there is no insight into what properties are modified by the EFFECT value on the skill; e.g. All Resistances vs only Physical Resistances vs non-Physical Resistances
+		- IDEA: manually add a managed table of <Modifiers><Modifier><Name><Value>...</Modifiers> tied to the raw data (but NOT IN the raw data cus it changes each Chronicon Update)
+		  (NOTE: this could impose a bit of labor between each release, would need to diff each skill data export and look for changes in each skill_description and update accordingly)
+		  - <Skill>Redemption (the passive bonus)
+		      <Modifiers>
+			    <Modifier>
+		          <Name>HOLY_DAMAGE</Name>
+			      <SkillPropertyToPullValueFrom>DAMAGE</SkillPropertyToPullValueFrom>
+		        </Modifier>
+				<Modifier>
+				  <Name>HEALTH_ON_HIT</Name>
+				  <SkillPropertyToPullValueFrom>VALUE</SkillPropertyToPullValueFrom>
+				</Modifier>
+				<Modifier>
+				  <Name>PICKUP_STRENGTH</Name>
+				  <SkillPropertyToPullValueFrom>EFFECT</SkillPropertyToPullValueFrom>
+				</Modifier>
+			  </Modifiers>
+			</Skill>
 
 
  MAJORS:

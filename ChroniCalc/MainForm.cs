@@ -48,6 +48,8 @@ namespace ChroniCalc
         //Lists and Objects
         public Build build;
         public BuildShareForm buildShareForm;
+        public Dictionary<string, double> statModifiers;
+        //List<SkillToStatModifierMapping> allSkillToStateModifierMappings;
         public CultureInfo CultureSystem;
         public CultureInfo CultureEnglish;
 
@@ -109,6 +111,8 @@ namespace ChroniCalc
                 characterClasses = new List<CharacterClass>();
                 masterySlotIDs = new Dictionary<int, string>();
 
+            InitializeStatModifiers();
+
                 //Add all tree buttons to a list for looping over and finding within later as needed
                 treeButtons = new List<Button>();
                 treeButtons.Add(btnTree1);
@@ -153,6 +157,20 @@ namespace ChroniCalc
                 // An exception occurred on load of the application that was not handled immediately; display exception details and terminate the application
                 throw new EChroniCalcException("Error on initial load of application.  Unable to continue." + Environment.NewLine + ex.ToString());
             }
+        }
+
+        private void InitializeStatModifiers()
+        {
+            statModifiers = new Dictionary<string, double>();
+
+            // Loop through all stat modifier constants defined in StatModifiers class and add each as
+            //   a variable to the dictionary with a value that can be modified as the Build is being built
+            foreach (string statModifierName in StatModifiers.StatModifierNames)
+            {
+                statModifiers.Add(statModifierName, 0);
+            }
+
+            PopulateSkillToStatModifierMappingsList();
         }
 
         private void AddMasteryPassiveRowCounters(string className, ref List<Skill> skills)
@@ -389,6 +407,13 @@ namespace ChroniCalc
                 }
 
             }
+        }
+
+        private void PopulateSkillToStatModifierMappingsList()
+        {
+            //allSkillToStateModifierMappings = new List<SkillToStatModifierMapping>();
+            //allSkillToStateModifierMappings.Add(new SkillToStatModifierMapping("Berserker", "Dragonkin", "Claw", StatModifiers.DAMAGE_PHYSICAL, "VALUE"));
+            //TODO resume and complete this list
         }
 
         /// <summary>
