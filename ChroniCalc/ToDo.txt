@@ -4,6 +4,8 @@
 
  
  BEFORE NEXT RELEASE:
+	- no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better		
+	- change Import from Game/Export to Game to read as Chronicon
 	- (It's eating up paste counts, make its own account? IN STASH RDY FOR TESTING) change EChroniCalc exception handling to paste the callstack and error to pastebin and provide a link to the user to send to the admin
 		- Pastebin: create more accounts to acquire more API keys since youll probably hit the 25 posts per 24h limit once this gets in the hands of more people. math.rand on the array of keys to pull a random, or oldest, key and use it				   	
 			- and another, separate, subset of keys for Error Reporting			  
@@ -18,6 +20,7 @@
 			   - online with prior exception
 			   - offline no prior exception
 			   - offline with prior exception
+	- modify the processes of loading external data (ie. Skill Data Export and Slot_IDs) to be a bit more automated so you can just place the new version in a folder and re-run the application (for when i stop supporting this app)
 
 
  MAJORS:
@@ -48,9 +51,7 @@
 	- on close of program, prompt to save build if currently modified
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
 	- Remove tree.level entirely? it's not serialized into the Build XML and i don't think it's actually used anywhere in code
-	- no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better		
 	- look into clearing the treeStatus flag when you're done executing the logic they're being set for or return-ing out of an error handler
 	- enchance Alerts.Info/Warning/Error to include MessageBoxIcon
-	- modify the processes of loading external data (ie. Skill Data Export and Slot_IDs) to be a bit more automated so you can just place the new version in a folder and re-run the application (for when i stop supporting this app)
 
  POST RELEASE MISC:

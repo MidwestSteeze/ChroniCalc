@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataroot xmlns:od="urn:schemas-microsoft-com:officedata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="ModifierMappings.xsd" generated="2019-11-04T14:07:00">
+<ModifierMappings>
+<SkillName>Redemption</SkillName>
+<ModifierName>HEALTH_ON_HIT</ModifierName>
+<ModifierSkillProperty>VALUE</ModifierSkillProperty>
+</ModifierMappings>
+<ModifierMappings>
+<SkillName>Redemption</SkillName>
+<ModifierName>HOLY_DAMAGE</ModifierName>
+<ModifierSkillProperty>DAMAGE</ModifierSkillProperty>
+</ModifierMappings>
+<ModifierMappings>
+<SkillName>Redemption</SkillName>
+<ModifierName>PICKUP_STRENGTH</ModifierName>
+<ModifierSkillProperty>EFFECT</ModifierSkillProperty>
+</ModifierMappings>
+</dataroot>

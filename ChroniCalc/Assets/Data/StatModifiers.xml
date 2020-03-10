@@ -1,0 +1,125 @@
+﻿<?xml version="1.0"?>
+<!-- PURPOSE:
+      The purpose of this table is to create a link between Skill properties (from the raw data) and modifiers/multipliers used for calculating stats in ChroniCalc 
+      Example: For skill Redemption, the value stored in the "DAMAGE" property on the Skill object will be used to modify the HOLY_DAMAGE multiplier in ChroniCalc
+  -->
+
+<!-- The following Entity references are setup to avoid typos when maintaining this data
+       and also to avoid inserting a value that isn't defined either on the SKill object or as a modifier in ChroniCalc
+  -->
+<!DOCTYPE Modifiers [
+  <!-- List of available Modifiers that will be used as Stat names within ChroniCalc -->
+  <!-- Stats Page 1/5 -->
+  <!ENTITY HEALTH_FLAT  "HEALTH_FLAT">
+  <!ENTITY MANA_FLAT    "MANA_FLAT">
+  <!ENTITY DAMAGE_FLAT  "DAMAGE_FLAT">
+  <!ENTITY ATTACK_SPEED "ATTACK_SPEED">
+  <!ENTITY CRIT_CHANCE  "CRIT_CHANCE">
+  <!ENTITY CRIT_DAMAGE  "CRIT_DAMAGE">
+  <!ENTITY OVERPOWER    "OVERPOWER">  
+  <!-- Damage MULTIPLIERS -->
+  <!ENTITY DAMAGE_PHYSICAL  "DAMAGE_PHYSICAL">
+  <!ENTITY DAMAGE_FIRE      "DAMAGE_FIRE">
+  <!ENTITY DAMAGE_LIGHTNING "DAMAGE_LIGHTNING">
+  <!ENTITY DAMAGE_HOLY      "DAMAGE_HOLY">
+  <!ENTITY DAMAGE_SWORD     "DAMAGE_SWORD">
+  <!ENTITY DAMAGE_SHIELD    "DAMAGE_SHIELD">
+  <!ENTITY DAMAGE_MAGIC     "DAMAGE_MAGIC">
+  <!-- Extras/Unlisted Alternatives -->
+  <!ENTITY HEALTH_INCREASED "HEALTH_INCREASED">
+  
+  <!-- Stats Page 2/5 -->
+  <!ENTITY THORNS_FLAT        "THORNS_FLAT">
+  <!ENTITY REGEN_HEALTH_FLAT  "REGEN_HEALTH_FLAT">
+  <!ENTITY REGEN_MANA_FLAT    "REGEN_MANA_FLAT">
+  <!ENTITY HEALTH_ON_HIT      "HEALTH_ON_HIT">
+  <!ENTITY MANA_ON_HIT        "MANA_ON_HIT">
+  <!ENTITY EVASION            "EVASION">
+  <!ENTITY DAMAGE_REDUCTION   "DAMAGE_REDUCTION">
+  
+  <!ENTITY RESISTANCE_PHYSICAL  "RESISTANCE_PHYSICAL">
+  <!ENTITY RESISTANCE_FIRE      "RESISTANCE_FIRE">
+  <!ENTITY RESISTANCE_FROST     "RESISTANCE_FROST">
+  <!ENTITY RESISTANCE_LIGHTNING "RESISTANCE_LIGHTNING">
+  <!ENTITY RESISTANCE_POISON    "RESISTANCE_POISON">
+  <!ENTITY RESISTANCE_HOLY      "RESISTANCE_HOLY">
+  <!ENTITY RESISTANCE_SHADOW    "RESISTANCE_SHADOW">
+  <!-- Extras/Unlisted Alternatives -->
+  <!ENTITY RESISTANCE_ALL       "RESISTANCE_ALL"> <!-- TODO may not need, it's not on the page, would apply the value to all resists individually on Skill level change -->
+  <!ENTITY THORNS_INCREASED     "THORNS_INCREASED">
+
+  <!-- Stats Page 3/5 -->
+  <!ENTITY COOLDOWN_REDUCTION   "COOLDOWN_REDUCTION">
+  <!ENTITY MANA_COST_REDUCTION  "MANA_COST_REDUCTION">
+  <!ENTITY EFFECT_DURATION      "EFFECT_DURATION">
+  <!ENTITY BONUS_CRYSTALS       "BONUS_CRYSTALS">
+  <!ENTITY MAGIC_FIND           "MAGIC_FIND">
+  <!ENTITY BONUS_EXPERIENCE     "BONUS_EXPERIENCE">
+  <!ENTITY POTION_EFFECTIVENESS "POTION_EFFECTIVENESS">
+  
+  <!ENTITY REACH            "REACH">
+  <!ENTITY MOVEMENT_SPEED   "MOVEMENT_SPEED">
+  <!ENTITY BLOCK_CHANCE     "BLOCK_CHANCE">
+  <!ENTITY DAMAGE_BLOCKED   "DAMAGE_BLOCKED">
+  <!ENTITY AURA_EFFECT      "AURA_EFFECT">
+  <!ENTITY AURA_RANGE       "AURA_RANGE">
+  <!ENTITY DAMAGE_STAGGERED "DAMAGE_STAGGERED">
+  
+  <!-- Stats Page 4/5 -->
+  <!ENTITY DAMAGE_BLEEDING_FLAT         "DAMAGE_BLEEDING_FLAT">
+  <!ENTITY DAMAGE_BURN_FLAT             "DAMAGE_BURN_FLAT">
+  <!ENTITY DAMAGE_FROST_FLAT            "DAMAGE_FROST_FLAT">
+  <!ENTITY DAMAGE_POISON_FLAT           "DAMAGE_POISON_FLAT">
+  <!ENTITY DAMAGE_CHAIN_LIGHTNING_FLAT  "DAMAGE_CHAIN_LIGHTNING_FLAT">
+  <!ENTITY DAMAGE_SMITE_FLAT            "DAMAGE_SMITE_FLAT">
+  <!ENTITY DAMAGE_BLIGHT_FLAT           "DAMAGE_BLIGHT_FLAT">
+  
+  <!ENTITY DAMAGE_BLEED   "DAMAGE_BLEED">
+  <!ENTITY HEALING_TAKEN  "HEALING_TAKEN">
+  <!ENTITY WILLPOWER      "WILLPOWER">
+  <!ENTITY MANA_SHIELD    "MANA_SHIELD">
+  <!ENTITY DAMAGE_POISON  "DAMAGE_POISON">
+  <!ENTITY DAMAGE_FROST   "DAMAGE_FROST">
+  <!ENTITY DAMAGE_SHADOW  "DAMAGE_SHADOW">
+  
+  <!-- Stats Page 5/5 -->
+  <!ENTITY GEM_STRENGTH     "GEM_STRENGTH">
+  <!ENTITY DAMAGE_SATELLITE "DAMAGE_SATELLITE">
+  <!ENTITY LIGHT_RADIUS     "LIGHT_RADIUS">
+  <!ENTITY PICKUP_STRENGTH  "PICKUP_STRENGTH">
+  <!ENTITY PICKUP_RADIUS    "PICKUP_RADIUS">
+  
+  <!ENTITY COMPANION_HEALTH                 "COMPANION_HEALTH">
+  <!ENTITY COMPANION_DAMAGE                 "COMPANION_DAMAGE">
+  <!ENTITY COMPANION_DAMAGE_REDUCTION       "COMPANION_DAMAGE_REDUCTION">
+  <!ENTITY COMPANION_PASSIVE_AND_USE_EFFECT "COMPANION_PASSIVE_AND_USE_EFFECT">
+
+  <!-- List of available SKill Properties that the value can be pulled from on the SKill Data -->
+  <!ENTITY COOLDOWN "COOLDOWN">
+  <!ENTITY DAMAGE   "DAMAGE">
+  <!ENTITY DURATION "DURATION">
+  <!ENTITY EFFECT   "EFFECT">
+  <!ENTITY PROC     "PROC">
+  <!ENTITY RANGE    "RANGE">
+  <!ENTITY RANGE2   "RANGE2">
+  <!ENTITY VALUE    "VALUE">
+]>
+
+<!-- TODO
+  How does the data look when read from code? are entities replaced with their values?  
+  Implement into code using either:
+   - on skill level change: look at this table or an object with this table loaded and...
+      - get modifiers by Skill Name
+      - for each modifier, set modifier.name += skillproperty.value
+      - (do this using) Reflection as (double)typeof(MyClass).GetField("FieldName").SetValue(...)
+      - (or do this using) multiple Case statements
+  -->
+<Modifiers>
+  <Modifier>
+    <Name>&HEALTH_FLAT;</Name>
+  </Modifier>
+  <Modifier>
+    <Name>&MANA_FLAT;</Name>
+  </Modifier>
+  <!-- TODO I dont wanna maintain two lists, but how to fix that? -->
+</Modifiers>
