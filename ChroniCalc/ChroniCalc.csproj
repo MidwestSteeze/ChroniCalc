@@ -1069,10 +1069,10 @@
     <None Include="Assets\Images\Tree\IconRedemption.png" />
     <None Include="Assets\Images\Tree\IconVengeance.png" />
     <None Include="Assets\Images\Tree\IconWrath.png" />
-    <None Include="Assets\Images\Tree\IconWindRanger.png" />
-    <None Include="Assets\Images\Tree\IconStormCaller.png" />
+    <None Include="Assets\Images\Tree\IconWind_Ranger.png" />
+    <None Include="Assets\Images\Tree\IconStorm_Caller.png" />
     <None Include="Assets\Images\Tree\IconDruid.png" />
-    <None Include="Assets\Images\Tree\IconWinterHerald.png" />
+    <None Include="Assets\Images\Tree\IconWinter_Herald.png" />
     <None Include="Assets\Images\Tree\IconDemonologist.png" />
     <None Include="Assets\Images\Tree\IconCorruptor.png" />
     <None Include="Assets\Images\Tree\IconLich.png" />
@@ -1094,7 +1094,7 @@
     <None Include="Assets\Images\Tree\Frostborn.png" />
     <None Include="Assets\Images\Tree\Dragonkin.png" />
     <None Include="Assets\Images\Tree\Guardian.png" />
-    <None Include="Assets\Images\Tree\IconSkyLord.png" />
+    <None Include="Assets\Images\Tree\IconSky_Lord.png" />
     <None Include="Assets\Images\Tree\IconGuardian.png" />
     <None Include="Assets\Images\Tree\IconFrostborn.png" />
     <None Include="Assets\Images\Tree\IconDragonkin.png" />

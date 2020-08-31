@@ -148,9 +148,6 @@
   <data name="IconMastery" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\IconMastery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IconSkyLord" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\IconSkyLord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ImageNotFound" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\ImageNotFound.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -202,15 +199,6 @@
   <data name="IconDruid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\IconDruid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IconStormCaller" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\IconStormCaller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IconWindRanger" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\IconWindRanger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IconWinterHerald" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\IconWinterHerald.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="IconCorruptor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\IconCorruptor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -234,5 +222,17 @@
   </data>
   <data name="Mastery" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\Mastery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconSky_Lord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\IconSky_Lord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconStorm_Caller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\IconStorm_Caller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconWind_Ranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\IconWind_Ranger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconWinter_Herald" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\IconWinter_Herald.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

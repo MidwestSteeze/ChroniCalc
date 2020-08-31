@@ -37,6 +37,7 @@ namespace ChroniCalc
 
         private string BuildsDirectory;
         private string ExportsDirectory;
+        private string TempDirectory;
         private TreeStatus treeStatus;
 
         //Resource Managers for pulling assets (ie. data, images, etc.) which is a reflection of the Assets directory
@@ -79,9 +80,10 @@ namespace ChroniCalc
                 buildShareForm = new BuildShareForm();
                 buildShareForm.ParentForm = this;
 
-                //Set the directory where Builds are stored
+                //Set the directories for Builds, Exports, and Temp Files
                 BuildsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ChroniCalc\\Builds";
                 ExportsDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ChroniCalc\\Builds\\Exports";
+                TempDirectory = Path.GetTempPath() + "\\ChroniCalc";
 
                 //Create the directory where saved builds are to be stored, if it doesn't yet exist
                 if (!Directory.Exists(BuildsDirectory))
@@ -93,6 +95,12 @@ namespace ChroniCalc
                 if (!Directory.Exists(ExportsDirectory))
                 {
                     Directory.CreateDirectory(ExportsDirectory);
+                }
+
+                //Create the directory where temp files will be generated to, if it doesn't yet exist
+                if (!Directory.Exists(TempDirectory))
+                {
+                    Directory.CreateDirectory(TempDirectory);
                 }
 
                 //Set the # of available skill points that can be spent to build the character
@@ -709,6 +717,42 @@ namespace ChroniCalc
 
         public void PopulateSkillTrees()
         {
+            /*************************************************/
+            string CleanSkillData_PreLoad(string data)
+            {
+                // Remove apostrophes
+                data = data.Replace("'", "");
+
+                // Save the cleaned data to a text file for comparison
+                File.WriteAllText(TempDirectory + "\\SkillData_Cleaned_PreLoad.txt", data);  //TODOSSG print a translated version with escaped characters translated to their actual special characters
+
+                return data;
+            }
+            /*************************************************/
+            XmlDocument CleanSkillData_PostLoad(XmlDocument xmlData)
+            {
+                // Remove Templar's None skill in its Vengeance tree //TODOSSG make this more gloabl to remove any <None> nodes found (and only doing it if some were found)
+                XmlNode TemplarVengeance = xmlData.SelectSingleNode("root/Templar/Vengeance");
+                if (!(TemplarVengeance.SelectSingleNode("None") is null))
+                {
+                    TemplarVengeance.RemoveChild(TemplarVengeance.SelectSingleNode("None"));
+                }
+
+                // Save the cleaned data to a text file for comparison
+                File.WriteAllText(TempDirectory + "\\SkillData_Cleaned_PostLoad_TemplarVengeanceNoneRemoved.txt", xmlData.OuterXml);
+
+                //   TODOSSG modify all skills with <max_rank>infinite</max_rank> to set Value of 10 with diminishing returns of 1 by every l00 levels
+                //     --Damage, Health, Mana, Thorns
+                //   Per Squarebit: I think it doesn't show up because of the diminishing returns.. it adds +10 for the first 100 ranks, then +9 for the next 100, +8 for the next 100.. etc, but it has a lower cap of 3
+                //   TODOSSG figure out the equation to allow a starting value of 10, but OnClick of the generic mastery skill buttons to level/delevel you'll need to do some appropriate math to incorporate the diminishing returns
+
+                // Save the cleaned data to a text file for comparison
+                File.WriteAllText(TempDirectory + "\\SkillData_PostLoad_Cleaned_All.txt", xmlData.OuterXml);
+
+                return xmlData;
+            }
+            /*************************************************/
+
             // Set the Locale to English to avoid any manipulation by the system settings to the Skill Data Export data (e.g. Decimals and comma-separator discrepancies)
             ChangeLocale(true);
 
@@ -743,10 +787,16 @@ namespace ChroniCalc
             //}
             // END SAMPLE
 
+            // Clean up the skill data so it will load as valid XML
+            jsonAsXml = CleanSkillData_PreLoad(jsonAsXml);
+
             //Load the skill data in as XML format because the Json isn't an ideal format for 
             // iterating over and squarebit is a busy bro and doesn't need to be bothered to change it
             XmlDocument skillData = new XmlDocument();
             skillData.LoadXml(jsonAsXml);
+
+            // Clean up the skill data some more now that we have it loaded as XML to work with
+            CleanSkillData_PostLoad(skillData);
 
             //Loop through each Class under the root (ie. Berserker, Templar, Warlock, etc)
             foreach (XmlNode classNode in skillData.SelectSingleNode("root"))
@@ -1267,7 +1317,7 @@ namespace ChroniCalc
                     btnSkill = new SkillButton(skill, ttlpTree, pnlSkillTooltip, this);
 
                     //Specify the passive bonus skill button as being such (when it's found to be the Tree name as the Skill name OR it's one of the Tree names in the Mastery Tree), we'll need this info for other situations
-                    if ((skill.name == ttlpTree.passiveSkillName) || (tree.name == "Mastery" && skill.name.Contains(tree.name))) //TODO This'll fail if the Mastery Tree ever gets a selectable skill with the name "Mastery" in it; a fooler-proof solution may be to hard-code the skillId's into a list and check if skill.id IN MasteryPassiveSkillIds
+                    if ((skill.name == ttlpTree.passiveSkillName) || (tree.name == "Mastery" && skill.name.Contains(tree.name))) //TODO This'll fail if the Mastery Tree ever gets a selectable skill with the name "Mastery" in it; a fooler-proof solution may be to hard-code the skillId's into a list and check if skill.id IN MasteryPassiveSkillIds //TODOSSG this might fubar on Sky_Lord_Focus on mastery tree condition
                     {
                         btnSkill.isPassiveBonusButton = true;
                     }
@@ -1847,7 +1897,7 @@ namespace ChroniCalc
                     treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "SkyLord";
+                    treeName = "Sky_Lord";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
@@ -1907,7 +1957,7 @@ namespace ChroniCalc
                     break;
 
                 case "Warden":
-                    treeName = "WindRanger";
+                    treeName = "Wind_Ranger";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
@@ -1923,7 +1973,7 @@ namespace ChroniCalc
                     treePanels[1].passiveSkillName = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "StormCaller";
+                    treeName = "Storm_Caller";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
@@ -1931,7 +1981,7 @@ namespace ChroniCalc
                     treePanels[2].passiveSkillName = "Storm Caller";  //Overridden from treeName
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
-                    treeName = "WinterHerald";
+                    treeName = "Winter_Herald";
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
@@ -2005,11 +2055,23 @@ namespace ChroniCalc
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-			//Prompt for save/if user really wants to save the build before closing the application //TODO fix this, application still exists on selecting "Cancel"
+            //Prompt for save/if user really wants to save the build before closing the application //TODO fix this, application still exists on selecting "Cancel"
             //if (SaveBuildShouldContinue())
             //{
             //    Application.Exit();
             //}
+
+            // Clean up any temp files left in the Temp Directory
+            DirectoryInfo directoryInfo = new DirectoryInfo(TempDirectory);
+
+            foreach (FileInfo file in directoryInfo.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo subDirectoryInfo in directoryInfo.GetDirectories())
+            {
+                subDirectoryInfo.Delete(true);
+            }
         }
 
         public bool SaveBuildShouldContinue()

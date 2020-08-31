@@ -1,9 +1,5 @@
  - Get game json by pressing key combo (Control + S + J) in-game and navigating to: C:\Users\username\AppData\Local\Chronicon\skilldata_0.94.2.json
  - Open json in text editor and delete the version header line
- - Run extracted game json thru http://convertjson.com/json-to-xml.htm
- - open resulting xml in notepad++ and use find/replace to remove "_" in all tree names (ie. Sky_Lord --> SkyLord)
-   -- Sky_Lord, Winter_Herald, Storm_Caller, Wind_Ranger
- - Remove Templar/Vengeance/None Skill
- - Find/replace to remove all instances of apostrophe (')
+ - Run extracted game json thru http://convertjson.com/json-to-xml.htm  // TODOSSG automate this using Newtonsoft JsonConvert.DeserializeXNode so you can then allow players to update without needing a new release
  - modify all skills with <max_rank>infinite</max_rank> to have the base modifier value in the node the corresponding description uses
    -- Damage, Health, Mana, Thorns --> change node VALUE to contain a value (can do find/replace on <value></value> for <value>10?</value>)
