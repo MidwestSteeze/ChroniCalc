@@ -741,10 +741,13 @@ namespace ChroniCalc
                 // Save the cleaned data to a text file for comparison
                 File.WriteAllText(TempDirectory + "\\SkillData_Cleaned_PostLoad_TemplarVengeanceNoneRemoved.txt", xmlData.OuterXml);
 
-                //   TODOSSG modify all skills with <max_rank>infinite</max_rank> to set Value of 10 with diminishing returns of 1 by every l00 levels
-                //     --Damage, Health, Mana, Thorns
-                //   Per Squarebit: I think it doesn't show up because of the diminishing returns.. it adds +10 for the first 100 ranks, then +9 for the next 100, +8 for the next 100.. etc, but it has a lower cap of 3
-                //   TODOSSG figure out the equation to allow a starting value of 10, but OnClick of the generic mastery skill buttons to level/delevel you'll need to do some appropriate math to incorporate the diminishing returns
+                // Default all Mastery skills with "infinite" max rank to have a starting value of 10
+                XmlNodeList infiniteMasteries = xmlData.SelectNodes("//max_rank[text()='infinite']");
+
+                foreach (XmlNode infiniteMastery in infiniteMasteries)
+                {
+                    infiniteMastery.ParentNode.SelectSingleNode("value").InnerText = "10";
+                }
 
                 // Save the cleaned data to a text file for comparison
                 File.WriteAllText(TempDirectory + "\\SkillData_PostLoad_Cleaned_All.txt", xmlData.OuterXml);
@@ -843,7 +846,7 @@ namespace ChroniCalc
                         skill.proc = NodeHasValue(skillNode.SelectSingleNode("proc")) ? Array.ConvertAll(skillNode.SelectSingleNode("proc").InnerXml.Split(','), int.Parse) : new int[] { };
                         skill.description_next = !(skillNode.SelectSingleNode("description_next") is null) ? skillNode.SelectSingleNode("description_next").InnerXml : "";
                         skill.description = !(skillNode.SelectSingleNode("description") is null) ? skillNode.SelectSingleNode("description").InnerXml : "";
-                        skill.max_rank = (!(skillNode.SelectSingleNode("max_rank") is null) && (skillNode.SelectSingleNode("max_rank").InnerXml.All(Char.IsDigit))) ? Convert.ToInt32(skillNode.SelectSingleNode("max_rank").InnerXml) : int.MaxValue;  // The data contains "infinite" for skills that don't have a max value, so represent that via int.MaxValue
+                        skill.max_rank = (!(skillNode.SelectSingleNode("max_rank") is null) && (skillNode.SelectSingleNode("max_rank").InnerXml.All(Char.IsDigit))) ? Convert.ToInt32(skillNode.SelectSingleNode("max_rank").InnerXml) : int.MaxValue;  // The data contains "infinite" for some mastery skills that don't have a max rank, so represent that via int.MaxValue
                         skill.type = GetSkillType(skillNode.SelectSingleNode("type"), tree.name, ref skill); // Type is dependant on max rank for Mastery skills, so need to call a method and do it after we set max rank
                         skill.y = !(skillNode.SelectSingleNode("y") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("y").InnerXml) : -1;
                         skill.cost1 = !(skillNode.SelectSingleNode("cost1") is null) ? Convert.ToInt32(skillNode.SelectSingleNode("cost1").InnerXml) : -1;

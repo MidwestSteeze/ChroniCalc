@@ -253,12 +253,12 @@ namespace ChroniCalc
             //Adjust the lookup index depending on the current level of the skill
             if (level > 0 && skill.max_rank != int.MaxValue)
             {
-                //Adjust index beacuse it's a 0-based lookup
+                //Adjust index beacuse it's a 0-based lookup into the array of Values on the Skill Data
                 index -= 1;
             }
             else
             {
-                //No level is yet assigned, or it's an infinite-level skill, so use the level 1 value
+                //No level is yet assigned, so use the level 1 value
                 index = 0;
             }
 
@@ -327,7 +327,45 @@ namespace ChroniCalc
                     }
                     break;
                 case "VALUE":
-                    replaceValue = skill.value[index].ToString();
+                    if (skill.max_rank == int.MaxValue)
+                    {
+                        // Skill is an infinite level skill and requires diminishing returns be applied to it
+                        // (Per Squarebit: I think it doesn't show up because of the diminishing returns.. it adds +10 for the first 100 ranks, then +9 for the next 100, +8 for the next 100.. etc, but it has a lower cap of 3)
+                        // Get the number of full "groups" of levels as the first part of calculating the total and incorporating diminishing returns per 100 levels
+                        int fullIterations = Convert.ToInt32(Math.Floor(level / 100.0));
+
+                        int total = 0;
+                        int value = 10;
+
+                        // Calculate, keeping a running total, the value based on the level of the skill but not yet considering any remainder (e.g. a level 200 skill would have 2 iterations)
+                        for (int i = 1; i <= fullIterations; i++)
+                        {
+                            // Total up the the value for the current iteration
+                            total += 100 * value;
+
+                            // Decrement the value by 1 to introduce diminishing returns for the next iteration (ie. group of 100 levels)
+                            //   The floor for diminishing returns on infinite skills is 3
+                            if (value > 3)
+                            {
+                                value--;
+                            }
+                        }
+
+                        // See if there's a partial iteration (e.g. 50 levels into the next 100 levels)
+                        Math.DivRem(level, 100, out int remainder);
+
+                        // Calculate and add on any remainder of levels if we did find one
+                        if (remainder > 0)
+                        {
+                            total += remainder * value;
+                        }
+
+                        replaceValue = total.ToString();
+                    }
+                    else
+                    {
+                        replaceValue = skill.value[index].ToString();
+                    }
                     break;
                 default:
                     MessageBox.Show("SkillTooltipPanel.GetReplacementValue(): No mapping found for " + replaceWord + " on Skill " + skill.name + ".");
@@ -342,7 +380,7 @@ namespace ChroniCalc
             //Set the current level of this skill
             level = inLevel; //TODOSSG change to just use skill.level?
 
-            if (this.skill.max_rank != int.MaxValue)
+            if (this.skill.max_rank != int.MaxValue) // TODOSSG change any condition looking at int.MaxValue to be a local procedure IsInfiniteSkill() that returns a boolean from if skill.max_rank = int.MaxValue instead, to help provide some clarity here
             {
                 lblRank.Text = "Rank " + level.ToString() + "/" + this.skill.max_rank.ToString();
             }

@@ -1308,7 +1308,7 @@
         <id>100400</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Damage</description_next>
         <description>+VALUE Damage</description>
@@ -6233,7 +6233,7 @@
         <id>100400</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Damage</description_next>
         <description>+VALUE Damage</description>
@@ -12137,7 +12137,7 @@
         <id>100400</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Damage</description_next>
         <description>+VALUE Damage</description>
@@ -18092,7 +18092,7 @@
         <id>100400</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Damage</description_next>
         <description>+VALUE Damage</description>
