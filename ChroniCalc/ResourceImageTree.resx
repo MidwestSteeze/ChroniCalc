@@ -160,8 +160,8 @@
   <data name="Redemption" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\Redemption.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SkyLord" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\SkyLord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Sky_Lord" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Sky_Lord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="spr_empty_skill_slot_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\spr_empty_skill_slot_0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,14 +175,14 @@
   <data name="Druid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\Druid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="StormCaller" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\StormCaller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Storm_Caller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Storm_Caller.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WindRanger" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\WindRanger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Wind_Ranger" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Wind_Ranger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WinterHerald" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Assets\Images\Tree\WinterHerald.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Winter_Herald" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Assets\Images\Tree\Winter_Herald.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IconConviction" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Assets\Images\Tree\IconConviction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

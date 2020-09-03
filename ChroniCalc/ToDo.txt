@@ -1,7 +1,6 @@
 ﻿ ToDo
  
  REPORTED BUGS NOT YET CATEGORIZED:
- - the underscore (_) trees need their backgrounds with the connecting lines renamed to contain the underscore as well
  - mastery infinite skills aren't readable with 3+ digit levels
  - json to xml conversion done programmatically so application can be used via control + s + j by the players and not require a new release of ChroniCalc
  - meet mininum point requirement on a skill tree for the next tier of skills, put 1 point in that skill, then remove a point from a skill in a previous tier and the furthest tier is still valid (but you're actually short 1 point to meet that tier's requirements)
