@@ -86,11 +86,11 @@
             // 
             this.lblPastebinHeader.AutoSize = true;
             this.lblPastebinHeader.BackColor = System.Drawing.Color.Transparent;
-            this.lblPastebinHeader.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPastebinHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPastebinHeader.ForeColor = System.Drawing.Color.White;
             this.lblPastebinHeader.Location = new System.Drawing.Point(3, 0);
             this.lblPastebinHeader.Name = "lblPastebinHeader";
-            this.lblPastebinHeader.Size = new System.Drawing.Size(90, 18);
+            this.lblPastebinHeader.Size = new System.Drawing.Size(91, 16);
             this.lblPastebinHeader.TabIndex = 4;
             this.lblPastebinHeader.Text = "Build Sharing";
             // 

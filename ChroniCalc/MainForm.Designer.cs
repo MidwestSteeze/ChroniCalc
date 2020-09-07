@@ -100,11 +100,11 @@
             // lblClass
             // 
             this.lblClass.AutoSize = true;
-            this.lblClass.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblClass.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.lblClass.ForeColor = System.Drawing.Color.White;
             this.lblClass.Location = new System.Drawing.Point(3, 3);
             this.lblClass.Name = "lblClass";
-            this.lblClass.Size = new System.Drawing.Size(48, 20);
+            this.lblClass.Size = new System.Drawing.Size(53, 18);
             this.lblClass.TabIndex = 2;
             this.lblClass.Text = "Class:";
             // 
@@ -131,9 +131,9 @@
             "Templar",
             "Warden",
             "Warlock"});
-            this.cboClass.Location = new System.Drawing.Point(53, 3);
+            this.cboClass.Location = new System.Drawing.Point(62, 3);
             this.cboClass.Name = "cboClass";
-            this.cboClass.Size = new System.Drawing.Size(127, 21);
+            this.cboClass.Size = new System.Drawing.Size(118, 21);
             this.cboClass.TabIndex = 0;
             this.cboClass.SelectedIndexChanged += new System.EventHandler(this.CboClass_SelectedIndexChanged);
             // 
@@ -320,11 +320,11 @@
             // lblBuildsCaption
             // 
             this.lblBuildsCaption.AutoSize = true;
-            this.lblBuildsCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblBuildsCaption.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.lblBuildsCaption.ForeColor = System.Drawing.Color.White;
             this.lblBuildsCaption.Location = new System.Drawing.Point(30, 0);
             this.lblBuildsCaption.Name = "lblBuildsCaption";
-            this.lblBuildsCaption.Size = new System.Drawing.Size(50, 20);
+            this.lblBuildsCaption.Size = new System.Drawing.Size(54, 18);
             this.lblBuildsCaption.TabIndex = 9;
             this.lblBuildsCaption.Text = "Builds";
             // 
@@ -418,11 +418,11 @@
             // lblInventoryCaption
             // 
             this.lblInventoryCaption.AutoSize = true;
-            this.lblInventoryCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblInventoryCaption.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.lblInventoryCaption.ForeColor = System.Drawing.Color.White;
             this.lblInventoryCaption.Location = new System.Drawing.Point(5, 0);
             this.lblInventoryCaption.Name = "lblInventoryCaption";
-            this.lblInventoryCaption.Size = new System.Drawing.Size(78, 20);
+            this.lblInventoryCaption.Size = new System.Drawing.Size(82, 18);
             this.lblInventoryCaption.TabIndex = 1;
             this.lblInventoryCaption.Text = "Inventory";
             // 
@@ -530,11 +530,11 @@
             // 
             this.lblTreeCaption.AutoSize = true;
             this.lblTreeCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblTreeCaption.Font = new System.Drawing.Font("Comic Sans MS", 11F);
+            this.lblTreeCaption.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.lblTreeCaption.ForeColor = System.Drawing.Color.White;
             this.lblTreeCaption.Location = new System.Drawing.Point(20, 0);
             this.lblTreeCaption.Name = "lblTreeCaption";
-            this.lblTreeCaption.Size = new System.Drawing.Size(49, 20);
+            this.lblTreeCaption.Size = new System.Drawing.Size(50, 18);
             this.lblTreeCaption.TabIndex = 7;
             this.lblTreeCaption.Text = "Trees";
             // 
@@ -558,12 +558,12 @@
             // 
             this.lblBuildName.AutoSize = true;
             this.lblBuildName.BackColor = System.Drawing.Color.Transparent;
-            this.lblBuildName.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuildName.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuildName.ForeColor = System.Drawing.Color.White;
             this.lblBuildName.Location = new System.Drawing.Point(0, 0);
             this.lblBuildName.Margin = new System.Windows.Forms.Padding(0);
             this.lblBuildName.Name = "lblBuildName";
-            this.lblBuildName.Size = new System.Drawing.Size(61, 15);
+            this.lblBuildName.Size = new System.Drawing.Size(68, 13);
             this.lblBuildName.TabIndex = 14;
             this.lblBuildName.Text = "<Unnamed>";
             // 
@@ -571,12 +571,12 @@
             // 
             this.lblMastery.AutoSize = true;
             this.lblMastery.BackColor = System.Drawing.Color.Transparent;
-            this.lblMastery.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMastery.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMastery.ForeColor = System.Drawing.Color.White;
             this.lblMastery.Location = new System.Drawing.Point(80, 15);
             this.lblMastery.Margin = new System.Windows.Forms.Padding(0);
             this.lblMastery.Name = "lblMastery";
-            this.lblMastery.Size = new System.Drawing.Size(14, 15);
+            this.lblMastery.Size = new System.Drawing.Size(13, 13);
             this.lblMastery.TabIndex = 13;
             this.lblMastery.Text = "0";
             // 
@@ -584,12 +584,12 @@
             // 
             this.lblMasteryCaption.AutoSize = true;
             this.lblMasteryCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblMasteryCaption.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMasteryCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMasteryCaption.ForeColor = System.Drawing.Color.White;
             this.lblMasteryCaption.Location = new System.Drawing.Point(60, 15);
             this.lblMasteryCaption.Margin = new System.Windows.Forms.Padding(0);
             this.lblMasteryCaption.Name = "lblMasteryCaption";
-            this.lblMasteryCaption.Size = new System.Drawing.Size(17, 15);
+            this.lblMasteryCaption.Size = new System.Drawing.Size(15, 13);
             this.lblMasteryCaption.TabIndex = 12;
             this.lblMasteryCaption.Text = "M";
             // 
@@ -597,12 +597,12 @@
             // 
             this.lblLevel.AutoSize = true;
             this.lblLevel.BackColor = System.Drawing.Color.Transparent;
-            this.lblLevel.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLevel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLevel.ForeColor = System.Drawing.Color.White;
             this.lblLevel.Location = new System.Drawing.Point(25, 15);
             this.lblLevel.Margin = new System.Windows.Forms.Padding(0);
             this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(14, 15);
+            this.lblLevel.Size = new System.Drawing.Size(13, 13);
             this.lblLevel.TabIndex = 11;
             this.lblLevel.Text = "0";
             // 
@@ -610,12 +610,12 @@
             // 
             this.lblLevelCaption.AutoSize = true;
             this.lblLevelCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblLevelCaption.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLevelCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLevelCaption.ForeColor = System.Drawing.Color.White;
             this.lblLevelCaption.Location = new System.Drawing.Point(0, 15);
             this.lblLevelCaption.Margin = new System.Windows.Forms.Padding(0);
             this.lblLevelCaption.Name = "lblLevelCaption";
-            this.lblLevelCaption.Size = new System.Drawing.Size(22, 15);
+            this.lblLevelCaption.Size = new System.Drawing.Size(22, 13);
             this.lblLevelCaption.TabIndex = 10;
             this.lblLevelCaption.Text = "Lv.";
             // 
@@ -623,12 +623,12 @@
             // 
             this.lblSkillPointsRemaining.AutoSize = true;
             this.lblSkillPointsRemaining.BackColor = System.Drawing.Color.Transparent;
-            this.lblSkillPointsRemaining.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSkillPointsRemaining.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSkillPointsRemaining.ForeColor = System.Drawing.Color.White;
             this.lblSkillPointsRemaining.Location = new System.Drawing.Point(71, 30);
             this.lblSkillPointsRemaining.Margin = new System.Windows.Forms.Padding(0);
             this.lblSkillPointsRemaining.Name = "lblSkillPointsRemaining";
-            this.lblSkillPointsRemaining.Size = new System.Drawing.Size(14, 15);
+            this.lblSkillPointsRemaining.Size = new System.Drawing.Size(13, 13);
             this.lblSkillPointsRemaining.TabIndex = 9;
             this.lblSkillPointsRemaining.Text = "0";
             // 
@@ -636,12 +636,12 @@
             // 
             this.lblSkillPointsRemainingCaption.AutoSize = true;
             this.lblSkillPointsRemainingCaption.BackColor = System.Drawing.Color.Transparent;
-            this.lblSkillPointsRemainingCaption.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSkillPointsRemainingCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSkillPointsRemainingCaption.ForeColor = System.Drawing.Color.White;
             this.lblSkillPointsRemainingCaption.Location = new System.Drawing.Point(0, 30);
             this.lblSkillPointsRemainingCaption.Margin = new System.Windows.Forms.Padding(0);
             this.lblSkillPointsRemainingCaption.Name = "lblSkillPointsRemainingCaption";
-            this.lblSkillPointsRemainingCaption.Size = new System.Drawing.Size(68, 15);
+            this.lblSkillPointsRemainingCaption.Size = new System.Drawing.Size(60, 13);
             this.lblSkillPointsRemainingCaption.TabIndex = 8;
             this.lblSkillPointsRemainingCaption.Text = "Skill Points:";
             // 

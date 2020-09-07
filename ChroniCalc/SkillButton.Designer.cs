@@ -57,12 +57,12 @@
             this.lblSkillLevel.AutoSize = true;
             this.lblSkillLevel.BackColor = System.Drawing.Color.Black;
             this.lblSkillLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblSkillLevel.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSkillLevel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSkillLevel.ForeColor = System.Drawing.Color.White;
             this.lblSkillLevel.Location = new System.Drawing.Point(27, 2);
             this.lblSkillLevel.Margin = new System.Windows.Forms.Padding(0);
             this.lblSkillLevel.Name = "lblSkillLevel";
-            this.lblSkillLevel.Size = new System.Drawing.Size(17, 18);
+            this.lblSkillLevel.Size = new System.Drawing.Size(17, 16);
             this.lblSkillLevel.TabIndex = 1;
             this.lblSkillLevel.Text = "0";
             this.lblSkillLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

@@ -1,9 +1,7 @@
 ﻿ ToDo
- 
+
  REPORTED BUGS NOT YET CATEGORIZED:
- - mastery infinite skills aren't readable with 3+ digit levels
- - json to xml conversion done programmatically so application can be used via control + s + j by the players and not require a new release of ChroniCalc
- - meet mininum point requirement on a skill tree for the next tier of skills, put 1 point in that skill, then remove a point from a skill in a previous tier and the furthest tier is still valid (but you're actually short 1 point to meet that tier's requirements)
+ - Change <unnamed> to <unsaved>
  
  BEFORE NEXT RELEASE:
 	- (It's eating up paste counts, make its own account? IN STASH RDY FOR TESTING) change EChroniCalc exception handling to paste the callstack and error to pastebin and provide a link to the user to send to the admin
@@ -30,19 +28,19 @@
      - Phase 1: just the totals (modifiers, mulitpliers, conversions, etc)
 	 - Phase 2: actual damage numbers and dps
 
- 
+
  CLASSES:
 
 
  INVENTORY:
 
- 
+
  SKILLS:
-	
+
 
  STATS: 
 
- 
+
  TREES:
 
 
@@ -50,9 +48,9 @@
 	- on close of program, prompt to save build if currently modified
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
 	- Remove tree.level entirely? it's not serialized into the Build XML and i don't think it's actually used anywhere in code
-	- no Comic Sans please, different font? has a bad rep, other fonts (verdana, helvetica or arial) potentially handle display better		
+	- mastery infinite skills aren't readable with 3+ digit levels
 	- look into clearing the treeStatus flag when you're done executing the logic they're being set for or return-ing out of an error handler
 	- enchance Alerts.Info/Warning/Error to include MessageBoxIcon
-	- modify the processes of loading external data (ie. Skill Data Export and Slot_IDs) to be a bit more automated so you can just place the new version in a folder and re-run the application (for when i stop supporting this app)
+	- modify the processes of loading external data (ie. Skill Data Export and Slot_IDs) to be a bit more automated (JSON Serializers Deserialize) so players potentially can just place the new version in a folder and re-run the application (for when i stop supporting this app)
 
  POST RELEASE MISC:
