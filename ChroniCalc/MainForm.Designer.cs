@@ -563,9 +563,9 @@
             this.lblBuildName.Location = new System.Drawing.Point(0, 0);
             this.lblBuildName.Margin = new System.Windows.Forms.Padding(0);
             this.lblBuildName.Name = "lblBuildName";
-            this.lblBuildName.Size = new System.Drawing.Size(68, 13);
+            this.lblBuildName.Size = new System.Drawing.Size(73, 13);
             this.lblBuildName.TabIndex = 14;
-            this.lblBuildName.Text = "<Unnamed>";
+            this.lblBuildName.Text = "<Not Saved>";
             // 
             // lblMastery
             // 

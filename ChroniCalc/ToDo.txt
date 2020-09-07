@@ -1,7 +1,8 @@
 ﻿ ToDo
 
  REPORTED BUGS NOT YET CATEGORIZED:
- - Change <unnamed> to <unsaved>
+ - Clean up tree backgrounds (you can see the skill icons on the base tree images behind your skill button overlays
+ - Nav Button Icons hover text delay updates (update text before it's displayed)
  
  BEFORE NEXT RELEASE:
 	- (It's eating up paste counts, make its own account? IN STASH RDY FOR TESTING) change EChroniCalc exception handling to paste the callstack and error to pastebin and provide a link to the user to send to the admin
