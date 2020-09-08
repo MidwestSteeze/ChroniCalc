@@ -723,8 +723,8 @@ namespace ChroniCalc
                 // Remove apostrophes
                 data = data.Replace("'", "");
 
-                // Save the cleaned data to a text file for comparison
-                File.WriteAllText(TempDirectory + "\\SkillData_Cleaned_PreLoad.txt", data);  //TODOSSG print a translated version with escaped characters translated to their actual special characters
+                // Save the cleaned data to a text file for comparison //TODO only do this in debug mode
+                // File.WriteAllText(TempDirectory + "\\SkillData_Cleaned_PreLoad.txt", data);  //TODOSSG print a translated version with escaped characters translated to their actual special characters
 
                 return data;
             }
@@ -738,8 +738,8 @@ namespace ChroniCalc
                     TemplarVengeance.RemoveChild(TemplarVengeance.SelectSingleNode("None"));
                 }
 
-                // Save the cleaned data to a text file for comparison
-                File.WriteAllText(TempDirectory + "\\SkillData_Cleaned_PostLoad_TemplarVengeanceNoneRemoved.txt", xmlData.OuterXml);
+                // Save the cleaned data to a text file for comparison //TODO only do this in debug mode
+                // File.WriteAllText(TempDirectory + "\\SkillData_Cleaned_PostLoad_TemplarVengeanceNoneRemoved.txt", xmlData.OuterXml);
 
                 // Default all Mastery skills with "infinite" max rank to have a starting value of 10
                 XmlNodeList infiniteMasteries = xmlData.SelectNodes("//max_rank[text()='infinite']");
@@ -749,8 +749,8 @@ namespace ChroniCalc
                     infiniteMastery.ParentNode.SelectSingleNode("value").InnerText = "10";
                 }
 
-                // Save the cleaned data to a text file for comparison
-                File.WriteAllText(TempDirectory + "\\SkillData_PostLoad_Cleaned_All.txt", xmlData.OuterXml);
+                // Save the cleaned data to a text file for comparison //TODO only do this in debug mode
+                // File.WriteAllText(TempDirectory + "\\SkillData_PostLoad_Cleaned_All.txt", xmlData.OuterXml);
 
                 return xmlData;
             }
