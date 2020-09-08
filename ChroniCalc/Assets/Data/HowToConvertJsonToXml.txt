@@ -1,5 +1,3 @@
- - Get game json by pressing key combo (Control + S + J) in-game and navigating to: C:\Users\username\AppData\Local\Chronicon\skilldata_0.94.2.json
+ - Get game json by pressing key combo (Control + S + J) in-game and navigating to: C:\Users\username\AppData\Local\Chronicon\skilldata_x.y.z.json
  - Open json in text editor and delete the version header line
  - Run extracted game json thru http://convertjson.com/json-to-xml.htm  // TODOSSG automate this using Newtonsoft JsonConvert.DeserializeXNode so you can then allow players to update without needing a new release
- - modify all skills with <max_rank>infinite</max_rank> to have the base modifier value in the node the corresponding description uses
-   -- Damage, Health, Mana, Thorns --> change node VALUE to contain a value (can do find/replace on <value></value> for <value>10?</value>)

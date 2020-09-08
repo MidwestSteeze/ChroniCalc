@@ -1,7 +1,8 @@
 ﻿ ToDo
 
- REPORTED BUGS NOT YET CATEGORIZED:
- 
+ BUGS/FEATURES NOT YET CATEGORIZED:
+  - (feature) add search functionality to trees
+  - (bug) mastery tree infinite skills don't show their value until you put a first point in
  
  BEFORE NEXT RELEASE:
 
@@ -36,10 +37,12 @@
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
 	- Remove tree.level entirely? it's not serialized into the Build XML and i don't think it's actually used anywhere in code
 	- mastery infinite skills aren't readable with 3+ digit levels
-	- adjust all MessageBox.Show to include caption and icon
 	- look into clearing the treeStatus flag when you're done executing the logic they're being set for or return-ing out of an error handler
+	- adjust all MessageBox.Show to utilize Alert() class
 	- enchance Alerts.Info/Warning/Error to include MessageBoxIcon
 	- modify the processes of loading external data (ie. Skill Data Export and Slot_IDs) to be a bit more automated (JSON Serializers Deserialize) so players potentially can just place the new version in a folder and re-run the application (for when i stop supporting this app)
+	  - is this the best solution?  it puts dependancy on the user to update their own manually...could i create an update button instead that'd retrieve it from the git repo (this'd still require me to update it)? then, put a label somewhere to signify what version of skill data is being used
 	- Nav Button Icons hover text delay updates (update text before it's displayed)
+	- move pastebin api dev keys into external config file so to not require an application build if more are added
 
  POST RELEASE MISC:

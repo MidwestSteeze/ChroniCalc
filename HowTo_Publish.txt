@@ -1,10 +1,10 @@
 Set Enviroment to Release
 Increment Version Number in Project Properties --> Publish
   - Major: increment when major functionality add/change or initial release
-  - Minor: increment when significant functionality add/change
+  - Minor: increment to match skill data version from game
   - Build: increment by 1
   - Revision: Count # of commits since last publish
-Increment AssemblyFileVersion in AssemblyInfo.cs to match the Major.Minor.Build in the Publish value: [assembly: AssemblyFileVersion("0.9.2.0")]  
+Increment AssemblyFileVersion in AssemblyInfo.cs to match the Major.Minor.Build in the Publish value: [assembly: AssemblyFileVersion("0.9.2.0")]
 Clean Release
 Build Release
 Publish Release

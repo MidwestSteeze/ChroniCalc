@@ -16,8 +16,8 @@
         <value>1500,2000,2500</value>
         <proc>500,600,700</proc>
         <type>Passive Skill</type>
-        <description_next>+PROC% chance to create a barrier absorbing all damage up to to EFFECT% of the Templar&#x27;s maximum Health, lasting DURATION seconds.</description_next>
-        <description>PROC% chance on being hit to create a barrier, absorbing all damage up to to EFFECT% of the Templar&#x27;s maximum Health. Lasts DURATION seconds. While wearing a Tome, there is an additional |10%¥ chance to trigger the Barrier. (This |10%¥ is included in the trigger chance listed when you wear the Tome)</description>
+        <description_next>+PROC% chance to create a barrier absorbing all direct damage up to to EFFECT% of the Templar&#x27;s maximum Health, lasting DURATION seconds.</description_next>
+        <description>PROC% chance on being hit to create a barrier, absorbing all direct damage up to to EFFECT% of the Templar&#x27;s maximum Health. Lasts DURATION seconds. While wearing a Tome, there is an additional |10%¥ chance to trigger the Barrier. (This |10%¥ is included in the trigger chance listed when you wear the Tome)</description>
         <max_rank>3</max_rank>
         <y>6</y>
         <name>Grace</name>
@@ -870,7 +870,7 @@
         <element>Physical</element>
         <value>0</value>
         <proc>0</proc>
-        <description>All |Aura¥ skills also provide EFFECT% increased damage to its element.</description>
+        <description>All |Aura¥ skills also provide EFFECT% increased damage to their element.</description>
         <max_rank>1</max_rank>
         <y>0</y>
         <name>Supporter</name>
@@ -1577,7 +1577,7 @@
         <id>100401</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Health</description_next>
         <description>+VALUE Health</description>
@@ -1664,7 +1664,7 @@
         <id>100402</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Mana</description_next>
         <description>+VALUE Mana</description>
@@ -1682,7 +1682,7 @@
         <id>100403</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Thorns</description_next>
         <description>+VALUE Thorns</description>
@@ -3101,8 +3101,8 @@
         <element>Physical</element>
         <value>0</value>
         <proc>0</proc>
-        <description_next>_EPH_Physical¥ Satellites now deal Thorns damage. Requires the Thorns element to be _EPH_Physical¥ (default).</description_next>
-        <description>_EPH_Physical¥ Satellites now deal Thorns damage. Requires the Thorns element to be _EPH_Physical¥ (default).</description>
+        <description_next>_EPH_Physical¥ Satellites now deal Thorns damage instead. Requires the Thorns element to be _EPH_Physical¥ (default).</description_next>
+        <description>_EPH_Physical¥ Satellites now deal Thorns damage instead. Requires the Thorns element to be _EPH_Physical¥ (default).</description>
         <max_rank>1</max_rank>
         <y>0</y>
         <name>Thorn Orbs</name>
@@ -6412,7 +6412,7 @@
         <id>100401</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Health</description_next>
         <description>+VALUE Health</description>
@@ -6500,7 +6500,7 @@
         <id>100402</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Mana</description_next>
         <description>+VALUE Mana</description>
@@ -6518,7 +6518,7 @@
         <id>100403</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Thorns</description_next>
         <description>+VALUE Thorns</description>
@@ -9457,7 +9457,7 @@
         <proc>0,0,0,0,0</proc>
         <type>Heritage Skill</type>
         <description_next>+EFFECT% to all resistances. |Use:¥ Freeze foes within RANGE meters for DURATION seconds.</description_next>
-        <description>When active in a slot, improves all resistances up to EFFECT% at Minimum Rage. At Maximum Rage the resistances are improved half as much |Use:¥ Freeze all foes within RANGE meters you completely, stunning them for DURATION seconds.</description>
+        <description>When active in a slot, improves all resistances up to EFFECT% at Minimum Rage. At Maximum Rage the resistances are improved half as much |Use:¥ Freeze all foes within RANGE meters of you completely, stunning them for DURATION seconds.</description>
         <max_rank>5</max_rank>
         <y>1</y>
         <name>Frostskin</name>
@@ -9476,8 +9476,8 @@
         <value>0,0,0,0,0</value>
         <proc>0,0,0,0,0</proc>
         <type>Passive Skill</type>
-        <description_next>Reduces all damage taken by EFFECT%.</description_next>
-        <description>Reduces all damage taken by EFFECT%.</description>
+        <description_next>Reduces all direct damage taken by EFFECT%.</description_next>
+        <description>Reduces all direct damage taken by EFFECT%.</description>
         <max_rank>5</max_rank>
         <y>4</y>
         <name>Hardened</name>
@@ -12422,7 +12422,7 @@
         <id>100401</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Health</description_next>
         <description>+VALUE Health</description>
@@ -12527,7 +12527,7 @@
         <id>100402</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Mana</description_next>
         <description>+VALUE Mana</description>
@@ -12563,7 +12563,7 @@
         <id>100403</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Thorns</description_next>
         <description>+VALUE Thorns</description>
@@ -14950,7 +14950,7 @@
         <proc>0,0,0</proc>
         <type>Active Skill</type>
         <description_next>Shields for EFFECT% of Warden&#x27;s maximum Health for DURATION seconds.</description_next>
-        <description>The Warden and her allies are surrounded by a shield of roots, absorbing all damage up to EFFECT% of the Warden&#x27;s maximum Health. Shield lasts for DURATION seconds or until broken. Shield cannot affect companions.</description>
+        <description>The Warden and her allies are surrounded by a shield of roots, absorbing all direct damage up to EFFECT% of the Warden&#x27;s maximum Health. Shield lasts for DURATION seconds or until broken. Shield cannot affect companions.</description>
         <max_rank>3</max_rank>
         <y>0</y>
         <cost1>6</cost1>
@@ -15046,26 +15046,6 @@
         <cost1>3</cost1>
         <name>Hallucinative Gas</name>
       </Hallucinative_Gas>
-      <Poison_Arrow>
-        <effect>0%,0%,0%,0%,0%</effect>
-        <duration>0,0,0,0,0</duration>
-        <skill_requirement>none</skill_requirement>
-        <x>2</x>
-        <damage>100%,110%,120%,130%,140%</damage>
-        <range2>2.05,2.10,2.15,2.20,2.25</range2>
-        <family>Nature</family>
-        <id>110</id>
-        <range>2.05,2.10,2.15,2.20,2.25</range>
-        <element>Poison</element>
-        <value>0,0,0,0,0</value>
-        <proc>0,0,0,0,0</proc>
-        <type>Active Skill</type>
-        <description_next>DAMAGE% XDAM _EPO_Poison¥ damage in a RANGE meter radius.</description_next>
-        <description>The Warden fires a poisonous arrow, dealing DAMAGE% XDAM _EPO_Poison¥ damage to all foes within RANGE meters of impact. This skill should replace the default attack.</description>
-        <max_rank>5</max_rank>
-        <y>3</y>
-        <name>Poison Arrow</name>
-      </Poison_Arrow>
       <Leeching_Vines>
         <effect>0%,0%,0%</effect>
         <duration>5,5,5</duration>
@@ -15237,6 +15217,26 @@
         <cost1>5</cost1>
         <name>Vine Shot</name>
       </Vine_Shot>
+      <Poison_Shot>
+        <effect>0%,0%,0%,0%,0%</effect>
+        <duration>0,0,0,0,0</duration>
+        <skill_requirement>none</skill_requirement>
+        <x>2</x>
+        <damage>100%,110%,120%,130%,140%</damage>
+        <range2>2.05,2.10,2.15,2.20,2.25</range2>
+        <family>Nature</family>
+        <id>110</id>
+        <range>2.05,2.10,2.15,2.20,2.25</range>
+        <element>Poison</element>
+        <value>0,0,0,0,0</value>
+        <proc>0,0,0,0,0</proc>
+        <type>Active Skill</type>
+        <description_next>DAMAGE% XDAM _EPO_Poison¥ damage in a RANGE meter radius.</description_next>
+        <description>The Warden fires a poisonous arrow, dealing DAMAGE% XDAM _EPO_Poison¥ damage to all foes within RANGE meters of impact. This skill should replace the default attack.</description>
+        <max_rank>5</max_rank>
+        <y>3</y>
+        <name>Poison Shot</name>
+      </Poison_Shot>
     </Druid>
     <Winter_Herald>
       <Pelted>
@@ -18289,7 +18289,7 @@
         <id>100401</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Health</description_next>
         <description>+VALUE Health</description>
@@ -18394,7 +18394,7 @@
         <id>100402</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Mana</description_next>
         <description>+VALUE Mana</description>
@@ -18412,7 +18412,7 @@
         <id>100403</id>
         <range></range>
         <element>Ethereal</element>
-        <value>10</value>
+        <value></value>
         <proc></proc>
         <description_next>+VALUE Thorns</description_next>
         <description>+VALUE Thorns</description>
@@ -20577,7 +20577,7 @@
         <value>0,0,0</value>
         <proc>1500,2000,2500</proc>
         <type>Passive Skill</type>
-        <description_next>+EFFECT% Maximum Health and Maximum Mana restored.</description_next>
+        <description_next>PROC% chance to restore EFFECT% Maximum Health and Maximum Mana.</description_next>
         <description>Collecting a Soul has a PROC% chance to restore EFFECT% of the Warlock&#x27;s Maximum Health and Maximum Mana.</description>
         <max_rank>3</max_rank>
         <y>0</y>
@@ -21081,7 +21081,7 @@
         <proc>0,0,0</proc>
         <type>Active Skill</type>
         <description_next>Shielded for EFFECT% of Maximum Health per Soul sacrificed.</description_next>
-        <description>The Warlock sacrifices all Souls to grant himself a protective barrier, shielding him from all damage equal to EFFECT% of his Maximum Health per Soul sacrificed. Shield lasts until broken.</description>
+        <description>The Warlock sacrifices all Souls to grant himself a protective barrier, shielding him from all direct damage equal to EFFECT% of his Maximum Health per Soul sacrificed. Shield lasts until broken.</description>
         <max_rank>3</max_rank>
         <y>1</y>
         <name>Soul Barrier</name>
@@ -22344,7 +22344,7 @@
         <proc>0,0,0</proc>
         <type>Passive Skill</type>
         <description_next>EFFECT% of Maximum Health shielded per stack, VALUE stacks.</description_next>
-        <description>Collecting a Soul grants the Warlock a |Frozen Veil¥ barrier, shielding from all damage equal to EFFECT% of his Maximum Health. The barrier can stack VALUE times and lasts until broken. When the Barrier is broken, it cannot be re-applied for ~DURATION seconds.</description>
+        <description>Collecting a Soul grants the Warlock a |Frozen Veil¥ barrier, shielding from all direct damage equal to EFFECT% of his Maximum Health. The barrier can stack VALUE times and lasts until broken. When the Barrier is broken, it cannot be re-applied for ~DURATION seconds.</description>
         <max_rank>3</max_rank>
         <y>6</y>
         <name>Frozen Veil</name>
