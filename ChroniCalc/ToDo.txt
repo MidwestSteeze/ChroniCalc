@@ -7,20 +7,6 @@
  - add more pastebin keys
  
  BEFORE NEXT RELEASE:
-	- (It's eating up paste counts, make its own account? IN STASH RDY FOR TESTING) change EChroniCalc exception handling to paste the callstack and error to pastebin and provide a link to the user to send to the admin
-		- Pastebin: create more accounts to acquire more API keys since youll probably hit the 25 posts per 24h limit once this gets in the hands of more people. math.rand on the array of keys to pull a random, or oldest, key and use it				   	
-			- and another, separate, subset of keys for Error Reporting			  
-		- tests to complete:
-			- Build Share:
-			   - *online no prior exception
-			   - online with prior exception
-			   - *offline no prior exception
-			   - offline with prior exception
-			- Build Load:
-			   - *online no prior exception
-			   - online with prior exception
-			   - *offline no prior exception
-			   - offline with prior exception
 
 
  MAJORS:
