@@ -69,11 +69,11 @@ namespace ChroniCalc
             }
             catch (System.Net.WebException)
             {
-                MessageBox.Show("Unable to reach Pastebin.  This function is not currently available.");
+                MessageBox.Show("Unable to reach Pastebin.  This function is not currently available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (PasteBinApiException ex)
             {
-                MessageBox.Show("Unable to retrieve Build URL from Pastebin.  This function is not currently available." + Environment.NewLine + ex.Message);
+                MessageBox.Show("Unable to retrieve Build URL from Pastebin.  This function is not currently available." + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -110,7 +110,7 @@ namespace ChroniCalc
             }
             catch (System.Net.WebException)
             {
-                MessageBox.Show("Unable to reach Pastebin.  Invalid URL or this function is not currently available.");
+                MessageBox.Show("Unable to reach Pastebin.  Invalid URL or this function is not currently available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {

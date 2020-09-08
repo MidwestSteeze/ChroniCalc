@@ -3,6 +3,8 @@
  REPORTED BUGS NOT YET CATEGORIZED:
  - Clean up tree backgrounds (you can see the skill icons on the base tree images behind your skill button overlays
  - Nav Button Icons hover text delay updates (update text before it's displayed)
+ - adjust all MessageBox.Show to include caption and icon
+ - add more pastebin keys
  
  BEFORE NEXT RELEASE:
 	- (It's eating up paste counts, make its own account? IN STASH RDY FOR TESTING) change EChroniCalc exception handling to paste the callstack and error to pastebin and provide a link to the user to send to the admin
@@ -12,12 +14,12 @@
 			- Build Share:
 			   - *online no prior exception
 			   - online with prior exception
-			   - offline no prior exception
+			   - *offline no prior exception
 			   - offline with prior exception
 			- Build Load:
-			   - online no prior exception
+			   - *online no prior exception
 			   - online with prior exception
-			   - offline no prior exception
+			   - *offline no prior exception
 			   - offline with prior exception
 
 
