@@ -1,10 +1,7 @@
 ﻿ ToDo
 
  REPORTED BUGS NOT YET CATEGORIZED:
- - Clean up tree backgrounds (you can see the skill icons on the base tree images behind your skill button overlays
- - Nav Button Icons hover text delay updates (update text before it's displayed)
- - adjust all MessageBox.Show to include caption and icon
- - add more pastebin keys
+ 
  
  BEFORE NEXT RELEASE:
 
@@ -35,11 +32,14 @@
 
  POST BETA MISC:
 	- on close of program, prompt to save build if currently modified
+	- add more pastebin keys
 	- SaveBuild: rework so it's not an actual SaveFileDialog but instead just a simple prompt for name of the build (ie. create your own CustomFileDialog control) and allows user to move/re-order them as well or at least click column header to order by BuildName and Stat
 	- Remove tree.level entirely? it's not serialized into the Build XML and i don't think it's actually used anywhere in code
 	- mastery infinite skills aren't readable with 3+ digit levels
+	- adjust all MessageBox.Show to include caption and icon
 	- look into clearing the treeStatus flag when you're done executing the logic they're being set for or return-ing out of an error handler
 	- enchance Alerts.Info/Warning/Error to include MessageBoxIcon
 	- modify the processes of loading external data (ie. Skill Data Export and Slot_IDs) to be a bit more automated (JSON Serializers Deserialize) so players potentially can just place the new version in a folder and re-run the application (for when i stop supporting this app)
+	- Nav Button Icons hover text delay updates (update text before it's displayed)
 
  POST RELEASE MISC:

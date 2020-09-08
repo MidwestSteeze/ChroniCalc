@@ -59,7 +59,7 @@
             this.lblSkillLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSkillLevel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSkillLevel.ForeColor = System.Drawing.Color.White;
-            this.lblSkillLevel.Location = new System.Drawing.Point(27, 2);
+            this.lblSkillLevel.Location = new System.Drawing.Point(27, 0);
             this.lblSkillLevel.Margin = new System.Windows.Forms.Padding(0);
             this.lblSkillLevel.Name = "lblSkillLevel";
             this.lblSkillLevel.Size = new System.Drawing.Size(17, 16);
