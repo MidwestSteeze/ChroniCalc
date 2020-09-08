@@ -24,13 +24,19 @@ namespace ChroniCalc
 
         static string key { get; set; } = "A!9HHhi%XjjYY4YP2@Nob009X";
 
+        // TODO put these into a config file so adding more of these doesn't require a build
         private readonly string[] DevKeysBuildShare =
         {
             "9074d08a3c19871f793663a0361c6976",
             "ae626aa58df38f743f69d73ae20055a6",
             "066efa650ae5d795cb698c5dbeb69a01",
             "5effc482dd5a3518e4bba2c7619f4c4b",
-            "34e63562a182235bc302665f28508ba9"
+            "34e63562a182235bc302665f28508ba9",
+            "pzUzpMZHbvb1wyJk8mkImXA2hqS-TshH",
+            "cCl1-ky44nTUTVw9DwBDGn8LIHlAfBtS",
+            "EBId1D_-hvgab94mETt5cGl6RLMNcguP",
+            "0SmWCN7JxHFdyTzc6ihANUI07cLnmmJy",
+            "Re0MyEObT7htYiSrywJVrqFJttm6HwWn"
         };
 
         private readonly string[] DevKeysError =
@@ -39,7 +45,12 @@ namespace ChroniCalc
             "e2fbe4e244169b76bfb4e4945a692544",
             "13cac883e311b4d9cad23a8f595a4460",
             "3332417fd39373a79e15794d4de0aaf0",
-            "2b0643b10902af85ba9e004ddf9ae0ea"
+            "2b0643b10902af85ba9e004ddf9ae0ea",
+            "6marjGZMkToSi68rkavXHHspKeu5eVTw",
+            "916WWNWsmQWDuqhQ_MGgWS6k8cUC9CVz",
+            "oFJb1OrIs6DTzKKx2KmeEkX8xJU4NIwY",
+            "7UDbpO2ByEf2jHFUVDwKY1d5BxWyeTjB",
+            "Vz5hWlBN6NlBW84MtFrrXxN_JW4Gvcz_"
         };
 
         public enum PBType
