@@ -1,13 +1,16 @@
 Set Enviroment to Release
 Increment Version Number in Project Properties --> Publish
   - Major: increment when major functionality add/change or initial release
-  - Minor: increment to match skill data version from game
+  - Minor: increment when significant functionality add/change
   - Build: increment by 1
-  - Revision: Count # of commits since last publish
+  - Revision: set as version of skill data used from game (e.g. 1005 for v1.00.5)
 Increment AssemblyFileVersion in AssemblyInfo.cs to match the Major.Minor.Build in the Publish value: [assembly: AssemblyFileVersion("0.9.2.0")]
-Clean Release
-Build Release
-Publish Release
+Clean Solution
+Build Solution
+Publish Project
+ - Publish Location: C:\Users\username\Documents\Visual Studio 2019\Projects\ChroniCalc\publish\
+ - How Will Users Install: From A Website --> https://raw.githubusercontent.com/MidwestSteeze/ChroniCalc/master/publish/
+ - Available Offline? Yes.
 Commit and Push base files and also files generated in publish\Application Files\(newVersion)\
  - Commit Message: Publish: vA.B.C.D artifacts -alpha-beta
  Add new tag on that commit as "vA.B.C.D" -alpha-beta
