@@ -27,6 +27,9 @@ ChroniCalc - An offline build planning tool for the Action RPG ChroniCalc
 	* **Save**: Save your Build to your local hard drive so you can reference or modify it later.
 	* **Load**: Load your Build for further reference or modification.
 	* **Share**: Share your Build with other players by uploading it to Pastebin.  A perfect way to provide additional information in your Build Guides.
+	* **Import**: Import your Build directly from Chronicon by selecting the ".build" file created by NPC Korem after performing his "Export Character Build" function.
+	* **Export**: Export your Build and copy it to the location listed below to be able to import it directly into Chronicon by speaking with NPC Korem and performing his "Import Character Build" function.
+		* C:\Users\username\AppData\Local\Chronicon\save\builds
 
 ## Additional Usage Tips
  * **Left-click**: Increase level of the selected Skill by 1
