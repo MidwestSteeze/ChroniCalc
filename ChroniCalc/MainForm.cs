@@ -73,7 +73,7 @@ namespace ChroniCalc
                 if (ApplicationDeployment.IsNetworkDeployed)
                 {
                     this.Text = string.Format(this.Text + " - v{0}",
-                        ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(3));
+                        ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(4));
                 }
 
                 // Create a new BuildShare form that will display when the Build Sharing button is clicked

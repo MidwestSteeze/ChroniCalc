@@ -22,5 +22,5 @@ On GitHub, draft a new release
  - Version: vA.B.C.D -alpha-beta
  - drag and drop in setup.exe from publish folder
  - drag and drop in ReadMe.txt from the ChroniCalc folder
-  - Note any major changes in the Description field
-  - Or, copy/paste the ReadMe.txt into the Description field
+ - Note any major changes in the Description field (these would be your Patch Notes)
+   - Or, copy/paste the ReadMe.txt into the Description field
