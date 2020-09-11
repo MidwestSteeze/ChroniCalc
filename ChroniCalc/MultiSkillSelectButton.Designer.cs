@@ -31,6 +31,7 @@
             this.pnlMultiSkillSelectButton = new System.Windows.Forms.Panel();
             this.lblMultiSkillSelectLevel = new System.Windows.Forms.Label();
             this.pbMultiSkillSelectIcon = new System.Windows.Forms.PictureBox();
+            this.lblMultiSkillSelectHighlight = new System.Windows.Forms.Label();
             this.pnlMultiSkillSelectButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMultiSkillSelectIcon)).BeginInit();
             this.SuspendLayout();
@@ -41,6 +42,7 @@
             this.pnlMultiSkillSelectButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlMultiSkillSelectButton.Controls.Add(this.lblMultiSkillSelectLevel);
             this.pnlMultiSkillSelectButton.Controls.Add(this.pbMultiSkillSelectIcon);
+            this.pnlMultiSkillSelectButton.Controls.Add(this.lblMultiSkillSelectHighlight);
             this.pnlMultiSkillSelectButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMultiSkillSelectButton.Location = new System.Drawing.Point(0, 0);
             this.pnlMultiSkillSelectButton.Margin = new System.Windows.Forms.Padding(0);
@@ -71,7 +73,7 @@
             this.pbMultiSkillSelectIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbMultiSkillSelectIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbMultiSkillSelectIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pbMultiSkillSelectIcon.Location = new System.Drawing.Point(4, 6);
             this.pbMultiSkillSelectIcon.Margin = new System.Windows.Forms.Padding(0);
             this.pbMultiSkillSelectIcon.Name = "pbMultiSkillSelectIcon";
@@ -79,6 +81,21 @@
             this.pbMultiSkillSelectIcon.TabIndex = 0;
             this.pbMultiSkillSelectIcon.TabStop = false;
             this.pbMultiSkillSelectIcon.Click += new System.EventHandler(this.MultiSkillSelectButton_Click);
+            // 
+            // lblSkillHighlight
+            // 
+            this.lblMultiSkillSelectHighlight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMultiSkillSelectHighlight.BackColor = System.Drawing.Color.Transparent;
+            this.lblMultiSkillSelectHighlight.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lblMultiSkillSelectHighlight.Location = new System.Drawing.Point(2, 4);
+            this.lblMultiSkillSelectHighlight.Margin = new System.Windows.Forms.Padding(0);
+            this.lblMultiSkillSelectHighlight.Name = "lblMultiSkillSelectHighlight";
+            this.lblMultiSkillSelectHighlight.Size = new System.Drawing.Size(48, 51);
+            this.lblMultiSkillSelectHighlight.TabIndex = 2;
+            this.lblMultiSkillSelectHighlight.Text = "";
+            this.lblMultiSkillSelectHighlight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MultiSkillSelectButton
             // 
@@ -101,5 +118,6 @@
         private System.Windows.Forms.Panel pnlMultiSkillSelectButton;
         private System.Windows.Forms.PictureBox pbMultiSkillSelectIcon;
         private System.Windows.Forms.Label lblMultiSkillSelectLevel;
+        private System.Windows.Forms.Label lblMultiSkillSelectHighlight;
     }
 }

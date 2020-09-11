@@ -31,6 +31,7 @@
             this.pnlSkillButton = new System.Windows.Forms.Panel();
             this.lblSkillLevel = new System.Windows.Forms.Label();
             this.pbSkillIcon = new System.Windows.Forms.PictureBox();
+            this.lblSkillHighlight = new System.Windows.Forms.Label();
             this.pnlSkillButton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSkillIcon)).BeginInit();
             this.SuspendLayout();
@@ -42,7 +43,9 @@
             this.pnlSkillButton.BackColor = System.Drawing.Color.Transparent;
             this.pnlSkillButton.Controls.Add(this.lblSkillLevel);
             this.pnlSkillButton.Controls.Add(this.pbSkillIcon);
+            this.pnlSkillButton.Controls.Add(this.lblSkillHighlight);
             this.pnlSkillButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSkillButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.pnlSkillButton.Location = new System.Drawing.Point(0, 0);
             this.pnlSkillButton.Margin = new System.Windows.Forms.Padding(0);
             this.pnlSkillButton.Name = "pnlSkillButton";
@@ -84,12 +87,28 @@
             this.pbSkillIcon.MouseHover += new System.EventHandler(this.PbSkillIcon_MouseHover);
             this.pbSkillIcon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SkillButton_MouseUp);
             // 
+            // lblSkillHighlight
+            // 
+            this.lblSkillHighlight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSkillHighlight.BackColor = System.Drawing.Color.Transparent;
+            this.lblSkillHighlight.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lblSkillHighlight.Location = new System.Drawing.Point(2, 4);
+            this.lblSkillHighlight.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSkillHighlight.Name = "lblSkillHighlight";
+            this.lblSkillHighlight.Size = new System.Drawing.Size(48, 50);
+            this.lblSkillHighlight.TabIndex = 2;
+            this.lblSkillHighlight.Text = "";
+            this.lblSkillHighlight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // SkillButton
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnlSkillButton);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "SkillButton";
             this.Size = new System.Drawing.Size(56, 54);
@@ -106,5 +125,6 @@
         private System.Windows.Forms.Panel pnlSkillButton;
         private System.Windows.Forms.PictureBox pbSkillIcon;
         private System.Windows.Forms.Label lblSkillLevel;
+        private System.Windows.Forms.Label lblSkillHighlight;
     }
 }

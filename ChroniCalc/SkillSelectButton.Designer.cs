@@ -42,6 +42,9 @@
             // 
             // SkillSelectButton
             // 
+            this.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            this.FlatAppearance.BorderSize = 2;
+            this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Click += new System.EventHandler(this.SkillSelectButton_Click);
             this.MouseLeave += new System.EventHandler(this.SkillSelectButton_MouseLeave);
             this.MouseHover += new System.EventHandler(this.SkillSelectButton_MouseHover);

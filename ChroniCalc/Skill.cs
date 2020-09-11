@@ -11,6 +11,10 @@ namespace ChroniCalc
     [Serializable]
     public class Skill
     {
+        private string _description;
+        private string _element;
+        private string _type;
+
         // START Skill Json Properties
 
         [XmlIgnoreAttribute]
@@ -67,7 +71,17 @@ namespace ChroniCalc
         //The damage type (ie. Fire, Cold, Lightning, etc)
         [XmlIgnoreAttribute]
         [JsonProperty("element")]
-        public string element; //TODOSSG change to Enum type
+        public string element //TODOSSG change to Enum type
+        {
+            get
+            {
+                return _element;
+            }
+            set
+            {
+                _element = value;
+            }
+        }
 
         [XmlIgnoreAttribute]
         [JsonProperty("value")]
@@ -80,16 +94,36 @@ namespace ChroniCalc
         //The status (ie. Active or Passive)
         [XmlIgnoreAttribute]
         [JsonProperty("type")]
-        public string type; //TODOSSG change to Enum
+        public string type //TODOSSG change to Enum
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
+            }
+        }
 
         [XmlIgnoreAttribute]
         [JsonProperty("description_next")]
-        public string description_next;
+        public string description_next; // TODOSSG enable this is a property so it can be searched within the Tree search function? Is it used in game anywhere though, that it'd be applicable for a search?
 
         //The full description
         [XmlIgnoreAttribute]
         [JsonProperty("description")]
-        public string description;
+        public string description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                _description = value;
+            }
+        }
 
         //The max rank alloted
         [XmlIgnoreAttribute]

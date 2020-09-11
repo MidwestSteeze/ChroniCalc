@@ -42,6 +42,9 @@
             // 
             // UnassignSkillButton
             // 
+            this.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            this.FlatAppearance.BorderSize = 2;
+            this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Click += new System.EventHandler(this.UnassignSkillButton_Click);
             this.MouseLeave += new System.EventHandler(this.UnassignSkillButton_MouseLeave);
             this.ResumeLayout(false);

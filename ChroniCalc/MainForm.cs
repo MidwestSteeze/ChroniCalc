@@ -1552,6 +1552,80 @@ namespace ChroniCalc
             MessageBox.Show(debugMessage);
         }
 
+        private void TreeSearch_Highlight(Control treeControl, Skill skill)
+        {
+            if (treeControl is SkillButton)
+            {
+                // Highlight the control if it's not already highlighted
+                ((treeControl as SkillButton).Controls.Find("lblSkillHighlight", true).First() as Label).BackColor = Color.Yellow;
+            }
+            else if (treeControl is MultiSkillSelectButton)
+            {
+                // Look at the MultiSkillSelectButton's child controls to find the Skill Button that matched the search in order to highlight it
+                foreach (SkillSelectButton skillSelectButton in (treeControl as MultiSkillSelectButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())  //TODO this could probably be optimized to save on processing
+                {
+                    if (skillSelectButton.skill == skill)
+                    {
+                        // Search match found, highlight the child SKill Button
+                        skillSelectButton.FlatAppearance.BorderColor = Color.Yellow;
+
+                        // Also highlight the MultiSkillSelectButton so the user knows a Skill Button within it does match the search
+                        ((treeControl as MultiSkillSelectButton).Controls.Find("lblMultiSkillSelectHighlight", true).First() as Label).BackColor = Color.Yellow;
+
+                        // No need to look at the remaining Skill Buttons
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void TreeSearch_Unhighlight(Control treeControl, Skill skill)
+        {
+            // Unhighlight the control on the Tree
+            if (treeControl is SkillButton)
+            {
+                // Unhighlight the Skill Button
+                ((treeControl as SkillButton).Controls.Find("lblSkillHighlight", true).First() as Label).BackColor = Color.Transparent;
+            }
+            else if (treeControl is MultiSkillSelectButton)
+            {
+                bool anotherSkillIsHighlighted = false;
+
+                // Look at the MultiSkillSelectButton's child controls to find the Skill Button that didn't match the search in order to unhighlight it
+                foreach (SkillSelectButton skillSelectButton in (treeControl as MultiSkillSelectButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
+                {
+                    if (skill == null)
+                    {
+                        // No particular skill passed in, so the intent is to unhighlight all child controls
+                        skillSelectButton.FlatAppearance.BorderColor = Color.LightGray;
+                    }
+                    else if (skillSelectButton.skill == skill)
+                    {
+                        // No search match not found, unhighlight the child SKill Button
+                        skillSelectButton.FlatAppearance.BorderColor = Color.LightGray;
+
+                        // No need to look at the remaining Skill Buttons
+                        //break;
+                    }
+                    else
+                    {
+                        // See if this other Skill is still highlighted
+                        if (skillSelectButton.FlatAppearance.BorderColor == Color.Yellow)
+                        {
+                            // Keep track of a different Skill in the SkillSelectPanel still being highlighted
+                            anotherSkillIsHighlighted = true;
+                        }
+                    }
+                }
+
+                // If no other skill in the SkillSelectPanel is highlighted, also unhighlight the MultiSkillSelectButton so the user knows there is no remaining search matchin within it
+                if (!anotherSkillIsHighlighted)
+                {
+                    ((treeControl as MultiSkillSelectButton).Controls.Find("lblMultiSkillSelectHighlight", true).First() as Label).BackColor = Color.Transparent;
+                }
+            }
+        }
+
         // Used to reduce appearance of Control Paint lag when toggling visibility of TreeTableLayoutPanels (ie. Trees)
         protected override CreateParams CreateParams
         {
@@ -2385,6 +2459,118 @@ namespace ChroniCalc
                     {
                         // No Class ID was found in the json
                         //throw EChroniCalcException()
+                    }
+                }
+            }
+        }
+
+        private void TxtTreeSearch_TextChanged(object sender, EventArgs e) //TODOSSG determine other timing points/events when you need to update highlighting (e.g. clear highlighting on tree when changing to a new tree; call this after ShowTree too? (may need to for the scenario where user enters search text, changes trees, and wants it to search the active tree))
+        {
+            string searchString = txtTreeSearch.Text;
+            bool searchStringFound;
+            List<Skill> skillsToSearch;
+
+            skillsToSearch = new List<Skill>();
+            TreeTableLayoutPanel activeTreeTableLayoutPanel = null;
+
+            // Find the active Tree
+            foreach (TreeTableLayoutPanel ttlp in treePanels)
+            {
+                if (ttlp.Visible)
+                {
+                    activeTreeTableLayoutPanel = ttlp;
+                    break;
+                }
+            }
+
+            // Don't complete a search if we didn't find an active Tree for some reason
+            if (activeTreeTableLayoutPanel == null)
+            {
+                return;
+            }
+
+            // Get all Skill Buttons in the Tree (or at least the controls, since different Skill Button control types can exist on the Tree)
+            TableLayoutControlCollection treeControls = activeTreeTableLayoutPanel.Controls;
+
+            // Unhighlight all if the search string isn't a valid search (e.g. "")
+            if (searchString == string.Empty)
+            {
+                // Unhighlight all skills on the tree
+                foreach (Control treeControl in treeControls)
+                {
+                    TreeSearch_Unhighlight(treeControl, null);
+                }
+
+                return;
+            }
+
+            // Loop through each Control (Skill) on the Tree
+            foreach (Control treeControl in treeControls)
+            {
+                // Reset the result from the search through the last control
+                searchStringFound = false;
+                skillsToSearch.Clear();
+
+                // Retrieve the Skill from the Control if we know one exists
+                if (treeControl is SkillButton)
+                {
+                    //skill = (treeControl as SkillButton).skill;
+                    skillsToSearch.Add((treeControl as SkillButton).skill);
+                }
+                else if (treeControl is MultiSkillSelectButton)
+                {
+                    foreach (SkillSelectButton skillSelectButton in (treeControl as MultiSkillSelectButton).skillSelectPanel.Controls.OfType<SkillSelectButton>())
+                    {
+                        skillsToSearch.Add(skillSelectButton.skill);
+                    }
+                }
+                else
+                {
+                    // This control is not one that will hold a Skill to search within, move onto the next control
+                    continue;
+                }
+
+                // Assert a skill was found so we can analyze it (this is perhaps more of a fail safe for the future than anything else)
+                if (skillsToSearch.Count <= 0)
+                {
+                    continue;
+                }
+
+                foreach (Skill skill in skillsToSearch)
+                {
+                    // Retrieve the properties from the Skill
+                    PropertyInfo[] skillProperties = skill.GetType().GetProperties();
+
+                    // Reset the Found flag since we're searching a new Skill
+                    searchStringFound = false;
+
+                    // Loop through every property on the Skill
+                    foreach (PropertyInfo skillProperty in skillProperties)
+                    {
+                        if (searchStringFound)
+                        {
+                            // We found what we were searching for in a previous iteration, stop searching the rest of this skill's properties
+                            break;
+                        }
+
+                        // See if the search string is found within the current property's value, ignoring case when searching //TODO this may cause issues for non-US where the same word with different capitalization has different meaning (e.g. Turkish)
+                        if (skillProperty.GetValue(skill).ToString().IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            searchStringFound = true;
+
+                            // We don't need to look at anymore properties on this skill, so move on to the next one
+                            break;
+                        }
+                    }
+
+                    // Adjust highlight of skills on the tree based on if they contain the search string or not
+                    if (searchStringFound)
+                    {
+                        TreeSearch_Highlight(treeControl, skill);
+                    }
+                    else
+                    {
+                        TreeSearch_Unhighlight(treeControl, skill);
                     }
                 }
             }

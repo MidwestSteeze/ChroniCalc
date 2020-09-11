@@ -73,6 +73,8 @@
             this.lblLevelCaption = new System.Windows.Forms.Label();
             this.lblSkillPointsRemaining = new System.Windows.Forms.Label();
             this.lblSkillPointsRemainingCaption = new System.Windows.Forms.Label();
+            this.lblTreeSearch = new System.Windows.Forms.Label();
+            this.txtTreeSearch = new System.Windows.Forms.TextBox();
             this.pnlClass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
@@ -438,6 +440,8 @@
             // pnlTrees
             // 
             this.pnlTrees.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTrees.Controls.Add(this.txtTreeSearch);
+            this.pnlTrees.Controls.Add(this.lblTreeSearch);
             this.pnlTrees.Controls.Add(this.btnResetTree);
             this.pnlTrees.Controls.Add(this.btnTree1);
             this.pnlTrees.Controls.Add(this.btnTree2);
@@ -645,6 +649,25 @@
             this.lblSkillPointsRemainingCaption.TabIndex = 8;
             this.lblSkillPointsRemainingCaption.Text = "Skill Points:";
             // 
+            // lblTreeSearch
+            // 
+            this.lblTreeSearch.AutoSize = true;
+            this.lblTreeSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTreeSearch.ForeColor = System.Drawing.Color.White;
+            this.lblTreeSearch.Location = new System.Drawing.Point(260, 31);
+            this.lblTreeSearch.Name = "lblTreeSearch";
+            this.lblTreeSearch.Size = new System.Drawing.Size(62, 19);
+            this.lblTreeSearch.TabIndex = 8;
+            this.lblTreeSearch.Text = "Search:";
+            // 
+            // txtTreeSearch
+            // 
+            this.txtTreeSearch.Location = new System.Drawing.Point(323, 30);
+            this.txtTreeSearch.Name = "txtTreeSearch";
+            this.txtTreeSearch.Size = new System.Drawing.Size(100, 20);
+            this.txtTreeSearch.TabIndex = 9;
+            this.txtTreeSearch.TextChanged += new System.EventHandler(this.TxtTreeSearch_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -721,6 +744,8 @@
         private System.Windows.Forms.Label lblInventoryCaption;
         private System.Windows.Forms.Button btnNavExportToGame;
         private System.Windows.Forms.Button btnNavImportFromGame;
+        private System.Windows.Forms.TextBox txtTreeSearch;
+        private System.Windows.Forms.Label lblTreeSearch;
     }
 }
 
