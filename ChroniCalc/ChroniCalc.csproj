@@ -25,7 +25,7 @@
     <InstallUrl>https://raw.githubusercontent.com/MidwestSteeze/ChroniCalc/master/publish/</InstallUrl>
     <UpdateUrl>https://raw.githubusercontent.com/MidwestSteeze/ChroniCalc/master/publish/</UpdateUrl>
     <ApplicationRevision>1005</ApplicationRevision>
-    <ApplicationVersion>0.9.5.1005</ApplicationVersion>
+    <ApplicationVersion>0.9.6.1005</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
