@@ -7,7 +7,6 @@
 
 
  MAJORS:
-  - (feature) add search functionality to trees
   - Save/Open/Load/Share Builds: Swap logic back to JSON format (may need squarebit to correct the json since it's printing non-UTF8 chars)
       - could also retain use of XML within program but output as JSON (ie. JsonConvert.SerializeXmlNodeDoc())
 	  - see project JsonImporter, has it working but requires adjustment to JSON
@@ -41,7 +40,7 @@
 	- adjust all MessageBox.Show to utilize Alert() class
 	- enchance Alerts.Info/Warning/Error to include MessageBoxIcon
 	- modify the processes of loading external data (ie. Skill Data Export and Slot_IDs) to be a bit more automated (JSON Serializers Deserialize) so players potentially can just place the new version in a folder and re-run the application (for when i stop supporting this app)
-	  - is this the best solution?  it puts dependancy on the user to update their own manually...could i create an update button instead that'd retrieve it from the git repo (this'd still require me to update it)? then, put a label somewhere to signify what version of skill data is being used
+	  - is this the best solution?  it puts dependancy on the user to update their own manually...could i create an update button instead that'd retrieve it from the git repo (this'd still require me to update it)?
 	- Nav Button Icons hover text delay updates (update text before it's displayed)
 	- move pastebin api dev keys into external config file so to not require an application build if more are added
     - (bug) mastery tree infinite skills don't show their value until you put a first point in
