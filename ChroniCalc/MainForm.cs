@@ -934,11 +934,28 @@ namespace ChroniCalc
             //Show the corresponding tlpTree by finding a match and bringing it in front of the others
             foreach (TreeTableLayoutPanel ttlp in treePanels)
             {
+                // Check for an active search on the previous tree that was displayed
+                if (ttlp.Visible && txtTreeSearch.Text != string.Empty)
+                {
+                    // This is the previous tree that was visible, unhighlight controls from the previous search before we hide this tree
+                    foreach (Control treeControl in ttlp.Controls)
+                    {
+                        TreeSearch_Unhighlight(treeControl, null);
+                    }
+                }
+
                 if (ttlp.Name == btnTree.Tag.ToString())
                 {
                     ttlp.Show();
                     ttlp.BringToFront();
                     lblTreeCaption.Text = ttlp.passiveSkillName;
+
+                    // If there is a Tree Search active, highlight the Skills in the new tree being displayed
+                    if (txtTreeSearch.Text != string.Empty)
+                    {
+                        // Call the event that prompts a search of the Tree //TODOSSG what's the consequence of passing on an unexpected object and eventargs from a different control?
+                        TxtTreeSearch_TextChanged(sender, e);
+                    }
                 }
                 else
                 {
@@ -2464,7 +2481,7 @@ namespace ChroniCalc
             }
         }
 
-        private void TxtTreeSearch_TextChanged(object sender, EventArgs e) //TODOSSG determine other timing points/events when you need to update highlighting (e.g. clear highlighting on tree when changing to a new tree; call this after ShowTree too? (may need to for the scenario where user enters search text, changes trees, and wants it to search the active tree))
+        private void TxtTreeSearch_TextChanged(object sender, EventArgs e)
         {
             string searchString = txtTreeSearch.Text;
             bool searchStringFound;

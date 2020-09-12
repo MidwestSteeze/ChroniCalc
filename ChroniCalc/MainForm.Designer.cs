@@ -454,6 +454,27 @@
             this.pnlTrees.Size = new System.Drawing.Size(540, 337);
             this.pnlTrees.TabIndex = 6;
             // 
+            // txtTreeSearch
+            // 
+            this.txtTreeSearch.BackColor = System.Drawing.Color.DimGray;
+            this.txtTreeSearch.ForeColor = System.Drawing.Color.White;
+            this.txtTreeSearch.Location = new System.Drawing.Point(345, 32);
+            this.txtTreeSearch.Name = "txtTreeSearch";
+            this.txtTreeSearch.Size = new System.Drawing.Size(100, 20);
+            this.txtTreeSearch.TabIndex = 9;
+            this.txtTreeSearch.TextChanged += new System.EventHandler(this.TxtTreeSearch_TextChanged);
+            // 
+            // lblTreeSearch
+            // 
+            this.lblTreeSearch.AutoSize = true;
+            this.lblTreeSearch.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTreeSearch.ForeColor = System.Drawing.Color.White;
+            this.lblTreeSearch.Location = new System.Drawing.Point(293, 33);
+            this.lblTreeSearch.Name = "lblTreeSearch";
+            this.lblTreeSearch.Size = new System.Drawing.Size(53, 16);
+            this.lblTreeSearch.TabIndex = 8;
+            this.lblTreeSearch.Text = "Search:";
+            // 
             // btnTree1
             // 
             this.btnTree1.BackColor = System.Drawing.Color.Transparent;
@@ -648,25 +669,6 @@
             this.lblSkillPointsRemainingCaption.Size = new System.Drawing.Size(60, 13);
             this.lblSkillPointsRemainingCaption.TabIndex = 8;
             this.lblSkillPointsRemainingCaption.Text = "Skill Points:";
-            // 
-            // lblTreeSearch
-            // 
-            this.lblTreeSearch.AutoSize = true;
-            this.lblTreeSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTreeSearch.ForeColor = System.Drawing.Color.White;
-            this.lblTreeSearch.Location = new System.Drawing.Point(260, 31);
-            this.lblTreeSearch.Name = "lblTreeSearch";
-            this.lblTreeSearch.Size = new System.Drawing.Size(62, 19);
-            this.lblTreeSearch.TabIndex = 8;
-            this.lblTreeSearch.Text = "Search:";
-            // 
-            // txtTreeSearch
-            // 
-            this.txtTreeSearch.Location = new System.Drawing.Point(323, 30);
-            this.txtTreeSearch.Name = "txtTreeSearch";
-            this.txtTreeSearch.Size = new System.Drawing.Size(100, 20);
-            this.txtTreeSearch.TabIndex = 9;
-            this.txtTreeSearch.TextChanged += new System.EventHandler(this.TxtTreeSearch_TextChanged);
             // 
             // MainForm
             // 
