@@ -1,7 +1,9 @@
 ﻿ ToDo
 
  BUGS/FEATURES NOT YET CATEGORIZED:
-
+ - alternate install location (non-OS drive)
+   - will this cause issues with tossing .build files into %AppData%\Local across-drives?
+ - Tree Search: Yellow highlighting is a bit hard to see in the Skill Select Panel popup
 
  BEFORE NEXT RELEASE:
 

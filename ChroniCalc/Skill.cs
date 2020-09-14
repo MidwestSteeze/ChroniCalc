@@ -13,6 +13,8 @@ namespace ChroniCalc
     {
         private string _description;
         private string _element;
+        private string _family;
+        private string _name;
         private string _type;
 
         // START Skill Json Properties
@@ -54,7 +56,17 @@ namespace ChroniCalc
         //For creating links between skills (ie. Passive A affects all X family type skills)
         [XmlIgnoreAttribute]
         [JsonProperty("family")]
-        public string family; //TODOSSG change to Enum?
+        public string family //TODOSSG change to Enum?
+        {
+            get
+            {
+                return _family;
+            }
+            set
+            {
+                _family = value;
+            }
+        }
 
         [XmlIgnoreAttribute]
         [JsonProperty("min_level")]
@@ -141,7 +153,17 @@ namespace ChroniCalc
         //The name as seen on the tree
         [XmlIgnoreAttribute]
         [JsonProperty("name")]
-        public string name;
+        public string name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
 
         // END Skill Json Properties
 
