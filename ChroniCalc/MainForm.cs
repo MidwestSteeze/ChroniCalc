@@ -233,14 +233,14 @@ namespace ChroniCalc
             skills.Add(passiveMasterySkill);
         }
 
-        private void AddMasterySharedAffinities(ref List<Skill> skills)
+        private void AddMasterySharedClassSpecificAffinities(ref List<Skill> skills)
         {
             Skill duplicateSkill;
             int[] rowIndices = { 1, 5, 6 };
             int insertionIndex;
 
             // Get the shared Affinity Skills (e.g. Ultimate, Heritage, Aura, etc.) in the final column of Row 1 on the Mastery Tree (ie. skill.y=0 && skill.x=10)
-            List<Skill> skillsToDuplicate = skills.FindAll(s => s.y == 0 && s.x == 10 && s.element == "Ethereal");
+            List<Skill> skillsToDuplicate = skills.FindAll(s => s.y == 0 && s.x == 10 && s.element == "Ethereal"); //TODOSSG this isn't the best solution, assuming the duplicates are Ethereal type; perhaps copy hard-coded ID implementation from AddMasterySharedClassSpecificGenericSkills()
 
             // With indices 1, 5, and 6 (for Rows 2, 6, and 7), duplicate each of the shared Affinity Skills in Row 1 and change its y value to the new Row
             for (int i = 0; i <= rowIndices.Length - 1; i++)
@@ -260,7 +260,97 @@ namespace ChroniCalc
             }
         }
 
-        private void AddMasterySharedRows(ref List<Skill> skills)
+        private void AddMasterySharedClassSpecificGenericSkills(ref List<Skill> skills, string className)
+        {
+            Skill duplicateSkill;
+            int[] rowIndices = { 1, 5, 6 };
+            int insertionIndex;
+            List<Skill> skillsToDuplicate;
+
+            skillsToDuplicate = new List<Skill>();
+
+            // Insert Shared Generic Skills, found in the Column 1 and 8 of the first Class-specific Row, into the other Class-specific Rows
+            //  (there's no good way to identify the Shared Generic Skills that should be in these columns of each Class-specific row, so we have to hard-code it unfortunately;
+            //   this is because the data from the game only contains 1 record for each Shared Generic Skill and places them in the first Class-specific row)
+            try
+            {
+                switch (className)
+                {
+                    case "Berserker":
+                        // Column 1
+                        //   Thorns
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100221));
+                        //   Health Regeneration
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100220));
+
+                        // Column 8
+                        //   Wide Synergy
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100295));
+                        break;
+                    case "Templar":
+                        // Column 1
+                        //   Thorns
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100221));
+                        //   Companion Health
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100028));
+                        //   Companion Damage
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100027));
+
+                        // Column 8
+                        //   Wide Synergy
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100295));
+                        break;
+                    case "Warden":
+                        // Column 1
+                        //   Companion Health
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100028));
+                        //   Companion Damage
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100027));
+
+                        // Column 8
+                        //   Wide Synergy
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100295));
+                        break;
+                    case "Warlock":
+                        // Column 1
+                        //   Companion Health
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100028));
+                        //   Companion Damage
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100027));
+                        
+                        // Column 8
+                        //   Wide Synergy
+                        skillsToDuplicate.Add(skills.Find(s => s.id == 100295));
+                        break;
+                    default:
+                        throw new Exception("AddMasterySharedClassSpecificGenericSkills(): Class " + className + " not found.");
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                Alerts.DisplayError("AddMasterySharedClassSpecificGenericSkills: Class " + className + " has had its Generic Skills, found in each Class-specific row's first column, changed since the last update of Chronicon.  The list needs to be revised.  Unable to continue." + Environment.NewLine + ex.ToString());
+                throw;
+            }
+
+            // With indices 1, 5, and 6 (for Rows 2, 6, and 7), duplicate each of the shared Generic Skills in Row 1 and change its y value to the new Row
+            for (int i = 0; i <= rowIndices.Length - 1; i++)
+            {
+                // Set the index to insert the duplicated Skill for the new Row so that the Skills have the same order as the first Row
+                insertionIndex = 0;
+
+                foreach (Skill skillToDuplicate in skillsToDuplicate)
+                {
+                    duplicateSkill = skillToDuplicate.Duplicate();
+                    duplicateSkill.y = rowIndices[i];
+
+                    // Add the duplicated Skill into the available Skills list
+                    skills.Insert(insertionIndex, duplicateSkill);
+                    insertionIndex++;
+                }
+            }
+        }
+
+        private void AddMasterySharedGenericRows(ref List<Skill> skills)
         {
             Skill duplicateSkill;
 
@@ -859,11 +949,14 @@ namespace ChroniCalc
 					// 	(this is because Skills shared between Rows are only in the Skill Data at their first row)
                     if (tree.name == "Mastery")
                     {
-                        // Copy Row 3 Skills to also exist in Rows 4 and 5
-                        AddMasterySharedRows(ref skills);
+                        // Copy Row 3 Generic Skills to also exist in Rows 4 and 5
+                        AddMasterySharedGenericRows(ref skills);
 
-                        // Copy shared Affinity Skills from Row 1 to exist in the SkillSelectPanel for all Class-specific Rows (e.g. Rows 1, 2, 6, and 7)
-                        AddMasterySharedAffinities(ref skills);
+                        // Copy shared Class-specific Generic Skills from Row 1 to exist in the SkillSelectPanel for all Class-specific Rows (e.g. Rows 1, 2, 6, and 7)
+                        AddMasterySharedClassSpecificGenericSkills(ref skills, classNode.Name);
+
+                        // Copy shared Class-specific Affinity Skills from Row 1 to exist in the SkillSelectPanel for all Class-specific Rows (e.g. Rows 1, 2, 6, and 7)
+                        AddMasterySharedClassSpecificAffinities(ref skills);
 
                         // Create all of the passive row counter buttons
                         AddMasteryPassiveRowCounters(classNode.Name, ref skills);

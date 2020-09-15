@@ -192,7 +192,7 @@ namespace ChroniCalc
                 // Ensure we will still meet the min_level of the furthest-leveled Skill if we would delevel the selected Skill (ie. otherSkills.Last.min_level vs otherSkills[0}.level, where [0] is the RowCounter with the total points spent in the selected Skill's Row)
                 //  NOTE: If we're trying to de-level the furthest-leveled Skill, let them
                 if ((otherSkills.Last<SkillButton>().skill.x != this.skill.x) &&
-                    ((totalPoints - 1) < otherSkills.Last<SkillButton>().skill.min_level))
+                    ((totalPoints - 1) < otherSkills.Last<SkillButton>().skill.min_level))  //TODO bug here; pick skill in row 1 column 1, then try unassigning it
                 {
                     return false;
                 }

@@ -138,6 +138,13 @@ namespace ChroniCalc
                 return false;
             }
 
+            // If this is a Shared Class-specific Skill (ie. Thorns, found in the first column of the Berserker's Class-specific Rows; or Ultimate Affinity, found in the last column of the Berserker's Class-specific Rows), check the selected Skill has not already been selected in any of the other 3 Class-specific Rows (Row numbers 1, 2, 6, 7)
+            if ((treeControl.Controls.OfType<SkillButton>().Where(s => s.skill.id == selectedSkill.id && s.skill.x == selectedSkill.x && s.skill.y >= 0 && s.skill.y <= 1).Count() > 0) ||
+                (treeControl.Controls.OfType<SkillButton>().Where(s => s.skill.id == selectedSkill.id && s.skill.x == selectedSkill.x && s.skill.y >= 5 && s.skill.y <= 6).Count() > 0))
+            {
+                return false;
+            }
+
             return result;
         }
 
