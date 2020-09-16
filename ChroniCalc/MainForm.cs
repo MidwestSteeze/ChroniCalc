@@ -240,7 +240,7 @@ namespace ChroniCalc
             int insertionIndex;
 
             // Get the shared Affinity Skills (e.g. Ultimate, Heritage, Aura, etc.) in the final column of Row 1 on the Mastery Tree (ie. skill.y=0 && skill.x=10)
-            List<Skill> skillsToDuplicate = skills.FindAll(s => s.y == 0 && s.x == 10 && s.element == "Ethereal"); //TODOSSG this isn't the best solution, assuming the duplicates are Ethereal type; perhaps copy hard-coded ID implementation from AddMasterySharedClassSpecificGenericSkills()
+            List<Skill> skillsToDuplicate = skills.FindAll(s => s.y == 0 && s.x == 10 && s.element == "Ethereal"); //TODOSSG this will break if a class-specific final Affinity is ever added of element "Ethereal";  if so, you'll need to implement this similar to the procedure below AddMasterySharedClassSpecificGenericSkills (not sure which solution idea is best in this case...)
 
             // With indices 1, 5, and 6 (for Rows 2, 6, and 7), duplicate each of the shared Affinity Skills in Row 1 and change its y value to the new Row
             for (int i = 0; i <= rowIndices.Length - 1; i++)
@@ -2393,10 +2393,11 @@ namespace ChroniCalc
         {
             CharacterClass selectedClass;
             DialogResult dialogResult;
+            Dictionary<string, string> jsonIdsAndValues;
             Dictionary<string, int> leveledSkills;
             IEnumerable<Skill> skillsInTree;
             int classID;
-            int newLevel;
+            int importedLevel;
             OpenFileDialog openFileDialog;
             string className;
             string json;
@@ -2431,7 +2432,31 @@ namespace ChroniCalc
                     }
 
                     // Deserialize the .build content into a string/int Dictionary of Skill ID/Level pairs
-                    leveledSkills = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
+                    leveledSkills = new Dictionary<string, int>();
+
+                    //   First, get the id and value as strings, we'll cast them into the correct datatypes after the deserialization is done so we can ignore certain nodes that are mixed in with the skill data (e.g. "metadata" : "960E180A09...")
+                    jsonIdsAndValues = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
+                    //   Loop through each Id and Value in the deserialized JSON and only keep the Skill IDs and their corresponding Levels (basically, if it doesn't cast into string:int, we don't want to keep it)
+                    foreach (KeyValuePair<string, string> idAndValue in jsonIdsAndValues)
+                    {
+                        //  Copy the Id and Value pair into the dictionary of Skills to be imported
+                        try
+                        {
+                            leveledSkills.Add(idAndValue.Key, Convert.ToInt32(idAndValue.Value));
+                        }
+                        catch (FormatException ex)
+                        {
+                            // The KeyValuePair is not a Skill and its Level (of <string, int> type) (e.g. "metadata" : "960E180A09...") so we're going to skip over it
+                            continue;
+                        }
+                        catch (Exception ex)
+                        {
+                            // An unknown exception occurred when importing the build from the game; display exception details and exit the Import process since we can't continue importing this build
+                            Alerts.DisplayError("Error importing the Build from the game.  Unable to continue." + Environment.NewLine + ex.ToString());
+                            return;
+                        }
+                    }
 
                     if (leveledSkills.TryGetValue("class", out classID))
                     {
@@ -2496,63 +2521,70 @@ namespace ChroniCalc
                                 //  due to the existence of 3 shared Mastery Rows with the same Skills using the same IDs (this is where SlotIDs will help us identify the right one)
                                 if (tree.name == "Mastery")
                                 {
+                                    bool shouldLookupSlotId = false;
                                     int slotID;
                                     int slotIdX;
                                     int slotIdY;
-                                    string position;
+                                    string position = "-1,-1";
 
-                                    // Get the SlotID of the current Skill by searching for it in the list of the user's leveled skills using a key of "skill.id + 's'" (eg. 100400s)
-                                    if (!(leveledSkills.TryGetValue(skill.id.ToString() + "s", out slotID)))
+                                    // Determine if we'll need to lookup a SlotID for the current Skill, which will be indicated in the list of the imported user's leveled skills using a key of "skill.id + 's'" (eg. 100400s)
+                                    if (leveledSkills.TryGetValue(skill.id.ToString() + "s", out slotID))
                                     {
-                                        // If the above resulted as false, then SlotID is empty because we didn't have an entry and it was an error in BtnNavExportToGame code
-                                        //  we can't continue on because we won't know what x,y position to level the Skill at
-                                        throw new EChroniCalcException("Import From Game: No corresponding SlotID was found for Skill " + skill.name + " (ID: " + skill.id + ").  Unable to Import this Build.  Please include the content of your .build file in your Bug post.  Unable to continue.");
+                                        // This Skill requires a lookup of a SlotID, as it's a generic skill that could be located in multiple different slots on the Tree, so we'll need to find which one exactly
+                                        shouldLookupSlotId = true;
                                     }
 
-                                    // Cross-check the retreived SlotID with the dictionary of Mastery SlotIDs and their respective x,y position to get this SlotIDs actual x,y position
-                                    if (!(masterySlotIDs.TryGetValue(slotID, out position)))
+                                    // If we need to lookup the correct position via a SlotID, cross-check the retreived SlotID with the dictionary of Mastery SlotIDs and their respective x,y position to get this SlotIDs actual x,y position
+                                    if ((shouldLookupSlotId) && (!(masterySlotIDs.TryGetValue(slotID, out position))))
                                     {
                                         // If the above resulted as false, then there is no corresponding position for the given SlotID in the reference Dictionary of all MasterySlotIDs;
-                                        //   we can't continue on because we won't know what x,y position to level the Skill at
+                                        //   we can't continue on because we won't know what x,y position to place/level the Skill at
                                         //   NOTE: It's possible the slot_ids.txt/xml is outdated from what squarebit has defined
-                                        throw new EChroniCalcException("Import From Game: No corresponding Position was found in the Mastery Tree Slot IDs dictionary for Slot ID: " + slotID + ".  Unable to Import this Build.  Please include the content of your .build file in your Bug post.  Unable to continue.");
+                                        throw new EChroniCalcException("Import From Game: No corresponding Position was found for Skill " + skill.name + " in the Mastery Tree Slot IDs dictionary for Slot ID: " + slotID + ".  Unable to Import this Build.  Please include the content of your .build file in your Bug post.  Unable to continue.");
                                     }
 
-                                    // Extract the x and y positions from the retrieved position
-                                    slotIdX = Convert.ToInt32(position.Substring(0, position.IndexOf(',')));
-                                    slotIdY = Convert.ToInt32(position.Substring(position.IndexOf(',') + 1));
-
-                                    // Ensure that the current Skill's x,y position matches the SlotID of the Skill we're attempting to import
-                                    //  (this will make sure the Skill gets assigned to the correct location in the Mastery Tree)
-                                    if (!((slotIdX == skill.x) && (slotIdY == skill.y)))
+                                    if (shouldLookupSlotId)
                                     {
-                                        // The x and y positions don't match the leveled slot, so we know we're not actually on the correct Skill; skip this and continue on to the next Skill
-                                        continue;
+                                        // Extract the x and y positions from the retrieved position
+                                        slotIdX = Convert.ToInt32(position.Substring(0, position.IndexOf(',')));
+                                        slotIdY = Convert.ToInt32(position.Substring(position.IndexOf(',') + 1));
+
+                                        // Ensure that the current Skill's x,y position matches the SlotID of the Skill we're attempting to import
+                                        //  (this will make sure the Skill gets assigned to the correct location in the Mastery Tree)
+                                        if (!((slotIdX == skill.x) && (slotIdY == skill.y)))
+                                        {
+                                            // The x and y positions don't match the leveled slot, so we know we're not actually on the correct Skill; skip this and continue on to the next Skill
+                                            continue;
+                                        }
                                     }
                                 }
 
                                 // Retrieve and Assign the level of the Skill
-                                if (!(leveledSkills.TryGetValue(skill.id.ToString(), out newLevel)))
+                                if (!(leveledSkills.TryGetValue(skill.id.ToString(), out importedLevel)))
                                 {
                                     // If the above resulted as false, then there was no level value found for the Skill being imported;
                                     //  NOTE: This is likely an error in the BtnNavExportToGame code, or the file was modified manually
                                     throw new EChroniCalcException("Import From Game: No Level value was found for Skill " + skill.name + " (ID: " + skill.id + ").  Unable to Import this Build.  Please include the content of your .build file in your Bug post.  Unable to continue.");
                                 }
 
-                                skill.level = newLevel;
+                                skill.level = importedLevel;
 
-                                // Update the level of the Build and the passive bonus counter
                                 if (tree.name == "Mastery")
                                 {
-                                    build.MasteryLevel += newLevel;
-                                    // Update the level of the Row Counter for the passive bonus
-                                    tree.skills.Where(s => s.x == 0 && s.y == skill.y).First().level += newLevel;
+                                    // Update the Mastery level of the Build if this is a selected Skill (ie. not the Passive Bonus skill on the left-side of the Tree)
+                                    if (!(skill.x == 0))
+                                    {
+                                        build.MasteryLevel += importedLevel;
+                                    }
                                 }
                                 else
                                 {
-                                    build.Level += newLevel;
-                                    // Update the level of the Passive Bonus Button
-                                    tree.skills.Where(s => s.x == 0).First().level += newLevel;  //TODO this will break if Chronicon ever adds more skills at x=0, besides just the single passive bonus counter
+                                    // Update the level of the Build if this is a selected Skill (ie. not the Passive Bonus skill on the left-side of the Tree)
+                                    //   NOTE: Have to perform the secondary search using the underscore ("_") since any multi-word Tree names are separated with an underscore in the framework (See: InitializeBuild(), TreeTableLayoutPanel Control Names eg. "Winter_Herald")  //TODO I could maybe clean this up with some control name changes if this causes issues in the future
+                                    if ((skill.name != tree.name) && (skill.name.Replace(" ", "_") != tree.name))
+                                    {
+                                        build.Level += importedLevel;
+                                    }
                                 }
                             }
                         }
