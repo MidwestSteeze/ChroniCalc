@@ -1,6 +1,8 @@
 ﻿ ToDo
 
  BUGS/FEATURES NOT YET CATEGORIZED:
+ - Berserker Guardian Tree Inner Strength has "Damage is increased by 0% of the Berserker's current Rage" at all levels. (description uses EFFECT but skill data doesn't have any values; in game it's 6-10; pull new data and check else bug sqrbt)
+ - color update of character dependant upon which tree/stat the character has the most points into (4 character gifs for each, then?)
  - alternate install location (non-OS drive)
    - will this cause issues with tossing .build files into %AppData%\Local across-drives?
  - Tree Search: Yellow highlighting is a bit hard to see in the Skill Select Panel popup

@@ -174,31 +174,31 @@ namespace ChroniCalc
             switch (className)
             {
                 case "Berserker":
-                    AddMasteryPassiveRowCounter("Guardian Mastery", 100011, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Guardian"), ref skills);
-                    AddMasteryPassiveRowCounter("Sky Lord Mastery", 100013, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Sky Lord"), ref skills);
-                    AddMasteryPassiveRowCounter("Dragonkin Mastery", 100012, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Dragonkin"), ref skills);
-                    AddMasteryPassiveRowCounter("Frostborn Mastery", 100014, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Frostborn"), ref skills);
+                    AddMasteryPassiveRowCounter("Guardian Mastery", Constants.SkillIDs.MASTERY_BERSERKER_GUARDIAN, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Guardian"), ref skills);
+                    AddMasteryPassiveRowCounter("Sky Lord Mastery", Constants.SkillIDs.MASTERY_BERSERKER_SKY_LORD, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Sky Lord"), ref skills);
+                    AddMasteryPassiveRowCounter("Dragonkin Mastery", Constants.SkillIDs.MASTERY_BERSERKER_DRAGONKIN, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Dragonkin"), ref skills);
+                    AddMasteryPassiveRowCounter("Frostborn Mastery", Constants.SkillIDs.MASTERY_BERSERKER_FROSTBORN, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Frostborn"), ref skills);
                     break;
 
                 case "Templar":
-                    AddMasteryPassiveRowCounter("Vengeance Mastery", 100007, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Vengeance"), ref skills);
-                    AddMasteryPassiveRowCounter("Wrath Mastery", 100009, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Wrath"), ref skills);
-                    AddMasteryPassiveRowCounter("Conviction Mastery", 100008, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Conviction"), ref skills);
-                    AddMasteryPassiveRowCounter("Redemption Mastery", 100010, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Redemption"), ref skills);
+                    AddMasteryPassiveRowCounter("Vengeance Mastery", Constants.SkillIDs.MASTERY_TEMPLAR_VENGEANCE, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Vengeance"), ref skills);
+                    AddMasteryPassiveRowCounter("Wrath Mastery", Constants.SkillIDs.MASTERY_TEMPLAR_WRATH, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Wrath"), ref skills);
+                    AddMasteryPassiveRowCounter("Conviction Mastery", Constants.SkillIDs.MASTERY_TEMPLAR_CONVICTION, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Conviction"), ref skills);
+                    AddMasteryPassiveRowCounter("Redemption Mastery", Constants.SkillIDs.MASTERY_TEMPLAR_REDEMPTION, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Redemption"), ref skills);
                     break;
 
                 case "Warden":
-                    AddMasteryPassiveRowCounter("Wind Ranger Mastery", 100003, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Wind Ranger"), ref skills);
-                    AddMasteryPassiveRowCounter("Druid Mastery", 100004, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Druid"), ref skills);
-                    AddMasteryPassiveRowCounter("Storm Caller Mastery", 100005, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Storm Caller"), ref skills);
-                    AddMasteryPassiveRowCounter("Winter Herald Mastery", 100006, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Winter Herald"), ref skills);
+                    AddMasteryPassiveRowCounter("Wind Ranger Mastery", Constants.SkillIDs.MASTERY_WARDEN_WIND_RANGER, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Wind Ranger"), ref skills);
+                    AddMasteryPassiveRowCounter("Druid Mastery", Constants.SkillIDs.MASTERY_WARDEN_DRUID, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Druid"), ref skills);
+                    AddMasteryPassiveRowCounter("Storm Caller Mastery", Constants.SkillIDs.MASTERY_WARDEN_STORM_CALLER, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Storm Caller"), ref skills);
+                    AddMasteryPassiveRowCounter("Winter Herald Mastery", Constants.SkillIDs.MASTERY_WARDEN_WINTER_HERALD, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Winter Herald"), ref skills);
                     break;
 
                 case "Warlock":
-                    AddMasteryPassiveRowCounter("Corruptor Mastery", 100015, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Corruptor"), ref skills);
-                    AddMasteryPassiveRowCounter("Lich Mastery", 100017, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Lich"), ref skills);
-                    AddMasteryPassiveRowCounter("Demonologist Mastery", 100016, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Demonologist"), ref skills);
-                    AddMasteryPassiveRowCounter("Reaper Mastery", 100018, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Reaper"), ref skills);
+                    AddMasteryPassiveRowCounter("Corruptor Mastery", Constants.SkillIDs.MASTERY_WARLOCK_CORRUPTOR, 0, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Corruptor"), ref skills);
+                    AddMasteryPassiveRowCounter("Lich Mastery", Constants.SkillIDs.MASTERY_WARLOCK_LICH, 1, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Lich"), ref skills);
+                    AddMasteryPassiveRowCounter("Demonologist Mastery", Constants.SkillIDs.MASTERY_WARLOCK_DEMONOLOGIST, 5, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Demonologist"), ref skills);
+                    AddMasteryPassiveRowCounter("Reaper Mastery", Constants.SkillIDs.MASTERY_WARLOCK_REAPER, 6, DESCRIPTION_CLASS_ROW.Replace(PLACEHOLDER_TREE, "Reaper"), ref skills);
                     break;
 
                 default:
@@ -2080,7 +2080,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 380;
+                    treePanels[0].passiveSkillId = Constants.SkillIDs.BERSERKER_GUARDIAN;
                     treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2088,7 +2088,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
-                    treePanels[1].passiveSkillId = 478;
+                    treePanels[1].passiveSkillId = Constants.SkillIDs.BERSERKER_SKY_LORD;
                     treePanels[1].passiveSkillName = "Sky Lord";  //Overridden from treeName;  //this is manually written by looking it up in the xml data (this wouldn't be an issue if you could work with the raw json)
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2096,7 +2096,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
-                    treePanels[2].passiveSkillId = 82;
+                    treePanels[2].passiveSkillId = Constants.SkillIDs.BERSERKER_DRAGONKIN;
                     treePanels[2].passiveSkillName = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2104,7 +2104,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
-                    treePanels[3].passiveSkillId = 93;
+                    treePanels[3].passiveSkillId = Constants.SkillIDs.BERSERKER_FROSTBORN;
                     treePanels[3].passiveSkillName = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
@@ -2114,7 +2114,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 241;
+                    treePanels[0].passiveSkillId = Constants.SkillIDs.TEMPLAR_VENGEANCE;
                     treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2122,7 +2122,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
-                    treePanels[1].passiveSkillId = 242;
+                    treePanels[1].passiveSkillId = Constants.SkillIDs.TEMPLAR_WRATH;
                     treePanels[1].passiveSkillName = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2130,7 +2130,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
-                    treePanels[2].passiveSkillId = 273;
+                    treePanels[2].passiveSkillId = Constants.SkillIDs.TEMPLAR_CONVICTION;
                     treePanels[2].passiveSkillName = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2138,7 +2138,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
-                    treePanels[3].passiveSkillId = 274;
+                    treePanels[3].passiveSkillId = Constants.SkillIDs.TEMPLAR_REDEMPTION;
                     treePanels[3].passiveSkillName = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
@@ -2148,7 +2148,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 512;
+                    treePanels[0].passiveSkillId = Constants.SkillIDs.WARDEN_WIND_RANGER;
                     treePanels[0].passiveSkillName = "Wind Ranger";  //Overridden from treeName
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2156,7 +2156,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
-                    treePanels[1].passiveSkillId = 545;
+                    treePanels[1].passiveSkillId = Constants.SkillIDs.WARDEN_DRUID;
                     treePanels[1].passiveSkillName = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2164,7 +2164,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
-                    treePanels[2].passiveSkillId = 124;
+                    treePanels[2].passiveSkillId = Constants.SkillIDs.WARDEN_STORM_CALLER;
                     treePanels[2].passiveSkillName = "Storm Caller";  //Overridden from treeName
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2172,7 +2172,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
-                    treePanels[3].passiveSkillId = 609;
+                    treePanels[3].passiveSkillId = Constants.SkillIDs.WARDEN_WINTER_HERALD;
                     treePanels[3].passiveSkillName = "Winter Herald";  //Overridden from treeName
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
@@ -2182,7 +2182,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree1, treeName);
                     btnTree1.Tag = treeName;
                     treePanels[0].Name = treeName;
-                    treePanels[0].passiveSkillId = 642;
+                    treePanels[0].passiveSkillId = Constants.SkillIDs.WARLOCK_CORRUPTOR;
                     treePanels[0].passiveSkillName = treeName;
                     treePanels[0].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2190,7 +2190,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree2, treeName);
                     btnTree2.Tag = treeName;
                     treePanels[1].Name = treeName;
-                    treePanels[1].passiveSkillId = 748;
+                    treePanels[1].passiveSkillId = Constants.SkillIDs.WARLOCK_LICH;
                     treePanels[1].passiveSkillName = treeName;
                     treePanels[1].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2198,7 +2198,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree3, treeName);
                     btnTree3.Tag = treeName;
                     treePanels[2].Name = treeName;
-                    treePanels[2].passiveSkillId = 707;
+                    treePanels[2].passiveSkillId = Constants.SkillIDs.WARLOCK_DEMONOLOGIST;
                     treePanels[2].passiveSkillName = treeName;
                     treePanels[2].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
 
@@ -2206,7 +2206,7 @@ namespace ChroniCalc
                     LoadTreeIconButtonImage(ResourceManagerImageTree, btnTree4, treeName);
                     btnTree4.Tag = treeName;
                     treePanels[3].Name = treeName;
-                    treePanels[3].passiveSkillId = 182;
+                    treePanels[3].passiveSkillId = Constants.SkillIDs.WARLOCK_REAPER;
                     treePanels[3].passiveSkillName = treeName;
                     treePanels[3].BackgroundImage = (Image)ResourceManagerImageTree.GetObject(treeName);
                     break;
@@ -2391,6 +2391,19 @@ namespace ChroniCalc
         // Let the user pick a .build file and import it into ChroniCalc
         private void BtnNavImportFromGame_Click(object sender, EventArgs e)
         {
+            //
+            bool IsPassiveBonusSkill(int skillID)
+            {
+                bool isPassiveBonusSkill = false;
+
+                if (Constants.SkillIDs.PassiveBonusSkillIDs.Contains(skillID))
+                {
+                    isPassiveBonusSkill = true;
+                }
+
+                return isPassiveBonusSkill;
+            }
+            //
             CharacterClass selectedClass;
             DialogResult dialogResult;
             Dictionary<string, string> jsonIdsAndValues;
@@ -2517,11 +2530,16 @@ namespace ChroniCalc
                             // Loop through each Skill in the tree that was leveled by the user in-game
                             foreach (Skill skill in skillsInTree)
                             {
+                                if (IsPassiveBonusSkill(skill.id))
+                                {
+                                    // Do not import any Passive Bonus Skills or Mastery Tree Passive Row Counters
+                                    continue;
+                                }
+
                                 // If we're importing a Mastery skill, make sure it's the Skill in the correct position selected and leveled by the user, as there is some overlapping of Skills occurring
                                 //  due to the existence of 3 shared Mastery Rows with the same Skills using the same IDs (this is where SlotIDs will help us identify the right one)
                                 if (tree.name == "Mastery")
                                 {
-                                    bool shouldLookupSlotId = false;
                                     int slotID;
                                     int slotIdX;
                                     int slotIdY;
@@ -2531,20 +2549,15 @@ namespace ChroniCalc
                                     if (leveledSkills.TryGetValue(skill.id.ToString() + "s", out slotID))
                                     {
                                         // This Skill requires a lookup of a SlotID, as it's a generic skill that could be located in multiple different slots on the Tree, so we'll need to find which one exactly
-                                        shouldLookupSlotId = true;
-                                    }
+                                        //   Cross-check the retreived SlotID with the dictionary of Mastery SlotIDs and their respective x,y position to get this SlotIDs actual x,y position
+                                        if (!(masterySlotIDs.TryGetValue(slotID, out position)))
+                                        {
+                                            // If the above resulted as false, then there is no corresponding position for the given SlotID in the reference Dictionary of all MasterySlotIDs;
+                                            //   we can't continue on because we won't know what x,y position to place/level the Skill at
+                                            //   NOTE: It's possible the slot_ids.txt/xml is outdated from what squarebit has defined
+                                            throw new EChroniCalcException("Import From Game: No corresponding Position was found for Skill " + skill.name + " in the Mastery Tree Slot IDs dictionary for Slot ID: " + slotID + ".  Unable to Import this Build.  Please include the content of your .build file in your Bug post.  Unable to continue.");
+                                        }
 
-                                    // If we need to lookup the correct position via a SlotID, cross-check the retreived SlotID with the dictionary of Mastery SlotIDs and their respective x,y position to get this SlotIDs actual x,y position
-                                    if ((shouldLookupSlotId) && (!(masterySlotIDs.TryGetValue(slotID, out position))))
-                                    {
-                                        // If the above resulted as false, then there is no corresponding position for the given SlotID in the reference Dictionary of all MasterySlotIDs;
-                                        //   we can't continue on because we won't know what x,y position to place/level the Skill at
-                                        //   NOTE: It's possible the slot_ids.txt/xml is outdated from what squarebit has defined
-                                        throw new EChroniCalcException("Import From Game: No corresponding Position was found for Skill " + skill.name + " in the Mastery Tree Slot IDs dictionary for Slot ID: " + slotID + ".  Unable to Import this Build.  Please include the content of your .build file in your Bug post.  Unable to continue.");
-                                    }
-
-                                    if (shouldLookupSlotId)
-                                    {
                                         // Extract the x and y positions from the retrieved position
                                         slotIdX = Convert.ToInt32(position.Substring(0, position.IndexOf(',')));
                                         slotIdY = Convert.ToInt32(position.Substring(position.IndexOf(',') + 1));
@@ -2571,20 +2584,18 @@ namespace ChroniCalc
 
                                 if (tree.name == "Mastery")
                                 {
-                                    // Update the Mastery level of the Build if this is a selected Skill (ie. not the Passive Bonus skill on the left-side of the Tree)
-                                    if (!(skill.x == 0))
-                                    {
-                                        build.MasteryLevel += importedLevel;
-                                    }
+                                    // Update the Mastery level of the Build
+                                    build.MasteryLevel += importedLevel;
+                                    // Update the level of the Row Counter for the passive bonus
+                                    tree.skills.Where(s => s.x == 0 && s.y == skill.y).First().level += importedLevel;
                                 }
                                 else
                                 {
-                                    // Update the level of the Build if this is a selected Skill (ie. not the Passive Bonus skill on the left-side of the Tree)
-                                    //   NOTE: Have to perform the secondary search using the underscore ("_") since any multi-word Tree names are separated with an underscore in the framework (See: InitializeBuild(), TreeTableLayoutPanel Control Names eg. "Winter_Herald")  //TODO I could maybe clean this up with some control name changes if this causes issues in the future
-                                    if ((skill.name != tree.name) && (skill.name.Replace(" ", "_") != tree.name))
-                                    {
-                                        build.Level += importedLevel;
-                                    }
+                                    // Update the level of the Build
+                                    build.Level += importedLevel;
+                                    // Update the level of the Passive Bonus on this Tree
+                                    string alternateTreeName = tree.name.Replace("_", " ");
+                                    tree.skills.Where(s => (s.x == 0 && s.name.Contains(tree.name)) || (s.x == 0 && s.name.Contains(alternateTreeName))).First().level += importedLevel;  // TODO Multiword Tree Names require an alternate name lookup cus tree.name is stored as "Winter_Herald", fix this later but get patch out asap
                                 }
                             }
                         }
